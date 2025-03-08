@@ -20,15 +20,13 @@ _range_trace= 2;
 
 while {al_tracer} do 
 {
-	if ((player distance _tracer_object_name) > _activation_distance) then 
-	{
+	if ((player distance _tracer_object_name) > _activation_distance) then {
 		_nr_tras = 2 + floor (random 8);
-		_xx 	= (floor (random 60)) * ([1,-1] call BIS_fnc_selectRandom);
-		_yy 	= (floor (random 60)) * ([1,-1] call BIS_fnc_selectRandom);
+		_xx 	= (floor (random 60)) * (selectRandom [1,-1]);
+		_yy 	= (floor (random 60)) * (selectRandom [1,-1]);
 		_zz		= 70 + floor(random 100);	
 
-		while {_nr_tras > 0} do 
-		{
+		while {_nr_tras > 0} do {
 			_nr_tras = _nr_tras - 1;
 			private ["_trasor"];
 			_trasor = createVehicle ["Land_Battery_F", getPosATL _tracer_object_name, [], 0, "CAN_COLLIDE"];
@@ -46,8 +44,7 @@ while {al_tracer} do
 			_li_tracer setLightAttenuation [_range_trace,0,100,0,_range_trace,_range_trace]; 			
 
 			uiSleep 0.2 + (random 1);
-			[_trasor, _life_time_tras, _li_tracer] spawn 
-			{
+			[_trasor, _life_time_tras, _li_tracer] spawn {
 				_obj_tras			= _this select 0;
 				_life_time_tras_del = _this select 1;
 				_li_tracer			= _this select 2;
@@ -58,8 +55,7 @@ while {al_tracer} do
 		};
 	};
 	uiSleep 1 + (random 3);	
-	if (!al_tracers_sunet_play) then 
-	{
+	if (!al_tracers_sunet_play) then {
 		[_tracer_object_name, ["ground_air", 2000]] remoteExec ["say3d"];
 		al_tracers_sunet_play = true;
 		publicVariable "al_tracers_sunet_play";

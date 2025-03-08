@@ -25,6 +25,15 @@ class CfgFunctions
 		class RootFallstarCategory
 		{
 			class Fallstar {file = "root_effects\fallstar\functions\init_fallstar.sqf";};
+			class FallstarFallingIni {file = "root_effects\fallstar\functions\fallstar_fallingstar_ini.sqf";};
+			class FallstarFalling {file = "root_effects\fallstar\functions\fallstar_fallingstar.sqf";};
+			class FallstarHunt {file = "root_effects\fallstar\functions\fallstar_hunt.sqf";};
+			class FallstarLumina {file = "root_effects\fallstar\functions\fallstar_lumina.sqf";};
+			class FallstarMeteorEnd {file = "root_effects\fallstar\functions\fallstar_meteor_end_blast.sqf";};
+			class FallstarMeteorBlast {file = "root_effects\fallstar\functions\fallstar_meteor_ini_blast.sqf";};
+			class FallstarMeteorIni {file = "root_effects\fallstar\functions\fallstar_meteor_ini.sqf";};
+			class FallstarMeteor {file = "root_effects\fallstar\functions\fallstar_meteor.sqf";};
+			class FallstarMeteorEffect {file = "root_effects\fallstar\functions\fallstar_meteoreffect.sqf";};
 		};
 	};
 };

@@ -1,11 +1,10 @@
 // ORIGINALLY CREATED BY ALIAS
 // MODIFIED BY ROOT 
 
-private ["_fall_star_light"];
 
 if (!hasInterface) exitWith {};
 
-	_fall_star_light = _this select 0;
+	params ["_fall_star_light"];
 
 	_psmoke = "#particlesource" createVehicleLocal getPosATL _fall_star_light;
 	_psmoke setParticleCircle [0, [0, 0, 0]];
@@ -14,7 +13,7 @@ if (!hasInterface) exitWith {};
 	_psmoke setDropInterval 0.002;	
 	
 	_bri_li = 3000;
-	_li = "#lightpoint" createVehicle [(getPos _fall_star_light select 0),(getPos _fall_star_light select 1),(getPos _fall_star_light select 2)];
+	_li = "#lightpoint" createVehicle [(getPos _fall_star_light select 0), (getPos _fall_star_light select 1), (getPos _fall_star_light select 2)];
 	_li lightAttachObject [_fall_star_light, [0,0,0]];
 	_li setLightIntensity _bri_li;
 	_li setLightAttenuation [500,300,3000,0,5,500]; 
@@ -28,10 +27,10 @@ if (!hasInterface) exitWith {};
 	
 	_li setLightFlareSize 5;
 
-	while {_bri_li>-50} do {
+	while {_bri_li > -50} do {
 		_li setLightIntensity _bri_li;
-		_bri_li=_bri_li-50;
+		_bri_li = _bri_li - 50;
 	uiSleep 0.05;
 	};
-	waitUntil {_bri_li==0};
+	waitUntil {_bri_li == 0};
 	deleteVehicle _li;

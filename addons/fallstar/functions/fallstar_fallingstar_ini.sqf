@@ -4,7 +4,7 @@
 if (!isServer) exitWith {};
 
 _delay_fall_star = _this select 0;
-nul = [] execVM "\Root_Effects\Root_Fallstar\ALfallstar\fallstar_hunt.sqf";
+[] spawn Root_fnc_FallstarHunt;
 
 waitUntil {!isNil "fallstar_hunt_alias"};
 
@@ -13,6 +13,6 @@ publicVariable "alias_fallingstar";
 
 while {alias_fallingstar} do 
 {
-	nul = [] execvm "\Root_Effects\Root_Fallstar\ALfallstar\fallstar_fallingstar.sqf";
+	[] spawn Root_fnc_FallstarFalling;
 	uiSleep _delay_fall_star;
 };

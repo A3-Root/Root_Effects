@@ -7,12 +7,11 @@ if (!isNil "fallstar_hunt_alias") exitWith {};
 while {true} do {
 	_allunits = [];
 	{
-		if (alive _x) then
-		{
+		if (alive _x) then {
 			if (typeOf _x != "VirtualCurator_F") then { _allunits pushBack _x};
 		};
 	}  foreach (if (isMultiplayer) then {playableUnits} else {switchableUnits});
-	fallstar_hunt_alias = _allunits call BIS_fnc_selectRandom;
+	fallstar_hunt_alias = selectRandom _allunits;
 	publicVariable "fallstar_hunt_alias"; 
 	uiSleep 60;
 };

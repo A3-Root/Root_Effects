@@ -34,8 +34,8 @@ deleteVehicle _logic;
 		params ["_results"];
 		_results params ["_isMeteor", "_isComet", "_meteorFrequency", "_cometFrequency"];
 
-		if (_isMeteor == true) then { [[_meteorFrequency],"\Root_Effects\Root_Fallstar\ALfallstar\fallstar_meteor_ini.sqf"] remoteExec ["BIS_fnc_execVM", 0]; };
-		if (_isComet == true) then { [[_cometFrequency],"\Root_Effects\Root_Fallstar\ALfallstar\fallstar_fallingstar_ini.sqf"] remoteExec ["BIS_fnc_execVM", 0]; };
+		if (_isMeteor) then { [_meteorFrequency] remoteExec ["Root_fnc_FallstarMeteorIni", 2]; };
+		if (_isComet) then { [_cometFrequency] remoteExec ["Root_fnc_FallstarFallingIni", 2]; };
 
 		["Meteors and Comets Configured and Created!"] call zen_common_fnc_showMessage;	
 
