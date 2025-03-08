@@ -1,0 +1,26 @@
+name = "Roots Effects"
+prefix = "root_effects"
+mainprefix = "z"
+
+[properties]
+author = "Root"
+url = "https://github.com/A3-Root/Root_Effects"
+
+[files]
+include = [
+    "CHANGELOG.md",
+    "meta.cpp",\
+    "mod.cpp",
+    "LICENSE",
+    "*.md",
+    "logo_co.paa",
+    "logo_ca.paa",
+    "logo_co.png",
+    "./include",
+]
+exclude = [
+    "*.psd",
+    "*.txt",
+    ".vscode/**/*",
+    "*.git",
+]

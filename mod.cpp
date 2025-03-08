@@ -1,0 +1,13 @@
+name = "Root's Anomalies";
+author = "Root";
+picture = "root_anomalies\main\data\logo_ca.paa";
+logo = "root_anomalies\main\data\logo_ca.paa";
+logoOver = "root_anomalies\main\data\logo_ca.paa";
+logoSmall = "root_anomalies\main\data\logo_ca.paa";
+tooltip = "Root's Anomalies";
+tooltipOwned = "Root's Anomalies";
+action = "https://github.com/A3-Root/Root_Anomalies";
+actionName = "Github";
+overview = "Anomalies Zeus Addon based on 3DEN showcase by Aliascartoons. Imported, modified, maintained and published for Zeus Curator by Root.";
+hidePicture = 0;
+hideName = 0;

@@ -1,0 +1,8 @@
+releases/*
+keys/*
+*.biprivatekey
+.hemttout
+*.logs
+*.log
+/Effects_Workspace/temp
+Effects_Workspace/temp
