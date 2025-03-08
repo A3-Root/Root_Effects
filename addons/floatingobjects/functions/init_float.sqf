@@ -22,8 +22,7 @@ null= [object_name, [slide_vel, slide_dist], [bounce_speed, bounce_altitude], [r
 if (!hasinterface) exitwith {};
 
 // If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith
-{
+if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith {
     diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
 };
 
@@ -87,33 +86,8 @@ if (isNull _object) exitWith {
 
 		["Object Configuration Applied!"] call zen_common_fnc_showMessage;
 
-		[[_attached, [_slidevel, _slidedist], [_bouncespeed, _bouncealtitude], [_rotvel, _rotateclockwise], _rollvel, [_orbitradius, _orbitspeed, _orbitclockwise], _dist, _elevation, _allow_damage, _allow_simulation], "\Root_Effects\Root_FloatingObjects\AL_floating_mountain\float_main.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_attached, [_slidevel, _slidedist], [_bouncespeed, _bouncealtitude], [_rotvel, _rotateclockwise], _rollvel, [_orbitradius, _orbitspeed, _orbitclockwise], _dist, _elevation, _allow_damage, _allow_simulation] remoteExec ["Root_fnc_FloatingMain", 2];
 	}, {
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";
 	}, _object] call zen_dialog_fnc_create;
-
-
-/*
-["Confirm Settings",[
-		["TOOLBOX:YESNO",["CONFIRM?","Once set, the object CANNOT be deleted/modified."], false],
-		],{
-			params ["_results"];
-			_results params ["_confirm"];
-
-			if (_confirm == true) then { [[_attached, [_slidevel, _slidedist], [_bouncespeed, _bouncealtitude], [_rotvel, _rotateclockwise], _rollvel, [_orbitradius, _orbitspeed, _orbitclockwise], _dist, _elevation, _allow_damage, _allow_simulation], "\Root_Effects\Root_FloatingObjects\AL_floating_mountain\float_main.sqf"] remoteExec ["BIS_fnc_execVM", 0]; }
-
-			["Object Configuration Applied!"] call zen_common_fnc_showMessage;
-
-			else {
-				["Object Configuration Cancelled!"] call zen_common_fnc_showMessage;
-				playSound "FD_Start_F";
-			};
-		},{
-			["Aborted"] call zen_common_fnc_showMessage;
-			playSound "FD_Start_F";
-		}] call zen_dialog_fnc_create;
-
-	}, {}, _object] call zen_dialog_fnc_create;
-
-*/
