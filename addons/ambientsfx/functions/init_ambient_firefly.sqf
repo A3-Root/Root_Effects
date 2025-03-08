@@ -3,7 +3,7 @@
 
 
 /*
-[object_name] execvm "\Root_Effects\Root_AmbientSFX\AL_ambient_SFX\firefly.sqf";
+[object_name] execvm "root_effects\ambientsfx\functions\firefly.sqf";
 object_name - string, the name of the object you use as a source for the SFX
 */
 
@@ -33,7 +33,7 @@ deleteVehicle _logic;
 
 		["Fireflies Active!"] call zen_common_fnc_showMessage;
 
-		[[_fireflies, _firefliesalt, _fireflydist], "\Root_Effects\Root_AmbientSFX\AL_ambient_SFX\firefly.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_fireflies, _firefliesalt, _fireflydist] remoteExec ["Root_fnc_FireflyMain", 2];
 	}, {
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

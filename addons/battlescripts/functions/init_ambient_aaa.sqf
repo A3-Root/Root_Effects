@@ -6,8 +6,7 @@
 if (!hasinterface) exitwith {};
 
 // If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith
-{
+if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith {
     diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
 };
 
@@ -32,7 +31,7 @@ deleteVehicle _logic;
 
 		["AAA Barrage Initiated!"] call zen_common_fnc_showMessage;
 
-		[[_aaa_start, _aaa_radius, _aaa_height, _aaa_dmg_vic, _islethal, _aaa_speed, _aaa_dmg_inf], "\Root_Effects\Root_Battlescripts\ALambientbattle\battle_flaks.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_aaa_start, _aaa_radius, _aaa_height, _aaa_dmg_vic, _islethal, _aaa_speed, _aaa_dmg_inf] remoteExec ["Root_fnc_AAAMain", 2];
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

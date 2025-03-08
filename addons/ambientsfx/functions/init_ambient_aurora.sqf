@@ -34,7 +34,8 @@ deleteVehicle _logic;
 
 		["Aurora Active!"] call zen_common_fnc_showMessage;
 
-		[[_aurora, _auroraalt, _auroraspeed], "\Root_Effects\Root_AmbientSFX\AL_ambient_SFX\aurora.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_aurora, _auroraalt, _auroraspeed] remoteExec ["Root_fnc_AuroraMain", 2];
+		
 	}, {
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

@@ -33,7 +33,7 @@ deleteVehicle _logic;
 
 		["Rupture Active!"] call zen_common_fnc_showMessage;
 
-		[[_rupture, _rupturealt, _rupturespeed], "\Root_Effects\Root_AmbientSFX\AL_ambient_SFX\rupture.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_rupture, _rupturealt, _rupturespeed] remoteExec ["Root_fnc_RuptureMain", 2];
 	}, {
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

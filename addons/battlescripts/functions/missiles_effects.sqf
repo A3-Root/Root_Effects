@@ -6,15 +6,13 @@ if (!hasInterface) exitWith {};
 
 params ["_miss_object_name", "_missle_distance", "_launch_delay"];
 
-sleep _launch_delay;
+uiSleep _launch_delay;
 
 _al_rocket = "Land_Battery_F" createVehicleLocal getPosATL _miss_object_name;
 
-while {(al_missile) and (!isNull _miss_object_name)} do 
-{
-	if (player distance _miss_object_name > _missle_distance) then 
-	{
-		_sunetr =  ["roc_1","roc_2","roc_3","roc_4"] call BIS_fnc_selectRandom;
+while {(al_missile) and (!isNull _miss_object_name)} do {
+	if (player distance _miss_object_name > _missle_distance) then {
+		_sunetr =  selectRandom ["roc_1","roc_2","roc_3","roc_4"];
 
 		_li = "#lightpoint" createVehiclelocal (getPos _al_rocket);
 		_li setLightBrightness 100;
@@ -36,11 +34,11 @@ while {(al_missile) and (!isNull _miss_object_name)} do
 
 		_al_rocket setVelocity [0,0,200];
 
-		sleep _launch_delay;
+		uiSleep _launch_delay;
 		deleteVehicle _ps1;	
 		deletevehicle _li;
 		_al_rocket setPosATL getPosATL _miss_object_name;
-	} else {sleep 5};
+	} else {uiSleep 5};
 };
 
 deleteVehicle _al_rocket;

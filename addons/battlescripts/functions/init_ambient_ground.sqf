@@ -5,8 +5,7 @@
 if (!hasinterface) exitwith {};
 
 // If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith
-{
+if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith {
     diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
 };
 
@@ -30,7 +29,7 @@ deleteVehicle _logic;
 
 		["Artillery Barrage Initiated!"] call zen_common_fnc_showMessage;
 
-		[[_ground_start, _ground_radius, _ground_damage, _ground_speed, _ground_type, _sound_only],"\Root_Effects\Root_Battlescripts\ALambientbattle\battle_artillery.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_ground_start, _ground_radius, _ground_damage, _ground_speed, _ground_type, _sound_only] remoteExec ["Root_fnc_GroundMain", 2];
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

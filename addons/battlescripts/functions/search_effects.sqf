@@ -3,7 +3,7 @@
 
 
 
-fnc_SetPitchBankYaw = { 
+_SetPitchBankYaw = { 
     private ["_object","_rotations","_aroundX","_aroundY","_aroundZ","_dirX","_dirY","_dirZ","_upX","_upY","_upZ","_dir","_up","_dirXTemp","_upXTemp"];
     _object = _this select 0; 
     _rotations = _this select 1; 
@@ -51,29 +51,29 @@ _sound_AAA = _this select 1;
 if (_sound_AAA) then {
 	[_obiect_search] spawn {
 		_voice_AAA_search = _this select 0;
-		while {(alive _voice_AAA_search)&&al_search_light} do {
+		while {(alive _voice_AAA_search) && al_search_light} do {
 			_voice_AAA_search say3d ["alarma_aeriana_scurt",3000];
-			sleep 30;
+			uiSleep 30;
 		};
 	};
 };
 
-_ii=30;
-_rot=10+random 350;
+_ii = 30;
+_rot = 10 + random 350;
 while {(alive _obiect_search) and (al_search_light)} do 
 {
-	while {_ii<150} do {
-	[_obiect_search,[(-1)*_ii,0,_rot]] call fnc_SetPitchBankYaw;
-	_ii=_ii+0.2;
-	_rot=_rot-0.2;
-	sleep 0.01;
+	while {_ii < 150} do {
+	[_obiect_search,[(-1) * _ii, 0, _rot]] call _SetPitchBankYaw;
+	_ii = _ii + 0.2;
+	_rot = _rot - 0.2;
+	uiSleep 0.01;
 	};
-	sleep random 1;
-	while {_ii>30} do {
-	[_obiect_search,[(-1)*_ii,0,_rot]] call fnc_SetPitchBankYaw;
-	_ii=_ii-0.2;
-	_rot=_rot+1;
-	sleep 0.01;
+	uiSleep random 1;
+	while {_ii > 30} do {
+	[_obiect_search, [(-1) * _ii, 0, _rot]] call _SetPitchBankYaw;
+	_ii = _ii - 0.2;
+	_rot = _rot + 1;
+	uiSleep 0.01;
 	};
 };
 deleteVehicle _obiect_search;

@@ -34,7 +34,7 @@ deleteVehicle _logic;
 
 		["Tracers Initiated!"] call zen_common_fnc_showMessage;
 
-		[[_tracers_start, _colorred, _colorgreen, _colorblue, _activation_distance],"\Root_Effects\Root_Battlescripts\ALambientbattle\battle_tracers.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_tracers_start, _colorred, _colorgreen, _colorblue, _activation_distance] remoteExec ["Root_fnc_TracersMain", 2];
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

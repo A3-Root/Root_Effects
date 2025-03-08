@@ -5,8 +5,7 @@
 if (!hasinterface) exitwith {};
 
 // If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith
-{
+if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith {
     diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
 };
 
@@ -27,7 +26,7 @@ deleteVehicle _logic;
 
 		["Missile Launcher Initiated!"] call zen_common_fnc_showMessage;
 
-		[[_missile_start, _missle_distance, _launch_delay],"\Root_Effects\Root_Battlescripts\ALambientbattle\battle_missiles.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_missile_start, _missle_distance, _launch_delay] remoteExec ["Root_fnc_MissilesMain", 2];
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

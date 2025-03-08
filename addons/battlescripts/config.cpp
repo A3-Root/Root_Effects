@@ -1,152 +1,19 @@
-#include "BIS_AddonInfo.hpp"
-
-#define _ARMA_
-
-//(13 Enums)
-enum {
-	destructengine = 2,
-	destructdefault = 6,
-	destructwreck = 7,
-	destructtree = 3,
-	destructtent = 4,
-	stabilizedinaxisx = 1,
-	stabilizedinaxesxyz = 4,
-	stabilizedinaxisy = 2,
-	stabilizedinaxesboth = 3,
-	destructno = 0,
-	stabilizedinaxesnone = 0,
-	destructman = 5,
-	destructbuilding = 1
-};
-
 class CfgPatches
 {
 	class Root_Battle_Effect
 	{
+		name = "Root's Effects";
+		author = "Root";
+		authors[] = {
+			"Root",
+			"Aliascartoons"
+		};
+		url = "https://github.com/A3-Root/Root_Effects";
 		addonRootClass = "Root_Effects";
 		requiredAddons[] = {"A3_Modules_F_Curator","cba_main","Root_Effects","zen_custom_modules"};
 		requiredVersion = 0.1;
 		units[] = {"AAA_Module", "Missiles_Module", "Ground_Module", "Tracers_Module", "Search_Module"};
 		weapons[] = {};
-	};
-};
-
-class CfgSounds
-{
-	// Definition for each sound
-	class bariera_1
-	{
-		name = "bariera_1"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\bariera_1.ogg", db+15, 1.0};
-		titles[] = {0, ""};	
-	};	
-	class bariera_2
-	{
-		name = "bariera_2"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\bariera_2.ogg", db+15, 1.0};
-		titles[] = {0, ""};	
-	};	
-	class bariera_3
-	{
-		name = "bariera_3"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\bariera_3.ogg", db+15, 1.0};
-		titles[] = {0, ""};	
-	};	
-	class bariera_4
-	{
-		name = "bariera_4"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\bariera_4.ogg", db+15, 1.0};
-		titles[] = {0, ""};	
-	};	
-	class bariera_5
-	{
-		name = "bariera_5"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\bariera_5.ogg", db+15, 1.0};
-		titles[] = {0, ""};	
-	};	
-	class ground_air
-	{
-		name = "ground_air"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\ground_air.ogg", db+15, 1.0};
-		titles[] = {0, ""};	
-	};
-	class roc_1
-	{
-		name = "roc_1"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\roc_1.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};	
-	class roc_2
-	{
-		name = "roc_2"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\roc_2.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};		
-	class roc_3
-	{
-		name = "roc_3"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\roc_3.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};		
-	class roc_4
-	{
-		name = "roc_4"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\roc_4.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};
-	class alarma_aeriana_scurt
-	{
-		name = "alarma_aeriana_scurt"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\alarma_aeriana_scurt.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};		
-	class test_1
-	{
-		name = "test_1"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\test_1.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};
-	class test_2
-	{
-		name = "test_2"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\test_2.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};
-	class test_3
-	{
-		name = "test_3"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\test_3.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};
-	class flak_ground
-	{
-		name = "flak_ground"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\flak_ground.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};
-	class explosion_1
-	{
-		name = "explosion_1"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\explosion_1.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};
-	class explosion_2
-	{
-		name = "explosion_2"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\explosion_2.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};
-	class explosion_3
-	{
-		name = "explosion_3"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\explosion_3.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
-	};
-	class explosion_4
-	{
-		name = "explosion_4"; // Name for mission editor
-		sound[] = {"\Root_Effects\Root_Battlescripts\sound\explosion_4.ogg", db+10, 1.0};
-		titles[] = {0, ""};	
 	};
 };
 
@@ -156,11 +23,21 @@ class CfgFunctions
 	{
 		class RootBattleCategory
 		{
-			class AAA {file = "\Root_Effects\Root_Battlescripts\ALambientbattle\init_ambient_aaa.sqf";};
-			class Ground {file = "\Root_Effects\Root_Battlescripts\ALambientbattle\init_ambient_ground.sqf";};
-			class Missiles {file = "\Root_Effects\Root_Battlescripts\ALambientbattle\init_ambient_missiles.sqf";};
-			class Search {file = "\Root_Effects\Root_Battlescripts\ALambientbattle\init_ambient_search.sqf";};
-			class Tracers {file = "\Root_Effects\Root_Battlescripts\ALambientbattle\init_ambient_tracers.sqf";};
+			class AAA {file = "root_effects\battlescripts\functions\init_ambient_aaa.sqf";};
+			class AAAMain {file = "root_effects\battlescripts\functions\aaa_main.sqf";};
+			class AAAEffects {file = "root_effects\battlescripts\functions\aaa_effects.sqf";};
+			class Ground {file = "root_effects\battlescripts\functions\init_ambient_ground.sqf";};
+			class GroundMain {file = "root_effects\battlescripts\functions\ground_main.sqf";};
+			class GroundEffects {file = "root_effects\battlescripts\functions\ground_effects.sqf";};
+			class Missiles {file = "root_effects\battlescripts\functions\init_ambient_missiles.sqf";};
+			class MissilesMain {file = "root_effects\battlescripts\functions\missiles_main.sqf";};
+			class MissilesEffects {file = "root_effects\battlescripts\functions\missiles_effects.sqf";};
+			class Search {file = "root_effects\battlescripts\functions\init_ambient_search.sqf";};
+			class SearchMain {file = "root_effects\battlescripts\functions\search_main.sqf";};
+			class SearchEffects {file = "root_effects\battlescripts\functions\search_effects.sqf";};
+			class Tracers {file = "root_effects\battlescripts\functions\init_ambient_tracers.sqf";};
+			class TracersMain {file = "root_effects\battlescripts\functions\tracers_main.sqf";};
+			class TracersEffects {file = "root_effects\battlescripts\functions\tracers_effects.sqf";};
 		};
 	};
 };

@@ -3,13 +3,7 @@
 
 if (!hasInterface) exitWith {};
 
-_object_name = _this select 0;
-_range_aaa = _this select 1;
-_altitude = _this select 2;
-_aaa_damage_vic = _this select 3;
-_islethal = _this select 4;
-_aaa_speed = _this select 5;
-_aaa_damage_inf = _this select 6;
+params ["_object_name", "_range_aaa", "_altitude", "_aaa_damage_vic", "_islethal", "_aaa_speed", "_aaa_damage_inf"];
 
 private ["_nearbyunits", "_nearbyvehicles", "_damage", "_vichitpoints"];
 
@@ -39,25 +33,26 @@ _fum_lung setDropInterval 0.1;
 
 while {al_aaa} do 
 {
-	_rel_poz= [getPos _object_name,random _range_aaa, random 360] call BIS_fnc_relPos;
+	_rel_poz = [getPos _object_name, random _range_aaa, random 360] call BIS_fnc_relPos;
 	_zz = 150 + random 950;
-	_li_aaa setPosATL [_rel_poz select 0, _rel_poz select 1,(getPosATL _object_name select 2) + ([1,-1] call BIS_fnc_selectRandom)*(random 50)];
+	_li_aaa setPosATL [_rel_poz select 0, _rel_poz select 1, (getPosATL _object_name select 2) + ((selectRandom [1,-1]) * (random 50))];
 	[_li_aaa] spawn 
 	{
 		_li_aaa = _this select 0;
 		_flak_ground = "flak_ground";
-		_li_aaa say3D [_flak_ground,2000];
+		_li_aaa say3D [_flak_ground, 2000];
 	};
 	
-	sleep _aaa_speed;
+	uiSleep _aaa_speed;
 	
-	if (_zz<500) then 
+	if (_zz < 500) then 
 	{
-		_li_aaa setLightFlareSize 10+random 100;_li_aaa setLightIntensity 500+random 500;
+		_li_aaa setLightFlareSize (10 + random 100);
+		_li_aaa setLightIntensity (500 + random 500);
 	};
 	
-	_flak_sound = ["test_1","test_2","test_3","bariera_1", "bariera_2", "bariera_3", "bariera_4", "bariera_5"] call BIS_fnc_selectRandom;
-	_li_aaa say3d [_flak_sound,2000];
+	_flak_sound = selectRandom ["test_1", "test_2", "test_3", "bariera_1", "bariera_2", "bariera_3", "bariera_4", "bariera_5"];
+	_li_aaa say3d [_flak_sound, 2000];
 	_li_aaa setLightIntensity 0;
 
 	_nearbyunits = ((getPosATL _object_name) nearEntities [["CAManBase", "Air"], (_range_aaa + 5)]) inAreaArray [(getPosATL _object_name), (_range_aaa * 2), (_range_aaa * 2), 0, false, (_altitude / 2)];
@@ -69,29 +64,23 @@ while {al_aaa} do
 			_dmgType = selectRandom ["backblast", "explosive", "grenade", "burning"];
 			if ((typeOf _x != "VirtualCurator_F") && (_x isKindOf "CAManBase") && !(vehicle _x isKindOf "Air")) then 
 			{
-				if (!(isNil "ace_medical_fnc_addDamageToUnit")) then 
-				{
+				if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
 					[_x, _aaa_damage_inf, _bodyPart, _dmgType] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];	
-				} else 
-				{ 
-					_x setdamage ((damage _x) + _aaa_damage_inf);
+				} else { 
+					_x setDamage ((damage _x) + _aaa_damage_inf);
 				}; 
-			} else
-			{
+			} else {
 				if ((_x isKindOf "ParachuteBase") || (_x isKindOf "BIS_Steerable_Parachute") || (_x isKindOf "Steerable_Parachute_F")) then 
 				{
 					_parachute = _x;
 					{
-						if (!(isNil "ace_medical_fnc_addDamageToUnit")) then 
-						{
+						if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
 							[_x, _aaa_damage_inf, _bodyPart, _dmgType] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];	
-						} else 
-						{ 
+						} else { 
 							_x setdamage ((damage _x) + _aaa_damage_inf);
 						}; 
 					} forEach (crew _parachute);
-				} else 
-				{
+				} else {
 					_vehicle = _x;
 					_damage = random [0, _aaa_damage_vic, 1];
 					_vichitpoints = getAllHitPointsDamage _vehicle; _vichitpoints = _vichitpoints select 0;
@@ -99,19 +88,19 @@ while {al_aaa} do
 						_damage = random [0, _aaa_damage_vic, 1];
 						_vehicle setHitPointDamage [_x, (_vehicle getHitPointDamage _x) + _damage];
 					} foreach _vichitpoints;
-					_vehicle setHitPointDamage ["HitLight",1]; 
-					_vehicle setHitPointDamage ["#light_l",1];
-					_vehicle setHitPointDamage ["#light_r",1];
-					_vehicle setHitPointDamage ["#light_l_flare",1];
-					_vehicle setHitPointDamage ["#light_r_flare",1];
-					_vehicle setHitPointDamage ["#light_1_hitpoint",1];
-					_vehicle setHitPointDamage ["light_1_hitpoint",1];
-					_vehicle setHitPointDamage ["#light_2_hitpoint",1];
-					_vehicle setHitPointDamage ["light_2_hitpoint",1];
-					_vehicle setHitPointDamage ["light_l",1]; 
-					_vehicle setHitPointDamage ["light_r",1]; 
-					_vehicle setHitPointDamage ["light_l2",1]; 
-					_vehicle setHitPointDamage ["light_r2",1];
+					_vehicle setHitPointDamage ["HitLight", 1]; 
+					_vehicle setHitPointDamage ["#light_l", 1];
+					_vehicle setHitPointDamage ["#light_r", 1];
+					_vehicle setHitPointDamage ["#light_l_flare", 1];
+					_vehicle setHitPointDamage ["#light_r_flare", 1];
+					_vehicle setHitPointDamage ["#light_1_hitpoint", 1];
+					_vehicle setHitPointDamage ["light_1_hitpoint", 1];
+					_vehicle setHitPointDamage ["#light_2_hitpoint", 1];
+					_vehicle setHitPointDamage ["light_2_hitpoint", 1];
+					_vehicle setHitPointDamage ["light_l", 1]; 
+					_vehicle setHitPointDamage ["light_r", 1]; 
+					_vehicle setHitPointDamage ["light_l2", 1]; 
+					_vehicle setHitPointDamage ["light_r2", 1];
 				};
 			};
 		} foreach _nearbyunits;
