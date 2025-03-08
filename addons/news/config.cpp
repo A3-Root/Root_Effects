@@ -24,7 +24,7 @@ class CfgFunctions
 		class RootNewsCategory
 		{
 			class News {file = "root_effects\news\functions\init_news.sqf";};
-			class NewsDiary {file = "root_effects\news\functions\init_news.sqf";};
+			class NewsDiary {file = "root_effects\news\functions\news_diary.sqf";};
 		};
     };
 };

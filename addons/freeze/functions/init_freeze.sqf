@@ -6,8 +6,7 @@
 if (!hasinterface) exitwith {};
 
 // If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith
-{
+if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith {
     diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
 };
 
@@ -18,8 +17,8 @@ private _logicpos = getPosATL _logic;
 deleteVehicle _logic;
 
 ["Freeze Settings (Read tooltips!)", [
-	["TOOLBOX:YESNO",["Toggle Freeze","If true, selected units will be frozen. If false, they will be unfrozen if previously frozen."],false],
-	["TOOLBOX:YESNO",["Toggle Animation","If true, selected units will be frozen by playing the animation below. Required to be set to 'False' to 'Unfreeze' frozen units with animation."],false],
+	["TOOLBOX:YESNO",["Toggle Freeze","If true, selected units will be frozen. If false, they will be unfrozen if previously frozen."], false],
+	["TOOLBOX:YESNO",["Toggle Animation","If true, selected units will be frozen by playing the animation below. Required to be set to 'False' to 'Unfreeze' frozen units with animation."], false],
 	["EDIT", ["Freeze Animation", "Stringname of the looping animation to play."], ["HubSpectator_stand"]],
 	["OWNERS", ["Select Units", "Select the Side(s) / Group(s) / Unit(s) you want frozen."], [[], [], [], 0], true]
 	], {
@@ -39,7 +38,7 @@ deleteVehicle _logic;
             };
         } forEach ((call CBA_fnc_players) select {(side _x) in _sides || {(group _x) in _groups} || {_x in _players}});
 
-		[[_unitList, _isfreeze, _useanim, _animtype], "\Root_Effects\Root_Freeze\RT_freeze\freeze_main.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_unitList, _isfreeze, _useanim, _animtype] remoteExec ["Root_fnc_FreezeMain", 2];
 	}, {
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

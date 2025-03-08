@@ -12,8 +12,7 @@ freq - frequency in seconds of how often the specific phenomena takes place
 if (!hasinterface) exitwith {};
 
 // If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith
-{
+if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith {
     diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
 };
 
@@ -28,7 +27,7 @@ deleteVehicle _logic;
 		
 		["UFO Encounter Configured and Created!"] call zen_common_fnc_showMessage;
 
-		[[_seekerfreq],"\Root_Effects\Root_UFO\AL_ufo\ufo_encounter.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_seekerfreq] remoteExec ["Root_fnc_UFOEncounter", 2];
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

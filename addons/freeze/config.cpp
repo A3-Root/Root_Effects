@@ -1,28 +1,14 @@
-#include "BIS_AddonInfo.hpp"
-
-#define _ARMA_
-
-//(13 Enums)
-enum {
-	destructengine = 2,
-	destructdefault = 6,
-	destructwreck = 7,
-	destructtree = 3,
-	destructtent = 4,
-	stabilizedinaxisx = 1,
-	stabilizedinaxesxyz = 4,
-	stabilizedinaxisy = 2,
-	stabilizedinaxesboth = 3,
-	destructno = 0,
-	stabilizedinaxesnone = 0,
-	destructman = 5,
-	destructbuilding = 1
-};
-
 class CfgPatches
 {
 	class Root_Freeze_Effect
 	{
+		name = "Root's Effects";
+		author = "Root";
+		authors[] = {
+			"Root",
+			"Aliascartoons"
+		};
+		url = "https://github.com/A3-Root/Root_Effects";
 		addonRootClass = "Root_Effects";
 		requiredAddons[] = {"A3_Modules_F_Curator","cba_main","Root_Effects", "zen_custom_modules"};
 		requiredVersion = 0.1;
@@ -38,7 +24,8 @@ class CfgFunctions
 	{
 		class RootFreezeCategory
 		{
-			class Freeze {file = "\Root_Effects\Root_Freeze\RT_freeze\init_freeze.sqf";};
+			class Freeze {file = "root_effects\freeze\functions\init_freeze.sqf";};
+			class FreezeMain {file = "root_effects\freeze\functions\freeze_main.sqf";};
 		};
 	};
 };

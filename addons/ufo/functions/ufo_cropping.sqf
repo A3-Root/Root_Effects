@@ -1,10 +1,9 @@
 // ORIGINALLY CREATED BY ALIAS
 // MODIFIED BY ROOT
 
-ateri = "\Root_Effects\Root_UFO\sound\aterizat.ogg";
-lans = "\Root_Effects\Root_UFO\sound\lansare.ogg";
+if (!hasinterface) exitwith {};
 
-fnc_orbit = {
+_orbit = {
 	private ["_ufo","_orb_obj","_orbit_speed","_radius","_crop","_ung"]; params ["_ufo","_orb_obj","_orbit_speed","_radius","_crop"];
 	_ung = 0;
 	_placeit=0;
@@ -27,7 +26,7 @@ fnc_orbit = {
 	deletevehicle _orb_obj;
 };
 
-fnc_spiral = {
+_spiral = {
 	private ["_ufo","_orb_obj","_orbit_speed","_radius","_crop","_ung"]; params ["_ufo","_orb_obj","_orbit_speed","_radius","_crop"];
 	_ung = 0;
 	_placeit=0;
@@ -51,7 +50,7 @@ fnc_spiral = {
 	deletevehicle _orb_obj;
 };
 
-fnc_floare = {
+_floare = {
 	private ["_ufo","_orb_obj","_orbit_speed","_radius","_crop","_ung","_orb_reper"]; params ["_ufo","_orb_obj","_orbit_speed","_radius","_crop"];
 	_ang = 0;
 	"Crater" createVehiclelocal getpos _ufo;
@@ -85,7 +84,6 @@ fnc_floare = {
 	deletevehicle _orb_reper;
 };
 
-if (!hasinterface) exitwith {};
 params ["_ufo","_radius","_typ_crop"];
 enableCamShake true;
 if (isnil "sunet_ini") then {
@@ -117,13 +115,13 @@ _blast_wave setParticleCircle [5,[0,0,0]];
 _blast_wave setParticleRandom [0.1,[3,3,1],[100,100,0],0,2,[0,0,0,0.5],1,0];
 _blast_wave setParticleParams [["\A3\data_f\cl_basic",1,0,1],"","Billboard",1,3,[1,1,2],[0,0,-5],0,20,1,1,[5,10],[[0,0,0,0.3],[0.1,0.1,0.1,0]],[1],1,0,"","",_ufo];
 _blast_wave setDropInterval 0.002;
-[_blast_wave] spawn {_de_sters = _this select 0;uiSleep 0.2; deleteVehicle _de_sters};
+[_blast_wave] spawn {_de_sters = _this select 0; uiSleep 0.2; deleteVehicle _de_sters};
 switch (_typ_crop) do {
-    case "circle": {[_ufo,_orb_obj,0.01,_radius,true] spawn fnc_orbit};
-    case "spiral": {[_ufo,_orb_obj,0.01,_radius,true] spawn fnc_spiral};
-    case "flower": {[_ufo,_orb_obj,0.01,_radius,true] spawn fnc_floare};
+    case "circle": {[_ufo,_orb_obj,0.01,_radius,true] spawn _orbit};
+    case "spiral": {[_ufo,_orb_obj,0.01,_radius,true] spawn _spiral};
+    case "flower": {[_ufo,_orb_obj,0.01,_radius,true] spawn _floare};
 };
 while {alive _orb_obj} do {
-	_orb_obj say3d ["crop_me",2000];
+	_orb_obj say3d ["crop_me", 2000];
 	uiSleep 17;
 };

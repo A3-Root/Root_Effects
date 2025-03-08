@@ -2,15 +2,18 @@
 // Only run on player machines
 if (!hasinterface) exitwith {};
 // If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith
-{
+if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith {
     diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
 };
+
 params ["_logic"];
 private _logicpos = getPosATL _logic;
+
 if (isNil "NEWS_markerIndex") then { NEWS_markerIndex = 0 };
 NEWS_markerIndex = NEWS_markerIndex + 1;
+
 deleteVehicle _logic;
+
 ["AAN News Article Settings", [
 	["EDIT", ["Article Title", "Title of the article."], ["ARMA 3 - The Frontier of Armaverse"]],
 	["EDIT", ["Article Editor", "Author/Editor of the article."], ["Root"]],
@@ -77,7 +80,7 @@ deleteVehicle _logic;
 		} forEach ((call CBA_fnc_players) select {(side _x) in _sides || {(group _x) in _groups} || {_x in _players}});
 		if (_enable_diary) then 
 		{
-			[[_title, _editor, _new_date, _timezone, _subhead, _main_img, _main_img_desc, _body, _body_locked, _lock_msg, _editor_img, _editor_info, _sides, _groups, _players, _diary_title], "\Root_Effects\Root_News\RT_news\news_diary.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+			[_title, _editor, _new_date, _timezone, _subhead, _main_img, _main_img_desc, _body, _body_locked, _lock_msg, _editor_img, _editor_info, _sides, _groups, _players, _diary_title] remoteExec ["Root_fnc_NewsDiary", 2];
 		};
 		["News Article Created"] call zen_common_fnc_showMessage;
 	}, 

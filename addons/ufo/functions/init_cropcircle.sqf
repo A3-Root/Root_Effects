@@ -41,7 +41,7 @@ deleteVehicle _logic;
 
 		["UFO Cropcircle Configured and Created!"] call zen_common_fnc_showMessage;
 
-		[[_object, _radius, _type],"\Root_Effects\Root_UFO\AL_ufo\ufo_crop_circle.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_object, _radius, _type] remoteExec ["Root_fnc_UFOCropCircle", 2];
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

@@ -1,7 +1,7 @@
 // ORIGINALLY CREATED BY ALIAS
 // MODIFIED BY ROOT 
 
-if (!isNil "ufo_hunt_alias") exitwith {};
+if (!isNil "ufo_hunt_alias") exitWith {};
 while {true} do 
 {
 	_allunits = [];
