@@ -74,7 +74,7 @@ deleteVehicle _logic;
 							["textlocked",[_this select 8,_this select 9]],
 							["author",[_this select 10,_this select 11]]
 						],findDisplay 46,true
-					] call bis_fnc_showAANArticle;
+					] call BIS_fnc_showAANArticle;
 				};
 			};
 		} forEach ((call CBA_fnc_players) select {(side _x) in _sides || {(group _x) in _groups} || {_x in _players}});

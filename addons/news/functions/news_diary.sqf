@@ -29,7 +29,7 @@ params  ["_title", "_editor", "_new_date", "_timezone", "_subhead", "_main_img",
 						[""textlocked"",[""%9"",""%10""]],
 						[""author"",[""%11"",""%12""]]
 					],findDisplay 46,true
-				] call bis_fnc_showAANArticle;
+				] call BIS_fnc_showAANArticle;
 			}
 			'>""AAN Article""</execute>", _title, _editor, _new_date, _timezone, _subhead, _main_img, _main_img_desc, _body, _body_locked, _lock_msg, _editor_img, _editor_info]
 		]

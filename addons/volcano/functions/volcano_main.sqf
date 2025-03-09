@@ -16,7 +16,7 @@ volcano=true;publicVariable "volcano";
 if (_crater) then {[_volcano_object, _caldera_radius,_alias_delay] remoteExec ["Root_fnc_VolcanoCrater", [0, -2] select isDedicated, true]};
 if (_lava) then {[_volcano_object] remoteExec ["Root_fnc_VolcanoLava", [0, -2] select isDedicated, true]};
 
-if (_lethal) then {[[9981.46,12077.1,74.964]] execVM "\Root_Effects\Root_Volcano\AL_volcano\volcano_unit_damage.sqf"};
+if (_lethal) then {[[9981.46,12077.1,74.964]] spawn Root_fnc_VolcanoDamage;};
 
 if (_alias_delay>0) then 
 {

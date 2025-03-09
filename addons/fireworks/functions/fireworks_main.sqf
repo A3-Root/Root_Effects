@@ -14,8 +14,8 @@ DCON_boomSounds = [ "A3\Sounds_F\arsenal\explosives\shells\30mm40mm_shell_explos
 DCON_launchSounds = [ "A3\Sounds_F\arsenal\weapons_static\Missile_Launcher\Titan.wss", "A3\Sounds_F\arsenal\weapons\Launchers\Titan\Titan.wss", "A3\Sounds_F\arsenal\weapons\Launchers\RPG32\rpg32.wss", "A3\Sounds_F\arsenal\weapons\Launchers\NLAW\nlaw.wss" ];
 
 DCON_fnc_fireworkSounds = {
-    _boomSound = DCON_boomSounds call BIS_fnc_selectRandom;
-    _launchSound = DCON_launchSounds call BIS_fnc_selectRandom;
+    _boomSound = selectRandom DCON_boomSounds;
+    _launchSound = selectRandom DCON_launchSounds;
     playSound3D [_launchSound, _this select 0];
     sleep 2.3;
     playSound3D [_boomSound, _this select 0];
@@ -107,7 +107,7 @@ M9SD_fnc_spawnfireworks = {
     _colorArray = [ [0.42, 0.81, 0.1], [0.8, 0.1, 0.35], [0.2, 0.73, 0.85], [1, 1, 1], [0.1, 0.81, 0.1] ];
     for "_i" from 1 to _fireworkcount do {
         _velocity = [random 1024, random 1024, random [1000, 2500, 5000]];
-        _color = _colorArray call BIS_fnc_selectRandom;
+        _color = selectRandom _colorArray;
         _firework = "CMflare_Chaff_ammo" createvehicle _pos;
         _firework setDir (random 359);
         _firework setvelocity _velocity;

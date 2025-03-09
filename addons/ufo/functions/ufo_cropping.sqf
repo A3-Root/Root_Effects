@@ -87,7 +87,7 @@ _floare = {
 params ["_ufo","_radius","_typ_crop"];
 enableCamShake true;
 if (isnil "sunet_ini") then {
-	playSound3D ["\Root_Effects\Root_UFO\sound\aterizat.ogg", "", false, [getpos _ufo select 0, getpos _ufo select 1, 200], 10, 1, 0];
+	playSound3D ["aterizat", "", false, [getpos _ufo select 0, getpos _ufo select 1, 200], 10, 1, 0];
 	[] spawn {
 		uiSleep 3.9;
 		addCamShake [2,10,30];
