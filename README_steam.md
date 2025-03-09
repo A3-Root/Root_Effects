@@ -41,14 +41,14 @@ These effects can be terminated using the 'Terminate Effects' module.
 [b]Available Effects:[/b]
 
 [h2] [b]AAN News Article[/b] [/h2]
-[img]https://i.imgur.com/6JG2r9Z.gif][/img]
+[img]https://i.imgur.com/6JG2r9Z.gif[/img]
 [list]
 [*] Displays a fully customizable AAN News Article to all/selected players.
 [*] Can be displayed immediately or linked to a diary entry with a clickable link to display.
 [/list]
 
 [h2] [b]Ambient Fireflies & Sparks[/b] [/h2]
-[img]https://i.imgur.com/eFjyqKp.gif][/img]
+[img]https://i.imgur.com/eFjyqKp.gif[/img]
 [list]
 [*] Creates firebugs/fireflies in the given area.
 [*] Creates Sparks that emits at a set time frequency.
@@ -56,7 +56,7 @@ These effects can be terminated using the 'Terminate Effects' module.
 [/list]
 
 [h2] [b]Anti Air (AA) Barrage[/b] [/h2]
-[img]http://i.imgur.com/YWmlnQL.gif][/img]
+[img]http://i.imgur.com/YWmlnQL.gif[/img]
 [list]
 [*] Fires explosive/anti-air 'projectiles' at set altitude.
 [*] Can be customized to automatically stop when reaching defined distance threshold.
@@ -64,7 +64,7 @@ These effects can be terminated using the 'Terminate Effects' module.
 [/list]
 
 [h2] [b]Artillery Barrage[/b] [/h2]
-[img]https://i.imgur.com/tHRChtC.gif][/img]
+[img]https://i.imgur.com/tHRChtC.gif[/img]
 [list]
 [*] Creates explosions within configured region.
 [*] Can be customized to automatically stop when reaching defined distance threshold.
@@ -72,7 +72,7 @@ These effects can be terminated using the 'Terminate Effects' module.
 [/list]
 
 [h2] [b]Aurora Borealis[/b] [/h2]
-[img]https://i.imgur.com/JepgAJK.gif][/img]
+[img]https://i.imgur.com/JepgAJK.gif[/img]
 [list]
 [*] Creates an Aurora Borealis in the position/altitude defined.
 [*] Can customize speed to make it faster/slower.
@@ -81,20 +81,20 @@ These effects can be terminated using the 'Terminate Effects' module.
 [/list]
 
 [h2] [b]Floating Objects[/b] [/h2]
-[img]https://i.imgur.com/jGnLk7n.gif][/img]
+[img]https://i.imgur.com/jGnLk7n.gif[/img]
 [list]
 [*] Simulates forbidden Arma physics. Makes objects float and defy everything.
 [/list]
 
 [h2] [b]Freeze Players[/b] [/h2]
-[img]https://i.imgur.com/XqoUAX1.gif][/img]
+[img]https://i.imgur.com/XqoUAX1.gif[/img]
 [list]
 [*] Disables simulation of players, freezing them in place.
 [*] Can be customized to play any animation.
 [/list]
 
 [h2] [b]Meteors/Comets[/b] [/h2]
-[img]https://i.imgur.com/gVgALft.gif][/img]
+[img]https://i.imgur.com/gVgALft.gif[/img]
 [list]
 [*] Meteors crashes into the ground near a random players position destroying everything in its impact radius.
 [*] Comets flyby above a random player.
@@ -107,14 +107,14 @@ These effects can be terminated using the 'Terminate Effects' module.
 [/list]
 
 [h2] [b]Searchlights[/b] [/h2]
-[img]https://i.imgur.com/fKxoQrb.gif][/img]
+[img]https://i.imgur.com/fKxoQrb.gif[/img]
 [list]
 [*] Creates a Searchlight in the defined position.
 [*] Can be customized to play optional alarm/air-raid sound.
 [/list]
 
 [h2] [b]Spacetime Rupture[/b] [/h2]
-[img]https://i.imgur.com/YqxQnQK.gif][/img]
+[img]https://i.imgur.com/YqxQnQK.gif[/img]
 [list]
 [*] Creates a Spacetime Rupture in the position/altitude defined.
 [*] Can customize speed to make it faster/slower.
@@ -122,14 +122,23 @@ These effects can be terminated using the 'Terminate Effects' module.
 [/list]
 
 [h2] [b]Tracers[/b] [/h2]
-[img]https://i.imgur.com/xH1QXnK.gif][/img]
+[img]https://i.imgur.com/xH1QXnK.gif[/img]
 [list]
 [*] Fires a customizable 'fake' projectile in the air.
 [*] Can be customized to fire different colors.
 [/list]
 
 [h2] [b]UFOs[/b] [/h2]
-[img]https://i.imgur.com/c6YkvJ6.gif][/img]
+[img]https://i.imgur.com/c6YkvJ6.gif[/img]
+[list]
+[*] UFO - Spawns a UFO above a random player at defined time frequency.
+[*] UFO Seeker - Spawns a UFO landing next to a random person, moving at fast speeds and going back to orbit. Causes no damage.
+[*] UFO Cropcircle - Spawns a UFO to create various types of cropcircle in realtime.
+[*] All UFOs can be customized to spawn at certain time frequencies.
+[/list]
+
+[h2] [b]Fireworks[/b] [/h2]
+[img]https://i.imgur.com/c6YkvJ6.gif[/img]
 [list]
 [*] UFO - Spawns a UFO above a random player at defined time frequency.
 [*] UFO Seeker - Spawns a UFO landing next to a random person, moving at fast speeds and going back to orbit. Causes no damage.

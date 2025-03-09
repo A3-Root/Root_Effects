@@ -2,12 +2,8 @@
 // MODIFIED BY ROOT 
 
 
-private ["_volcano_object","_crater_radius","_lethal"];
-
 if (!hasInterface) exitWith {};
 params ["_volcano_object","_crater_radius","_alias_delay","_lethal"];
-
-erup = "\Root_Effects\Root_Volcano\Sound\eruptie_1_eko.ogg";
 
 _li_idle = "#lightpoint" createVehicle getPosATL _volcano_object;
 _li_idle lightAttachObject [_volcano_object, [0,0,50]];
@@ -28,5 +24,5 @@ _li_idle setLightColor[1,0.2,0.1];
 _coloana_fum = "#particlesource" createVehicleLocal getPos _volcano_object;
 _coloana_fum setParticleCircle [0,[0,0,0]];
 _coloana_fum setParticleRandom [7,[30,30,20],[10,10,15],0,0.5,[0,0,0,0.1],1,0];
-_coloana_fum setParticleParams [["\a3\Data_f\ParticleEffects\Universal\Universal",16,7,48,1],"","Billboard",1,20,[0,0,30],[0,0,45],0,3,2,0,[50,100,100],[[0,0,0,0.5],[1,1,1,0.5],[0.5,0.5,0.5,0]],[0.5],0.5,0,"","\Root_Effects\Root_Volcano\AL_volcano\volcano_smoke_column.sqf",_volcano_object];
+_coloana_fum setParticleParams [["\a3\Data_f\ParticleEffects\Universal\Universal",16,7,48,1],"","Billboard",1,20,[0,0,30],[0,0,45],0,3,2,0,[50,100,100],[[0,0,0,0.5],[1,1,1,0.5],[0.5,0.5,0.5,0]],[0.5],0.5,0,"","root_effects\volcano\functions\volcano_smoke_column.sqf",_volcano_object];
 _coloana_fum setDropInterval 0.05;

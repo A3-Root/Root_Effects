@@ -17,6 +17,18 @@ class CfgFunctions
 		class RootVolcanoCategory
 		{
 			class Volcano {file = "\Root_Effects\Root_Volcano\AL_volcano\init_volcano.sqf";};
+			class VolcanoBlow {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_blow.sqf";};
+			class VolcanoCrater {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_crater_SFX.sqf";};
+			class VolcanoEffect {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_effect.sqf";};
+			class VolcanoFulger {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_fulger_effect.sqf";};
+			class VolcanoLava {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_lava_flow.sqf";};
+			class VolcanoMain {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_main.sqf";};
+			class VolcanoPuf {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_puf.sqf";};
+			class VolcanoRock {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_rock_trail.sqf";};
+			class VolcanoScantei {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_scantei.sqf";};
+			class VolcanoShije {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_schije.sqf";};
+			class VolcanoColumn {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_smoke_column.sqf";};
+			class VolcanoDamage {file = "\Root_Effects\Root_Volcano\AL_volcano\volcano_unit_damage.sqf";};
 		};
 	};
 };

@@ -20,7 +20,7 @@ if (selectrandom [true,false]) then {
 				trail_evo=0;
 				while {trail_evo<50} do {trail_evo=trail_evo+1; uiSleep 0.3	}
 			};
-			_bolovani setParticleParams [["\A3\data_f\ParticleEffects\Universal\Mud.p3d",1,0,1],"","SpaceObject",0.05,7,[0,0,0],[0,0,150],1,1000,5,0,[8,8,.1],[[0,0,0,1],[0,0,0,1],[0.5,0.5,0.5,1]],[0.125],1,0,"\Root_Effects\Root_Volcano\AL_volcano\volcano_rock_trail.sqf","", _alias_volcano]
+			_bolovani setParticleParams [["\A3\data_f\ParticleEffects\Universal\Mud.p3d",1,0,1],"","SpaceObject",0.05,7,[0,0,0],[0,0,150],1,1000,5,0,[8,8,.1],[[0,0,0,1],[0,0,0,1],[0.5,0.5,0.5,1]],[0.125],1,0,"root_effects\volcano\functions\volcano_rock_trail.sqf","", _alias_volcano]
 		} else {
 			_bolovani setParticleParams [["\A3\data_f\ParticleEffects\Universal\Mud.p3d",1,0,1],"","SpaceObject",1,7,[0,0,0],[0,0,150],1,1000,5,0,[8,8,.1],[[0,0,0,1],[0,0,0,1],[0.5,0.5,0.5,1]],[0.125],1,0,"","", _alias_volcano]
 		};

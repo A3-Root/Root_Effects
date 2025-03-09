@@ -3,7 +3,7 @@
 
 params ["_poz"];
 
-fnc_check_gear ={
+_check_gear ={
 			params ["_unit"];
 			_ck_ret=false;
 			_slot_check = [headgear _unit, goggles _unit, uniform _unit, vest _unit, Backpack _unit];
@@ -20,17 +20,27 @@ while {volcano} do {
 	if (count _unit_dead >0) then {
 		if (count protect_volcano > 0) then {
 			{
-				if (_x call fnc_check_gear) then {
+				if (_x call _check_gear) then {
 					if (_x isKindOf "Man") then {
-						_bodyPart = ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
-                		{ [_x, 1, _bodyPart, "ropeburn"] call ace_medical_fnc_adddamagetoUnit; } foreach _bodyPart;
-                		} else { _x setDamage 1; }; } } foreach _unit_dead; };
+						if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
+							{
+								[_x, 1, _bodyPart, "ropeburn"] call ace_medical_fnc_adddamagetoUnit;
+							} foreach _bodyPart;
+						} else { _x setDamage 1; };
+                	} else { _x setDamage 1; }; 
+				}; 
+			} foreach _unit_dead; 
+		};
 		{ if (_x inArea [[9981.46,12077.1,74.964],280,220,0,false,200]) then {
 			if (_x isKindOf "Man") then {
 				_bodyPart = ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
-                { [_x, 1, _bodyPart, "ropeburn"] call ace_medical_fnc_adddamagetoUnit;
-				_x setDamage 1; } foreach _bodyPart;
-                } else { _x setDamage 1; };}} foreach _unit_dead;
+				if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
+					{
+						[_x, 1, _bodyPart, "ropeburn"] call ace_medical_fnc_adddamagetoUnit;
+					} foreach _bodyPart;
+				} else { _x setDamage 1; };
+            } else { _x setDamage 1; };}
+		} foreach _unit_dead;
 	};
 	uiSleep 2;
 };

@@ -9,12 +9,28 @@ if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith {
 params ["_logic"];
 private _logicpos = getPosATL _logic;
 
-if (isNil "NEWS_markerIndex") then { NEWS_markerIndex = 0 };
-NEWS_markerIndex = NEWS_markerIndex + 1;
+if (isNil "FIREWORKS_markerIndex") then { FIREWORKS_markerIndex = 0 };
+FIREWORKS_markerIndex = FIREWORKS_markerIndex + 1;
 
 deleteVehicle _logic;
 
-["AAN News Article Settings", [
+
+/*
+
+Ideas:
+
+- Specific Color / Random
+- Timing (repeatable or one off)
+- Height
+- Delay (repeatable or one off)
+
+*/
+
+
+
+
+
+["Fireworks Settings", [
 	["EDIT", ["Article Title", "Title of the article."], ["ARMA 3 - The Frontier of Armaverse"]],
 	["EDIT", ["Article Editor", "Author/Editor of the article."], ["Root"]],
 	["EDIT", ["Article Date", "Date of the article separated by '/'. Format: YYYY/M/DD HH:MM"], ["2035/2/24 11:38"]],

@@ -63,7 +63,7 @@ deleteVehicle _logic;
 
 		["Volcano configured and active!"] call zen_common_fnc_showMessage;
 
-		[[_object, _radius, _eruptionDelay, _enableCraterLava, _enableLightning, _enableLavaFlow, _enableLethality, _protectiveGear],"\Root_Effects\Root_Volcano\AL_volcano\volcano_main.sqf"] remoteExec ["BIS_fnc_execVM", 0];
+		[_object, _radius, _eruptionDelay, _enableCraterLava, _enableLightning, _enableLavaFlow, _enableLethality, _protectiveGear] remoteExec ["Root_fnc_VolcanoMain", 2];
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

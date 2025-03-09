@@ -86,6 +86,12 @@ These effects can be terminated using the 'Terminate Effects' module.
 - **UFO Cropcircle:** Spawns a UFO to create various types of crop circles in real-time.
 - All UFOs can be customized to spawn at certain time frequencies.
 
+### **Fireworks**
+- **UFO:** Spawns a UFO above a random player at a defined time frequency.
+- **UFO Seeker:** Spawns a UFO landing next to a random person, moving at fast speeds and returning to orbit without causing damage.
+- **UFO Cropcircle:** Spawns a UFO to create various types of crop circles in real-time.
+- All UFOs can be customized to spawn at certain time frequencies.
+
 ---
 
 #  LICENSE 
