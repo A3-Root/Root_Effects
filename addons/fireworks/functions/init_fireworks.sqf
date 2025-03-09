@@ -21,8 +21,8 @@ Ideas:
 
 - Specific Color / Random
 - Timing (repeatable or one off)
+- Fuse (for one off)
 - Height
-- Delay (repeatable or one off)
 
 */
 
