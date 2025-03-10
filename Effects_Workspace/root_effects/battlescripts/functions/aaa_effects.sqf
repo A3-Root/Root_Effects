@@ -3,13 +3,15 @@
 
 if (!hasInterface) exitWith {};
 
-params ["_object_name", "_range_aaa", "_altitude", "_aaa_damage_vic", "_islethal", "_aaa_speed", "_aaa_damage_inf"];
+params ["_object_name", "_range_aaa", "_altitude", "_aaa_damage_vic", "_islethal", "_aaa_speed", "_aaa_damage_inf", "_smokesOnly"];
 
 private ["_nearbyunits", "_nearbyvehicles", "_damage", "_vichitpoints"];
 
 _object_name setPosATL [getPosATL _object_name select 0,getPosATL _object_name select 1,_altitude];
 
+
 _li_aaa = "#lightpoint" createVehicleLocal getPosATL _object_name;
+if !(_smokesOnly) then {
 _li_aaa setLightIntensity 0;
 _li_aaa setLightDayLight true;	
 _li_aaa setLightUseFlare true;
@@ -18,6 +20,7 @@ _li_aaa setLightAttenuation [1000,0,100,0,1,50];
 _li_aaa setLightFlareMaxDistance 5000;	
 _li_aaa setLightAmbient[0.9, 0.9, 0.9];
 _li_aaa setLightColor[0.9, 0.9, 0.9];
+};
 
 _fum = "#particlesource" createVehicleLocal getPosATL _li_aaa;
 _fum setParticleCircle [0,[0,0,0]];
@@ -45,10 +48,12 @@ while {al_aaa} do
 	
 	uiSleep _aaa_speed;
 	
-	if (_zz < 500) then 
-	{
-		_li_aaa setLightFlareSize (10 + random 100);
-		_li_aaa setLightIntensity (500 + random 500);
+	if !(_smokesOnly) then {
+		if (_zz < 500) then 
+		{
+			_li_aaa setLightFlareSize (10 + random 100);
+			_li_aaa setLightIntensity (500 + random 500);
+		};
 	};
 	
 	_flak_sound = selectRandom ["test_1", "test_2", "test_3", "bariera_1", "bariera_2", "bariera_3", "bariera_4", "bariera_5"];
@@ -57,21 +62,18 @@ while {al_aaa} do
 
 	_nearbyunits = ((getPosATL _object_name) nearEntities [["CAManBase", "Air"], (_range_aaa + 5)]) inAreaArray [(getPosATL _object_name), (_range_aaa * 2), (_range_aaa * 2), 0, false, (_altitude / 2)];
 	
-	if (_islethal) then 
-	{
+	if (_islethal) then {
 		{
 			_bodyPart = ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"] selectRandomWeighted [0.3,0.8,0.65,0.5,0.8,0.65];
 			_dmgType = selectRandom ["backblast", "explosive", "grenade", "burning"];
-			if ((typeOf _x != "VirtualCurator_F") && (_x isKindOf "CAManBase") && !(vehicle _x isKindOf "Air")) then 
-			{
+			if ((typeOf _x != "VirtualCurator_F") && (_x isKindOf "CAManBase") && !(vehicle _x isKindOf "Air")) then {
 				if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
 					[_x, _aaa_damage_inf, _bodyPart, _dmgType] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];	
 				} else { 
 					_x setDamage ((damage _x) + _aaa_damage_inf);
 				}; 
 			} else {
-				if ((_x isKindOf "ParachuteBase") || (_x isKindOf "BIS_Steerable_Parachute") || (_x isKindOf "Steerable_Parachute_F")) then 
-				{
+				if ((_x isKindOf "ParachuteBase") || (_x isKindOf "BIS_Steerable_Parachute") || (_x isKindOf "Steerable_Parachute_F")) then {
 					_parachute = _x;
 					{
 						if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {

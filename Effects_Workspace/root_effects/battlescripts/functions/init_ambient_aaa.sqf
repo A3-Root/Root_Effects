@@ -22,16 +22,17 @@ deleteVehicle _logic;
 	["TOOLBOX:YESNO",["Make Barrage Lethal","If true, the barrage will be lethal and cause damage to entities near it."],true],
 	["SLIDER:PERCENT", ["Damage to Aircrafts", "Percentage amount of damage the AAA deals to aircrafts."], [0.01, 1, 0.05, 2]],
 	["SLIDER:PERCENT", ["Damage to Infantry", "Percentage amount of damage the AAA deals to infantry passing through or paradropping."], [0.01, 1, 0.2, 2]],
-	["SLIDER",["Fire Spread","Speed and Spread at which the barrage fires. Lower values results in faster rate of fire at shorter spread per burst."],[0.5,10,1,1]]
+	["SLIDER",["Fire Spread","Speed and Spread at which the barrage fires. Lower values results in faster rate of fire at shorter spread per burst."],[0.5,10,1,1]],
+	["TOOLBOX:YESNO",["Smoke Particles Only","If true, the barrage wil only display smoke from the explosion and not the explosion itself."], false]
 	],{
 		params ["_results", "_aaa_loc"];
-		_results params ["_aaa_object", "_aaa_radius", "_aaa_height", "_islethal", "_aaa_dmg_vic", "_aaa_dmg_inf", "_aaa_speed"];
+		_results params ["_aaa_object", "_aaa_radius", "_aaa_height", "_islethal", "_aaa_dmg_vic", "_aaa_dmg_inf", "_aaa_speed", "_smokesOnly"];
 
 		_aaa_start = _aaa_object createVehicle _aaa_loc;
 
 		["AAA Barrage Initiated!"] call zen_common_fnc_showMessage;
 
-		[_aaa_start, _aaa_radius, _aaa_height, _aaa_dmg_vic, _islethal, _aaa_speed, _aaa_dmg_inf] remoteExec ["Root_fnc_AAAMain", 2];
+		[_aaa_start, _aaa_radius, _aaa_height, _aaa_dmg_vic, _islethal, _aaa_speed, _aaa_dmg_inf, _smokesOnly] remoteExec ["Root_fnc_AAAMain", 2];
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

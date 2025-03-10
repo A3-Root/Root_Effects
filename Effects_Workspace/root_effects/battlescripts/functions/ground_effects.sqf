@@ -3,7 +3,7 @@
 
 if (!hasInterface) exitWith {};
 
-params ["_art_object_name", "_range_art", "_ground_damage", "_ground_speed", "_ground_type", "_sound_only"];
+params ["_art_object_name", "_range_art", "_ground_damage", "_ground_speed", "_ground_type", "_sound_only", "_nonLethal"];
 
 _art_object  = "land_helipadempty_f" createVehiclelocal getpos _art_object_name;
 _li_art = "#lightpoint" createVehicleLocal getpos _art_object;
@@ -18,10 +18,40 @@ while {(al_art) and (!isNull _art_object_name)} do {
 		_art_object setPos _rel_Pos;
 		_ground_sound = selectRandom ["explosion_1","explosion_2","explosion_3","explosion_4"];
 		_art_object say3D [_ground_sound, 2000];
+		addCamShake [5, 2, 25];
 	} else {
-		_bomb = _ground_type createVehicle _rel_Pos;
+		_nearbyUnits = [];
+		_nearbyUnits = _groundPos nearEntities [["CAManBase", "LandVehicle"], 20];
+		_bomb = _ground_type createVehicleLocal _rel_Pos;
 		[_bomb, -90, 0] call BIS_fnc_setPitchBank;
 		_bomb setVelocity [0, 0, -100];
+		if (player in _nearbyUnits) then {
+			if !(_nonLethal) then {
+				player allowDamage false;
+				player allowDammage false;
+				waitUntil {((getPosATL _bomb) select 2 <= 0) || (_bomb == objNull); uiSleep 0.5;};
+				uiSleep 0.5;
+				player allowDamage true;
+				player allowDammage true;
+				if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
+					_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
+					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];
+					_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
+					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];
+					_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
+					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];
+				} else {
+					player setDamage ((damage player) + _ground_damage);
+				};
+			} else {
+				player allowDamage false;
+				player allowDammage false;
+				waitUntil {((getPosATL _bomb) select 2 <= 0) || (_bomb == objNull); uiSleep 0.5;};
+				uiSleep 0.5;
+				player allowDamage true;
+				player allowDammage true;
+			};
+		};
 	};
 };
 
@@ -153,7 +183,7 @@ _emitters pushBack [ _light, 0.3 ];
 _time = diag_tickTime;
 while{ count _emitters > 0 } do {
 {
-_x params[ "_source", "_length" ];
+player params[ "_source", "_length" ];
 if ( diag_tickTime > _time + _length ) then {
 deleteVehicle _source;
 _emitters set[ _forEachIndex, objNull ];

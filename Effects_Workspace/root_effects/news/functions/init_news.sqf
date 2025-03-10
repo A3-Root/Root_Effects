@@ -63,16 +63,17 @@ deleteVehicle _logic;
 				
 				[_title, _editor, _new_date, _timezone, _subhead, _main_img, _main_img_desc, _body, _body_locked, _lock_msg, _editor_img, _editor_info] spawn
 				{
+					params ["_title", "_editor", "_new_date", "_timezone", "_subhead", "_main_img", "_main_img_desc", "_body", "_body_locked", "_lock_msg", "_editor_img", "_editor_info"];
 					disableSerialization;
 					[
 						[
-							["title", _this select 0], 
-							["meta",[_this select 1,_this select 2,_this select 3]],
-							["textbold",_this select 4],
-							["image",[_this select 5,_this select 6]],
-							["text",_this select 7],
-							["textlocked",[_this select 8,_this select 9]],
-							["author",[_this select 10,_this select 11]]
+							["title", _title], 
+							["meta",[_editor,[parseNumber _new_date select 0, parseNumber _new_date select 1, parseNumber _new_date select 2, parseNumber _new_date select 3, parseNumber _new_date select 4],_timezone]],
+							["textbold",_subhead],
+							["image",[_main_img,_main_img_desc]],
+							["text",_body],
+							["textlocked",[_body_locked,_lock_msg]],
+							["author",[_editor_img,_editor_info]]
 						],findDisplay 46,true
 					] call BIS_fnc_showAANArticle;
 				};
