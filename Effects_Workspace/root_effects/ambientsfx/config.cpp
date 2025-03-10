@@ -24,9 +24,7 @@ class CfgFunctions
 	{
 		class RootAmbientCategory
 		{
-			class LocalSound {file = "root_effects\ambientsfx\functions\local_sound.sqf";};
 			class Aurora {file = "root_effects\ambientsfx\functions\init_ambient_aurora.sqf";};
-			class AuroraMain {file = "root_effects\ambientsfx\functions\aurora_main.sqf";};
 			class AuroraSfx {file = "root_effects\ambientsfx\functions\aurora_SFX.sqf";};
 			class Firefly {file = "root_effects\ambientsfx\functions\init_ambient_firefly.sqf";};
 			class FireflyMain {file = "root_effects\ambientsfx\functions\firefly_main.sqf";};

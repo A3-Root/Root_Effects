@@ -34,8 +34,13 @@ deleteVehicle _logic;
 
 		["Aurora Active!"] call zen_common_fnc_showMessage;
 
-		[_aurora, _auroraalt, _auroraspeed] remoteExec ["Root_fnc_AuroraMain", 2];
-		
+		if (!isNil {_aurora getVariable "is_auroraON"}) exitwith {}; 
+
+		_aurora setVariable ["is_auroraON", true, true];
+
+		aurora_active = true; publicVariable "aurora_active";
+
+		[_aurora, _auroraalt, _auroraspeed] remoteExec ["Root_fnc_AuroraSfx", [0, -2] select isDedicated, true];
 	}, {
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";
