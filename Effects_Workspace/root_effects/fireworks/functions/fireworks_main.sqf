@@ -13,15 +13,15 @@ DCON_boomSounds = [ "A3\Sounds_F\arsenal\explosives\shells\30mm40mm_shell_explos
 
 DCON_launchSounds = [ "A3\Sounds_F\arsenal\weapons_static\Missile_Launcher\Titan.wss", "A3\Sounds_F\arsenal\weapons\Launchers\Titan\Titan.wss", "A3\Sounds_F\arsenal\weapons\Launchers\RPG32\rpg32.wss", "A3\Sounds_F\arsenal\weapons\Launchers\NLAW\nlaw.wss" ];
 
-DCON_fnc_fireworkSounds = {
+_fireworkSounds = {
     _boomSound = selectRandom DCON_boomSounds;
     _launchSound = selectRandom DCON_launchSounds;
     playSound3D [_launchSound, _this select 0];
-    sleep 2.3;
+    uiSleep 2.3;
     playSound3D [_boomSound, _this select 0];
 };
 
-DCON_fnc_fireworkVisuals = {
+_fireworkVisuals = {
     _firing_position = _this select 0;
     _firing_dir = _this select 1;
     _rocket = _this select 2;
@@ -53,21 +53,21 @@ DCON_fnc_fireworkVisuals = {
     };
 	};
 	_light1 = "#lightpoint" createvehicle [0, 0, 0];
-	[_light1, 0.1] remoteExec ['setLightBrightness'];
-	[_light1, [1, 0.3, 0]] remoteExec ['setLightColor'];
-	[_light1, true] remoteExec ['setLightUseFlare'];
-	[_light1, 1000] remoteExec ['setLightFlareMaxDistance'];
-	[_light1, 5] remoteExec ['setLightFlaresize'];
+	[_light1, 0.1] remoteExec ['setLightBrightness', [0, -2] select isDedicated];
+	[_light1, [1, 0.3, 0]] remoteExec ['setLightColor', [0, -2] select isDedicated];
+	[_light1, true] remoteExec ['setLightUseFlare', [0, -2] select isDedicated];
+	[_light1, 1000] remoteExec ['setLightFlareMaxDistance', [0, -2] select isDedicated];
+	[_light1, 5] remoteExec ['setLightFlaresize', [0, -2] select isDedicated];
 	_light2 = "#lightpoint" createvehicle [0, 0, 0];
-	[_light2, 3] remoteExec ['setLightBrightness'];
-	[_light2, [1, 0.8, 0]] remoteExec ['setLightColor'];
-	[_light2, true] remoteExec ['setLightUseFlare'];
-	[_light2, 1000] remoteExec ['setLightFlareMaxDistance'];
-	[_light2, 8] remoteExec ['setLightFlaresize'];
-	sleep 0.01;
-	[_light1, [_rocket, [0, 0, 0]]] remoteExec ['lightAttachObject'];
-	[_light2, [_rocket, [0, 0, 0]]] remoteExec ['lightAttachObject'];
-	sleep 2.3;
+	[_light2, 3] remoteExec ['setLightBrightness', [0, -2] select isDedicated];
+	[_light2, [1, 0.8, 0]] remoteExec ['setLightColor', [0, -2] select isDedicated];
+	[_light2, true] remoteExec ['setLightUseFlare', [0, -2] select isDedicated];
+	[_light2, 1000] remoteExec ['setLightFlareMaxDistance', [0, -2] select isDedicated];
+	[_light2, 8] remoteExec ['setLightFlaresize', [0, -2] select isDedicated];
+	uiSleep 0.01;
+	[_light1, [_rocket, [0, 0, 0]]] remoteExec ['lightAttachObject', [0, -2] select isDedicated];
+	[_light2, [_rocket, [0, 0, 0]]] remoteExec ['lightAttachObject', [0, -2] select isDedicated];
+	uiSleep 2.3;
 	deletevehicle _light1;
 	deletevehicle _light2;
 	for [{
@@ -93,14 +93,16 @@ DCON_fnc_fireworkVisuals = {
 		[_light2, true] remoteExec ['setLightUseFlare'];
 		[_light2, 1000] remoteExec ['setLightFlareMaxDistance'];
 		[_light2, 10] remoteExec ['setLightFlaresize'];
-		sleep 5;
+		uiSleep 5;
 		deletevehicle _light2;
 	};
 	};
-	sleep 1;
-	sleep 7;
+	uiSleep 1;
+	uiSleep 7;
 	deletevehicle _rocket;
 };
+
+
 M9SD_fnc_spawnfireworks = {
     _pos = [14650.3,16759,0];
     _fireworkcount = 1;
@@ -114,7 +116,9 @@ M9SD_fnc_spawnfireworks = {
         _firingdir = [selectRandom [0, 1], selectRandom [0, 1], selectRandom [0, 1]];
         [_pos, _firingdir, _firework, _color] spawn DCON_fnc_fireworkVisuals;
         [_firework] spawn DCON_fnc_fireworkSounds;
-        sleep 1.5;
+        uiSleep 1.5;
     };
 };
+
+
 [] spawn M9SD_fnc_spawnfireworks;
