@@ -19,13 +19,20 @@ deleteVehicle _logic;
 	["TOOLBOX:YESNO",["Enable Alarm [READ TOOLTIP]","If true, an alarm will trigger. HIGHLY RECOMMENDED TO USE ONLY ONCE."],false]
 	],{
 		params ["_results", "_search_loc"];
-		_results params ["_search_object", "_search_sound"];
+		_results params ["_search_start", "_search_sound"];
 		
-		_search_start = _search_object createVehicle _search_loc;
+		_search_start = _search_start createVehicle _search_loc;
 
 		["Search Light Initiated!"] call zen_common_fnc_showMessage;
 
-		[_search_start, _search_sound] remoteExec ["Root_fnc_SearchMain", 2];
+		if (!isNil {_search_start getVariable "is_ON"}) exitwith {};
+		_search_start setVariable ["is_ON", true, true];
+
+		_obiect_search = createSimpleObject ["A3\data_f\VolumeLight_searchLight.p3d", getposasl _search_start];
+
+		al_search_light = true; publicVariable "al_search_light";
+
+		[_obiect_search, _search_sound] remoteExec ["Root_fnc_SearchEffects", [0, -2] select isDedicated, true];
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

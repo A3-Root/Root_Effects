@@ -29,7 +29,53 @@ deleteVehicle _logic;
 
 		["Artillery Barrage Initiated!"] call zen_common_fnc_showMessage;
 
-		[_ground_start, _ground_radius, _ground_damage, _ground_speed, _ground_type, _sound_only, _nonLethal] remoteExec ["Root_fnc_GroundMain", 2];
+		private ["_xx","_yy","_zz","_dire"];
+
+		if (!isNil {_ground_start getVariable "is_ON"}) exitwith {};
+
+		_ground_start setVariable ["is_ON",true,true];
+
+		al_art = true; publicVariable "al_art";
+
+		while {(al_art) and (!isNull _ground_start)} do {
+
+			_nearbyUnits = [];
+			_nearbyUnits = _groundPos nearEntities [["CAManBase", "LandVehicle"], 20];
+			
+			uiSleep _ground_speed;
+			
+			_rel_Pos = [getPos _ground_start, random _ground_radius, random 360] call BIS_fnc_relPos;
+
+			if (_sound_only) then {
+				_art_object setPos _rel_Pos;
+				_ground_sound = selectRandom ["explosion_1","explosion_2","explosion_3","explosion_4"];
+				_art_object say3D [_ground_sound, 2000];
+			} else {
+				_bomb = _ground_type createVehicle _rel_Pos;
+				[_bomb, -90, 0] call BIS_fnc_setPitchBank;
+				_bomb setVelocity [0, 0, -100];
+				{
+					_x allowDamage false;
+					_x allowDammage false;
+					waitUntil {((getPosATL _bomb) select 2 <= 0) || (_bomb == objNull); uiSleep 0.5;};
+					uiSleep 0.5;
+					_x allowDamage true;
+					_x allowDammage true;
+					if !(_nonLethal) then {
+						if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
+							_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
+							[_x, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];
+							_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
+							[_x, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];
+							_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
+							[_x, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];
+						} else {
+							_x setDamage ((damage _x) + _ground_damage);
+						};
+					};
+				} forEach _nearbyUnits;
+			};
+		};
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

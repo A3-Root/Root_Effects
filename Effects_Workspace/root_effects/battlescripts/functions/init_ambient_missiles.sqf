@@ -26,7 +26,50 @@ deleteVehicle _logic;
 
 		["Missile Launcher Initiated!"] call zen_common_fnc_showMessage;
 
-		[_missile_start, _missle_distance, _launch_delay] remoteExec ["Root_fnc_MissilesMain", 2];
+		if (!isNil {_missile_start getVariable "is_ON"}) exitwith {};
+		_missile_start setVariable ["is_ON", true, true];
+
+		al_missile = true; publicVariable "al_missile";
+
+		uiSleep _launch_delay;
+
+		_al_rocket = "Land_Battery_F" createVehicleLocal getPosATL _missile_start;
+
+		[[_missile_start, _missle_distance, _al_rocket, _launch_delay], {
+			params ["_missile_start", "_missle_distance", "_al_rocket", "_launch_delay"];
+			while {(al_missile) and (!isNull _missile_start)} do {
+				if (player distance _missile_start > _missle_distance) then {
+					_sunetr =  selectRandom ["roc_1","roc_2","roc_3","roc_4"];
+
+					_li = "#lightpoint" createVehiclelocal (getPos _al_rocket);
+					_li setLightBrightness 100;
+					_li setLightAttenuation [5,0,100,2000,200,500]; 
+					_li setLightUseFlare true;
+					_li setLightFlareSize 1;
+					_li setLightFlareMaxDistance 2000;	
+					_li setLightAmbient[1,0.7,0];
+					_li setLightColor[1,1,1];
+					_li lightAttachObject [_al_rocket, [0,0,-3]];
+
+					_al_rocket say3d [_sunetr,2000];
+
+					_ps1 = "#particlesource" createVehicleLocal getpos _al_rocket;
+					_ps1 setParticleCircle [0, [0, 0, 0]];
+					_ps1 setParticleRandom [2, [0, 0, 0], [0.2, 0.2, 0.5], 0.3, 0.5, [0, 0, 0, 0.5], 0, 0];
+					_ps1 setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 2+random 1, [0, 0, 0], [0, 0, 1], 3, 0.01, 0.007, 0, [4,1,7,10], [[1, 1, 1, 1], [0.6, 0.3, 0.2, 1], [0, 0, 0, 0.5], [0, 0, 0, 0]], [0.08], 1, 0, "", "", _al_rocket];
+					_ps1 setDropInterval 0.002;
+
+					_al_rocket setVelocity [0,0,200];
+
+					uiSleep _launch_delay;
+					deleteVehicle _ps1;	
+					deletevehicle _li;
+					_al_rocket setPosATL getPosATL _missile_start;
+				} else {uiSleep 5};
+			};
+
+			deleteVehicle _al_rocket;
+		}] remoteExec ["spawn", [0, -2] select isDedicated, true];
 	},{
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

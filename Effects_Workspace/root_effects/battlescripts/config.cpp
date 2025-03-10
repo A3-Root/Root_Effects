@@ -24,19 +24,11 @@ class CfgFunctions
 		class RootBattleCategory
 		{
 			class AAA {file = "root_effects\battlescripts\functions\init_ambient_aaa.sqf";};
-			class AAAMain {file = "root_effects\battlescripts\functions\aaa_main.sqf";};
-			class AAAEffects {file = "root_effects\battlescripts\functions\aaa_effects.sqf";};
 			class Ground {file = "root_effects\battlescripts\functions\init_ambient_ground.sqf";};
-			class GroundMain {file = "root_effects\battlescripts\functions\ground_main.sqf";};
-			class GroundEffects {file = "root_effects\battlescripts\functions\ground_effects.sqf";};
 			class Missiles {file = "root_effects\battlescripts\functions\init_ambient_missiles.sqf";};
-			class MissilesMain {file = "root_effects\battlescripts\functions\missiles_main.sqf";};
-			class MissilesEffects {file = "root_effects\battlescripts\functions\missiles_effects.sqf";};
 			class Search {file = "root_effects\battlescripts\functions\init_ambient_search.sqf";};
-			class SearchMain {file = "root_effects\battlescripts\functions\search_main.sqf";};
 			class SearchEffects {file = "root_effects\battlescripts\functions\search_effects.sqf";};
 			class Tracers {file = "root_effects\battlescripts\functions\init_ambient_tracers.sqf";};
-			class TracersMain {file = "root_effects\battlescripts\functions\tracers_main.sqf";};
 			class TracersEffects {file = "root_effects\battlescripts\functions\tracers_effects.sqf";};
 		};
 	};
