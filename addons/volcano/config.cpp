@@ -23,21 +23,23 @@ class CfgFunctions
 {
 	class Root
 	{
+		tag = "Root";
 		class RootVolcanoCategory
 		{
-			class Volcano {file = QPATHTOF(functions\init_volcano.sqf);};
-			class VolcanoBlow {file = QPATHTOF(functions\volcano_blow.sqf);};
-			class VolcanoCrater {file = QPATHTOF(functions\volcano_crater_SFX.sqf);};
-			class VolcanoEffect {file = QPATHTOF(functions\volcano_effect.sqf);};
-			class VolcanoFulger {file = QPATHTOF(functions\volcano_fulger_effect.sqf);};
-			class VolcanoLava {file = QPATHTOF(functions\volcano_lava_flow.sqf);};
-			class VolcanoMain {file = QPATHTOF(functions\volcano_main.sqf);};
-			class VolcanoPuf {file = QPATHTOF(functions\volcano_puf.sqf);};
-			class VolcanoRock {file = QPATHTOF(functions\volcano_rock_trail.sqf);};
-			class VolcanoScantei {file = QPATHTOF(functions\volcano_scantei.sqf);};
-			class VolcanoShije {file = QPATHTOF(functions\volcano_schije.sqf);};
-			class VolcanoColumn {file = QPATHTOF(functions\volcano_smoke_column.sqf);};
-			class VolcanoDamage {file = QPATHTOF(functions\volcano_unit_damage.sqf);};
+			file = QPATHTOF(functions);
+			class moduleVolcanoEruption {};
+			class volcanoBlastPuff {};
+			class volcanoCraterEffects {};
+			class volcanoEruptionEffects {};
+			class volcanoLightningEffects {};
+			class volcanoLavaFlow {};
+			class volcanoEruptionServer {};
+			class volcanoSmokePuff {};
+			class volcanoRockTrail {};
+			class volcanoSparkBurst {};
+			class volcanoShrapnelBurst {};
+			class volcanoSmokeColumn {};
+			class volcanoUnitDamage {};
 		};
 	};
 };
@@ -57,7 +59,7 @@ class CfgVehicles {
 		author = "Root";
 		_generalMacro = "Volcano_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Volcano";
+		function = "Root_fnc_moduleVolcanoEruption";
 		displayName = CSTRING(ModuleVolcano);
 	};
 };

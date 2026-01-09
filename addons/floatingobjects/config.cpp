@@ -24,11 +24,13 @@ class CfgFunctions
 {
 	class Root
 	{
+		tag = "Root";
 		class RootFloatingCategory
 		{
-			class Floating {file = QPATHTOF(functions\init_float.sqf);};
-			class FloatingMain {file = QPATHTOF(functions\float_main.sqf);};
-			class FloatingObj {file = QPATHTOF(functions\float_obj.sqf);};
+			file = QPATHTOF(functions);
+			class moduleFloatingObjects {};
+			class floatingObjectsServer {};
+			class animateFloatingObject {};
 		};
 	};
 };
@@ -50,7 +52,7 @@ class CfgVehicles {
 		_generalMacro = "Floating_Module";
 		curatorCanAttach = 1;
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Floating";
+		function = "Root_fnc_moduleFloatingObjects";
 		displayName = CSTRING(ModuleFloating);
 	};
 };

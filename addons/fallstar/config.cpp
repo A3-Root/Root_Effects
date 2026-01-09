@@ -24,18 +24,20 @@ class CfgFunctions
 {
 	class Root
 	{
+		tag = "Root";
 		class RootFallstarCategory
 		{
-			class Fallstar {file = QPATHTOF(functions\init_fallstar.sqf);};
-			class FallstarFallingIni {file = QPATHTOF(functions\fallstar_fallingstar_ini.sqf);};
-			class FallstarFalling {file = QPATHTOF(functions\fallstar_fallingstar.sqf);};
-			class FallstarHunt {file = QPATHTOF(functions\fallstar_hunt.sqf);};
-			class FallstarLumina {file = QPATHTOF(functions\fallstar_lumina.sqf);};
-			class FallstarMeteorEnd {file = QPATHTOF(functions\fallstar_meteor_end_blast.sqf);};
-			class FallstarMeteorBlast {file = QPATHTOF(functions\fallstar_meteor_ini_blast.sqf);};
-			class FallstarMeteorIni {file = QPATHTOF(functions\fallstar_meteor_ini.sqf);};
-			class FallstarMeteor {file = QPATHTOF(functions\fallstar_meteor.sqf);};
-			class FallstarMeteorEffect {file = QPATHTOF(functions\fallstar_meteoreffect.sqf);};
+			file = QPATHTOF(functions);
+			class moduleMeteorsComets {};
+			class startCometSpawner {};
+			class spawnComet {};
+			class updateMeteorCometTarget {};
+			class cometGlowEffects {};
+			class meteorImpactEffects {};
+			class meteorFlashEffects {};
+			class startMeteorSpawner {};
+			class spawnMeteor {};
+			class meteorTrailEffects {};
 		};
 	};
 };
@@ -56,7 +58,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Fallstar_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Fallstar";
+		function = "Root_fnc_moduleMeteorsComets";
 		displayName = CSTRING(ModuleFallstar);
 	};
 };

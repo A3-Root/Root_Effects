@@ -23,23 +23,25 @@ class CfgFunctions
 {
 	class Root
 	{
+		tag = "Root";
 		class RootBattleCategory
 		{
-			class AAA {file = QPATHTOF(functions\init_ambient_aaa.sqf);};
-			class AAAMain {file = QPATHTOF(functions\aaa_main.sqf);};
-			class AAAEffects {file = QPATHTOF(functions\aaa_effects.sqf);};
-			class Ground {file = QPATHTOF(functions\init_ambient_ground.sqf);};
-			class GroundMain {file = QPATHTOF(functions\ground_main.sqf);};
-			class GroundEffects {file = QPATHTOF(functions\ground_effects.sqf);};
-			class Missiles {file = QPATHTOF(functions\init_ambient_missiles.sqf);};
-			class MissilesMain {file = QPATHTOF(functions\missiles_main.sqf);};
-			class MissilesEffects {file = QPATHTOF(functions\missiles_effects.sqf);};
-			class Search {file = QPATHTOF(functions\init_ambient_search.sqf);};
-			class SearchMain {file = QPATHTOF(functions\search_main.sqf);};
-			class SearchEffects {file = QPATHTOF(functions\search_effects.sqf);};
-			class Tracers {file = QPATHTOF(functions\init_ambient_tracers.sqf);};
-			class TracersMain {file = QPATHTOF(functions\tracers_main.sqf);};
-			class TracersEffects {file = QPATHTOF(functions\tracers_effects.sqf);};
+			file = QPATHTOF(functions);
+			class moduleAntiAirBarrage {};
+			class antiAirBarrageServer {};
+			class antiAirBarrageEffects {};
+			class moduleArtilleryBarrage {};
+			class artilleryBarrageServer {};
+			class artilleryBarrageEffects {};
+			class moduleMissileLauncher {};
+			class missileLauncherServer {};
+			class missileLauncherEffects {};
+			class moduleSearchlight {};
+			class searchlightServer {};
+			class searchlightEffects {};
+			class moduleTracerFire {};
+			class tracerFireServer {};
+			class tracerFireEffects {};
 		};
 	};
 };
@@ -60,7 +62,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "AAA_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_AAA";
+		function = "Root_fnc_moduleAntiAirBarrage";
 		displayName = CSTRING(ModuleAAA);
 	};
 	class Ground_Module: zen_modules_moduleBase
@@ -68,7 +70,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Ground_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Ground";
+		function = "Root_fnc_moduleArtilleryBarrage";
 		displayName = CSTRING(ModuleGround);
 	};
 	class Missiles_Module: zen_modules_moduleBase
@@ -76,7 +78,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Missiles_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Missiles";
+		function = "Root_fnc_moduleMissileLauncher";
 		displayName = CSTRING(ModuleMissiles);
 	};
 	class Search_Module: zen_modules_moduleBase
@@ -84,7 +86,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Search_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Search";
+		function = "Root_fnc_moduleSearchlight";
 		displayName = CSTRING(ModuleSearch);
 	};
 	class Tracers_Module: zen_modules_moduleBase
@@ -92,7 +94,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Tracers_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Tracers";
+		function = "Root_fnc_moduleTracerFire";
 		displayName = CSTRING(ModuleTracers);
 	};
 };

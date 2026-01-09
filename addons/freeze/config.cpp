@@ -24,10 +24,12 @@ class CfgFunctions
 {
 	class Root
 	{
+		tag = "Root";
 		class RootFreezeCategory
 		{
-			class Freeze {file = QPATHTOF(functions\init_freeze.sqf);};
-			class FreezeMain {file = QPATHTOF(functions\freeze_main.sqf);};
+			file = QPATHTOF(functions);
+			class moduleFreezePlayers {};
+			class freezePlayersServer {};
 		};
 	};
 };
@@ -49,7 +51,7 @@ class CfgVehicles {
 		_generalMacro = "Freeze_Module";
 		curatorCanAttach = 1;
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Freeze";
+		function = "Root_fnc_moduleFreezePlayers";
 		displayName = CSTRING(ModuleFreeze);
 	};
 };

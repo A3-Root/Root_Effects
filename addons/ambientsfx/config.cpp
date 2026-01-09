@@ -24,21 +24,23 @@ class CfgFunctions
 {
 	class Root
 	{
+		tag = "Root";
 		class RootAmbientCategory
 		{
-			class LocalSound {file = QPATHTOF(functions\local_sound.sqf);};
-			class Aurora {file = QPATHTOF(functions\init_ambient_aurora.sqf);};
-			class AuroraMain {file = QPATHTOF(functions\aurora_main.sqf);};
-			class AuroraSfx {file = QPATHTOF(functions\aurora_SFX.sqf);};
-			class Firefly {file = QPATHTOF(functions\init_ambient_firefly.sqf);};
-			class FireflyMain {file = QPATHTOF(functions\firefly_main.sqf);};
-			class FireflySfx {file = QPATHTOF(functions\firefly_SFX.sqf);};
-			class Rupture {file = QPATHTOF(functions\init_ambient_rupture.sqf);};
-			class RuptureMain {file = QPATHTOF(functions\rupture_main.sqf);};
-			class RuptureSfx {file = QPATHTOF(functions\rupture_SFX.sqf);};
-			class Sparks {file = QPATHTOF(functions\init_ambient_sparks.sqf);};
-			class SparksMain {file = QPATHTOF(functions\sparky_main.sqf);};
-			class SparksEffects {file = QPATHTOF(functions\spark_effect.sqf);};
+			file = QPATHTOF(functions);
+			class playLocalSound {};
+			class moduleAurora {};
+			class auroraServer {};
+			class auroraEffects {};
+			class moduleFirefly {};
+			class fireflyServer {};
+			class fireflyEffects {};
+			class moduleRupture {};
+			class ruptureServer {};
+			class ruptureEffects {};
+			class moduleSparks {};
+			class sparksServer {};
+			class sparksEffectsLoop {};
 		};
 	};
 };
@@ -61,7 +63,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Fireflies_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Firefly";
+		function = "Root_fnc_moduleFirefly";
 		displayName = CSTRING(ModuleFirefly);
 	};
 	class Aurora_Module: zen_modules_moduleBase
@@ -69,7 +71,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Aurora_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Aurora";
+		function = "Root_fnc_moduleAurora";
 		displayName = CSTRING(ModuleAurora);
 	};
 	class Rupture_Module: zen_modules_moduleBase
@@ -77,7 +79,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Rupture_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Rupture";
+		function = "Root_fnc_moduleRupture";
 		displayName = CSTRING(ModuleRupture);
 	};
 	class Sparks_Module: zen_modules_moduleBase
@@ -85,7 +87,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Sparks_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Sparks";
+		function = "Root_fnc_moduleSparks";
 		displayName = CSTRING(ModuleSparks);
 	};
 };

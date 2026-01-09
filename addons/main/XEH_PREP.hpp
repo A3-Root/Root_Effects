@@ -1,7 +1,4 @@
-// Compile Root_fnc_* and alias to CBA-style QFUNC names for internal use.
 #undef PREP
-#define PREP_ROOT(funcName,fileName) [QPATHTOF(functions\fileName), QUOTE(TRIPLES(Root,fnc,funcName))] call CBA_fnc_compileFunction
-#define PREP_ALIAS(funcName) missionNamespace setVariable [QFUNC(funcName), missionNamespace getVariable [QUOTE(TRIPLES(Root,fnc,funcName)), {}]]
+#define PREP(fncName) [QPATHTOF(functions\DOUBLES(fn,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
 
-PREP_ROOT(Termination,term_entities.sqf);
-PREP_ALIAS(Termination);
+PREP(terminateEffects);

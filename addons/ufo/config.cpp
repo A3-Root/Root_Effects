@@ -23,22 +23,24 @@ class CfgFunctions
 {
 	class Root
 	{
+		tag = "Root";
 		class RootUFOCategory
 		{
-			class UFO {file = QPATHTOF(functions\init_ufo.sqf);};
-			class Seeker {file = QPATHTOF(functions\init_seeker.sqf);};
-			class Cropcircle {file = QPATHTOF(functions\init_cropcircle.sqf);};
-			class UFOCharging {file = QPATHTOF(functions\ufo_charging_SFX.sqf);};
-			class UFOCropCircle {file = QPATHTOF(functions\ufo_crop_circle.sqf);};
-			class UFOCropping {file = QPATHTOF(functions\ufo_cropping.sqf);};
-			class UFOCrossLit {file = QPATHTOF(functions\ufo_cross_lit.sqf);};
-			class UFOCross {file = QPATHTOF(functions\ufo_cross.sqf);};
-			class UFOEncounter {file = QPATHTOF(functions\ufo_encounter.sqf);};
-			class UFOHunt {file = QPATHTOF(functions\ufo_hunt.sqf);};
-			class UFOLightCharge {file = QPATHTOF(functions\ufo_light_charge_sfx.sqf);};
-			class UFOPuls {file = QPATHTOF(functions\ufo_puls.sqf);};
-			class UFOSeeker {file = QPATHTOF(functions\ufo_seeker.sqf);};
-			class UFOTravel {file = QPATHTOF(functions\ufo_travel_SFX.sqf);};
+			file = QPATHTOF(functions);
+			class moduleUfoEncounter {};
+			class moduleUfoSeeker {};
+			class moduleUfoCropCircle {};
+			class ufoChargingEffects {};
+			class createUfoCropCircle {};
+			class animateUfoCropCircle {};
+			class ufoCrossLighting {};
+			class ufoCrossFlyby {};
+			class ufoEncounterServer {};
+			class updateUfoTarget {};
+			class ufoLightChargeEffects {};
+			class ufoPulseEffects {};
+			class ufoSeekerServer {};
+			class ufoTravelEffects {};
 		};
 	};
 };
@@ -59,7 +61,7 @@ class CfgVehicles {
 		author = "Root";
 		_generalMacro = "UFO_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_UFO";		
+		function = "Root_fnc_moduleUfoEncounter";		
 		displayName = CSTRING(ModuleUFO);
 	};
 	class Seeker_Module: zen_modules_moduleBase
@@ -67,7 +69,7 @@ class CfgVehicles {
 		author = "Root";
 		_generalMacro = "Seeker_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Seeker";		
+		function = "Root_fnc_moduleUfoSeeker";		
 		displayName = CSTRING(ModuleSeeker);
 	};
 	class Cropcircle_Module: zen_modules_moduleBase
@@ -75,7 +77,7 @@ class CfgVehicles {
 		author = "Root";
 		_generalMacro = "Cropcircle_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Cropcircle";		
+		function = "Root_fnc_moduleUfoCropCircle";		
 		displayName = CSTRING(ModuleCropcircle);
 	};
 };

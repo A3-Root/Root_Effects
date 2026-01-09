@@ -23,10 +23,12 @@ class CfgFunctions
 {
 	class Root
 	{
+		tag = "Root";
 		class RootNewsCategory
 		{
-			class News {file = QPATHTOF(functions\init_news.sqf);};
-			class NewsDiary {file = QPATHTOF(functions\news_diary.sqf);};
+			file = QPATHTOF(functions);
+			class moduleNewsArticle {};
+			class broadcastNewsArticle {};
 		};
     };
 };
@@ -47,7 +49,7 @@ class CfgVehicles {
 		_generalMacro = "News_Module";
 		curatorCanAttach = 1;
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_News";
+		function = "Root_fnc_moduleNewsArticle";
 		displayName = CSTRING(ModuleNews);
 	};
 };

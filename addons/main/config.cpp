@@ -26,9 +26,11 @@ class CfgFunctions
 {
 	class Root
 	{
+		tag = "Root";
 		class RootTerminationCategory
 		{
-			class Termination {file = QPATHTOF(functions\term_entities.sqf);};
+			file = QPATHTOF(functions);
+			class terminateEffects {};
 		};
 	};
 };
@@ -48,7 +50,7 @@ class CfgVehicles {
 		author = "Root";
 		_generalMacro = "Termination_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_Termination";
+		function = "Root_fnc_terminateEffects";
 		displayName = CSTRING(ModuleTerminate);
 	};
 };
