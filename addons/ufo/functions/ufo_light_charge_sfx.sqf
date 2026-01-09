@@ -51,7 +51,7 @@ _lum_fulg_w setLightBrightness 200;
 uiSleep 0.3;
 deleteVehicle _lum_fulg_w;
 
-playSound3D ["final_boom","",false,[getPos player # 0, getPos player # 1, 1000], 10, 1, 5000];
+playSound3D ["final_boom",objNull,false,[getPos player # 0, getPos player # 1, 1000], 10, 1, 5000];
 private _Leaves_Green = "#particlesource" createVehicleLocal (getPos player);
 uiSleep 2.5;
 private _dust_particles = "#particlesource" createVehicleLocal (getPos player);

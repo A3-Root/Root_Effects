@@ -45,14 +45,6 @@
             <Original>Meteors/Comets</Original>
         </Key>
     </Package>
-    <Package name="Fireworks">
-        <Key ID="STR_root_effects_fireworks_CategoryName">
-            <Original>Root's Effects</Original>
-        </Key>
-        <Key ID="STR_root_effects_fireworks_ModuleFireworks">
-            <Original>Fireworks Module</Original>
-        </Key>
-    </Package>
     <Package name="FloatingObjects">
         <Key ID="STR_root_effects_floatingobjects_CategoryName">
             <Original>Root's Effects</Original>

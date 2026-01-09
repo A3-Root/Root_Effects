@@ -22,12 +22,14 @@ while {volcano} do {
 			{
 				if (_x call _check_gear) then {
 					if (_x isKindOf "Man") then {
-						if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
+						if (isNil "ace_medical_fnc_addDamageToUnit") then {
+							_x setDamage 1; 
+						} else {
 							private _bodyPart = ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
 							{
 								[_x, 1, _bodyPart, "ropeburn"] call ace_medical_fnc_adddamagetoUnit;
 							} forEach _bodyPart;
-						} else { _x setDamage 1; };
+						};
                 	} else { _x setDamage 1; }; 
 				}; 
 			} forEach _unit_dead; 
@@ -35,11 +37,13 @@ while {volcano} do {
 		{ if (_x inArea [[9981.46,12077.1,74.964],280,220,0,false,200]) then {
 			if (_x isKindOf "Man") then {
 				private _bodyPart = ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
-				if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
+				if (isNil "ace_medical_fnc_addDamageToUnit") then {
+					_x setDamage 1;
+				} else {
 					{
 						[_x, 1, _bodyPart, "ropeburn"] call ace_medical_fnc_adddamagetoUnit;
 					} forEach _bodyPart;
-				} else { _x setDamage 1; };
+				};
             } else { _x setDamage 1; };}
 		} forEach _unit_dead;
 	};

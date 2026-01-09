@@ -57,7 +57,7 @@ private _meteor_voice = "land_helipadempty_f" createVehicleLocal _poz;
 	addCamShake [_pow_met,5,35];
 };
 
-private _craterus = "Crater" createVehicleLocal _poz;
+"Crater" createVehicleLocal _poz;
 private _li_end = "#lightpoint" createVehicleLocal _poz;
 _li_end setLightIntensity 5000;
 _li_end setLightDayLight true;	

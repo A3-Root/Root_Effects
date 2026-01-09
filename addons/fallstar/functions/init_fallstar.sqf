@@ -21,8 +21,6 @@ if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith
 
 params ["_logic"];
 
-private _radiuspos = getPosATL _logic;
-
 deleteVehicle _logic;
 
 ["Meteors and Comet Settings",[

@@ -17,7 +17,7 @@ _plasma_wave setDropInterval 0.1;
 
 [_ufo] spawn Root_fnc_UFOLightCharge;
 charge_ufo = false;
-playSound3D ["charge_complete", "", false, getPos _ufo, 1, 1, 5000];
+playSound3D ["charge_complete", objNull, false, getPos _ufo, 1, 1, 5000];
 uiSleep 5;
 deleteVehicle _plasma_wave;
 charge_ufo = true;

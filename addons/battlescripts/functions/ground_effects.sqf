@@ -6,7 +6,7 @@ if (!hasInterface) exitWith {};
 params ["_art_object_name", "_range_art", "_ground_damage", "_ground_speed", "_ground_type", "_sound_only", "_nonLethal"];
 
 private _art_object  = "land_helipadempty_f" createVehicleLocal getPos _art_object_name;
-private _li_art = "#lightpoint" createVehicleLocal getPos _art_object;
+"#lightpoint" createVehicleLocal getPos _art_object;
 
 while {(al_art) and (!isNull _art_object_name)} do {
 	
@@ -20,29 +20,18 @@ while {(al_art) and (!isNull _art_object_name)} do {
 		_art_object say3D [_ground_sound, 2000];
 		addCamShake [5, 2, 25];
 	} else {
-		private _nearbyUnits = [];
-		_nearbyUnits = _groundPos nearEntities [["CAManBase", "LandVehicle"], 20];
+		private _nearbyUnits = _rel_Pos nearEntities [["CAManBase", "LandVehicle"], 20];
 		private _bomb = _ground_type createVehicleLocal _rel_Pos;
 		[_bomb, -90, 0] call BIS_fnc_setPitchBank;
 		_bomb setVelocity [0, 0, -100];
 		if (player in _nearbyUnits) then {
-			if !(_nonLethal) then {
+			if (_nonLethal) then {
 				player allowDamage false;
 				player allowDammage false;
 				waitUntil {((getPosATL _bomb) select 2 <= 0) || (_bomb == objNull); uiSleep 0.5;};
 				uiSleep 0.5;
 				player allowDamage true;
 				player allowDammage true;
-				if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
-					private _bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
-					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];
-					_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
-					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];
-					_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
-					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];
-				} else {
-					player setDamage ((damage player) + _ground_damage);
-				};
 			} else {
 				player allowDamage false;
 				player allowDammage false;
@@ -50,6 +39,16 @@ while {(al_art) and (!isNull _art_object_name)} do {
 				uiSleep 0.5;
 				player allowDamage true;
 				player allowDammage true;
+				if (isNil "ace_medical_fnc_addDamageToUnit") then {
+					player setDamage ((damage player) + _ground_damage);
+				} else {
+					private _bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
+					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];
+					_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
+					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];
+					_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
+					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];
+				};
 			};
 		};
 	};

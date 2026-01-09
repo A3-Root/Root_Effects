@@ -16,7 +16,7 @@ deleteVehicle _logic;
 
 ["Missile Launcher Settings",[
 	["EDIT",["Missile Launcher Object","Classname of the object used as the launch generator for Missile launches."],["Land_HelipadEmpty_F"]],
-	["SLIDER:RADIUS",["Minimum Safe Distance","Radius is meters for players to be AWAY to lauch Missiles."],[1,1000,25,0,_radiuspos,[7,120,32,1]]],
+	["SLIDER:RADIUS",["Minimum Safe Distance","Radius is meters for players to be AWAY to lauch Missiles."],[1,1000,25,0,_missile_loc,[7,120,32,1]]],
 	["SLIDER",["Launch Delay","Seconds between each Launch."],[1,100,10,0]]
 	],{
 		params ["_results", "_missile_loc"];

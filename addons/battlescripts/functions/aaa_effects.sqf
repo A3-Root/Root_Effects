@@ -67,19 +67,19 @@ while {al_aaa} do
 			private _bodyPart = ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"] selectRandomWeighted [0.3,0.8,0.65,0.5,0.8,0.65];
 			private _dmgType = selectRandom ["backblast", "explosive", "grenade", "burning"];
 			if ((typeOf _x != "VirtualCurator_F") && (_x isKindOf "CAManBase") && !(vehicle _x isKindOf "Air")) then {
-				if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
-					[_x, _aaa_damage_inf, _bodyPart, _dmgType] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];	
-				} else { 
+				if (isNil "ace_medical_fnc_addDamageToUnit") then {
 					_x setDamage ((damage _x) + _aaa_damage_inf);
+				} else { 
+					[_x, _aaa_damage_inf, _bodyPart, _dmgType] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];	
 				}; 
 			} else {
 				if ((_x isKindOf "ParachuteBase") || (_x isKindOf "BIS_Steerable_Parachute") || (_x isKindOf "Steerable_Parachute_F")) then {
 					private _parachute = _x;
 					{
-						if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
-							[_x, _aaa_damage_inf, _bodyPart, _dmgType] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];	
-						} else { 
+						if (isNil "ace_medical_fnc_addDamageToUnit") then {
 							_x setDamage ((damage _x) + _aaa_damage_inf);
+						} else { 
+							[_x, _aaa_damage_inf, _bodyPart, _dmgType] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];	
 						}; 
 					} forEach (crew _parachute);
 				} else {

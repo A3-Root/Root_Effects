@@ -4,20 +4,20 @@
 if (!hasInterface) exitWith {};
 
 private _orbit = {
-	private ["_ufo","_orb_obj","_orbit_speed","_radius","_crop","_ung"]; params ["_ufo","_orb_obj","_orbit_speed","_radius","_crop"];
-	_ung = 0;
+	params ["_ufo","_orb_obj","_orbit_speed","_radius","_crop"];
+	private _ung = 0;
 	private _placeit=0;
 	"Crater" createVehicleLocal getPos _ufo;
 	while {_ung<360} do {
 		private _poz_rel=_ufo getRelPos [_radius,_ung];
 		_orb_obj setPos [_poz_rel#0,_poz_rel#1,2];
 		drop [["\A3\data_f\kouleSvetlo",1,0,1],"","Billboard",1,0.3,[0,0,0],[0,0,0],0,9.999,7,0,[1,10],[[0.443,0.706,0.81,0.2],[0.443,0.706,0.81,0]],[1],0,0,"","",_orb_obj];
-		if ((_crop)&&(_placeit==0)) then {private _gol = "Land_ShellCrater_02_decal_F" createVehicleLocal _poz_rel; if (_radius>=50) then {_placeit=4} else {_placeit=12}};
+		if ((_crop)&&(_placeit==0)) then {"Land_ShellCrater_02_decal_F" createVehicleLocal _poz_rel; if (_radius>=50) then {_placeit=4} else {_placeit=12}};
 		_placeit=_placeit-1;
 		_ung=_ung+1;
 		uiSleep _orbit_speed;
 	};
-	playSound3D [lans,"",false,[getPos _orb_obj # 0,getPos _orb_obj # 1,100],10,1,3000];
+	playSound3D [lans,objNull,false,[getPos _orb_obj # 0,getPos _orb_obj # 1,100],10,1,3000];
 	for "_i" from 1 to 10 do { 
 		uiSleep 0.2;
 		drop [["\A3\data_f\ParticleEffects\Universal\Refract.p3d",1,0,1],"","Billboard",.5,1,[0,0,0],[0,0,0],0,9,7,0,[1,10,.5],[[0,0,0,0],[0,0,0,1],[0,0,0,0]],[1],0,0,"","",_orb_obj];
@@ -27,21 +27,21 @@ private _orbit = {
 };
 
 private _spiral = {
-	private ["_ufo","_orb_obj","_orbit_speed","_radius","_crop","_ung"]; params ["_ufo","_orb_obj","_orbit_speed","_radius","_crop"];
-	_ung = 0;
+	params ["_ufo","_orb_obj","_orbit_speed","_radius","_crop"];
+	private _ung = 0;
 	private _placeit=0;
 	"Crater" createVehicleLocal getPos _ufo;
 	while {_ung<1260} do {
 		private _poz_rel=_ufo getRelPos [_radius,_ung];
 		_orb_obj setPos [_poz_rel#0,_poz_rel#1,2];
 		drop [["\A3\data_f\kouleSvetlo",1,0,1],"","Billboard",1,0.3,[0,0,0],[0,0,0],0,9.999,7,0,[1,10],[[0.443,0.706,0.81,0.2],[0.443,0.706,0.81,0]],[1],0,0,"","",_orb_obj];
-		if ((_crop)&&(_placeit==0)) then {private _gol = "Land_ShellCrater_02_decal_F" createVehicleLocal _poz_rel; _placeit=2};
+		if ((_crop)&&(_placeit==0)) then {"Land_ShellCrater_02_decal_F" createVehicleLocal _poz_rel; _placeit=2};
 		_placeit=_placeit-1;
 		_radius=_radius+0.1;
 		_ung=_ung+1;
 		uiSleep _orbit_speed;
 	};
-	playSound3D [lans,"",false,[getPos _orb_obj # 0,getPos _orb_obj # 1,100],10,1,3000];
+	playSound3D [lans,objNull,false,[getPos _orb_obj # 0,getPos _orb_obj # 1,100],10,1,3000];
 	for "_i" from 1 to 10 do { 
 		uiSleep 0.2;
 		drop [["\A3\data_f\ParticleEffects\Universal\Refract.p3d",1,0,1],"","Billboard",.5,1,[0,0,0],[0,0,0],0,9,7,0,[1,10,.5],[[0,0,0,0],[0,0,0,1],[0,0,0,0]],[1],0,0,"","",_orb_obj];
@@ -51,7 +51,7 @@ private _spiral = {
 };
 
 private _floare = {
-	private ["_ufo","_orb_obj","_orbit_speed","_radius","_crop","_ung","_orb_reper", "_ang"];
+	private ["_ung","_orb_reper", "_ang"];
 	params ["_ufo","_orb_obj","_orbit_speed","_radius","_crop"];
 	_ang = 0;
 	"Crater" createVehicleLocal getPos _ufo;
@@ -67,7 +67,7 @@ private _floare = {
 			private _poz_rel_1 = _orb_reper getRelPos [15,_ung];
 			_orb_obj setPos [_poz_rel_1#0,_poz_rel_1#1,2];
 			drop [["\A3\data_f\kouleSvetlo",1,0,1],"","Billboard",1,0.2,[0,0,0],[0,0,0],0,9.999,7,0,[1,5],[[0.443,0.706,0.81,0.2],[0.443,0.706,0.81,0]],[1],0,0,"","",_orb_obj];
-			if ((_crop)&&(_placeit==0)) then {private _gol = "Land_ShellCrater_02_decal_F" createVehicleLocal getPos _orb_obj; _placeit=18};
+			if ((_crop)&&(_placeit==0)) then {"Land_ShellCrater_02_decal_F" createVehicleLocal getPos _orb_obj; _placeit=18};
 			_placeit=_placeit-1;
 			_ung=_ung-1;
 			if ((_ung<10)||(_ung>349)) then {drop [["\A3\data_f\ParticleEffects\Universal\Refract.p3d",1,0,1],"","Billboard",.3,1,[1,1,0],[0,0,0],0,9,7,0,[1,10,.5],[[0,0,0,0],[0,0,0,1],[0,0,0,0]],[1],0,0,"","",_orb_obj]};
@@ -75,7 +75,7 @@ private _floare = {
 		};
 		_ang=_ang+30;
 	};
-	playSound3D [lans,"",false,[getPos _orb_obj # 0,getPos _orb_obj # 1,100],10,1,3000];
+	playSound3D [lans,objNull,false,[getPos _orb_obj # 0,getPos _orb_obj # 1,100],10,1,3000];
 	for "_i" from 1 to 10 do { 
 		uiSleep 0.2;
 		drop [["\A3\data_f\ParticleEffects\Universal\Refract.p3d",1,0,1],"","Billboard",.5,1,[0,0,0],[0,0,0],0,9,7,0,[1,10,.5],[[0,0,0,0],[0,0,0,1],[0,0,0,0]],[1],0,0,"","",_orb_obj];
@@ -88,7 +88,7 @@ private _floare = {
 params ["_ufo","_radius","_typ_crop"];
 enableCamShake true;
 if (isNil "sunet_ini") then {
-	playSound3D ["aterizat", "", false, [getPos _ufo select 0, getPos _ufo select 1, 200], 10, 1, 0];
+	playSound3D ["aterizat", objNull, false, [getPos _ufo select 0, getPos _ufo select 1, 200], 10, 1, 0];
 	[] spawn {
 		uiSleep 3.9;
 		addCamShake [2,10,30];

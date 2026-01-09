@@ -4,7 +4,7 @@
 if (!hasInterface) exitWith {};
 params ["_ufo"];
 enableCamShake true;
-playSound3D ["aterizat","",false,[getMarkerPos _ufo#0, getMarkerPos _ufo#1, 200], 10, 1, 3000];
+playSound3D ["aterizat",objNull,false,[getMarkerPos _ufo#0, getMarkerPos _ufo#1, 200], 10, 1, 3000];
 uiSleep 1.3;
 private _orb_reper = "Sign_Sphere100cm_F" createVehicleLocal getMarkerPos _ufo;
 _orb_reper setObjectTextureGlobal [0,"#(argb,8,8,3)color(1,1,1,0,ca)"];
@@ -61,7 +61,7 @@ while {_jumps > 0} do {
 	};
 	_jumps = _jumps - 1;
 };
-playSound3D ["lansare", "", false, [getMarkerPos _ufo#0, getMarkerPos _ufo#1, 200], 10, 1, 3000];
+playSound3D ["lansare", objNull, false, [getMarkerPos _ufo#0, getMarkerPos _ufo#1, 200], 10, 1, 3000];
 for "_i" from 1 to 10 do { 
 	uiSleep 0.2;
 	drop [["\A3\data_f\ParticleEffects\Universal\Refract.p3d",1,0,1],"","Billboard",.5,1,[0,0,0],[0,0,0],0,9,7,0,[1,10,.5],[[0,0,0,0],[0,0,0,1],[0,0,0,0]],[1],0,0,"","",_orb_obj];

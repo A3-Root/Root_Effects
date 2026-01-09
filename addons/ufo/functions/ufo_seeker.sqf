@@ -6,7 +6,7 @@ params ["_freq"];
 [] spawn Root_fnc_UFOHunt;
 waitUntil {!isNil "ufo_hunt_alias"};
 
-private _seekermarker = createMarker ["seekermarker", [0,0,0]];
+createMarker ["seekermarker", [0,0,0]];
 
 seekeron = true;
 while {seekeron} do {
