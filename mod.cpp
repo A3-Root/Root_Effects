@@ -1,9 +1,9 @@
 name = "Root's Effects";
 author = "Root";
-picture = "root_effects\main\data\logo_ca.paa";
-logo = "root_effects\main\data\logo_ca.paa";
-logoOver = "root_effects\main\data\logo_ca.paa";
-logoSmall = "root_effects\main\data\logo_ca.paa";
+picture = "root_effects_logo.paa";
+logo = "root_effects_logo.paa";
+logoOver = "root_effects_logo.paa";
+logoSmall = "root_effects_logo.paa";
 tooltip = "Root's Effects";
 tooltipOwned = "Root's Effects";
 action = "https://github.com/A3-Root/Root_Effects";
