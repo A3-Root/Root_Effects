@@ -6,7 +6,7 @@ if (!isServer) exitWith {};
 
 params ["_main_air_object", "_main_air_radius", "_main_air_altitude", "_aaa_damage_vic", "_islethal", "_aaa_speed", "_aaa_damage_inf", "_smokesOnly"];
 
-if (!isNil {_main_air_object getVariable "is_ON"}) exitwith {};
+if (!isNil {_main_air_object getVariable "is_ON"}) exitWith {};
 _main_air_object setVariable ["is_ON", true, true];
 
 al_aaa = true; publicVariable "al_aaa";

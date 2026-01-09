@@ -5,24 +5,24 @@ if (!hasInterface) exitWith {};
 
 params ["_art_object_name", "_range_art", "_ground_damage", "_ground_speed", "_ground_type", "_sound_only", "_nonLethal"];
 
-_art_object  = "land_helipadempty_f" createVehiclelocal getpos _art_object_name;
-_li_art = "#lightpoint" createVehicleLocal getpos _art_object;
+private _art_object  = "land_helipadempty_f" createVehicleLocal getPos _art_object_name;
+private _li_art = "#lightpoint" createVehicleLocal getPos _art_object;
 
 while {(al_art) and (!isNull _art_object_name)} do {
 	
 	uiSleep _ground_speed;
 	
-	_rel_Pos = [getPos _art_object_name, random _range_art, random 360] call BIS_fnc_relPos;
+	private _rel_Pos = [getPos _art_object_name, random _range_art, random 360] call BIS_fnc_relPos;
 
 	if (_sound_only) then {
 		_art_object setPos _rel_Pos;
-		_ground_sound = selectRandom ["explosion_1","explosion_2","explosion_3","explosion_4"];
+		private _ground_sound = selectRandom ["explosion_1","explosion_2","explosion_3","explosion_4"];
 		_art_object say3D [_ground_sound, 2000];
 		addCamShake [5, 2, 25];
 	} else {
-		_nearbyUnits = [];
+		private _nearbyUnits = [];
 		_nearbyUnits = _groundPos nearEntities [["CAManBase", "LandVehicle"], 20];
-		_bomb = _ground_type createVehicleLocal _rel_Pos;
+		private _bomb = _ground_type createVehicleLocal _rel_Pos;
 		[_bomb, -90, 0] call BIS_fnc_setPitchBank;
 		_bomb setVelocity [0, 0, -100];
 		if (player in _nearbyUnits) then {
@@ -34,7 +34,7 @@ while {(al_art) and (!isNull _art_object_name)} do {
 				player allowDamage true;
 				player allowDammage true;
 				if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
-					_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
+					private _bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
 					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];
 					_bodyPart = selectRandom ["Head", "RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm"];
 					[player, _ground_damage, _bodyPart, "explosive"] remoteExec ["ace_medical_fnc_addDamageToUnit", player];

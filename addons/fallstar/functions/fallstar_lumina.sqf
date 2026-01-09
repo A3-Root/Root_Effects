@@ -6,14 +6,14 @@ if (!hasInterface) exitWith {};
 
 	params ["_fall_star_light"];
 
-	_psmoke = "#particlesource" createVehicleLocal getPosATL _fall_star_light;
+	private _psmoke = "#particlesource" createVehicleLocal getPosATL _fall_star_light;
 	_psmoke setParticleCircle [0, [0, 0, 0]];
 	_psmoke setParticleRandom [3, [0.25, 0.25, 0.25], [0, 0, 0], 0, 0.25, [0, 0, 0, 0.5], 0, 0];	
 	_psmoke setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 2, [0, 0, 0], [0, 0, 0.75], 30, 10, 7.9, 0, [1.2, 4, 1], [[1, 1, 1, 1], [0.25, 0.25, 0.25, 0.5]], [0.08], 1, 0, "", "", _fall_star_light];
 	_psmoke setDropInterval 0.002;	
 	
-	_bri_li = 3000;
-	_li = "#lightpoint" createVehicle [(getPos _fall_star_light select 0), (getPos _fall_star_light select 1), (getPos _fall_star_light select 2)];
+	private _bri_li = 3000;
+	private _li = "#lightpoint" createVehicle [(getPos _fall_star_light select 0), (getPos _fall_star_light select 1), (getPos _fall_star_light select 2)];
 	_li lightAttachObject [_fall_star_light, [0,0,0]];
 	_li setLightIntensity _bri_li;
 	_li setLightAttenuation [500,300,3000,0,5,500]; 

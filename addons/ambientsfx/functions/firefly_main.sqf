@@ -5,7 +5,7 @@ if (!isServer) exitWith {};
 
 params ["_firefly_nest", "_firefly_alt", "_fireflydist"];
 
-if (!isNil {_firefly_nest getVariable "is_ON"}) exitwith {}; 
+if (!isNil {_firefly_nest getVariable "is_ON"}) exitWith {}; 
 
 _firefly_nest setVariable ["is_ON", true, true];
 

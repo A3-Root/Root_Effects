@@ -2,16 +2,16 @@
 // MODIFIED BY ROOT 
 
 // Only run on player machines
-if (!hasinterface) exitwith {};
+if (!hasInterface) exitWith {};
 
 // If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith {
+if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith {
     diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
 };
 
 params ["_logic"];
 
-_ground_loc = getPosATL _logic;
+private _ground_loc = getPosATL _logic;
 deleteVehicle _logic;
 
 ["Ground Barrage Settings",[
@@ -25,7 +25,7 @@ deleteVehicle _logic;
 		params ["_results", "_ground_loc"];
 		_results params ["_ground_radius", "_sound_only", "_nonLethal", "_ground_type", "_ground_damage", "_ground_speed"];
 		
-		_ground_start = "Land_HelipadEmpty_F" createVehicle _ground_loc;
+		private _ground_start = "Land_HelipadEmpty_F" createVehicle _ground_loc;
 
 		["Artillery Barrage Initiated!"] call zen_common_fnc_showMessage;
 

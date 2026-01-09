@@ -39,5 +39,5 @@ if (_alias_delay>0) then
 		uiSleep _alias_delay;
 	};
 };
-waituntil {!volcano};
+waitUntil {!volcano};
 deleteVehicle _volcano_object;

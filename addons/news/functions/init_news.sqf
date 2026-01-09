@@ -1,13 +1,12 @@
 // CREATED BY ROOT
 // Only run on player machines
-if (!hasinterface) exitwith {};
+if (!hasInterface) exitWith {};
 // If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith {
+if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith {
     diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
 };
 
 params ["_logic"];
-private _logicpos = getPosATL _logic;
 
 if (isNil "NEWS_markerIndex") then { NEWS_markerIndex = 0 };
 NEWS_markerIndex = NEWS_markerIndex + 1;

@@ -5,19 +5,19 @@
 
 if (!hasInterface) exitWith {};
 params ["_alias_volcano","_crater_radius"];
-[_alias_volcano,player] say3d [erupt_s,5000];
+[_alias_volcano,player] say3D [erupt_s,5000];
 
-_blow_up = "#particlesource" createVehicleLocal getPosATL _alias_volcano;
+private _blow_up = "#particlesource" createVehicleLocal getPosATL _alias_volcano;
 _blow_up setParticleCircle [_crater_radius/3,[0,0,0]];
 _blow_up setParticleRandom [0,[0,0,0],[50,50,20],0,0,[0,0,0,0],1,0];
 
 _blow_up setParticleParams [["\a3\Data_f\ParticleEffects\Universal\Universal",16,7,48,1],"","Billboard",1,10,[0,0,20],[0,0,50],0,10,8,0,[50,150,200],[[.1,.1,.1,0.5],[0,0,0,1],[0,0,0,0]],[0.5],1,0,"","",_alias_volcano];
 _blow_up setDropInterval 0.02;
 
-_bolovani = "#particlesource" createVehicleLocal getPosATL _alias_volcano;
+private _bolovani = "#particlesource" createVehicleLocal getPosATL _alias_volcano;
 _bolovani setParticleCircle [_crater_radius/3,[0,0,0]];
 _bolovani setParticleRandom [5,[10,10,50],[100,100,50],0.5,0.5,[0,0,0,1],1,0];
-if (selectrandom [true,false]) then {
+if (selectRandom [true,false]) then {
 			[] spawn {
 				trail_evo=0;
 				while {trail_evo<50} do {trail_evo=trail_evo+1; uiSleep 0.3	}
@@ -28,11 +28,11 @@ if (selectrandom [true,false]) then {
 		};
 _bolovani setDropInterval 0.05;
 uiSleep 0.5;
-_earth_tremor = selectrandom [["earthquake_03",10],["earthquake_02",25]];
-playsound (_earth_tremor#0);
+private _earth_tremor = selectRandom [["earthquake_03",10],["earthquake_02",25]];
+playSound (_earth_tremor#0);
 enableCamShake true; addCamShake [0.5,(_earth_tremor#1)*2,25];
 uiSleep 1;
-deletevehicle _bolovani;
+deleteVehicle _bolovani;
 uiSleep 1;
-deletevehicle _blow_up;
-if ((position player distance _alias_volcano) < 3000) then {playsound erupt_eko};
+deleteVehicle _blow_up;
+if ((position player distance _alias_volcano) < 3000) then {playSound erupt_eko};

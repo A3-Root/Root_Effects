@@ -3,7 +3,7 @@
 
 if (!isServer) exitWith {};
 
-_delay = _this select 0;
+private _delay = _this select 0;
 [] spawn Root_fnc_FallstarHunt;
 
 waitUntil {!isNil "fallstar_hunt_alias"};

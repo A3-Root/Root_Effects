@@ -6,7 +6,7 @@ if (!isServer) exitWith {};
 
 params ["_main_missiles_object", "_missle_distance", "_launch_delay"];
 
-if (!isNil {_main_missiles_object getVariable "is_ON"}) exitwith {};
+if (!isNil {_main_missiles_object getVariable "is_ON"}) exitWith {};
 _main_missiles_object setVariable ["is_ON", true, true];
 
 al_missile = true; publicVariable "al_missile";

@@ -8,7 +8,7 @@ params ["_main_tracer_object","_colorred","_colorgreen","_colorblue","_activatio
 
 private ["_trasor","_xx","_yy","_zz","_life_time_tras"];
 
-if (!isNil {_main_tracer_object getVariable "is_ON"}) exitwith {};
+if (!isNil {_main_tracer_object getVariable "is_ON"}) exitWith {};
 _main_tracer_object setVariable ["is_ON", true, true];
 
 al_tracer = true; publicVariable "al_tracer";

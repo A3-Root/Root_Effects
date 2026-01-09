@@ -6,7 +6,7 @@ if (!isServer) exitWith {};
 
 params ["_sky_obj", "_sky_alt", "_speed"];
 
-if (!isNil {_sky_obj getVariable "is_ruptureON"}) exitwith {}; 
+if (!isNil {_sky_obj getVariable "is_ruptureON"}) exitWith {}; 
 _sky_obj setVariable ["is_ruptureON", true, true];
 
 rupture_active = true; publicVariable "rupture_active";

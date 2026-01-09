@@ -15,7 +15,7 @@ protective_gear		- array containing the class name if the items you wanna be use
 
 
 // Only run on player machines
-if (!hasinterface) exitWith {};
+if (!hasInterface) exitWith {};
 
 // If ZEN is not loaded, do not start script
 if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith

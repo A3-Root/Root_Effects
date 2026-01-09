@@ -750,7 +750,7 @@ Author:
 #define INTERSECTION(ARG0,ARG1) ARG0 = ARG0 arrayIntersect (ARG1)
 
 /* -------------------------------------------
-Macro: ISNILS()
+Macro: isNilS()
 
 Description:
     Sets a variable with a value, but only if it is undefined.
@@ -762,24 +762,24 @@ Parameters:
 Examples:
     (begin example)
         // _fish is undefined
-        ISNILS(_fish,0);
+        isNilS(_fish,0);
         // _fish => 0
     (end)
     (begin example)
         _fish = 12;
         // ...later...
-        ISNILS(_fish,0);
+        isNilS(_fish,0);
         // _fish => 12
     (end)
 
 Author:
     Sickboy
 ------------------------------------------- */
-#define ISNILS(VARIABLE,DEFAULT_VALUE) if (isNil #VARIABLE) then { VARIABLE = DEFAULT_VALUE }
-#define ISNILS2(var1,var2,var3,var4) ISNILS(TRIPLES(var1,var2,var3),var4)
-#define ISNILS3(var1,var2,var3) ISNILS(DOUBLES(var1,var2),var3)
-#define ISNIL(var1,var2) ISNILS2(PREFIX,COMPONENT,var1,var2)
-#define ISNILMAIN(var1,var2) ISNILS3(PREFIX,var1,var2)
+#define isNilS(VARIABLE,DEFAULT_VALUE) if (isNil #VARIABLE) then { VARIABLE = DEFAULT_VALUE }
+#define isNilS2(var1,var2,var3,var4) isNilS(TRIPLES(var1,var2,var3),var4)
+#define isNilS3(var1,var2,var3) isNilS(DOUBLES(var1,var2),var3)
+#define isNil(var1,var2) isNilS2(PREFIX,COMPONENT,var1,var2)
+#define isNilMAIN(var1,var2) isNilS3(PREFIX,var1,var2)
 
 #define CREATELOGICS(var1,var2) var1##_##var2 = ([sideLogic] call CBA_fnc_getSharedGroup) createUnit ["LOGIC", [0, 0, 0], [], 0, "NONE"]
 #define CREATELOGICLOCALS(var1,var2) var1##_##var2 = "LOGIC" createVehicleLocal [0, 0, 0]
@@ -1368,7 +1368,7 @@ Author:
 ------------------------------------------- */
 #define DEFAULT_PARAM(INDEX,NAME,DEF_VALUE) \
     private [#NAME,"_this"]; \
-    ISNILS(_this,[]); \
+    isNilS(_this,[]); \
     NAME = _this param [INDEX, DEF_VALUE]; \
     TRACE_3("DEFAULT_PARAM",INDEX,NAME,DEF_VALUE)
 

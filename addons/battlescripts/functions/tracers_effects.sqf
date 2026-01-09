@@ -56,7 +56,7 @@ while {al_tracer} do
 	};
 	uiSleep 1 + (random 3);	
 	if (!al_tracers_sunet_play) then {
-		[_tracer_object_name, ["ground_air", 2000]] remoteExec ["say3d"];
+		[_tracer_object_name, ["ground_air", 2000]] remoteExec ["say3D"];
 		al_tracers_sunet_play = true;
 		publicVariable "al_tracers_sunet_play";
 	};

@@ -15,10 +15,10 @@ typeOFcropCircle	- string, one of the values: "circle", "spiral", "flower"
 
 
 // Only run on player machines
-if (!hasinterface) exitwith {};
+if (!hasInterface) exitWith {};
 
 // If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitwith
+if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith
 {
     diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
 };
@@ -27,7 +27,7 @@ params ["_logic"];
 
 
 private _radiuspos = getPosATL _logic;
-_objectloc = getPosATL _logic;
+private _objectloc = getPosATL _logic;
 deleteVehicle _logic;
 
 ["UFO Cropcircle Settings",[
@@ -37,7 +37,7 @@ deleteVehicle _logic;
 		params ["_results", "_objectloc"];
 		_results params ["_radius","_type"];
 		
-		_object = "Land_HelipadEmpty_F" createVehicle _objectloc;
+		private _object = "Land_HelipadEmpty_F" createVehicle _objectloc;
 
 		["UFO Cropcircle Configured and Created!"] call zen_common_fnc_showMessage;
 

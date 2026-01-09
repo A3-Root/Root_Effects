@@ -6,7 +6,7 @@ if (!isServer) exitWith {};
 
 params ["_sky_obj", "_sky_alt", "_speed"];
 
-if (!isNil {_sky_obj getVariable "is_auroraON"}) exitwith {}; 
+if (!isNil {_sky_obj getVariable "is_auroraON"}) exitWith {}; 
 
 _sky_obj setVariable ["is_auroraON", true, true];
 

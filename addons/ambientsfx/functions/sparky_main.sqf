@@ -6,7 +6,7 @@ if (!isServer) exitWith {};
 params ["_lamp", "_altitude", "_sparksdelay"];
 private ["_spark_poz_rel", "_pauza_intre_sclipiri"];
 
-if (!isNil {_lamp getVariable "is_ON"}) exitwith {}; 
+if (!isNil {_lamp getVariable "is_ON"}) exitWith {}; 
 _lamp setVariable ["is_ON", true, true];
 
 while {!isNull _lamp} do 

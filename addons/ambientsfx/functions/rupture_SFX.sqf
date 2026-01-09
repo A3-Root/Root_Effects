@@ -1,7 +1,7 @@
 // ORIGINALLY CREATED BY ALIAS
 // MODIFIED BY ROOT 
 
-if (!hasInterface) exitwith {};
+if (!hasInterface) exitWith {};
 
 params ["_sky_obj", "_sky_alt", "_speed"];
 

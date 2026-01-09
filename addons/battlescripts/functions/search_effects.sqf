@@ -52,7 +52,7 @@ if (_sound_AAA) then {
 	[_obiect_search] spawn {
 		_voice_AAA_search = _this select 0;
 		while {(alive _voice_AAA_search) && al_search_light} do {
-			_voice_AAA_search say3d ["alarma_aeriana_scurt",3000];
+			_voice_AAA_search say3D ["alarma_aeriana_scurt",3000];
 			uiSleep 30;
 		};
 	};

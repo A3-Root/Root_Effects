@@ -57,7 +57,7 @@ while {al_aaa} do
 	};
 	
 	_flak_sound = selectRandom ["test_1", "test_2", "test_3", "bariera_1", "bariera_2", "bariera_3", "bariera_4", "bariera_5"];
-	_li_aaa say3d [_flak_sound, 2000];
+	_li_aaa say3D [_flak_sound, 2000];
 	_li_aaa setLightIntensity 0;
 
 	_nearbyunits = ((getPosATL _object_name) nearEntities [["CAManBase", "Air"], (_range_aaa + 5)]) inAreaArray [(getPosATL _object_name), (_range_aaa * 2), (_range_aaa * 2), 0, false, (_altitude / 2)];
@@ -79,7 +79,7 @@ while {al_aaa} do
 						if (!(isNil "ace_medical_fnc_addDamageToUnit")) then {
 							[_x, _aaa_damage_inf, _bodyPart, _dmgType] remoteExec ["ace_medical_fnc_addDamageToUnit", _x];	
 						} else { 
-							_x setdamage ((damage _x) + _aaa_damage_inf);
+							_x setDamage ((damage _x) + _aaa_damage_inf);
 						}; 
 					} forEach (crew _parachute);
 				} else {
@@ -89,7 +89,7 @@ while {al_aaa} do
 					{
 						_damage = random [0, _aaa_damage_vic, 1];
 						_vehicle setHitPointDamage [_x, (_vehicle getHitPointDamage _x) + _damage];
-					} foreach _vichitpoints;
+					} forEach _vichitpoints;
 					_vehicle setHitPointDamage ["HitLight", 1]; 
 					_vehicle setHitPointDamage ["#light_l", 1];
 					_vehicle setHitPointDamage ["#light_r", 1];
@@ -105,7 +105,7 @@ while {al_aaa} do
 					_vehicle setHitPointDamage ["light_r2", 1];
 				};
 			};
-		} foreach _nearbyunits;
+		} forEach _nearbyunits;
 	};
 };
 
