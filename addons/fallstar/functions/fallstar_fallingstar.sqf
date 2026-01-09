@@ -19,5 +19,5 @@ private _yy_dest 	= _yy + (random 40000 * _dire_dest);
 
 _falling_star_main setVelocity [_xx_dest/100, _yy_dest/100, -1];
 
-uiSleep 4 + random 2;
+uiSleep (4 + random 2);
 deleteVehicle _falling_star_main;

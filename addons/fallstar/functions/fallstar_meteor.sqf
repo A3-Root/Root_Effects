@@ -40,7 +40,7 @@ private _nearobjects = nearestObjects[_poz_end,[],100];
 			if (_x isKindOf "Man") then {
 				private _bodyPart = ["RightLeg", "LeftArm", "Body", "LeftLeg", "RightArm", "Head"];
 				private _dmgType = selectRandom ["backblast", "explosive", "grenade", "punch", "ropeburn", "shell", "stab"];
-				for (private _i from 0 to 5) do { 
+				for "_i" from 0 to 5 do { 
 					[_x, 0.99, (_bodyPart select _i), _dmgType] call ace_medical_fnc_addDamageToUnit;
 					_x setDamage [1, false]; 
 				}; 

@@ -67,7 +67,7 @@ deleteVehicle _logic;
 					[
 						[
 							["title", _title], 
-							["meta",[_editor,[parseNumber _new_date select 0, parseNumber _new_date select 1, parseNumber _new_date select 2, parseNumber _new_date select 3, parseNumber _new_date select 4],_timezone]],
+							["meta",[_editor,[parseNumber (_new_date select 0), parseNumber (_new_date select 1), parseNumber (_new_date select 2), parseNumber (_new_date select 3), parseNumber (_new_date select 4)],_timezone]],
 							["textbold",_subhead],
 							["image",[_main_img,_main_img_desc]],
 							["text",_body],

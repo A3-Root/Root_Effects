@@ -3,7 +3,7 @@
 
 
 
-_SetPitchBankYaw = { 
+private _SetPitchBankYaw = { 
     private ["_object","_rotations","_aroundX","_aroundY","_aroundZ","_dirX","_dirY","_dirZ","_upX","_upY","_upZ","_dir","_up","_dirXTemp","_upXTemp"];
     _object = _this select 0; 
     _rotations = _this select 1; 
@@ -46,11 +46,11 @@ private ["_vik_aaa","_gunner_aaa","_rot","_ii","_obiect_search"];
 if (!hasInterface) exitWith {};
 
 _obiect_search = _this select 0;
-_sound_AAA = _this select 1;
+private _sound_AAA = _this select 1;
 
 if (_sound_AAA) then {
 	[_obiect_search] spawn {
-		_voice_AAA_search = _this select 0;
+		private _voice_AAA_search = _this select 0;
 		while {(alive _voice_AAA_search) && al_search_light} do {
 			_voice_AAA_search say3D ["alarma_aeriana_scurt",3000];
 			uiSleep 30;

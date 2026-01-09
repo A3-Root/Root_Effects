@@ -11,7 +11,7 @@ if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith {
 
 params ["_logic"];
 
-_missile_loc = getPosATL _logic;
+private _missile_loc = getPosATL _logic;
 deleteVehicle _logic;
 
 ["Missile Launcher Settings",[
@@ -22,7 +22,7 @@ deleteVehicle _logic;
 		params ["_results", "_missile_loc"];
 		_results params ["_missile_object", "_missle_distance", "_launch_delay"];
 		
-		_missile_start = _missile_object createVehicle _missile_loc;
+		private _missile_start = _missile_object createVehicle _missile_loc;
 
 		["Missile Launcher Initiated!"] call zen_common_fnc_showMessage;
 

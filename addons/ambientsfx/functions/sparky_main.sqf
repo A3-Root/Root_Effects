@@ -11,8 +11,8 @@ _lamp setVariable ["is_ON", true, true];
 
 while {!isNull _lamp} do 
 {
-	_sclipiri = 1 + floor (random 5);
-	_nr = 0;
+	private _sclipiri = 1 + floor (random 5);
+	private _nr = 0;
 	while {_nr < _sclipiri} do 
 	{
 		_pauza_intre_sclipiri = 0.1 + (random 2);

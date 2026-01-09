@@ -9,7 +9,7 @@ _ufo setObjectTexture [0,"#(argb,8,8,3)color(1,1,1,1,ca)"];
 _ufo setPosATL _ini_poz;
 playSound "static";
 uiSleep 5;
-private _plasma_wave = "#particlesource" createVehicleLocal getPosasl _ufo;  
+private _plasma_wave = "#particlesource" createVehicleLocal getPosASL _ufo;  
 _plasma_wave setParticleCircle [0,[0,0,0]];  
 _plasma_wave setParticleRandom [0,[0,0,0],[0,0,0],0,0,[0,0,0,0],0,0];
 _plasma_wave setParticleParams [["\A3\data_f\kouleSvetlo",1,0,1],"","Billboard",1,0.5,[0,0,1],[0,0,0],0,9.999,7,0,[1,50],[[1,1,1,0.2],[1,1,1,0]],[1],0,0,"","",_ufo];

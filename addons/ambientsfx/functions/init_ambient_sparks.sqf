@@ -17,7 +17,7 @@ if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith
 
 params ["_logic"];
 
-_sparksloc = getPosATL _logic;
+private _sparksloc = getPosATL _logic;
 deleteVehicle _logic;
 
 ["Ambient Sparks Setting", [
@@ -28,7 +28,7 @@ deleteVehicle _logic;
 		params ["_results", "_sparksloc"];
 		_results params ["_sparksobj", "_sparksalt", "_sparksdelay"];
 		
-		_sparks = _sparksobj createVehicle _sparksloc;
+		private _sparks = _sparksobj createVehicle _sparksloc;
 
 		["Sparks Active!"] call zen_common_fnc_showMessage;
 

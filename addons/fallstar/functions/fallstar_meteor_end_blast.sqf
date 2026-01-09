@@ -74,7 +74,7 @@ deleteVehicle _li_end;
 if (_shk) then {deleteVehicle _blast};
 deleteVehicle _bolovani;
 playSound "earthquakes";
-uiSleep 1 + random 1;
+uiSleep (1 + random 1);
 addCamShake [0.5, 30, 35];	
 uiSleep 5.3;
 enableCamShake false;

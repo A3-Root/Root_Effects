@@ -21,7 +21,7 @@ _range_trace= 2;
 while {al_tracer} do 
 {
 	if ((player distance _tracer_object_name) > _activation_distance) then {
-		_nr_tras = 2 + floor (random 8);
+		private _nr_tras = 2 + floor (random 8);
 		_xx 	= (floor (random 60)) * (selectRandom [1,-1]);
 		_yy 	= (floor (random 60)) * (selectRandom [1,-1]);
 		_zz		= 70 + floor(random 100);	
@@ -43,18 +43,18 @@ while {al_tracer} do
 			_li_tracer setLightIntensity 5000;
 			_li_tracer setLightAttenuation [_range_trace,0,100,0,_range_trace,_range_trace]; 			
 
-			uiSleep 0.2 + (random 1);
+			uiSleep (0.2 + (random 1));
 			[_trasor, _life_time_tras, _li_tracer] spawn {
-				_obj_tras			= _this select 0;
-				_life_time_tras_del = _this select 1;
-				_li_tracer			= _this select 2;
+				private _obj_tras			= _this select 0;
+				private _life_time_tras_del = _this select 1;
+				private _li_tracer			= _this select 2;
 				uiSleep _life_time_tras_del;
 				deleteVehicle _obj_tras;
 				deleteVehicle _li_tracer;
 			};			
 		};
 	};
-	uiSleep 1 + (random 3);	
+	uiSleep (1 + (random 3));	
 	if (!al_tracers_sunet_play) then {
 		[_tracer_object_name, ["ground_air", 2000]] remoteExec ["say3D"];
 		al_tracers_sunet_play = true;

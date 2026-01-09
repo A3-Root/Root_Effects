@@ -4,10 +4,10 @@
 
 if (!isServer) exitWith {};
 
-_object_name = _this select 0;
-_sound_name  = _this select 1;
-_delay_sound = _this select 2;
-_distance_au = _this select 3;
+private _object_name = _this select 0;
+private _sound_name  = _this select 1;
+private _delay_sound = _this select 2;
+private _distance_au = _this select 3;
 
 if (!isNil {_object_name getVariable "is_ON"}) exitWith {}; 
 _object_name setVariable ["is_ON",true,true];

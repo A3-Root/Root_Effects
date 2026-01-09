@@ -18,7 +18,7 @@ if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith
 
 params ["_logic"];
 
-_ruptureloc = getPosATL _logic;
+private _ruptureloc = getPosATL _logic;
 deleteVehicle _logic;
 
 ["Ambient Rupture Setting", [
@@ -29,7 +29,7 @@ deleteVehicle _logic;
 		params ["_results", "_ruptureloc"];
 		_results params ["_ruptureobj", "_rupturealt", "_rupturespeed"];
 
-		_rupture = _ruptureobj createVehicle _ruptureloc;
+		private _rupture = _ruptureobj createVehicle _ruptureloc;
 
 		["Rupture Active!"] call zen_common_fnc_showMessage;
 

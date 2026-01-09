@@ -28,7 +28,7 @@ deleteVehicle _logic;
 		params ["_results", "_aaa_loc"];
 		_results params ["_aaa_object", "_aaa_radius", "_aaa_height", "_islethal", "_aaa_dmg_vic", "_aaa_dmg_inf", "_aaa_speed", "_smokesOnly"];
 
-		_aaa_start = _aaa_object createVehicle _aaa_loc;
+		private _aaa_start = _aaa_object createVehicle _aaa_loc;
 
 		["AAA Barrage Initiated!"] call zen_common_fnc_showMessage;
 

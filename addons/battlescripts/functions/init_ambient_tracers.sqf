@@ -12,8 +12,8 @@ if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith
 
 params ["_logic"];
 
-_tracers_loc = getPosATL _logic;
-_radiuspos = getPosATL _logic;
+private _tracers_loc = getPosATL _logic;
+private _radiuspos = getPosATL _logic;
 deleteVehicle _logic;
 
 ["Tracer Settings",[
@@ -25,10 +25,10 @@ deleteVehicle _logic;
 		params ["_results", "_tracers_loc"];
 		_results params ["_tracers_object", "_activation_distance", "_tracer_color"];
 		
-		_tracers_start = _tracers_object createVehicle _tracers_loc;
-		_colorred = _tracer_color select 0;
-		_colorgreen = _tracer_color select 1;
-		_colorblue = _tracer_color select 2;
+		private _tracers_start = _tracers_object createVehicle _tracers_loc;
+		private _colorred = _tracer_color select 0;
+		private _colorgreen = _tracer_color select 1;
+		private _colorblue = _tracer_color select 2;
 
 
 

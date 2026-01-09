@@ -7,11 +7,12 @@ private ["_search_object"];
 if (!isServer) exitWith {};
 
 params ["_search_object","_enable_sound"];
+private _obiect_search;
 
 if (!isNil {_search_object getVariable "is_ON"}) exitWith {};
 _search_object setVariable ["is_ON", true, true];
 
-_obiect_search = createSimpleObject ["A3\data_f\VolumeLight_searchLight.p3d", getPosasl _search_object];
+_obiect_search = createSimpleObject ["A3\data_f\VolumeLight_searchLight.p3d", getPosASL _search_object];
 
 al_search_light = true; publicVariable "al_search_light";
 

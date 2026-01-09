@@ -18,7 +18,7 @@ if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith
 
 params ["_logic"];
 
-_auroraloc = getPosATL _logic;
+private _auroraloc = getPosATL _logic;
 
 deleteVehicle _logic;
 
@@ -30,7 +30,7 @@ deleteVehicle _logic;
 		params ["_results", "_auroraloc"];
 		_results params ["_auroraobj", "_auroraalt", "_auroraspeed"];
 	
-		_aurora = _auroraobj createVehicle _auroraloc;
+		private _aurora = _auroraobj createVehicle _auroraloc;
 
 		["Aurora Active!"] call zen_common_fnc_showMessage;
 

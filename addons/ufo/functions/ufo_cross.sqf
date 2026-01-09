@@ -15,7 +15,7 @@ uiSleep 8;
 private _zig = 2 + round (random 10);
 while {_zig > 0} do {
 	_cross_ufo setVelocity [200 + round (random 200) * selectRandom[-1, 1], 200, 1];
-	uiSleep 1 + round (random 2);
+	uiSleep (1 + round (random 2));
 	_zig = _zig - 1;
 };
 _cross_ufo setVelocity [0, 0, 500];

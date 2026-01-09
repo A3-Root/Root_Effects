@@ -17,7 +17,7 @@ if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith
 
 params ["_logic"];
 
-_firefliesloc = getPosATL _logic;
+private _firefliesloc = getPosATL _logic;
 deleteVehicle _logic;
 
 ["Ambient Firefly Setting", [
@@ -28,7 +28,7 @@ deleteVehicle _logic;
 		params ["_results", "_firefliesloc"];
 		_results params ["_firefliesobj", "_firefliesalt", "_fireflydist"];
 		
-		_fireflies = _firefliesobj createVehicle _firefliesloc;
+		private _fireflies = _firefliesobj createVehicle _firefliesloc;
 
 		["Fireflies Active!"] call zen_common_fnc_showMessage;
 

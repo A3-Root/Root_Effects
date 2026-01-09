@@ -11,7 +11,7 @@ if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith {
 
 params ["_logic"];
 
-_search_loc = getPosATL _logic;
+private _search_loc = getPosATL _logic;
 deleteVehicle _logic;
 
 ["Search Light Settings",[
@@ -21,7 +21,7 @@ deleteVehicle _logic;
 		params ["_results", "_search_loc"];
 		_results params ["_search_object", "_search_sound"];
 		
-		_search_start = _search_object createVehicle _search_loc;
+		private _search_start = _search_object createVehicle _search_loc;
 
 		["Search Light Initiated!"] call zen_common_fnc_showMessage;
 
