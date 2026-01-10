@@ -84,9 +84,12 @@ if (isNull _object) exitWith {
 			_dist = 9999;
 		};
 
-		["Object Configuration Applied!"] call zen_common_fnc_showMessage;
 
 		[_attached, [_slidevel, _slidedist], [_bouncespeed, _bouncealtitude], [_rotvel, _rotateclockwise], _rollvel, [_orbitradius, _orbitspeed, _orbitclockwise], _dist, _elevation, _allowDamage, _allowSimulation] remoteExec [QFUNC(floatingObjectsServer), 2];
+
+		diag_log format ["********************** Floating Object Remote Exec: Func %1, str FUNC: %2, QFUNC: %3, str QFUNC: %4 **********", FUNC(floatingObjectsServer), str FUNC(floatingObjectsServer), QFUNC(floatingObjectsServer), str QFUNC(floatingObjectsServer)];
+
+		["Object Configuration Applied!"] call zen_common_fnc_showMessage;
 	}, {
 		["Aborted"] call zen_common_fnc_showMessage;
 		playSound "FD_Start_F";

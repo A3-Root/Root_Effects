@@ -464,8 +464,7 @@ Example:
 Author:
     Spooner
 ------------------------------------------- */
-#define PFORMAT_1(MESSAGE,A) \
-    format ['%1: A=%2', MESSAGE, RETNIL(A)]
+#define PFORMAT_1(MESSAGE,A) format ['%1: A=%2', MESSAGE, RETNIL(A)]
 
 #define PFORMAT_2(MESSAGE,A,B) \
     format ['%1: A=%2, B=%3', MESSAGE, RETNIL(A), RETNIL(B)]
@@ -750,7 +749,7 @@ Author:
 #define INTERSECTION(ARG0,ARG1) ARG0 = ARG0 arrayIntersect (ARG1)
 
 /* -------------------------------------------
-Macro: isNilS()
+Macro: ISNILS()
 
 Description:
     Sets a variable with a value, but only if it is undefined.
@@ -762,24 +761,24 @@ Parameters:
 Examples:
     (begin example)
         // _fish is undefined
-        isNilS(_fish,0);
+        ISNILS(_fish,0);
         // _fish => 0
     (end)
     (begin example)
         _fish = 12;
         // ...later...
-        isNilS(_fish,0);
+        ISNILS(_fish,0);
         // _fish => 12
     (end)
 
 Author:
     Sickboy
 ------------------------------------------- */
-#define isNilS(VARIABLE,DEFAULT_VALUE) if (isNil #VARIABLE) then { VARIABLE = DEFAULT_VALUE }
-#define isNilS2(var1,var2,var3,var4) isNilS(TRIPLES(var1,var2,var3),var4)
-#define isNilS3(var1,var2,var3) isNilS(DOUBLES(var1,var2),var3)
-#define isNil(var1,var2) isNilS2(PREFIX,COMPONENT,var1,var2)
-#define isNilMAIN(var1,var2) isNilS3(PREFIX,var1,var2)
+#define ISNILS(VARIABLE,DEFAULT_VALUE) if (isNil #VARIABLE) then { VARIABLE = DEFAULT_VALUE }
+#define ISNILS2(var1,var2,var3,var4) ISNILS(TRIPLES(var1,var2,var3),var4)
+#define ISNILS3(var1,var2,var3) ISNILS(DOUBLES(var1,var2),var3)
+#define ISNIL(var1,var2) ISNILS2(PREFIX,COMPONENT,var1,var2)
+#define ISNILMAIN(var1,var2) ISNILS3(PREFIX,var1,var2)
 
 #define CREATELOGICS(var1,var2) var1##_##var2 = ([sideLogic] call CBA_fnc_getSharedGroup) createUnit ["LOGIC", [0, 0, 0], [], 0, "NONE"]
 #define CREATELOGICLOCALS(var1,var2) var1##_##var2 = "LOGIC" createVehicleLocal [0, 0, 0]
@@ -965,8 +964,8 @@ Author:
 //#define PREP(var1) PREP_SYS(PREFIX,COMPONENT_F,var1)
 
 #ifdef DISABLE_COMPILE_CACHE
-    #define PREP(var1) TRIPLES(ADDON,fnc,var1) = compile preProcessFileLineNumbers 'PATHTO_SYS(PREFIX,COMPONENT_F,DOUBLES(fnc,var1))'
-    #define PREPMAIN(var1) TRIPLES(PREFIX,fnc,var1) = compile preProcessFileLineNumbers 'PATHTO_SYS(PREFIX,COMPONENT_F,DOUBLES(fnc,var1))'
+    #define PREP(var1) TRIPLES(ADDON,fnc,var1) = compile preprocessFileLineNumbers 'PATHTO_SYS(PREFIX,COMPONENT_F,DOUBLES(fnc,var1))'
+    #define PREPMAIN(var1) TRIPLES(PREFIX,fnc,var1) = compile preprocessFileLineNumbers 'PATHTO_SYS(PREFIX,COMPONENT_F,DOUBLES(fnc,var1))'
 #else
     #define PREP(var1) ['PATHTO_SYS(PREFIX,COMPONENT_F,DOUBLES(fnc,var1))', 'TRIPLES(ADDON,fnc,var1)'] call SLX_XEH_COMPILE_NEW
     #define PREPMAIN(var1) ['PATHTO_SYS(PREFIX,COMPONENT_F,DOUBLES(fnc,var1))', 'TRIPLES(PREFIX,fnc,var1)'] call SLX_XEH_COMPILE_NEW
@@ -1335,7 +1334,7 @@ Author:
 
 /* -------------------------------------------
 Macro: DEFAULT_PARAM()
-    DEPRECATED - Use param/params commands added in Arma 3 1.48
+    DEPRECATED - Use param/params commands added in Arma 3 1.48 - Will not work with HEMTT 1.13.2+
 
     Getting a default function parameter. This may be used together with <PARAMS_n()> to have a mix of required and
     optional parameters.
@@ -1368,7 +1367,7 @@ Author:
 ------------------------------------------- */
 #define DEFAULT_PARAM(INDEX,NAME,DEF_VALUE) \
     private [#NAME,"_this"]; \
-    isNilS(_this,[]); \
+    ISNILS(_this,[]); \
     NAME = _this param [INDEX, DEF_VALUE]; \
     TRACE_3("DEFAULT_PARAM",INDEX,NAME,DEF_VALUE)
 
@@ -1833,3 +1832,26 @@ Author:
     commy2
 ------------------------------------------- */
 #define FILE_EXISTS(FILE) (fileExists (FILE))
+
+/* -------------------------------------------
+Macro: QADDON, QQADDON
+
+Description:
+    Quoted Variant of ADDON
+
+Parameters:
+
+Examples:
+    (begin example)
+    QUOTE(configName _x isEqualTo QUOTE(QUOTE(abe_banana))) configClasses (configFile >> QADDON)
+    (end)
+
+Author:
+    OverlordZorn
+------------------------------------------- */
+#ifndef QADDON
+    #define QADDON QUOTE(ADDON)
+#endif
+#ifndef QQADDON
+    #define QQADDON QUOTE(QUOTE(ADDON))
+#endif

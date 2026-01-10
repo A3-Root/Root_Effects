@@ -3,7 +3,11 @@
 // ORIGINALLY CREATED BY ALIAS
 // MODIFIED BY ROOT 
 
+diag_log "********************* fn_animateFloatingObject Entry **********";
+
 if (!hasInterface) exitWith {};
+
+diag_log "********************* fn_animateFloatingObject hasInterface Pass **********";
 
 private [
 	"_slideSpeed", "_slideDistance",
