@@ -21,9 +21,9 @@ class CfgPatches
 
 class CfgFunctions
 {
-	class Root
+	class root_effects_news
 	{
-		tag = "Root";
+		tag = "root_effects_news";
 		class RootNewsCategory
 		{
 			file = QPATHTOF(functions);
@@ -49,7 +49,7 @@ class CfgVehicles {
 		_generalMacro = "News_Module";
 		curatorCanAttach = 1;
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleNewsArticle";
+		function = "root_effects_news_fnc_moduleNewsArticle";
 		displayName = CSTRING(ModuleNews);
 	};
 };

@@ -14,7 +14,7 @@ while {(artilleryBarrageActive) and (!isNull _artilleryObject)} do {
 	
 	uiSleep _fireDelay;
 	
-	private _relPos = [getPos _artilleryObject, random _range, random 360] call BIS_fncRelPos;
+	private _relPos = [getPos _artilleryObject, random _range, random 360] call BIS_fnc_RelPos;
 
 	if (_soundOnly) then {
 		_artillerySource setPos _relPos;
@@ -24,7 +24,7 @@ while {(artilleryBarrageActive) and (!isNull _artilleryObject)} do {
 	} else {
 		private _nearbyUnits = _relPos nearEntities [["CAManBase", "LandVehicle"], 20];
 		private _bomb = _shellClass createVehicleLocal _relPos;
-		[_bomb, -90, 0] call BIS_fncSetPitchBank;
+		[_bomb, -90, 0] call BIS_fnc_SetPitchBank;
 		_bomb setVelocity [0, 0, -100];
 		if (player in _nearbyUnits) then {
 			if (_nonLethal) then {

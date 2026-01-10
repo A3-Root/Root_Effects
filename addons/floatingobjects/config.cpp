@@ -22,9 +22,9 @@ class CfgPatches
 
 class CfgFunctions
 {
-	class Root
+	class root_effects_floatingobjects
 	{
-		tag = "Root";
+		tag = "root_effects_floatingobjects";
 		class RootFloatingCategory
 		{
 			file = QPATHTOF(functions);
@@ -52,7 +52,7 @@ class CfgVehicles {
 		_generalMacro = "Floating_Module";
 		curatorCanAttach = 1;
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleFloatingObjects";
+		function = "root_effects_floatingobjects_fnc_moduleFloatingObjects";
 		displayName = CSTRING(ModuleFloating);
 	};
 };

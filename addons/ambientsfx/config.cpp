@@ -22,9 +22,9 @@ class CfgPatches
 
 class CfgFunctions
 {
-	class Root
+	class root_effects_ambientsfx
 	{
-		tag = "Root";
+		tag = "root_effects_ambientsfx";
 		class RootAmbientCategory
 		{
 			file = QPATHTOF(functions);
@@ -63,7 +63,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Fireflies_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleFirefly";
+		function = "root_effects_ambientsfx_fnc_moduleFirefly";
 		displayName = CSTRING(ModuleFirefly);
 	};
 	class Aurora_Module: zen_modules_moduleBase
@@ -71,7 +71,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Aurora_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleAurora";
+		function = "root_effects_ambientsfx_fnc_moduleAurora";
 		displayName = CSTRING(ModuleAurora);
 	};
 	class Rupture_Module: zen_modules_moduleBase
@@ -79,7 +79,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Rupture_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleRupture";
+		function = "root_effects_ambientsfx_fnc_moduleRupture";
 		displayName = CSTRING(ModuleRupture);
 	};
 	class Sparks_Module: zen_modules_moduleBase
@@ -87,7 +87,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Sparks_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleSparks";
+		function = "root_effects_ambientsfx_fnc_moduleSparks";
 		displayName = CSTRING(ModuleSparks);
 	};
 };

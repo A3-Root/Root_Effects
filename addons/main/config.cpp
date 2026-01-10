@@ -24,9 +24,9 @@ class CfgPatches {
 
 class CfgFunctions
 {
-	class Root
+	class root_effects_main
 	{
-		tag = "Root";
+		tag = "root_effects_main";
 		class RootTerminationCategory
 		{
 			file = QPATHTOF(functions);
@@ -50,7 +50,7 @@ class CfgVehicles {
 		author = "Root";
 		_generalMacro = "Termination_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_terminateEffects";
+		function = "root_effects_main_fnc_terminateEffects";
 		displayName = CSTRING(ModuleTerminate);
 	};
 };

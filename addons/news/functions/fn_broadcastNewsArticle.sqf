@@ -38,7 +38,7 @@ private _authorData = [_editorImg, _editorInfo];
 						[""textlocked"",[""%13"",""%14""]],
 						[""author"",%15]
 					],findDisplay 46,true
-				] call BIS_fncShowAANArticle;
+				] call BIS_fnc_ShowAANArticle;
 			}
 			'>""AAN Article""</execute>", _title, _editor, _year, _day, _month, _hour, _minute, _timezone, _subhead, _mainImg, _mainImgDesc, _body, _bodyLocked, _lockMsg, _authorData]
 		]

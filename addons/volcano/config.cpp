@@ -21,9 +21,9 @@ class CfgPatches
 
 class CfgFunctions
 {
-	class Root
+	class root_effects_volcano
 	{
-		tag = "Root";
+		tag = "root_effects_volcano";
 		class RootVolcanoCategory
 		{
 			file = QPATHTOF(functions);
@@ -59,7 +59,7 @@ class CfgVehicles {
 		author = "Root";
 		_generalMacro = "Volcano_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleVolcanoEruption";
+		function = "root_effects_volcano_fnc_moduleVolcanoEruption";
 		displayName = CSTRING(ModuleVolcano);
 	};
 };

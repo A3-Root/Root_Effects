@@ -22,9 +22,9 @@ class CfgPatches
 
 class CfgFunctions
 {
-	class Root
+	class root_effects_freeze
 	{
-		tag = "Root";
+		tag = "root_effects_freeze";
 		class RootFreezeCategory
 		{
 			file = QPATHTOF(functions);
@@ -51,7 +51,7 @@ class CfgVehicles {
 		_generalMacro = "Freeze_Module";
 		curatorCanAttach = 1;
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleFreezePlayers";
+		function = "root_effects_freeze_fnc_moduleFreezePlayers";
 		displayName = CSTRING(ModuleFreeze);
 	};
 };

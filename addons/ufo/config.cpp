@@ -21,9 +21,9 @@ class CfgPatches
 
 class CfgFunctions
 {
-	class Root
+	class root_effects_ufo
 	{
-		tag = "Root";
+		tag = "root_effects_ufo";
 		class RootUFOCategory
 		{
 			file = QPATHTOF(functions);
@@ -61,7 +61,7 @@ class CfgVehicles {
 		author = "Root";
 		_generalMacro = "UFO_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleUfoEncounter";		
+		function = "root_effects_ufo_fnc_moduleUfoEncounter";		
 		displayName = CSTRING(ModuleUFO);
 	};
 	class Seeker_Module: zen_modules_moduleBase
@@ -69,7 +69,7 @@ class CfgVehicles {
 		author = "Root";
 		_generalMacro = "Seeker_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleUfoSeeker";		
+		function = "root_effects_ufo_fnc_moduleUfoSeeker";		
 		displayName = CSTRING(ModuleSeeker);
 	};
 	class Cropcircle_Module: zen_modules_moduleBase
@@ -77,7 +77,7 @@ class CfgVehicles {
 		author = "Root";
 		_generalMacro = "Cropcircle_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleUfoCropCircle";		
+		function = "root_effects_ufo_fnc_moduleUfoCropCircle";		
 		displayName = CSTRING(ModuleCropcircle);
 	};
 };

@@ -52,13 +52,13 @@ deleteVehicle _logic;
 				{
 					[_fadeTitle] spawn 
 					{
-						[0,"BLACK",4,0] spawn BIS_fncFadeEffect;
+						[0,"BLACK",4,0] spawn BIS_fnc_FadeEffect;
 						[
 							[
 								["%1","<t align = 'center' shadow = '1' size = '1.2' font='PuristaBold'>%1</t>"]
 							]
-						] spawn BIS_fncTypeText;
-						[1,"BLACK",0.1,0] spawn BIS_fncFadeEffect;
+						] spawn BIS_fnc_TypeText;
+						[1,"BLACK",0.1,0] spawn BIS_fnc_FadeEffect;
 					}
 				};			
 				
@@ -76,7 +76,7 @@ deleteVehicle _logic;
 							["textlocked",[_bodyLocked,_lockMsg]],
 							["author",[_editorImg,_editorInfo]]
 						],findDisplay 46,true
-					] call BIS_fncShowAANArticle;
+					] call BIS_fnc_ShowAANArticle;
 				};
 			};
 		} forEach ((call CBA_fnc_players) select {(side _x) in _sides || {(group _x) in _groups} || {_x in _players}});

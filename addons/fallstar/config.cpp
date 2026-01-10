@@ -22,9 +22,9 @@ class CfgPatches
 
 class CfgFunctions
 {
-	class Root
+	class root_effects_fallstar
 	{
-		tag = "Root";
+		tag = "root_effects_fallstar";
 		class RootFallstarCategory
 		{
 			file = QPATHTOF(functions);
@@ -58,7 +58,7 @@ class CfgVehicles
 		author = "Root";
 		_generalMacro = "Fallstar_Module";
 		category = "ROOT_EFFECTS";
-		function = "Root_fnc_moduleMeteorsComets";
+		function = "root_effects_fallstar_fnc_moduleMeteorsComets";
 		displayName = CSTRING(ModuleFallstar);
 	};
 };
