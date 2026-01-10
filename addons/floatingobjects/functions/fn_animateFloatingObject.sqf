@@ -49,14 +49,14 @@ if (_slideSpeed > 0) then {
 				private _travelOffset = 0;
 				while {_travelOffset < _slideDistance} do {
 					_travelOffset = _travelOffset + _slideSpeed;
-					private _newPos = [_startPos, _travelOffset, _slideDirection] call BIS_fnc_RelPos;
+					private _newPos = [_startPos, _travelOffset, _slideDirection] call BIS_fnc_relPos;
 					_slideObject setPosATL _newPos;
 					uiSleep _sleepSlide;
 				};
 
 				while {_travelOffset > 0} do {
 					_travelOffset = _travelOffset - _slideSpeed;
-					private _newPos = [_startPos, _travelOffset, _slideDirection] call BIS_fnc_RelPos;
+					private _newPos = [_startPos, _travelOffset, _slideDirection] call BIS_fnc_relPos;
 					_slideObject setPosATL _newPos;			
 					uiSleep _sleepSlide;
 				};
@@ -153,7 +153,7 @@ if (_orbitRadius > 0) then {
 		if (_orbitClockwise) then {
 			while {true} do {
 				while {(player distance _orbitObject) < _distanceDependent} do {
-					private _orbitPos = [_orbitCenter, _orbitRadius, _orbitAngle] call BIS_fnc_RelPos;
+					private _orbitPos = [_orbitCenter, _orbitRadius, _orbitAngle] call BIS_fnc_relPos;
 					_orbitObject setPosASL [_orbitPos select 0, _orbitPos select 1, _orbitAltitude select 2];
 					_orbitAngle = _orbitAngle + (_directionFactor * _orbitSpeed);
 					uiSleep 0.01;
@@ -165,7 +165,7 @@ if (_orbitRadius > 0) then {
 			while {true} do {
 				while {(player distance _orbitObject) < _distanceDependent} do 
 				{
-					private _orbitPos = [_orbitCenter, _orbitRadius, _orbitAngle] call BIS_fnc_RelPos;
+					private _orbitPos = [_orbitCenter, _orbitRadius, _orbitAngle] call BIS_fnc_relPos;
 					_orbitObject setPosASL [_orbitPos select 0, _orbitPos select 1, _orbitAltitude select 2];
 
 					_orbitAngle = _orbitAngle + (_directionFactor * _orbitSpeed);

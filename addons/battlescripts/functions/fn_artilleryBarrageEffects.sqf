@@ -14,7 +14,7 @@ while {(artilleryBarrageActive) and (!isNull _artilleryObject)} do {
 	
 	uiSleep _fireDelay;
 	
-	private _relPos = [getPos _artilleryObject, random _range, random 360] call BIS_fnc_RelPos;
+	private _relPos = [getPos _artilleryObject, random _range, random 360] call BIS_fnc_relPos;
 
 	if (_soundOnly) then {
 		_artillerySource setPos _relPos;

@@ -38,7 +38,7 @@ _smokeColumnEmitter setDropInterval 0.1;
 
 while {antiAirBarrageActive} do 
 {
-	private _relativePos = [getPos _barrageSource, random _range, random 360] call BIS_fnc_RelPos;
+	private _relativePos = [getPos _barrageSource, random _range, random 360] call BIS_fnc_relPos;
 	private _altitudeOffset = 150 + random 950;
 	_flakLight setPosATL [_relativePos select 0, _relativePos select 1, (getPosATL _barrageSource select 2) + ((selectRandom [1,-1]) * (random 50))];
 	[_flakLight] spawn 
