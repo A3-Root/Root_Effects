@@ -1,16 +1,22 @@
 #undef PREP
 #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fn,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
 
-PREP(playLocalSound);
+PREP(moduleFireflies);
+PREP(moduleFireflies3DEN);
+PREP(firefliesStart);
+PREP(firefliesStartLocal);
 PREP(moduleAurora);
-PREP(auroraServer);
-PREP(auroraEffects);
-PREP(moduleFirefly);
-PREP(fireflyServer);
-PREP(fireflyEffects);
+PREP(moduleAurora3DEN);
+PREP(auroraStart);
+PREP(auroraStartLocal);
 PREP(moduleRupture);
-PREP(ruptureServer);
-PREP(ruptureEffects);
+PREP(moduleRupture3DEN);
+PREP(ruptureStart);
+PREP(ruptureStartLocal);
 PREP(moduleSparks);
-PREP(sparksServer);
-PREP(sparksEffectsLoop);
+PREP(moduleSparks3DEN);
+PREP(sparksStart);
+PREP(sparkBurstLocal);
+PREP(moduleBirdSwarm);
+PREP(moduleBirdSwarm3DEN);
+PREP(birdSwarmStart);

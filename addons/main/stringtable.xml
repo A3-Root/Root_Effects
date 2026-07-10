@@ -1,102 +1,68 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Root_Effects">
-    <Package name="AmbientSfx">
-        <Key ID="STR_root_effects_ambientsfx_CategoryName">
-            <Original>Root's Effects</Original>
-        </Key>
-        <Key ID="STR_root_effects_ambientsfx_ModuleAurora">
-            <Original>Aurora Borealis</Original>
-        </Key>
-        <Key ID="STR_root_effects_ambientsfx_ModuleFirefly">
-            <Original>Ambient Firefly</Original>
-        </Key>
-        <Key ID="STR_root_effects_ambientsfx_ModuleRupture">
-            <Original>Spacetime Rupture</Original>
-        </Key>
-        <Key ID="STR_root_effects_ambientsfx_ModuleSparks">
-            <Original>Ambient Sparks</Original>
-        </Key>
-    </Package>
-    <Package name="BattleScripts">
-        <Key ID="STR_root_effects_battlescripts_CategoryName">
-            <Original>Root's Effects</Original>
-        </Key>
-        <Key ID="STR_root_effects_battlescripts_ModuleAAA">
-            <Original>Anti Air (AA) Barrage</Original>
-        </Key>
-        <Key ID="STR_root_effects_battlescripts_ModuleGround">
-            <Original>Artillery Barrage</Original>
-        </Key>
-        <Key ID="STR_root_effects_battlescripts_ModuleMissiles">
-            <Original>Missile Launcher</Original>
-        </Key>
-        <Key ID="STR_root_effects_battlescripts_ModuleSearch">
-            <Original>Searchlights</Original>
-        </Key>
-        <Key ID="STR_root_effects_battlescripts_ModuleTracers">
-            <Original>Tracers</Original>
-        </Key>
-    </Package>
-    <Package name="Fallstar">
-        <Key ID="STR_root_effects_fallstar_CategoryName">
-            <Original>Root's Effects</Original>
-        </Key>
-        <Key ID="STR_root_effects_fallstar_ModuleFallstar">
-            <Original>Meteors/Comets</Original>
-        </Key>
-    </Package>
-    <Package name="FloatingObjects">
-        <Key ID="STR_root_effects_floatingobjects_CategoryName">
-            <Original>Root's Effects</Original>
-        </Key>
-        <Key ID="STR_root_effects_floatingobjects_ModuleFloating">
-            <Original>Floating Objects</Original>
-        </Key>
-    </Package>
-    <Package name="Freeze">
-        <Key ID="STR_root_effects_freeze_CategoryName">
-            <Original>Root's Effects</Original>
-        </Key>
-        <Key ID="STR_root_effects_freeze_ModuleFreeze">
-            <Original>Freeze Players</Original>
-        </Key>
-    </Package>
     <Package name="Main">
+        <Key ID="STR_root_effects_main_Aborted">
+            <Original>Aborted.</Original>
+        </Key>
         <Key ID="STR_root_effects_main_CategoryName">
             <Original>Root's Effects</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_EffectDisabled">
+            <Original>This effect is disabled by the server's CBA settings.</Original>
         </Key>
         <Key ID="STR_root_effects_main_ModuleTerminate">
             <Original>Terminate Effects</Original>
         </Key>
-    </Package>
-    <Package name="News">
-        <Key ID="STR_root_effects_news_CategoryName">
+        <Key ID="STR_root_effects_main_NoActiveEffects">
+            <Original>No Root's Effects are currently running.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingCategory">
             <Original>Root's Effects</Original>
         </Key>
-        <Key ID="STR_root_effects_news_ModuleNews">
-            <Original>AAN News Article</Original>
+        <Key ID="STR_root_effects_main_SettingCategoryGeneral">
+            <Original>General</Original>
         </Key>
-    </Package>
-    <Package name="Ufo">
-        <Key ID="STR_root_effects_ufo_CategoryName">
-            <Original>Root's Effects</Original>
+        <Key ID="STR_root_effects_main_SettingDamage">
+            <Original>Allow Effect Damage</Original>
         </Key>
-        <Key ID="STR_root_effects_ufo_ModuleCropcircle">
-            <Original>UFO Cropcircle</Original>
+        <Key ID="STR_root_effects_main_SettingDamageTooltip">
+            <Original>Global kill-switch for all damage dealt by effect modules (volcano lethality, strikes, acid rain and so on).</Original>
         </Key>
-        <Key ID="STR_root_effects_ufo_ModuleSeeker">
-            <Original>UFO Seeker</Original>
+        <Key ID="STR_root_effects_main_SettingDebug">
+            <Original>Verbose Debug Logging</Original>
         </Key>
-        <Key ID="STR_root_effects_ufo_ModuleUFO">
-            <Original>UFO</Original>
+        <Key ID="STR_root_effects_main_SettingDebugTooltip">
+            <Original>Writes detailed effect lifecycle information to the RPT log for troubleshooting.</Original>
         </Key>
-    </Package>
-    <Package name="Volcano">
-        <Key ID="STR_root_effects_volcano_CategoryName">
-            <Original>Root's Effects</Original>
+        <Key ID="STR_root_effects_main_SettingEnabled">
+            <Original>Enable Root's Effects</Original>
         </Key>
-        <Key ID="STR_root_effects_volcano_ModuleVolcano">
-            <Original>Volcanic Eruption</Original>
+        <Key ID="STR_root_effects_main_SettingEnabledTooltip">
+            <Original>Master switch. When disabled, no effect module of this mod can be started.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingParticleBudget">
+            <Original>Particle Budget</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingParticleBudgetTooltip">
+            <Original>Client side multiplier applied to particle density of all effects. Lower values improve FPS on weaker machines.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingViewDistance">
+            <Original>Effect View Distance</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingViewDistanceTooltip">
+            <Original>Maximum distance in meters at which clients render effect visuals. Lower values improve performance.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_StopAllOfType">
+            <Original>Stop ALL: %1 (%2 instances)</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_StopEverything">
+            <Original>Stop EVERYTHING</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_StopInstance">
+            <Original>Stop: %1 at grid %2 (running %3m %4s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_TerminationSent">
+            <Original>Termination request sent.</Original>
         </Key>
     </Package>
 </Project>

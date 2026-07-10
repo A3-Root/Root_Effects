@@ -2,17 +2,23 @@
 #define PREP(fncName) [QPATHTOF(functions\DOUBLES(fn,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
 
 PREP(moduleAntiAirBarrage);
-PREP(antiAirBarrageServer);
-PREP(antiAirBarrageEffects);
+PREP(moduleAntiAirBarrage3DEN);
+PREP(aaaStart);
+PREP(aaaStartLocal);
+PREP(aaaBurstLocal);
 PREP(moduleArtilleryBarrage);
-PREP(artilleryBarrageServer);
-PREP(artilleryBarrageEffects);
+PREP(moduleArtilleryBarrage3DEN);
+PREP(artilleryStart);
+PREP(artilleryImpactLocal);
 PREP(moduleMissileLauncher);
-PREP(missileLauncherServer);
-PREP(missileLauncherEffects);
+PREP(moduleMissileLauncher3DEN);
+PREP(missilesStart);
+PREP(missileLaunchLocal);
 PREP(moduleSearchlight);
-PREP(searchlightServer);
-PREP(searchlightEffects);
+PREP(moduleSearchlight3DEN);
+PREP(searchlightStart);
+PREP(searchlightStartLocal);
 PREP(moduleTracerFire);
-PREP(tracerFireServer);
-PREP(tracerFireEffects);
+PREP(moduleTracerFire3DEN);
+PREP(tracersStart);
+PREP(tracersStartLocal);

@@ -1,55 +1,48 @@
 #include "script_component.hpp"
 
-class CfgPatches
-{
-	class root_effects_news
-	{
-		name = COMPONENT_NAME;
-		author = "Root";
-		authors[] = {
-			"Root",
-			"Aliascartoons"
-		};
-		url = "https://github.com/A3-Root/Root_Effects";
-		requiredVersion = REQUIRED_VERSION;
-		addonRootClass = "root_effects_main";
-		requiredAddons[] = {"A3_Modules_F_Curator", "cba_main", "root_effects_main", "zen_custom_modules"};
-		units[] = {"News_Module"};
-		weapons[] = {};
-	};
-};
-
-class CfgFunctions
-{
-	class root_effects_news
-	{
-		tag = "root_effects_news";
-		class RootNewsCategory
-		{
-			file = QPATHTOF(functions);
-			class moduleNewsArticle {};
-			class broadcastNewsArticle {};
-		};
+class CfgPatches {
+    class ADDON {
+        name = COMPONENT_NAME;
+        author = "Root";
+        authors[] = {"Root"};
+        url = "https://github.com/A3-Root/Root_Effects";
+        addonRootClass = "root_effects_main";
+        requiredVersion = REQUIRED_VERSION;
+        units[] = {"ROOT_News_ModuleZeus", "ROOT_News_Module3DEN"};
+        weapons[] = {};
+        requiredAddons[] = {
+            "root_effects_main",
+            "A3_Modules_F_Curator",
+            "3DEN",
+            "cba_main",
+            "zen_custom_modules"
+        };
     };
 };
 
-class CfgFactionClasses
-{
-	class NO_CATEGORY;
-	class ROOT_EFFECTS : NO_CATEGORY {
-		displayName = CSTRING(CategoryName);
-	};
+class Extended_PreInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_preInit));
+    };
 };
 
-class CfgVehicles {
-    class zen_modules_moduleBase;
-	class News_Module: zen_modules_moduleBase
-	{
-		author = "Root";
-		_generalMacro = "News_Module";
-		curatorCanAttach = 1;
-		category = "ROOT_EFFECTS";
-		function = "root_effects_news_fnc_moduleNewsArticle";
-		displayName = CSTRING(ModuleNews);
-	};
+class Extended_PostInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_postInit));
+    };
 };
+
+class CfgFunctions {
+    class ADDON {
+        tag = QUOTE(ADDON);
+        class RootNewsCategory {
+            file = QPATHTOF(functions);
+            class moduleNewsArticle {};
+            class moduleNewsArticle3DEN {};
+            class showArticleLocal {};
+            class openArticle {};
+        };
+    };
+};
+
+#include "CfgVehicles.hpp"

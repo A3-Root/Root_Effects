@@ -1,58 +1,47 @@
 #include "script_component.hpp"
 
-class CfgPatches
-{
-	class root_effects_floatingobjects
-	{
-		name = COMPONENT_NAME;
-		author = "Root";
-		authors[] = {
-			"Root",
-			"Aliascartoons"
-		};
-		url = "https://github.com/A3-Root/Root_Effects";
-		addonRootClass = "root_effects_main";
-		requiredAddons[] = {"A3_Modules_F_Curator", "cba_main", "root_effects_main", "zen_custom_modules"};
-		requiredVersion = REQUIRED_VERSION;
-		units[] = {"Floating_Module"};
-		weapons[] = {};
-	};
+class CfgPatches {
+    class ADDON {
+        name = COMPONENT_NAME;
+        author = "Root";
+        authors[] = {"Root", "Aliascartoons"};
+        url = "https://github.com/A3-Root/Root_Effects";
+        addonRootClass = "root_effects_main";
+        requiredVersion = REQUIRED_VERSION;
+        units[] = {"ROOT_FloatingObjects_ModuleZeus", "ROOT_FloatingObjects_Module3DEN"};
+        weapons[] = {};
+        requiredAddons[] = {
+            "root_effects_main",
+            "A3_Modules_F_Curator",
+            "3DEN",
+            "cba_main",
+            "zen_custom_modules"
+        };
+    };
 };
 
-
-class CfgFunctions
-{
-	class root_effects_floatingobjects
-	{
-		tag = "root_effects_floatingobjects";
-		class RootFloatingCategory
-		{
-			file = QPATHTOF(functions);
-			class moduleFloatingObjects {};
-			class floatingObjectsServer {};
-			class animateFloatingObject {};
-		};
-	};
+class Extended_PreInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_preInit));
+    };
 };
 
-
-class CfgFactionClasses
-{
-	class NO_CATEGORY;
-	class ROOT_EFFECTS : NO_CATEGORY {
-		displayName = CSTRING(CategoryName);
-	};
+class Extended_PostInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_postInit));
+    };
 };
 
-class CfgVehicles {
-    class zen_modules_moduleBase;
-	class Floating_Module: zen_modules_moduleBase
-	{
-		author = "Root";
-		_generalMacro = "Floating_Module";
-		curatorCanAttach = 1;
-		category = "ROOT_EFFECTS";
-		function = "root_effects_floatingobjects_fnc_moduleFloatingObjects";
-		displayName = CSTRING(ModuleFloating);
-	};
+class CfgFunctions {
+    class ADDON {
+        tag = QUOTE(ADDON);
+        class RootFloatingCategory {
+            file = QPATHTOF(functions);
+            class moduleFloatingObjects {};
+            class moduleFloatingObjects3DEN {};
+            class floatingStart {};
+        };
+    };
 };
+
+#include "CfgVehicles.hpp"

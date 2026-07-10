@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="Ufo">
+        <Key ID="STR_root_effects_ufo_AttrCropRadius">
+            <Original>Crop Circle Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_AttrCropRadiusTooltip">
+            <Original>Radius in meters of the crop circle. For spirals this is the starting radius, which grows with each turn.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_AttrCropType">
+            <Original>Crop Circle Design</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_AttrCropTypeTooltip">
+            <Original>Pattern the orb burns into the ground.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_AttrEncounterFreq">
+            <Original>Encounter Frequency</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_AttrEncounterFreqTooltip">
+            <Original>Seconds between UFO sightings.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_AttrSeekerFreq">
+            <Original>Seeker Frequency</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_AttrSeekerFreqTooltip">
+            <Original>Seconds between seeker visits.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_CropCircleStarted">
+            <Original>UFO crop circle configured!</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_CropTypeCircle">
+            <Original>Circle</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_CropTypeFlower">
+            <Original>Flower</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_CropTypeSpiral">
+            <Original>Spiral</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_EncounterStarted">
+            <Original>UFO encounter configured!</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_ModuleCropCircle">
+            <Original>UFO Crop Circle</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_ModuleCropCircleDesc">
+            <Original>A glowing orb burns a circle, spiral or flower pattern into the ground at the module position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_ModuleEncounter">
+            <Original>UFO Encounter</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_ModuleEncounterDesc">
+            <Original>Random UFO sightings near players: fast crossings through the sky or hovering light charges that discharge with a boom.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_ModuleSeeker">
+            <Original>UFO Seeker</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_ModuleSeekerDesc">
+            <Original>A glowing orb lands near players and sweeps the area in searching arcs before launching back into the sky.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_SeekerStarted">
+            <Original>UFO seeker configured!</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_SettingCategoryName">
+            <Original>UFO</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_SettingCropCircle">
+            <Original>Enable UFO Crop Circle Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_SettingCropCircleTooltip">
+            <Original>Allow crop circles to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_SettingEncounter">
+            <Original>Enable UFO Encounter Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_SettingEncounterTooltip">
+            <Original>Allow UFO encounters to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_SettingSeeker">
+            <Original>Enable UFO Seeker Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_ufo_SettingSeekerTooltip">
+            <Original>Allow the UFO seeker to be started from Zeus or 3DEN.</Original>
+        </Key>
+    </Package>
+</Project>

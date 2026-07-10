@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="News">
+        <Key ID="STR_root_effects_news_ArticleSent">
+            <Original>News article delivered.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrBody">
+            <Original>Article Body</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrBodyLocked">
+            <Original>Article Body (Subscription)</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrBodyLockedTooltip">
+            <Original>This part of the article is gradually hidden behind a subscription banner.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrBodyTooltip">
+            <Original>The body text of the article.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrDate">
+            <Original>Article Date</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrDateTooltip">
+            <Original>Date of the article. Format: YYYY/M/DD HH:MM</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrDiary">
+            <Original>Enable Diary Entry</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrDiaryTab">
+            <Original>Diary Tab</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrDiaryTabTooltip">
+            <Original>Diary tab the article is filed under.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrDiaryTooltip">
+            <Original>File a diary entry that reopens the article at any time.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrEditor">
+            <Original>Article Editor</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrEditorImg">
+            <Original>Editor Image</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrEditorImgTooltip">
+            <Original>Path to the image file used as the editor's portrait. Leave empty for no image.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrEditorInfo">
+            <Original>Editor Info</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrEditorInfoTooltip">
+            <Original>Short description of the editor or author.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrEditorTooltip">
+            <Original>Author or editor of the article.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrFade">
+            <Original>Fade to Article</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrFadeTitle">
+            <Original>Fade Title</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrFadeTitleTooltip">
+            <Original>Text shown during the fade.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrFadeTooltip">
+            <Original>Fade to black with a title card before showing the article.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrImage">
+            <Original>Article Main Image</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrImageDesc">
+            <Original>Main Image Description</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrImageDescTooltip">
+            <Original>Caption of the main image.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrImageTooltip">
+            <Original>Path to the image file used in the article. Leave empty for no image.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrShowNow">
+            <Original>Display Article Immediately</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrShowNowTooltip">
+            <Original>Show the article right after sending it.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrSubhead">
+            <Original>Article Sub-headline</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrSubheadTooltip">
+            <Original>Sub-heading of the article shown in bold.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrTargets">
+            <Original>Select Units</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrTargetsTooltip">
+            <Original>Sides, groups or units that receive the article.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrTimezone">
+            <Original>Article Timezone</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrTimezoneTooltip">
+            <Original>Timezone shown next to the article date.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrTitle">
+            <Original>Article Title</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_AttrTitleTooltip">
+            <Original>Title of the article.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_LockLimit">
+            <Original>You have reached your Monthly Free Access Limit</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_LockSubscribe">
+            <Original>Subscribe to continue reading.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_ModuleNews">
+            <Original>AAN News Article</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_ModuleNewsDesc">
+            <Original>Composes an AAN news article and displays it to the selected players, optionally with a diary entry to reopen it later.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_NoSelection">
+            <Original>ERROR - Select a side, group or unit.</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_SettingCategoryName">
+            <Original>News</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_SettingEnabled">
+            <Original>Enable News Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_news_SettingEnabledTooltip">
+            <Original>Allow news articles to be sent from Zeus or 3DEN.</Original>
+        </Key>
+    </Package>
+</Project>

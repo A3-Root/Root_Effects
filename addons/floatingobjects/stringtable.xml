@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="FloatingObjects">
+        <Key ID="STR_root_effects_floatingobjects_AttrActDist">
+            <Original>Activation Distance</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrActDistTooltip">
+            <Original>Player distance in meters required for the animation to run.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrBounce">
+            <Original>Enable Bounce</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrBounceAlt">
+            <Original>Bounce Altitude</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrBounceAltTooltip">
+            <Original>How far above and below the hover height the object bounces, in meters.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrBounceSpeed">
+            <Original>Bounce Speed</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrBounceSpeedTooltip">
+            <Original>Meters the object moves vertically per animation tick.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrBounceTooltip">
+            <Original>The object bobs up and down around its hover height.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrDamage">
+            <Original>Enable Damage</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrDamageTooltip">
+            <Original>The object can take damage and be destroyed.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrDistDependent">
+            <Original>Distance Dependent</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrDistDependentTooltip">
+            <Original>Pause the animation while no player is within the activation distance.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrElevation">
+            <Original>Elevation</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrElevationTooltip">
+            <Original>Hover height of the object above terrain in meters.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrOrbit">
+            <Original>Enable Orbit</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrOrbitCw">
+            <Original>Orbit Clockwise</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrOrbitCwTooltip">
+            <Original>Circling direction of the orbit.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrOrbitRadius">
+            <Original>Orbit Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrOrbitRadiusTooltip">
+            <Original>Radius in meters of the orbit around the starting position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrOrbitSpeed">
+            <Original>Orbit Speed</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrOrbitSpeedTooltip">
+            <Original>Degrees the object advances along the orbit per animation tick.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrOrbitTooltip">
+            <Original>The object circles around its starting position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrRoll">
+            <Original>Enable Rollover</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrRollTooltip">
+            <Original>The object pitches over and back like a slow somersault.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrRollVel">
+            <Original>Roll Velocity</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrRollVelTooltip">
+            <Original>Degrees of pitch change per animation tick.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrRot">
+            <Original>Enable Rotation</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrRotCw">
+            <Original>Rotate Clockwise</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrRotCwTooltip">
+            <Original>Spin direction of the rotation.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrRotTooltip">
+            <Original>The object spins around its vertical axis.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrRotVel">
+            <Original>Rotation Velocity</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrRotVelTooltip">
+            <Original>Degrees the object turns per animation tick.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrSimulation">
+            <Original>Enable Simulation</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrSimulationTooltip">
+            <Original>Keep the engine simulation of the object running. Disable for a stable levitation.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrSlide">
+            <Original>Enable Slide</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrSlideDist">
+            <Original>Slide Distance</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrSlideDistTooltip">
+            <Original>Maximum distance in meters the object glides before turning back.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrSlideTooltip">
+            <Original>The object glides back and forth along its facing direction.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrSlideVel">
+            <Original>Slide Velocity</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_AttrSlideVelTooltip">
+            <Original>Meters the object slides per animation tick.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_Configured">
+            <Original>Object animation applied!</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_ModuleFloating">
+            <Original>Floating Objects</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_ModuleFloatingDesc">
+            <Original>Levitates an object and animates it with slide, bounce, rotation, rollover and orbit movements.</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_PlaceOnObject">
+            <Original>Place the module on an object!</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_SettingCategoryName">
+            <Original>Floating Objects</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_SettingEnabled">
+            <Original>Enable Floating Objects Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_floatingobjects_SettingEnabledTooltip">
+            <Original>Allow floating objects to be started from Zeus or 3DEN.</Original>
+        </Key>
+    </Package>
+</Project>

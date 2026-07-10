@@ -1,37 +1,40 @@
 #include "..\script_component.hpp"
 
-// ORIGINALLY CREATED BY ALIAS
-// MODIFIED BY ROOT 
-
 /*
-[freq] execvm "\Root_Effects\Root_UFO\AL_ufo\fn_ufoEncounterServer.sqf";
+ * Author: Root, based on work by Aliascartoons
+ * Zeus module entry point for the UFO encounter effect. Opens the
+ * configuration dialog on the curator's machine and asks the server to start
+ * random UFO sightings near players once confirmed.
+ *
+ * Arguments:
+ * 0: Module logic <OBJECT>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_logic] call root_effects_ufo_fnc_moduleUfoEncounter
+ */
 
-freq - frequency in seconds of how often the specific phenomena takes place
-*/
+params [["_logic", objNull, [objNull]]];
 
-
-// Only run on player machines
-if (!hasInterface) exitWith {};
-
-// If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith {
-    diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
-};
-
-params ["_logic"];
+private _pos = getPosATL _logic;
 deleteVehicle _logic;
 
-["UFO Encounter Settings",[
-	["SLIDER",["UFO Encounter Frequency","Frequency in seconds of how often the phenomena takes place."],[10,600,30,0]]
-	],{
-		params ["_results"];
-		_results params ["_seekerfreq"];
-		
-		["UFO Encounter Configured and Created!"] call zen_common_fnc_showMessage;
+if (!hasInterface) exitWith {};
 
-		[_seekerfreq] remoteExec [QFUNC(ufoEncounterServer), 2];
-	},{
-		["Aborted"] call zen_common_fnc_showMessage;
-		playSound "FD_Start_F";
-	}] call zen_dialog_fnc_create;
+if (!(["ufoencounter"] call EFUNC(main,isEffectEnabled))) exitWith {
+    [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
+};
 
+[LLSTRING(ModuleEncounter), [
+    ["SLIDER", [LLSTRING(AttrEncounterFreq), LLSTRING(AttrEncounterFreqTooltip)], [10, 600, 30, 0]]
+], {
+    params ["_results", "_pos"];
+    _results params ["_frequency"];
+
+    [QGVAR(startEncounter), [_pos, _frequency]] call CBA_fnc_serverEvent;
+    [LLSTRING(EncounterStarted)] call zen_common_fnc_showMessage;
+}, {
+    [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;
+}, _pos, QGVAR(encounterDialog)] call zen_dialog_fnc_create;

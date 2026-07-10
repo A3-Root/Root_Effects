@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="Meteor">
+        <Key ID="STR_root_effects_meteor_AttrCometFreq">
+            <Original>Comet Frequency</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrCometFreqTooltip">
+            <Original>Seconds between comets.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrComets">
+            <Original>Spawn Comets</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrCometsTooltip">
+            <Original>Comets streak across the sky in random directions.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrLethal">
+            <Original>Lethal Impacts</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrLethalTooltip">
+            <Original>Meteor impacts kill units within 100 meters. Respects the global damage setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrMeteorFreq">
+            <Original>Meteor Frequency</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrMeteorFreqTooltip">
+            <Original>Seconds between meteors.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrMeteors">
+            <Original>Spawn Meteors</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrMeteorsTooltip">
+            <Original>Meteors spawn and crash near a random player.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_Configured">
+            <Original>Meteors and comets configured!</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_EffectComets">
+            <Original>Comets</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_EffectMeteors">
+            <Original>Meteors</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_ModuleMeteor">
+            <Original>Meteors / Comets</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_ModuleMeteorDesc">
+            <Original>Spawns falling meteors crashing near random players and comets streaking across the sky at configurable intervals.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_SettingCategoryName">
+            <Original>Meteors and Comets</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_SettingEnabled">
+            <Original>Enable Meteor / Comet Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_SettingEnabledTooltip">
+            <Original>Allow meteors and comets to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_SettingLethality">
+            <Original>Allow Meteor Lethality</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_SettingLethalityTooltip">
+            <Original>Permit meteor impacts to damage units. When disabled, the lethal option of placed modules is ignored.</Original>
+        </Key>
+    </Package>
+</Project>

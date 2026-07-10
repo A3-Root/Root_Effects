@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="Weather">
+        <Key ID="STR_root_effects_weather_AcidRainStarted">
+            <Original>Acid rain falling!</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidDamage">
+            <Original>Damage Exposed Units</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidDamageTooltip">
+            <Original>Units without a roof over their head take periodic burn damage. Respects the global damage setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidDps">
+            <Original>Damage per Tick</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidDpsTooltip">
+            <Original>Damage added per tick to each exposed unit.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidRadius">
+            <Original>Affected Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidRadiusTooltip">
+            <Original>Radius in meters of the contaminated area.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidTick">
+            <Original>Damage Tick Interval</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidTickTooltip">
+            <Original>Seconds between damage ticks.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidTint">
+            <Original>Tint Strength</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidTintTooltip">
+            <Original>Strength of the sickly color grading inside the area.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningDamage">
+            <Original>Strikes Damage Units</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningDamageTooltip">
+            <Original>Units within 15 meters of a strike take damage. Respects the global damage setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningDuration">
+            <Original>Storm Duration</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningDurationTooltip">
+            <Original>Seconds the storm lasts. Set to 0 for an endless storm.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningMaxInt">
+            <Original>Maximum Strike Interval</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningMaxIntTooltip">
+            <Original>Longest time in seconds between two strikes.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningMinInt">
+            <Original>Minimum Strike Interval</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningMinIntTooltip">
+            <Original>Shortest time in seconds between two strikes.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningRadius">
+            <Original>Storm Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningRadiusTooltip">
+            <Original>Radius in meters strikes can land in.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrMirageIntensity">
+            <Original>Haze Intensity</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrMirageIntensityTooltip">
+            <Original>Strength of the blur and shimmer inside the zone.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrMirageRadius">
+            <Original>Mirage Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrMirageRadiusTooltip">
+            <Original>Radius in meters of the heat haze zone.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTintColor">
+            <Original>Contamination Color</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTintColorTooltip">
+            <Original>Color of the contamination: 0 blood red, 1 toxic green, 2 ink black.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTintRadius">
+            <Original>Zone Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTintRadiusTooltip">
+            <Original>Radius in meters of the contaminated water zone.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTintStrength">
+            <Original>Tint Strength</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTintStrengthTooltip">
+            <Original>Strength of the underwater tint. Above the surface only a hint is visible.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_LightningStarted">
+            <Original>Lightning storm brewing!</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_MirageStarted">
+            <Original>Heat mirage shimmering!</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_ModuleAcidRain">
+            <Original>Acid Rain</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_ModuleAcidRainDesc">
+            <Original>Forces rain and burns units standing in the open inside the area, with a sickly tint for anyone inside.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_ModuleLightning">
+            <Original>Lightning Storm</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_ModuleLightningDesc">
+            <Original>Real lightning bolts strike random points around the module position at randomized intervals.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_ModuleMirage">
+            <Original>Heat Mirage</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_ModuleMirageDesc">
+            <Original>A shimmering heat haze that blurs and wavers the view of players inside the zone.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_ModuleWaterTint">
+            <Original>Water Contamination</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_ModuleWaterTintDesc">
+            <Original>Tints the view of players inside the zone as if the water were contaminated, far stronger while diving. For a true map-wide red water recolor load the optional watercolor addon.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingAcidRain">
+            <Original>Enable Acid Rain Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingAcidRainTooltip">
+            <Original>Allow acid rain to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingAllowDamage">
+            <Original>Allow Weather Effect Damage</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingAllowDamageTooltip">
+            <Original>Permit lightning and acid rain to damage units. When disabled, damage options of placed modules are ignored.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingCategoryName">
+            <Original>Weather Effects</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingLightning">
+            <Original>Enable Lightning Storm Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingLightningTooltip">
+            <Original>Allow lightning storms to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingMirage">
+            <Original>Enable Heat Mirage Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingMirageTooltip">
+            <Original>Allow heat mirages to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingWaterTint">
+            <Original>Enable Water Contamination Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_SettingWaterTintTooltip">
+            <Original>Allow water contamination zones to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_TintColorBlood">
+            <Original>Blood Red</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_TintColorInk">
+            <Original>Ink Black</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_TintColorToxic">
+            <Original>Toxic Green</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_WaterTintStarted">
+            <Original>Water contamination active!</Original>
+        </Key>
+    </Package>
+</Project>

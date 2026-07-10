@@ -1,42 +1,41 @@
 #include "..\script_component.hpp"
 
-// ORIGINALLY CREATED BY ALIAS
-// MODIFIED BY ROOT 
-
 /*
-[object_name] execvm "AL_ambientSFX\sparky.sqf";
-object_name - string, the name of the object you use as a source for the SFX
-*/
+ * Author: Root, based on work by Aliascartoons
+ * Zeus module entry point for the ambient sparks. Opens the configuration
+ * dialog on the curator's machine and asks the server to start electrical
+ * sparks at the module position (or attached object) once confirmed.
+ *
+ * Arguments:
+ * 0: Module logic <OBJECT>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_logic] call root_effects_ambientsfx_fnc_moduleSparks
+ */
 
-// Only run on player machines
-if (!hasInterface) exitWith {};
+params [["_logic", objNull, [objNull]]];
 
-// If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith
-{
-    diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
-};
-
-params ["_logic"];
-
-private _sparksPos = getPosATL _logic;
+private _pos = getPosATL _logic;
 deleteVehicle _logic;
 
-["Ambient Sparks Setting", [
-	["EDIT", ["Sparks Object", "Classname of the object used as a source for the SFX."], ["Land_HelipadEmpty_F"]], 
-	["SLIDER", ["Sparks Altitude", "Altitude in meters where you want the Sparks Rupture. (Minimum Altitude is 1m)"], [0, 100, 0, 0]],
-	["SLIDER",["Sparks Delay", "Seconds between each spark."],[1,100,10,0]]
-	], {
-		params ["_results", "_sparksPos"];
-		_results params ["_sparksClass", "_sparkAltitude", "_sparkDelay"];
-		
-		private _sparkSource = _sparksClass createVehicle _sparksPos;
+if (!hasInterface) exitWith {};
 
-		["Sparks Active!"] call zen_common_fnc_showMessage;
+if (!(["sparks"] call EFUNC(main,isEffectEnabled))) exitWith {
+    [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
+};
 
-		[_sparkSource, _sparkAltitude, _sparkDelay] remoteExec [QFUNC(sparksServer), 2];
-	}, {
-		["Aborted"] call zen_common_fnc_showMessage;
-		playSound "FD_Start_F";
-	}, _sparksPos] call zen_dialog_fnc_create;
+[LLSTRING(ModuleSparks), [
+    ["SLIDER", [LLSTRING(AttrSparksAltitude), LLSTRING(AttrSparksAltitudeTooltip)], [0, 100, 0, 0]],
+    ["SLIDER", [LLSTRING(AttrSparksDelay), LLSTRING(AttrSparksDelayTooltip)], [1, 100, 10, 0]]
+], {
+    params ["_results", "_pos"];
+    _results params ["_altitude", "_sparkDelay"];
 
+    [QGVAR(startSparks), [_pos, _altitude, _sparkDelay]] call CBA_fnc_serverEvent;
+    [LLSTRING(SparksStarted)] call zen_common_fnc_showMessage;
+}, {
+    [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;
+}, _pos, QGVAR(sparksDialog)] call zen_dialog_fnc_create;

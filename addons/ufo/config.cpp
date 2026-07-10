@@ -1,83 +1,64 @@
 #include "script_component.hpp"
 
-class CfgPatches
-{
-	class root_effects_ufo
-	{
-		name = COMPONENT_NAME;
-		author = "Root";
-		authors[] = {
-			"Root",
-			"Aliascartoons"
-		};
-		url = "https://github.com/A3-Root/Root_Effects";
-		addonRootClass = "root_effects_main";
-		requiredAddons[] = {"A3_Modules_F_Curator", "cba_main", "root_effects_main", "zen_custom_modules"};
-		requiredVersion = REQUIRED_VERSION;
-		units[] = {"UFO_Module", "Seeker_Module", "Cropcircle_Module"};
-		weapons[] = {};
-	};
+class CfgPatches {
+    class ADDON {
+        name = COMPONENT_NAME;
+        author = "Root";
+        authors[] = {"Root", "Aliascartoons"};
+        url = "https://github.com/A3-Root/Root_Effects";
+        addonRootClass = "root_effects_main";
+        requiredVersion = REQUIRED_VERSION;
+        units[] = {
+            "ROOT_UfoEncounter_ModuleZeus", "ROOT_UfoEncounter_Module3DEN",
+            "ROOT_UfoSeeker_ModuleZeus", "ROOT_UfoSeeker_Module3DEN",
+            "ROOT_UfoCropCircle_ModuleZeus", "ROOT_UfoCropCircle_Module3DEN"
+        };
+        weapons[] = {};
+        requiredAddons[] = {
+            "root_effects_main",
+            "A3_Modules_F_Curator",
+            "3DEN",
+            "cba_main",
+            "zen_custom_modules"
+        };
+    };
 };
 
-class CfgFunctions
-{
-	class root_effects_ufo
-	{
-		tag = "root_effects_ufo";
-		class RootUFOCategory
-		{
-			file = QPATHTOF(functions);
-			class moduleUfoEncounter {};
-			class moduleUfoSeeker {};
-			class moduleUfoCropCircle {};
-			class ufoChargingEffects {};
-			class createUfoCropCircle {};
-			class animateUfoCropCircle {};
-			class ufoCrossLighting {};
-			class ufoCrossFlyby {};
-			class ufoEncounterServer {};
-			class updateUfoTarget {};
-			class ufoLightChargeEffects {};
-			class ufoPulseEffects {};
-			class ufoSeekerServer {};
-			class ufoTravelEffects {};
-		};
-	};
+class Extended_PreInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_preInit));
+    };
 };
 
-
-class CfgFactionClasses
-{
-	class NO_CATEGORY;
-	class ROOT_EFFECTS : NO_CATEGORY {
-		displayName = CSTRING(CategoryName);
-	};
+class Extended_PostInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_postInit));
+    };
 };
 
-class CfgVehicles {
-	class zen_modules_moduleBase;
-	class UFO_Module: zen_modules_moduleBase
-	{
-		author = "Root";
-		_generalMacro = "UFO_Module";
-		category = "ROOT_EFFECTS";
-		function = "root_effects_ufo_fnc_moduleUfoEncounter";		
-		displayName = CSTRING(ModuleUFO);
-	};
-	class Seeker_Module: zen_modules_moduleBase
-	{
-		author = "Root";
-		_generalMacro = "Seeker_Module";
-		category = "ROOT_EFFECTS";
-		function = "root_effects_ufo_fnc_moduleUfoSeeker";		
-		displayName = CSTRING(ModuleSeeker);
-	};
-	class Cropcircle_Module: zen_modules_moduleBase
-	{
-		author = "Root";
-		_generalMacro = "Cropcircle_Module";
-		category = "ROOT_EFFECTS";
-		function = "root_effects_ufo_fnc_moduleUfoCropCircle";		
-		displayName = CSTRING(ModuleCropcircle);
-	};
+class CfgFunctions {
+    class ADDON {
+        tag = QUOTE(ADDON);
+        class RootUfoCategory {
+            file = QPATHTOF(functions);
+            class moduleUfoEncounter {};
+            class moduleUfoEncounter3DEN {};
+            class moduleUfoSeeker {};
+            class moduleUfoSeeker3DEN {};
+            class moduleUfoCropCircle {};
+            class moduleUfoCropCircle3DEN {};
+            class encounterStart {};
+            class seekerStart {};
+            class cropCircleStart {};
+            class pickTarget {};
+            class crossFlyby {};
+            class crossLocal {};
+            class jumpLocal {};
+            class seekerLocal {};
+            class cropCircleLocal {};
+        };
+    };
 };
+
+#include "CfgVehicles.hpp"
+#include "CfgSounds.hpp"

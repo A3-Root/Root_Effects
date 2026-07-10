@@ -1,45 +1,53 @@
 #include "..\script_component.hpp"
 
-// CREATED BY ROOT
-// HEAVILY RELIES ON CODE BY JOHNB43 => https://steamcommunity.com/id/johnb43
+/*
+ * Author: Root, based on work by johnb43
+ * Zeus module entry point for freezing and unfreezing players. Opens the
+ * configuration dialog on the curator's machine, resolves the selected
+ * sides, groups and units to player objects and asks the server to apply
+ * the freeze state.
+ *
+ * Arguments:
+ * 0: Module logic <OBJECT>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_logic] call root_effects_freeze_fnc_moduleFreezePlayers
+ */
 
-
-// Only run on player machines
-if (!hasInterface) exitWith {};
-
-// If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith {
-    diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
-};
-
-params ["_logic"];
+params [["_logic", objNull, [objNull]]];
 
 deleteVehicle _logic;
 
-["Freeze Settings (Read tooltips!)", [
-	["TOOLBOX:YESNO",["Toggle Freeze","If true, selected units will be frozen. If false, they will be unfrozen if previously frozen."], false],
-	["TOOLBOX:YESNO",["Toggle Animation","If true, selected units will be frozen by playing the animation below. Required to be set to 'False' to 'Unfreeze' frozen units with animation."], false],
-	["EDIT", ["Freeze Animation", "Stringname of the looping animation to play."], ["HubSpectator_stand"]],
-	["OWNERS", ["Select Units", "Select the Side(s) / Group(s) / Unit(s) you want frozen."], [[], [], [], 0], true]
-	], {
-		params ["_results"];
-		_results params ["_isfreeze", "_useanim", "_animtype", "_selected"];
-		_selected params ["_sides", "_groups", "_players"];
-		private _tempvar = false;
-		private _unitList = [];
+if (!hasInterface) exitWith {};
 
-		if (!_tempvar && {_sides isEqualTo []} && {_groups isEqualTo []} && {_players isEqualTo []}) exitWith {
-            ["ERROR - Select a side/group/unit"] call zen_common_fnc_showMessage;
-        };
+if (!(["freeze"] call EFUNC(main,isEffectEnabled))) exitWith {
+    [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
+};
 
-		{
-            if (typeOf _x != "VirtualCurator_F") then {
-				_unitList pushBack _x;
-            };
-        } forEach ((call CBA_fnc_players) select {(side _x) in _sides || {(group _x) in _groups} || {_x in _players}});
+[LLSTRING(ModuleFreeze), [
+    ["TOOLBOX:YESNO", [LLSTRING(AttrFreeze), LLSTRING(AttrFreezeTooltip)], false],
+    ["TOOLBOX:YESNO", [LLSTRING(AttrUseAnim), LLSTRING(AttrUseAnimTooltip)], false],
+    ["EDIT", [LLSTRING(AttrAnim), LLSTRING(AttrAnimTooltip)], ["HubSpectator_stand"]],
+    ["OWNERS", [LLSTRING(AttrTargets), LLSTRING(AttrTargetsTooltip)], [[], [], [], 0], true]
+], {
+    params ["_results"];
+    _results params ["_freeze", "_useAnim", "_animation", "_selected"];
+    _selected params ["_sides", "_groups", "_players"];
 
-		[_unitList, _isfreeze, _useanim, _animtype] remoteExec [QFUNC(freezePlayersServer), 2];
-	}, {
-		["Aborted"] call zen_common_fnc_showMessage;
-		playSound "FD_Start_F";
-	}] call zen_dialog_fnc_create;
+    if (_sides isEqualTo [] && {_groups isEqualTo []} && {_players isEqualTo []}) exitWith {
+        [LLSTRING(NoSelection)] call zen_common_fnc_showMessage;
+    };
+
+    private _targets = (call CBA_fnc_players) select {
+        !(_x isKindOf "VirtualMan_F")
+        && {(side _x) in _sides || {(group _x) in _groups} || {_x in _players}}
+    };
+
+    [QGVAR(apply), [_targets, _freeze, _useAnim, _animation]] call CBA_fnc_serverEvent;
+    [format [[LLSTRING(UnfrozeCount), LLSTRING(FrozeCount)] select _freeze, count _targets]] call zen_common_fnc_showMessage;
+}, {
+    [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;
+}, [], QGVAR(dialog)] call zen_dialog_fnc_create;

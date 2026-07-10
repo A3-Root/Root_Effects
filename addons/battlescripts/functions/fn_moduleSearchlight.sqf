@@ -1,36 +1,40 @@
 #include "..\script_component.hpp"
 
-// ORIGINALLY CREATED BY ALIAS
-// MODIFIED BY ROOT 
+/*
+ * Author: Root, based on work by Aliascartoons
+ * Zeus module entry point for the sweeping searchlight. Opens the
+ * configuration dialog on the curator's machine and asks the server to start
+ * a new searchlight instance at the module position once confirmed.
+ *
+ * Arguments:
+ * 0: Module logic <OBJECT>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_logic] call root_effects_battlescripts_fnc_moduleSearchlight
+ */
 
-// Only run on player machines
-if (!hasInterface) exitWith {};
+params [["_logic", objNull, [objNull]]];
 
-// If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith {
-    diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
-};
-
-params ["_logic"];
-
-private _searchLoc = getPosATL _logic;
+private _pos = getPosATL _logic;
 deleteVehicle _logic;
 
-["Search Light Settings",[
-	["EDIT",["Search Light Object","Classname of the object used as the launch generator for Missile launches."],["Land_HelipadEmpty_F"]],
-	["TOOLBOX:YESNO",["Enable Alarm [READ TOOLTIP]","If true, an alarm will trigger. HIGHLY RECOMMENDED TO USE ONLY ONCE."],false]
-	],{
-		params ["_results", "_searchLoc"];
-		_results params ["_searchObject", "_searchSound"];
-		
-		private _searchStart = _searchObject createVehicle _searchLoc;
+if (!hasInterface) exitWith {};
 
-		["Search Light Initiated!"] call zen_common_fnc_showMessage;
+if (!(["searchlight"] call EFUNC(main,isEffectEnabled))) exitWith {
+    [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
+};
 
-		[_searchStart, _searchSound] remoteExec [QFUNC(searchlightServer), 2];
-	},{
-		["Aborted"] call zen_common_fnc_showMessage;
-		playSound "FD_Start_F";
-	}, _searchLoc] call zen_dialog_fnc_create;
+[LLSTRING(ModuleSearchlight), [
+    ["TOOLBOX:YESNO", [LLSTRING(AttrSearchlightAlarm), LLSTRING(AttrSearchlightAlarmTooltip)], false]
+], {
+    params ["_results", "_pos"];
+    _results params ["_alarm"];
 
-
+    [QGVAR(startSearchlight), [_pos, _alarm]] call CBA_fnc_serverEvent;
+    [LLSTRING(SearchlightStarted)] call zen_common_fnc_showMessage;
+}, {
+    [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;
+}, _pos, QGVAR(searchlightDialog)] call zen_dialog_fnc_create;

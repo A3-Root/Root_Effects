@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="Briefing">
+        <Key ID="STR_root_effects_briefing_AttrMapActDist">
+            <Original>Refresh Distance</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapActDistTooltip">
+            <Original>Player distance in meters at which the feed keeps refreshing. Further away the map freezes to save performance.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapMarker">
+            <Original>Center Marker</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapMarkerTooltip">
+            <Original>Marker the map centers and stays on. Leave empty to center on the board position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapZoom">
+            <Original>Map Zoom</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapZoomTooltip">
+            <Original>Zoom of the map feed. Smaller values are closer.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableMarker">
+            <Original>Source Area Marker</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableMarkerTooltip">
+            <Original>Name of the rectangle or ellipse marker whose area is rebuilt on the table.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableResolution">
+            <Original>Terrain Resolution</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableResolutionTooltip">
+            <Original>Terrain sampling cells per table side. Higher values look better but build more cubes.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableScale">
+            <Original>Miniature Scale</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableScaleTooltip">
+            <Original>Scale multiplier of the miniature on the table.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableTerrain">
+            <Original>Model Terrain Relief</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableTerrainTooltip">
+            <Original>Rebuild the terrain heights and surface textures as a cube grid under the objects.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_MapStarted">
+            <Original>Briefing map placed!</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_ModuleMap">
+            <Original>Live Briefing Map</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_ModuleMapDesc">
+            <Original>Places a map board showing a live topographic feed, optionally following a marker.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_ModuleTable">
+            <Original>Briefing Table</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_ModuleTableDesc">
+            <Original>Builds a miniature diorama of a marker area on a table, including buildings, vegetation and terrain relief.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_NoMarker">
+            <Original>ERROR - Enter the name of an existing area marker.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_PlaceOnTable">
+            <Original>Place the module on a table object!</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_SettingCategoryName">
+            <Original>Briefing</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_SettingMap">
+            <Original>Enable Briefing Map Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_SettingMapInterval">
+            <Original>Map Refresh Interval</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_SettingMapIntervalTooltip">
+            <Original>Seconds between briefing map feed refreshes. Higher values improve FPS near the board.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_SettingMapTooltip">
+            <Original>Allow live briefing maps to be placed from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_SettingMaxTableObjects">
+            <Original>Maximum Table Objects</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_SettingMaxTableObjectsTooltip">
+            <Original>Upper limit on the number of miniature objects a briefing table may build. The biggest objects are kept first.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_SettingTable">
+            <Original>Enable Briefing Table Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_SettingTableTooltip">
+            <Original>Allow briefing tables to be built from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_TableStarted">
+            <Original>Briefing table under construction!</Original>
+        </Key>
+    </Package>
+</Project>

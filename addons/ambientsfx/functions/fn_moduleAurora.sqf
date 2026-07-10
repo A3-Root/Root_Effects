@@ -1,45 +1,40 @@
 #include "..\script_component.hpp"
 
-// ORIGINALLY CREATED BY ALIAS
-// MODIFIED BY ROOT 
-
-
 /*
-object_name - string, the name of the object you use as a source for the SFX
-[aurora_1] execvm "AL_ambientSFX\aurora.sqf";
-*/
+ * Author: Root, based on work by Aliascartoons
+ * Zeus module entry point for the aurora borealis. Opens the configuration
+ * dialog on the curator's machine and asks the server to start an aurora
+ * above the module position once confirmed.
+ *
+ * Arguments:
+ * 0: Module logic <OBJECT>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_logic] call root_effects_ambientsfx_fnc_moduleAurora
+ */
 
-// Only run on player machines
-if (!hasInterface) exitWith {};
+params [["_logic", objNull, [objNull]]];
 
-// If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith
-{
-    diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
-};
-
-params ["_logic"];
-
-private _auroraPos = getPosATL _logic;
-
+private _pos = getPosATL _logic;
 deleteVehicle _logic;
 
-["Ambient Aurora Setting", [
-	["EDIT", ["Aurora Object", "Classname of the object to used a source for the SFX."], ["Land_HelipadEmpty_F"]], 
-	["SLIDER", ["Aurora Altitude", "Altitude in meters where you want the Aurora."], [1, 4000, 500, 0]],
-	["SLIDER", ["Aurora Spawn Speed", "Time taken between each Aurora to spawn in."], [0.1, 20, 0.1, 1]]
-	], {
-		params ["_results", "_auroraPos"];
-		_results params ["_auroraClass", "_auroraAltitude", "_spawnInterval"];
-	
-		private _auroraObject = _auroraClass createVehicle _auroraPos;
+if (!hasInterface) exitWith {};
 
-		["Aurora Active!"] call zen_common_fnc_showMessage;
+if (!(["aurora"] call EFUNC(main,isEffectEnabled))) exitWith {
+    [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
+};
 
-		[_auroraObject, _auroraAltitude, _spawnInterval] remoteExec [QFUNC(auroraServer), 2];
-		
-	}, {
-		["Aborted"] call zen_common_fnc_showMessage;
-		playSound "FD_Start_F";
-	}, _auroraPos] call zen_dialog_fnc_create;
+[LLSTRING(ModuleAurora), [
+    ["SLIDER", [LLSTRING(AttrAuroraAltitude), LLSTRING(AttrAuroraAltitudeTooltip)], [1, 4000, 500, 0]]
+], {
+    params ["_results", "_pos"];
+    _results params ["_altitude"];
 
+    [QGVAR(startAurora), [_pos, _altitude]] call CBA_fnc_serverEvent;
+    [LLSTRING(AuroraStarted)] call zen_common_fnc_showMessage;
+}, {
+    [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;
+}, _pos, QGVAR(auroraDialog)] call zen_dialog_fnc_create;

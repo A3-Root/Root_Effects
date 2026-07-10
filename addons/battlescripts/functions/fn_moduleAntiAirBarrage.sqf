@@ -1,43 +1,46 @@
 #include "..\script_component.hpp"
 
-// ORIGINALLY CREATED BY ALIAS
-// MODIFIED BY ROOT 
+/*
+ * Author: Root, based on work by Aliascartoons
+ * Zeus module entry point for the anti air barrage. Opens the configuration
+ * dialog on the curator's machine and asks the server to start a new barrage
+ * instance at the module position once confirmed.
+ *
+ * Arguments:
+ * 0: Module logic <OBJECT>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_logic] call root_effects_battlescripts_fnc_moduleAntiAirBarrage
+ */
 
+params [["_logic", objNull, [objNull]]];
 
-// Only run on player machines
-if (!hasInterface) exitWith {};
-
-// If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith {
-    diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
-};
-
-params ["_logic"];
-
-private _aaaLoc = getPosATL _logic;
+private _pos = getPosATL _logic;
 deleteVehicle _logic;
 
-["AAA Barrage Settings",[
-	["EDIT",["AAA Barrage Object","Classname of the object used as the flaks for AAA Barrage."],["Land_HelipadEmpty_F"]],
-	["SLIDER:RADIUS",["AAA Barrage Radius","Radius in meters for the AAA Barrage Area of Effect."],[100,5000,500,0,_aaaLoc,[7,120,32,1]]],
-	["SLIDER",["AAA Barrage Altitude","Altitude in meters above terrain for the AAA effect."],[5,1000,150,0]],
-	["TOOLBOX:YESNO",["Make Barrage Lethal","If true, the barrage will be lethal and cause damage to entities near it."],true],
-	["SLIDER:PERCENT", ["Damage to Aircrafts", "Percentage amount of damage the AAA deals to aircrafts."], [0.01, 1, 0.05, 2]],
-	["SLIDER:PERCENT", ["Damage to Infantry", "Percentage amount of damage the AAA deals to infantry passing through or paradropping."], [0.01, 1, 0.2, 2]],
-	["SLIDER",["Fire Spread","Speed and Spread at which the barrage fires. Lower values results in faster rate of fire at shorter spread per burst."],[0.5,10,1,1]],
-	["TOOLBOX:YESNO",["Smoke Particles Only","If true, the barrage wil only display smoke from the explosion and not the explosion itself."], false]
-	],{
-		params ["_results", "_aaaLoc"];
-		_results params ["_aaaObject", "_aaaRadius", "_aaaHeight", "_islethal", "_aaaDmgVic", "_aaaDmgInf", "_aaaSpeed", "_smokesOnly"];
+if (!hasInterface) exitWith {};
 
-		private _aaaStart = _aaaObject createVehicle _aaaLoc;
+if (!(["aaa"] call EFUNC(main,isEffectEnabled))) exitWith {
+    [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
+};
 
-		["AAA Barrage Initiated!"] call zen_common_fnc_showMessage;
+[LLSTRING(ModuleAAA), [
+    ["SLIDER:RADIUS", [LLSTRING(AttrAaaRadius), LLSTRING(AttrAaaRadiusTooltip)], [100, 5000, 500, 0, _pos, [7, 120, 32, 1]]],
+    ["SLIDER", [LLSTRING(AttrAaaAltitude), LLSTRING(AttrAaaAltitudeTooltip)], [5, 1000, 150, 0]],
+    ["TOOLBOX:YESNO", [LLSTRING(AttrAaaLethal), LLSTRING(AttrAaaLethalTooltip)], true],
+    ["SLIDER:PERCENT", [LLSTRING(AttrAaaDmgAir), LLSTRING(AttrAaaDmgAirTooltip)], [0.01, 1, 0.05, 2]],
+    ["SLIDER:PERCENT", [LLSTRING(AttrAaaDmgInf), LLSTRING(AttrAaaDmgInfTooltip)], [0.01, 1, 0.2, 2]],
+    ["SLIDER", [LLSTRING(AttrAaaDelay), LLSTRING(AttrAaaDelayTooltip)], [0.5, 10, 1, 1]],
+    ["TOOLBOX:YESNO", [LLSTRING(AttrAaaSmokeOnly), LLSTRING(AttrAaaSmokeOnlyTooltip)], false]
+], {
+    params ["_results", "_pos"];
+    _results params ["_radius", "_altitude", "_lethal", "_damageAir", "_damageInf", "_burstDelay", "_smokeOnly"];
 
-		[_aaaStart, _aaaRadius, _aaaHeight, _aaaDmgVic, _islethal, _aaaSpeed, _aaaDmgInf, _smokesOnly] remoteExec [QFUNC(antiAirBarrageServer), 2];
-	},{
-		["Aborted"] call zen_common_fnc_showMessage;
-		playSound "FD_Start_F";
-	}, _aaaLoc] call zen_dialog_fnc_create;
-
-
+    [QGVAR(startAAA), [_pos, _radius, _altitude, _lethal, _damageAir, _damageInf, _burstDelay, _smokeOnly]] call CBA_fnc_serverEvent;
+    [LLSTRING(AaaStarted)] call zen_common_fnc_showMessage;
+}, {
+    [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;
+}, _pos, QGVAR(aaaDialog)] call zen_dialog_fnc_create;

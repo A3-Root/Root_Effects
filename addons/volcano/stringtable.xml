@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="Volcano">
+        <Key ID="STR_root_effects_volcano_AttrCraterLava">
+            <Original>Enable Crater Lava</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrCraterLavaTooltip">
+            <Original>Adds glowing lava, heat shimmer and boiling effects inside the caldera.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrDelay">
+            <Original>Eruption Delay</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrDelayTooltip">
+            <Original>Seconds between eruptions.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrEruption">
+            <Original>Enable Eruptions</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrEruptionTooltip">
+            <Original>Periodically erupt with random blast types and sounds.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrGear">
+            <Original>Protective Gear</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrGearTooltip">
+            <Original>Comma separated class names of items that count as protective gear near the crater. Units wearing all of them survive outside the crater itself.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrLavaFlow">
+            <Original>Enable Lava Flow</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrLavaFlowTooltip">
+            <Original>Glowing lava streams running downhill from the crater rim.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrLethal">
+            <Original>Enable Lethality</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrLethalTooltip">
+            <Original>Kills units inside the crater and unprotected units close to it. Respects the global damage setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrLightning">
+            <Original>Enable Cloud Lightning</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrLightningTooltip">
+            <Original>Random lightning discharges inside the ash cloud.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrRadius">
+            <Original>Crater Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrRadiusTooltip">
+            <Original>Radius of the volcano crater in meters. Match it to the hill the module is placed on; at least 50 meters is recommended.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_Configured">
+            <Original>Volcano configured and active!</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_ModuleVolcano">
+            <Original>Volcanic Eruption</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_ModuleVolcanoDesc">
+            <Original>Turns the module position into an active volcano with ash column, crater glow, optional eruptions, lava, cloud lightning and lethality.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_SettingCategoryName">
+            <Original>Volcano</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_SettingEnabled">
+            <Original>Enable Volcano Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_SettingEnabledTooltip">
+            <Original>Allow the volcano effect to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_SettingLethality">
+            <Original>Allow Volcano Lethality</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_SettingLethalityTooltip">
+            <Original>Permit the volcano to damage units. When disabled, the lethality option of placed modules is ignored.</Original>
+        </Key>
+    </Package>
+</Project>

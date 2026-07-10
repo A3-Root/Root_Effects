@@ -1,40 +1,47 @@
 #include "..\script_component.hpp"
 
-// ORIGINALLY CREATED BY ALIAS
-// MODIFIED BY ROOT 
+/*
+ * Author: Root, based on work by Aliascartoons
+ * Zeus module entry point for the artillery barrage. Opens the configuration
+ * dialog on the curator's machine and asks the server to start a new barrage
+ * instance at the module position once confirmed.
+ *
+ * Arguments:
+ * 0: Module logic <OBJECT>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_logic] call root_effects_battlescripts_fnc_moduleArtilleryBarrage
+ */
 
-// Only run on player machines
-if (!hasInterface) exitWith {};
+params [["_logic", objNull, [objNull]]];
 
-// If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith {
-    diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
-};
-
-params ["_logic"];
-
-private _groundLoc = getPosATL _logic;
+private _pos = getPosATL _logic;
 deleteVehicle _logic;
 
-["Ground Barrage Settings",[
-	["SLIDER:RADIUS",["Artillery Radius","Radius in meters for the Ground Barrage Area of Effect."],[100,5000,500,0,_groundLoc,[7,120,32,1]]],
-	["TOOLBOX:YESNO",["Shake and Sound Only","If true, only explosion sounds and camshake would be generated."],false],
-	["TOOLBOX:YESNO",["Non-Lethal Artillery","If true, the barrage will be non-lethal. Mutually Exclusive with Shake and Sound Only."],false],
-	["LIST", ["Explosion Type", "Choose the type of explosion created."], [["G_40mm_HE", "M_Mo82mmATLG", "Sh_120mm_APFSDS", "Sh_120mm_HE", "Sh_155mm_AMOS", "HelicopterExploSmall", "HelicopterExploBig", "Bo_GBU12LGB", "Bo_GBU12LGBMI10"], ["40mm High Explosive", "82mm High Explosive", "120mm Armor Piercing Fin Stabilized Discarding Sabot Tank Shell", "120mm High Explosive Shell", "155mm High Explosive Shell", "Small Helicopter Explosion", "Large Helicopter Explosion", "500lb GBU-12 (Type I)", "500lb GBU-12 (Type II)"], 0, 10]],
-	["SLIDER:PERCENT", ["Barrage Damage", "Percentage amount of damage the barrage deals."], [0.01, 1, 0.2, 2]],
-	["SLIDER",["Fire Delay","Seconds delay at which the barrage fires. Multiplied twice (1 seconds delay = 2 seconds in game). Lower values results in faster rate of fire."],[1,20,1,1]]
-	],{
-		params ["_results", "_groundLoc"];
-		_results params ["_groundRadius", "_soundOnly", "_nonLethal", "_groundType", "_groundDamage", "_groundSpeed"];
-		
-		private _groundStart = "Land_HelipadEmpty_F" createVehicle _groundLoc;
+if (!hasInterface) exitWith {};
 
-		["Artillery Barrage Initiated!"] call zen_common_fnc_showMessage;
+if (!(["artillery"] call EFUNC(main,isEffectEnabled))) exitWith {
+    [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
+};
 
-		[_groundStart, _groundRadius, _groundDamage, _groundSpeed, _groundType, _soundOnly, _nonLethal] remoteExec [QFUNC(artilleryBarrageServer), 2];
-	},{
-		["Aborted"] call zen_common_fnc_showMessage;
-		playSound "FD_Start_F";
-	}, _groundLoc] call zen_dialog_fnc_create;
+[LLSTRING(ModuleArtillery), [
+    ["SLIDER:RADIUS", [LLSTRING(AttrArtyRadius), LLSTRING(AttrArtyRadiusTooltip)], [100, 5000, 500, 0, _pos, [7, 120, 32, 1]]],
+    ["LIST", [LLSTRING(AttrArtyMode), LLSTRING(AttrArtyModeTooltip)], [[0, 1, 2], [LLSTRING(ArtyModeLethal), LLSTRING(ArtyModeNonLethal), LLSTRING(ArtyModeSoundOnly)], 0, 3]],
+    ["LIST", [LLSTRING(AttrArtyShell), LLSTRING(AttrArtyShellTooltip)], [
+        ["G_40mm_HE", "M_Mo_82mm_AT_LG", "Sh_120mm_APFSDS", "Sh_120mm_HE", "Sh_155mm_AMOS", "HelicopterExploSmall", "HelicopterExploBig", "Bo_GBU12_LGB", "Bo_GBU12_LGB_MI10"],
+        [LLSTRING(ArtyShell40mm), LLSTRING(ArtyShell82mm), LLSTRING(ArtyShell120sabot), LLSTRING(ArtyShell120he), LLSTRING(ArtyShell155he), LLSTRING(ArtyShellHeliSmall), LLSTRING(ArtyShellHeliBig), LLSTRING(ArtyShellGbu1), LLSTRING(ArtyShellGbu2)],
+        4, 10
+    ]],
+    ["SLIDER", [LLSTRING(AttrArtyDelay), LLSTRING(AttrArtyDelayTooltip)], [1, 20, 3, 1]]
+], {
+    params ["_results", "_pos"];
+    _results params ["_radius", "_mode", "_shellClass", "_fireDelay"];
 
-
+    [QGVAR(startArtillery), [_pos, _radius, _mode, _shellClass, _fireDelay]] call CBA_fnc_serverEvent;
+    [LLSTRING(ArtilleryStarted)] call zen_common_fnc_showMessage;
+}, {
+    [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;
+}, _pos, QGVAR(artilleryDialog)] call zen_dialog_fnc_create;

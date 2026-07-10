@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="BattleScripts">
+        <Key ID="STR_root_effects_battlescripts_AaaStarted">
+            <Original>AAA barrage initiated!</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtilleryStarted">
+            <Original>Artillery barrage initiated!</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyModeLethal">
+            <Original>Lethal (real shells)</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyModeNonLethal">
+            <Original>Non-lethal (visuals only)</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyModeSoundOnly">
+            <Original>Sound and shake only</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyShell120he">
+            <Original>120mm High Explosive Shell</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyShell120sabot">
+            <Original>120mm APFSDS Tank Shell</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyShell155he">
+            <Original>155mm High Explosive Shell</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyShell40mm">
+            <Original>40mm High Explosive</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyShell82mm">
+            <Original>82mm Mortar Shell</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyShellGbu1">
+            <Original>500lb GBU-12 (Type I)</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyShellGbu2">
+            <Original>500lb GBU-12 (Type II)</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyShellHeliBig">
+            <Original>Large Helicopter Explosion</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ArtyShellHeliSmall">
+            <Original>Small Helicopter Explosion</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaAltitude">
+            <Original>Barrage Altitude</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaAltitudeTooltip">
+            <Original>Altitude in meters above terrain at which the flak detonates.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaDelay">
+            <Original>Burst Delay</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaDelayTooltip">
+            <Original>Seconds between flak bursts. Lower values mean a denser barrage.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaDmgAir">
+            <Original>Damage to Aircraft</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaDmgAirTooltip">
+            <Original>Maximum damage added per burst to each hitpoint of aircraft inside the zone.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaDmgInf">
+            <Original>Damage to Infantry</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaDmgInfTooltip">
+            <Original>Damage added per burst to infantry passing through or paradropping inside the zone.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaLethal">
+            <Original>Lethal Barrage</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaLethalTooltip">
+            <Original>Damage aircraft and infantry inside the barrage zone. Respects the global damage setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaRadius">
+            <Original>Barrage Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaRadiusTooltip">
+            <Original>Radius in meters of the flak barrage area of effect.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaSmokeOnly">
+            <Original>Smoke Particles Only</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaSmokeOnlyTooltip">
+            <Original>Only show smoke from the detonations without the flash.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrArtyDelay">
+            <Original>Fire Delay</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrArtyDelayTooltip">
+            <Original>Seconds between impacts. Lower values mean a faster rate of fire.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrArtyMode">
+            <Original>Barrage Mode</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrArtyModeTooltip">
+            <Original>Lethal spawns real shells (0), non-lethal shows harmless explosions (1), sound-only plays impacts and camera shake (2).</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrArtyRadius">
+            <Original>Barrage Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrArtyRadiusTooltip">
+            <Original>Radius in meters of the artillery barrage area of effect.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrArtyShell">
+            <Original>Shell Type</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrArtyShellTooltip">
+            <Original>Ammo class spawned as the falling shell in lethal mode.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrMissilesDelay">
+            <Original>Launch Delay</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrMissilesDelayTooltip">
+            <Original>Seconds between launches.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrMissilesSafeDist">
+            <Original>Minimum Safe Distance</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrMissilesSafeDistTooltip">
+            <Original>Players closer than this many meters do not see rockets launch.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrSearchlightAlarm">
+            <Original>Enable Alarm</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrSearchlightAlarmTooltip">
+            <Original>Plays a recurring air raid alarm at the searchlight position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrTracersActDist">
+            <Original>Activation Distance</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrTracersActDistTooltip">
+            <Original>Players closer than this many meters do not see tracers spawn.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrTracersBlue">
+            <Original>Tracer Color Blue</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrTracersBlueTooltip">
+            <Original>Blue component of the tracer color, 0 to 1.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrTracersColor">
+            <Original>Tracer Color</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrTracersColorTooltip">
+            <Original>Color of the tracer glow.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrTracersGreen">
+            <Original>Tracer Color Green</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrTracersGreenTooltip">
+            <Original>Green component of the tracer color, 0 to 1.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrTracersRed">
+            <Original>Tracer Color Red</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrTracersRedTooltip">
+            <Original>Red component of the tracer color, 0 to 1.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_MissilesStarted">
+            <Original>Missile launcher initiated!</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ModuleAAA">
+            <Original>Anti Air (AA) Barrage</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ModuleAAADesc">
+            <Original>Ambient flak barrage filling the sky above the module with detonations; optionally damages aircraft and infantry inside the zone.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ModuleArtillery">
+            <Original>Artillery Barrage</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ModuleArtilleryDesc">
+            <Original>Recurring artillery impacts in the area around the module; lethal with real shells, or visual and audio only.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ModuleMissiles">
+            <Original>Missile Launcher</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ModuleMissilesDesc">
+            <Original>Ambient rockets launching skyward from the module position at a fixed interval.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ModuleSearchlight">
+            <Original>Searchlight</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ModuleSearchlightDesc">
+            <Original>Volumetric searchlight beam sweeping the sky above the module position, with optional air raid alarm.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ModuleTracers">
+            <Original>Tracer Fire</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_ModuleTracersDesc">
+            <Original>Ambient tracer volleys rising from the module position, visible only to players outside the activation distance.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SearchlightStarted">
+            <Original>Searchlight initiated!</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingAAA">
+            <Original>Enable AAA Barrage Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingAAATooltip">
+            <Original>Allow the anti air barrage to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingAllowDamage">
+            <Original>Allow Battle Effect Damage</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingAllowDamageTooltip">
+            <Original>Permit the AAA and artillery barrages to damage units. When disabled, lethal options of placed modules are ignored.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingArtillery">
+            <Original>Enable Artillery Barrage Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingArtilleryTooltip">
+            <Original>Allow the artillery barrage to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingCategoryName">
+            <Original>Battle Effects</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingMissiles">
+            <Original>Enable Missile Launcher Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingMissilesTooltip">
+            <Original>Allow the missile launcher to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingSearchlight">
+            <Original>Enable Searchlight Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingSearchlightTooltip">
+            <Original>Allow the searchlight to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingTracers">
+            <Original>Enable Tracer Fire Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_SettingTracersTooltip">
+            <Original>Allow the tracer fire to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_TracersStarted">
+            <Original>Tracer fire initiated!</Original>
+        </Key>
+    </Package>
+</Project>

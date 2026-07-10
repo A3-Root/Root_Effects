@@ -1,95 +1,81 @@
 #include "..\script_component.hpp"
 
-// CREATED BY ROOT
-// Only run on player machines
-if (!hasInterface) exitWith {};
-// If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith {
-    diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
-};
+/*
+ * Author: Root
+ * Zeus module entry point for the AAN news article. Opens the article editor
+ * dialog on the curator's machine, builds the article data once and sends it
+ * to the machines of all selected players, where it is shown and optionally
+ * archived in their diary.
+ *
+ * Arguments:
+ * 0: Module logic <OBJECT>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_logic] call root_effects_news_fnc_moduleNewsArticle
+ */
 
-params ["_logic"];
-
-if (isNil "NEWS_markerIndex") then { NEWS_markerIndex = 0 };
-NEWS_markerIndex = NEWS_markerIndex + 1;
+params [["_logic", objNull, [objNull]]];
 
 deleteVehicle _logic;
 
-["AAN News Article Settings", [
-	["EDIT", ["Article Title", "Title of the article."], ["ARMA 3 - The Frontier of Armaverse"]],
-	["EDIT", ["Article Editor", "Author/Editor of the article."], ["Root"]],
-	["EDIT", ["Article Date", "Date of the article separated by '/'. Format: YYYY/M/DD HH:MM"], ["2035/2/24 11:38"]],
-	["EDIT", ["Article Timezone", "Timezone of the article."], ["CET"]],
-	["EDIT", ["Article Sub-headline", "Sub-heading of the article in bold."], ["A look into the universe of ARMA and how it came to be!"]],
-	["EDIT", ["Article Main Image", "Path to the image file to be used in the article. Use "" for no image."], ["\a3\Missions_FOrange\Data\Img\orange_overviewCa.paa"]],
-	["EDIT", ["Article Main Image Description", "Description of the main image used in the article."], ["ARMA 3 Cover Image by Bohemia Interactive"]],
-	["EDIT:MULTI", ["Article Body", "The body of the article. Insert your text here."], ["Arma 3 (stylized as ArmA III) is an open world realism-based military tactical shooter video game developed and published by Bohemia Interactive exclusively through the Steam distribution platform. It is the third main entry in the Arma series, and the eighth installment overall. Arma 3 was released for Microsoft Windows on September 12, 2013, and for macOS and Linux on August 31, 2015. Arma 3 was released to generally favorable reception, with praise toward the visuals and immersive realism, but criticism toward the difficulty for new players and the lack of singleplayer content on release. Arma 3 has been actively maintained and expanded by Bohemia Interactive and publishing partners, with almost twenty significant updates and downloadable content (DLC) releases since 2014. Almost a decade since its release, Arma 3 maintains a substantial playerbase and an active modding community.", {}, 7]],
-	["EDIT:MULTI", ["Article Body (Subscription)", "The content present here will be gradually hidden behind an article 'subscription' screen."], ["Arma 3 primarily takes place in the mid-2030s, on the fictional islands of Altis and Stratis in the South Mediterranean Sea. The game's expansions are set on the South Pacific island of Tanoa; the Mediterranean island of Malden; the European country of Livonia; the Western Saharan country of Argana; and several real-life locations, including parts of Mainland Southeast Asia, Germany, and Eastern Europe. The game's maps feature photorealistic terrain and water environments. The game features multiple singleplayer and co-op campaigns, most of which follow various perspectives before, during, and after a conflict fought in the fictional Republic of Altis and Stratis.", {}, 7]],
-	["EDIT", ["Article Editor Image", "Path to the image file to be used as the editor of the article. Use "" for no image."], ["\a3\Missions_FOrange\Data\Img\avatar_journalistCa.paa"]],
-	["EDIT:MULTI", ["Article Editor Info", "Description of the editor/author of the article."], ["Root is our Senior Reporter on Military and Politics. Currently, he is touring various conflict zones with the 77th JSOC as part of the UNSC War Report project. You can learn more about it at https://77th-jsoc.com", {}, 3]],
-	["CHECKBOX", ["Fade to Article", "If checked, creates a 'Black' fade with custom text."], false],
-	["EDIT", ["Fade Title", "Text to be used during fade."], ["Fade Title"]],
-	["CHECKBOX", ["Enable Diary Entry", "If checked, a corresponding diary entry will be created."], false],
-	["EDIT", ["Diary Tab", "Will store the article under this tab in the diary. If none exists, a new one will be created."], ["AAN Reports"]],
-	["CHECKBOX", ["Display Article upon Exit", "If checked, will display the Artile when exiting this menu post confirmation."], false],
-	["OWNERS", ["Select Units", "Select the Side(s) / Group(s) / Unit(s) you want display the article."], [[], [], [], 0], true]
-	], {
-		params ["_articleresults"];
-		_articleresults params ["_title", "_editor", "_date", "_timezone", "_subhead", "_mainImg", "_mainImgDesc", "_body", "_bodyLocked", "_editorImg", "_editorInfo", "_enableFade", "_fadeTitle", "_enableDiary", "_diaryTitle", "_displayNow", "_selected"];
-		_selected params ["_sides", "_groups", "_players"];
-		private _newDate = _date splitString ",-/. :";
-		private _tempvar = false;
-		private _lockMsg = format ["%1%2%3%4%5", "You have reached your Monthly Free Access Limit", "<br/>", "---------------------------------------------------------------", "<br/>", "Subscribe to continue reading."];
-		if (_diaryTitle == "") then { _diaryTitle = "AAN Reports" };
-		if (!_tempvar && {_sides isEqualTo []} && {_groups isEqualTo []} && {_players isEqualTo []}) exitWith {
-				["ERROR - Select a side/group/unit"] call zen_common_fnc_showMessage;
-			};
-		// forEach ((call CBA_fnc_players) select {(side _x) in _sides || {(group _x) in _groups} || {_x in _players}})
-		{
-			if (_displayNow) then 
-			{
-				if (_enableFade) then 
-				{
-					[_fadeTitle] spawn 
-					{
-						[0,"BLACK",4,0] spawn BIS_fnc_FadeEffect;
-						[
-							[
-								["%1","<t align = 'center' shadow = '1' size = '1.2' font='PuristaBold'>%1</t>"]
-							]
-						] spawn BIS_fnc_TypeText;
-						[1,"BLACK",0.1,0] spawn BIS_fnc_FadeEffect;
-					}
-				};			
-				
-				[_title, _editor, _newDate, _timezone, _subhead, _mainImg, _mainImgDesc, _body, _bodyLocked, _lockMsg, _editorImg, _editorInfo] spawn
-				{
-					params ["_title", "_editor", "_newDate", "_timezone", "_subhead", "_mainImg", "_mainImgDesc", "_body", "_bodyLocked", "_lockMsg", "_editorImg", "_editorInfo"];
-					disableSerialization;
-					[
-						[
-							["title", _title], 
-							["meta",[_editor,[parseNumber (_newDate select 0), parseNumber (_newDate select 1), parseNumber (_newDate select 2), parseNumber (_newDate select 3), parseNumber (_newDate select 4)],_timezone]],
-							["textbold",_subhead],
-							["image",[_mainImg,_mainImgDesc]],
-							["text",_body],
-							["textlocked",[_bodyLocked,_lockMsg]],
-							["author",[_editorImg,_editorInfo]]
-						],findDisplay 46,true
-					] call BIS_fnc_ShowAANArticle;
-				};
-			};
-		} forEach ((call CBA_fnc_players) select {(side _x) in _sides || {(group _x) in _groups} || {_x in _players}});
-		if (_enableDiary) then 
-		{
-			[_title, _editor, _newDate, _timezone, _subhead, _mainImg, _mainImgDesc, _body, _bodyLocked, _lockMsg, _editorImg, _editorInfo, _sides, _groups, _players, _diaryTitle] remoteExec [QFUNC(broadcastNewsArticle), 2];
-		};
-		["News Article Created"] call zen_common_fnc_showMessage;
-	}, 
-	{
-		["Aborted"] call zen_common_fnc_showMessage;
-		playSound "FD_Start_F";
-	}
-] call zen_dialog_fnc_create;
+if (!hasInterface) exitWith {};
 
+if (!(["news"] call EFUNC(main,isEffectEnabled))) exitWith {
+    [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
+};
 
+[LLSTRING(ModuleNews), [
+    ["EDIT", [LLSTRING(AttrTitle), LLSTRING(AttrTitleTooltip)], ["ARMA 3 - The Frontier of Armaverse"]],
+    ["EDIT", [LLSTRING(AttrEditor), LLSTRING(AttrEditorTooltip)], ["Root"]],
+    ["EDIT", [LLSTRING(AttrDate), LLSTRING(AttrDateTooltip)], ["2035/2/24 11:38"]],
+    ["EDIT", [LLSTRING(AttrTimezone), LLSTRING(AttrTimezoneTooltip)], ["CET"]],
+    ["EDIT", [LLSTRING(AttrSubhead), LLSTRING(AttrSubheadTooltip)], [""]],
+    ["EDIT", [LLSTRING(AttrImage), LLSTRING(AttrImageTooltip)], [""]],
+    ["EDIT", [LLSTRING(AttrImageDesc), LLSTRING(AttrImageDescTooltip)], [""]],
+    ["EDIT:MULTI", [LLSTRING(AttrBody), LLSTRING(AttrBodyTooltip)], ["", {}, 7]],
+    ["EDIT:MULTI", [LLSTRING(AttrBodyLocked), LLSTRING(AttrBodyLockedTooltip)], ["", {}, 7]],
+    ["EDIT", [LLSTRING(AttrEditorImg), LLSTRING(AttrEditorImgTooltip)], [""]],
+    ["EDIT:MULTI", [LLSTRING(AttrEditorInfo), LLSTRING(AttrEditorInfoTooltip)], ["", {}, 3]],
+    ["CHECKBOX", [LLSTRING(AttrFade), LLSTRING(AttrFadeTooltip)], false],
+    ["EDIT", [LLSTRING(AttrFadeTitle), LLSTRING(AttrFadeTitleTooltip)], [""]],
+    ["CHECKBOX", [LLSTRING(AttrDiary), LLSTRING(AttrDiaryTooltip)], false],
+    ["EDIT", [LLSTRING(AttrDiaryTab), LLSTRING(AttrDiaryTabTooltip)], ["AAN Reports"]],
+    ["CHECKBOX", [LLSTRING(AttrShowNow), LLSTRING(AttrShowNowTooltip)], true],
+    ["OWNERS", [LLSTRING(AttrTargets), LLSTRING(AttrTargetsTooltip)], [[], [], [], 0], true]
+], {
+    params ["_results"];
+    _results params ["_title", "_editor", "_date", "_timezone", "_subhead", "_mainImg", "_mainImgDesc", "_body", "_bodyLocked", "_editorImg", "_editorInfo", "_enableFade", "_fadeTitle", "_enableDiary", "_diaryTab", "_showNow", "_selected"];
+    _selected params ["_sides", "_groups", "_players"];
+
+    if (_sides isEqualTo [] && {_groups isEqualTo []} && {_players isEqualTo []}) exitWith {
+        [LLSTRING(NoSelection)] call zen_common_fnc_showMessage;
+    };
+
+    private _targets = (call CBA_fnc_players) select {
+        !(_x isKindOf "VirtualMan_F")
+        && {(side _x) in _sides || {(group _x) in _groups} || {_x in _players}}
+    };
+    if (_targets isEqualTo []) exitWith {
+        [LLSTRING(NoSelection)] call zen_common_fnc_showMessage;
+    };
+
+    if (_diaryTab isEqualTo "") then {
+        _diaryTab = "AAN Reports";
+    };
+
+    private _dateParts = (_date splitString ",-/. :") apply {parseNumber _x};
+    while {count _dateParts < 5} do {
+        _dateParts pushBack 0;
+    };
+
+    private _articleData = [_title, _editor, _dateParts select [0, 5], _timezone, _subhead, _mainImg, _mainImgDesc, _body, _bodyLocked, _editorImg, _editorInfo];
+    private _articleId = format [QGVAR(article_%1_%2), clientOwner, floor CBA_missionTime];
+
+    [QGVAR(show), [_articleId, _articleData, _showNow, _enableFade, _fadeTitle, _enableDiary, _diaryTab], _targets] call CBA_fnc_targetEvent;
+    [LLSTRING(ArticleSent)] call zen_common_fnc_showMessage;
+}, {
+    [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;
+}, [], QGVAR(dialog)] call zen_dialog_fnc_create;

@@ -1,65 +1,51 @@
 #include "script_component.hpp"
 
-class CfgPatches
-{
-	class root_effects_volcano
-	{
-		name = COMPONENT_NAME;
-		author = "Root";
-		authors[] = {
-			"Root",
-			"Aliascartoons"
-		};
-		url = "https://github.com/A3-Root/Root_Effects";
-		addonRootClass = "root_effects_main";
-		requiredAddons[] = {"A3_Modules_F_Curator", "cba_main", "root_effects_main", "zen_custom_modules"};
-		requiredVersion = REQUIRED_VERSION;
-		units[] = {"Volcano_Module"};
-		weapons[] = {};
-	};
+class CfgPatches {
+    class ADDON {
+        name = COMPONENT_NAME;
+        author = "Root";
+        authors[] = {"Root", "Aliascartoons"};
+        url = "https://github.com/A3-Root/Root_Effects";
+        addonRootClass = "root_effects_main";
+        requiredVersion = REQUIRED_VERSION;
+        units[] = {"ROOT_Volcano_ModuleZeus", "ROOT_Volcano_Module3DEN"};
+        weapons[] = {};
+        requiredAddons[] = {
+            "root_effects_main",
+            "A3_Modules_F_Curator",
+            "3DEN",
+            "cba_main",
+            "zen_custom_modules"
+        };
+    };
 };
 
-class CfgFunctions
-{
-	class root_effects_volcano
-	{
-		tag = "root_effects_volcano";
-		class RootVolcanoCategory
-		{
-			file = QPATHTOF(functions);
-			class moduleVolcanoEruption {};
-			class volcanoBlastPuff {};
-			class volcanoCraterEffects {};
-			class volcanoEruptionEffects {};
-			class volcanoLightningEffects {};
-			class volcanoLavaFlow {};
-			class volcanoEruptionServer {};
-			class volcanoSmokePuff {};
-			class volcanoRockTrail {};
-			class volcanoSparkBurst {};
-			class volcanoShrapnelBurst {};
-			class volcanoSmokeColumn {};
-			class volcanoUnitDamage {};
-		};
-	};
+class Extended_PreInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_preInit));
+    };
 };
 
-class CfgFactionClasses
-{
-	class NO_CATEGORY;
-	class ROOT_EFFECTS : NO_CATEGORY {
-		displayName = CSTRING(CategoryName);
-	};
+class Extended_PostInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_postInit));
+    };
 };
 
-class CfgVehicles {
-    class zen_modules_moduleBase;
-	class Volcano_Module: zen_modules_moduleBase
-	{
-		author = "Root";
-		_generalMacro = "Volcano_Module";
-		category = "ROOT_EFFECTS";
-		function = "root_effects_volcano_fnc_moduleVolcanoEruption";
-		displayName = CSTRING(ModuleVolcano);
-	};
+class CfgFunctions {
+    class ADDON {
+        tag = QUOTE(ADDON);
+        class RootVolcanoCategory {
+            file = QPATHTOF(functions);
+            class moduleVolcano {};
+            class moduleVolcano3DEN {};
+            class volcanoStart {};
+            class volcanoStartLocal {};
+            class volcanoBurstLocal {};
+            class volcanoIsProtected {};
+        };
+    };
 };
+
+#include "CfgVehicles.hpp"
+#include "CfgSounds.hpp"

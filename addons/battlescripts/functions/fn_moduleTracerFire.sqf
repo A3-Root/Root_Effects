@@ -1,44 +1,41 @@
 #include "..\script_component.hpp"
 
-// ORIGINALLY CREATED BY ALIAS
-// MODIFIED BY ROOT 
+/*
+ * Author: Root, based on work by Aliascartoons
+ * Zeus module entry point for the ambient tracer fire. Opens the
+ * configuration dialog on the curator's machine and asks the server to start
+ * a new tracer source at the module position once confirmed.
+ *
+ * Arguments:
+ * 0: Module logic <OBJECT>
+ *
+ * Return Value:
+ * None
+ *
+ * Example:
+ * [_logic] call root_effects_battlescripts_fnc_moduleTracerFire
+ */
 
-// Only run on player machines
-if (!hasInterface) exitWith {};
+params [["_logic", objNull, [objNull]]];
 
-// If ZEN is not loaded, do not start script
-if !(isClass (configFile >> "CfgPatches" >> "zen_custom_modules")) exitWith
-{
-    diag_log "******CBA and/or ZEN not detected. They are required for this mod.";
-};
-
-params ["_logic"];
-
-private _tracersLoc = getPosATL _logic;
-private _radiusPos = getPosATL _logic;
+private _pos = getPosATL _logic;
 deleteVehicle _logic;
 
-["Tracer Settings",[
-	["EDIT",["Tracer Object","Classname of the object used as the weapon generator for Tracers."],["Land_HelipadEmpty_F"]],
-	["SLIDER:RADIUS",["Activation Distance","Radius is meters for players to be away to generate tracers."],[1,1000,150,0,_radiusPos,[7,120,32,1]]],
-	["COLOR",["Tracer Color","Color of the Tracers."],[1,1,1]]
-	
-	],{
-		params ["_results", "_tracersLoc"];
-		_results params ["_tracersObject", "_activationDistance", "_tracerColor"];
-		
-		private _tracersStart = _tracersObject createVehicle _tracersLoc;
-		private _colorRed = _tracerColor select 0;
-		private _colorGreen = _tracerColor select 1;
-		private _colorBlue = _tracerColor select 2;
+if (!hasInterface) exitWith {};
 
+if (!(["tracers"] call EFUNC(main,isEffectEnabled))) exitWith {
+    [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
+};
 
+[LLSTRING(ModuleTracers), [
+    ["SLIDER:RADIUS", [LLSTRING(AttrTracersActDist), LLSTRING(AttrTracersActDistTooltip)], [1, 1000, 150, 0, _pos, [7, 120, 32, 1]]],
+    ["COLOR", [LLSTRING(AttrTracersColor), LLSTRING(AttrTracersColorTooltip)], [1, 1, 1]]
+], {
+    params ["_results", "_pos"];
+    _results params ["_activationDistance", "_color"];
 
-		["Tracers Initiated!"] call zen_common_fnc_showMessage;
-
-		[_tracersStart, _colorRed, _colorGreen, _colorBlue, _activationDistance] remoteExec [QFUNC(tracerFireServer), 2];
-	},{
-		["Aborted"] call zen_common_fnc_showMessage;
-		playSound "FD_Start_F";
-	}, _tracersLoc] call zen_dialog_fnc_create;
-
+    [QGVAR(startTracers), [_pos, _activationDistance, _color]] call CBA_fnc_serverEvent;
+    [LLSTRING(TracersStarted)] call zen_common_fnc_showMessage;
+}, {
+    [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;
+}, _pos, QGVAR(tracersDialog)] call zen_dialog_fnc_create;

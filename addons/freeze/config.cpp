@@ -1,57 +1,48 @@
 #include "script_component.hpp"
 
-class CfgPatches
-{
-	class root_effects_freeze
-	{
-		name = COMPONENT_NAME;
-		author = "Root";
-		authors[] = {
-			"Root",
-			"Aliascartoons"
-		};
-		url = "https://github.com/A3-Root/Root_Effects";
-		addonRootClass = "root_effects_main";
-		requiredAddons[] = {"A3_Modules_F_Curator", "cba_main", "root_effects_main", "zen_custom_modules"};
-		requiredVersion = REQUIRED_VERSION;
-		units[] = {"Freeze_Module"};
-		weapons[] = {};
-	};
+class CfgPatches {
+    class ADDON {
+        name = COMPONENT_NAME;
+        author = "Root";
+        authors[] = {"Root", "johnb43"};
+        url = "https://github.com/A3-Root/Root_Effects";
+        addonRootClass = "root_effects_main";
+        requiredVersion = REQUIRED_VERSION;
+        units[] = {"ROOT_Freeze_ModuleZeus", "ROOT_Freeze_Module3DEN"};
+        weapons[] = {};
+        requiredAddons[] = {
+            "root_effects_main",
+            "A3_Modules_F_Curator",
+            "3DEN",
+            "cba_main",
+            "zen_custom_modules"
+        };
+    };
 };
 
-
-class CfgFunctions
-{
-	class root_effects_freeze
-	{
-		tag = "root_effects_freeze";
-		class RootFreezeCategory
-		{
-			file = QPATHTOF(functions);
-			class moduleFreezePlayers {};
-			class freezePlayersServer {};
-		};
-	};
+class Extended_PreInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_preInit));
+    };
 };
 
-
-class CfgFactionClasses
-{
-	class NO_CATEGORY;
-	class ROOT_EFFECTS : NO_CATEGORY {
-		displayName = CSTRING(CategoryName);
-	};
+class Extended_PostInit_EventHandlers {
+    class ADDON {
+        init = QUOTE(call COMPILE_FILE(XEH_postInit));
+    };
 };
 
-class CfgVehicles {
-    class zen_modules_moduleBase;
-	class Freeze_Module: zen_modules_moduleBase
-	{
-		author = "Root";
-		_generalMacro = "Freeze_Module";
-		curatorCanAttach = 1;
-		category = "ROOT_EFFECTS";
-		function = "root_effects_freeze_fnc_moduleFreezePlayers";
-		displayName = CSTRING(ModuleFreeze);
-	};
+class CfgFunctions {
+    class ADDON {
+        tag = QUOTE(ADDON);
+        class RootFreezeCategory {
+            file = QPATHTOF(functions);
+            class moduleFreezePlayers {};
+            class moduleFreezePlayers3DEN {};
+            class freezeApply {};
+            class freezeLocal {};
+        };
+    };
 };
+
+#include "CfgVehicles.hpp"

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="Freeze">
+        <Key ID="STR_root_effects_freeze_AttrAnim">
+            <Original>Freeze Animation</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrAnimTooltip">
+            <Original>Class name of the looping animation to play.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrFreeze">
+            <Original>Freeze</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrFreezeTooltip">
+            <Original>Freeze the selected units. When disabled, previously frozen units are unfrozen instead.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrTargets">
+            <Original>Select Units</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrTargetsTooltip">
+            <Original>Sides, groups or units to freeze or unfreeze.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrUseAnim">
+            <Original>Use Animation</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrUseAnimTooltip">
+            <Original>Freeze by playing a looping animation instead of stopping the simulation. Must also be enabled to unfreeze units frozen with an animation.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_FrozeCount">
+            <Original>Freezing %1 players.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_ModuleFreeze">
+            <Original>Freeze Players</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_ModuleFreezeDesc">
+            <Original>Freezes or unfreezes the synchronized units, either by stopping their simulation or by locking them into a looping animation.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_NoSelection">
+            <Original>ERROR - Select a side, group or unit.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_SettingCategoryName">
+            <Original>Freeze</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_SettingEnabled">
+            <Original>Enable Freeze Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_SettingEnabledTooltip">
+            <Original>Allow players to be frozen from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_UnfrozeCount">
+            <Original>Unfreezing %1 players.</Original>
+        </Key>
+    </Package>
+</Project>
