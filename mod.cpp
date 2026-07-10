@@ -1,0 +1,13 @@
+name = "Root's Effects";
+author = "Root";
+picture = "root_effects_logo.paa";
+logo = "root_effects_logo.paa";
+logoOver = "root_effects_logo.paa";
+logoSmall = "root_effects_logo.paa";
+tooltip = "Root's Effects";
+tooltipOwned = "Root's Effects";
+action = "https://github.com/A3-Root/Root_Effects";
+actionName = "Github";
+overview = "Effects addon for Zeus and 3DEN based on the showcase by Aliascartoons. Rebuilt on CBA with per-effect modules, settings and new effects. Maintained and published by Root.";
+hidePicture = 0;
+hideName = 0;

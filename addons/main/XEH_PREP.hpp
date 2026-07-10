@@ -1,0 +1,11 @@
+#undef PREP
+#define PREP(fncName) [QPATHTOF(functions\DOUBLES(fn,fncName).sqf), QFUNC(fncName)] call CBA_fnc_compileFunction
+
+PREP(registerEffect);
+PREP(startEffect);
+PREP(stopEffect);
+PREP(doDamage);
+PREP(isEffectEnabled);
+PREP(log);
+PREP(moduleTerminate);
+PREP(terminateDialog);

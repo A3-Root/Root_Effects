@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="Emp">
+        <Key ID="STR_root_effects_emp_AttrDuration">
+            <Original>Interference Duration</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDurationTooltip">
+            <Original>Seconds the electrical interference lasts.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFuelDrain">
+            <Original>Fuel Drain</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFuelDrainTooltip">
+            <Original>Fraction of fuel drained from vehicles inside the radius.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrHud">
+            <Original>Distort Player Vision</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrHudTooltip">
+            <Original>Players inside the radius suffer flickering visual interference.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrKillEngines">
+            <Original>Cut Vehicle Engines</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrKillEnginesTooltip">
+            <Original>Vehicle engines inside the radius cut out and stay dead for the interference duration. Respects the server's vehicle kill setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRadius">
+            <Original>Pulse Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRadiusTooltip">
+            <Original>Radius in meters of the pulse.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModuleEmp">
+            <Original>EMP Pulse</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModuleEmpDesc">
+            <Original>An electromagnetic pulse that cuts vehicle engines and distorts the vision of players inside the radius.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingCategoryName">
+            <Original>EMP</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingEnabled">
+            <Original>Enable EMP Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingEnabledTooltip">
+            <Original>Allow EMP pulses to be fired from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingVehicleKill">
+            <Original>Allow Engine Cutout</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingVehicleKillTooltip">
+            <Original>Permit EMP pulses to cut vehicle engines. When disabled, the engine option of fired pulses is ignored.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_Started">
+            <Original>EMP pulse detonated!</Original>
+        </Key>
+    </Package>
+</Project>

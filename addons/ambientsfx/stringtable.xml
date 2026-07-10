@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="AmbientSfx">
+        <Key ID="STR_root_effects_ambientsfx_AttrAuroraAltitude">
+            <Original>Aurora Altitude</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrAuroraAltitudeTooltip">
+            <Original>Altitude in meters of the aurora above terrain.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrBirdCount">
+            <Original>Bird Count</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrBirdCountTooltip">
+            <Original>Number of birds in the flock. Capped by the server's bird limit setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrBirdRadius">
+            <Original>Flock Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrBirdRadiusTooltip">
+            <Original>Radius in meters the flock roams around the module position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrFirefliesActDist">
+            <Original>Activation Distance</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrFirefliesActDistTooltip">
+            <Original>Player distance in meters at which the fireflies appear.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrFirefliesAltitude">
+            <Original>Fireflies Altitude</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrFirefliesAltitudeTooltip">
+            <Original>Altitude in meters of the firefly swarm above terrain.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrFirefliesFrogs">
+            <Original>Frog Croaks</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrFirefliesFrogsTooltip">
+            <Original>Play ambient frog croaks at night near the fireflies.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrRuptureAltitude">
+            <Original>Rupture Altitude</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrRuptureAltitudeTooltip">
+            <Original>Altitude in meters of the rupture above terrain.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSparksAltitude">
+            <Original>Sparks Altitude</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSparksAltitudeTooltip">
+            <Original>Altitude in meters of the spark source above terrain.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSparksDelay">
+            <Original>Sparks Delay</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSparksDelayTooltip">
+            <Original>Seconds between spark burst windows.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AuroraStarted">
+            <Original>Aurora active!</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_BirdSwarmStarted">
+            <Original>Bird swarm active!</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_FirefliesStarted">
+            <Original>Fireflies active!</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleAurora">
+            <Original>Aurora Borealis</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleAuroraDesc">
+            <Original>Colored aurora bands glowing in the night sky above the module position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleBirdSwarm">
+            <Original>Bird Swarm</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleBirdSwarmDesc">
+            <Original>A flock of eagles circling the module position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleFireflies">
+            <Original>Ambient Fireflies</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleFirefliesDesc">
+            <Original>A swarm of fireflies glittering at night around the module position, with optional frog croaks.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleRupture">
+            <Original>Spacetime Rupture</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleRuptureDesc">
+            <Original>A shimmering rupture of volumetric lights in the night sky above the module position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleSparks">
+            <Original>Ambient Sparks</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleSparksDesc">
+            <Original>Electrical spark showers with crackle sounds at the module position, for example on damaged power lines.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_RuptureStarted">
+            <Original>Spacetime rupture active!</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingAurora">
+            <Original>Enable Aurora Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingAuroraTooltip">
+            <Original>Allow the aurora to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingBirdSwarm">
+            <Original>Enable Bird Swarm Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingBirdSwarmTooltip">
+            <Original>Allow bird swarms to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingCategoryName">
+            <Original>Ambient Effects</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingFireflies">
+            <Original>Enable Fireflies Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingFirefliesTooltip">
+            <Original>Allow fireflies to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingMaxBirds">
+            <Original>Maximum Birds per Swarm</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingMaxBirdsTooltip">
+            <Original>Upper limit on the number of birds a single swarm may spawn.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingRupture">
+            <Original>Enable Rupture Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingRuptureTooltip">
+            <Original>Allow the spacetime rupture to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingSparks">
+            <Original>Enable Sparks Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SettingSparksTooltip">
+            <Original>Allow ambient sparks to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SparksStarted">
+            <Original>Sparks active!</Original>
+        </Key>
+    </Package>
+</Project>

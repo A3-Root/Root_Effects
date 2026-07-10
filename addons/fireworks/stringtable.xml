@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="Fireworks">
+        <Key ID="STR_root_effects_fireworks_AttrDuration">
+            <Original>Display Duration</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_AttrDurationTooltip">
+            <Original>Seconds the display keeps firing. Set to 0 for an endless display.</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_AttrHeight">
+            <Original>Burst Height</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_AttrHeightTooltip">
+            <Original>Approximate detonation height in meters.</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_AttrRadius">
+            <Original>Launch Area Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_AttrRadiusTooltip">
+            <Original>Radius in meters of the area rockets launch from.</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_AttrRate">
+            <Original>Launch Rate</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_AttrRateTooltip">
+            <Original>Rockets launched per minute.</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_AttrSounds">
+            <Original>Enable Sounds</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_AttrSoundsTooltip">
+            <Original>Play launch whooshes and burst reports.</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_ModuleFireworks">
+            <Original>Fireworks Display</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_ModuleFireworksDesc">
+            <Original>Launches colorful fireworks from the module position at a configurable rate for a configurable duration.</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_SettingCategoryName">
+            <Original>Fireworks</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_SettingEnabled">
+            <Original>Enable Fireworks Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_SettingEnabledTooltip">
+            <Original>Allow fireworks displays to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_fireworks_Started">
+            <Original>Fireworks display started!</Original>
+        </Key>
+    </Package>
+</Project>

@@ -1,8 +1,66 @@
-releases/*
-keys/*
+# =========================
+# HEMTT
+# =========================
 *.biprivatekey
+*.hemttprivatekey
+*.pbo
 .hemttout
-*.logs
+hemtt
+hemtt.exe
+releases/root_effects-latest.zip
+releases/@root_effects
+
+# =========================
+# Documentation / Wiki / Text
+# =========================
+*.md
+*.txt
+*.json
+!README*.md
+!wiki/*
+!wiki/**/*.md
+!.github/PULL_REQUEST_TEMPLATE.md
+TODO
+!releases/CHANGELOG.md
+!NOTEPAD.txt
+logs/**/*
+.codex
+.bak
+reference_files
+cache
+
+
+# =========================
+# Python
+# =========================
+__pycache__/
+
+# =========================
+# Dependencies / Scripts
+# =========================
+!.sh
+!.bat
+!requirements.txt
+
+# =========================
+# System / Environment
+# =========================
+build/.env
+!.env.example
+*.code-workspace
+.vscode/**/*
+.env
+*.exe
+.agents
+
+# =========================
+# General / Miscellaneous
+# =========================
+
+
+
+# =========================
+# Build artifacts / Logs
+# =========================
 *.log
-/Effects_Workspace/temp
-Effects_Workspace/temp
+*.rpt

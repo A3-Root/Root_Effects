@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="Strikes">
+        <Key ID="STR_root_effects_strikes_AttrCarpetBomb">
+            <Original>Bomb Class</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetBombTooltip">
+            <Original>Ammo class name of the dropped bombs.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetCount">
+            <Original>Bomb Count</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetCountTooltip">
+            <Original>Number of bombs in the stick. Capped by the server's bomb limit setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetDelay">
+            <Original>Drop Delay</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetDelayTooltip">
+            <Original>Seconds between the flyby start and the first impact.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetHeading">
+            <Original>Attack Heading</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetHeadingTooltip">
+            <Original>Direction of the bombing run in degrees.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetLength">
+            <Original>Bombing Line Length</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetLengthTooltip">
+            <Original>Length in meters of the line the bombs walk along.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetPlane">
+            <Original>Bomber Class</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetPlaneTooltip">
+            <Original>Class name of the bomber performing the flyby.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetPlanes">
+            <Original>Number of Bombers</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrCarpetPlanesTooltip">
+            <Original>How many bombers fly the run.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserBeam">
+            <Original>Beam Duration</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserBeamTooltip">
+            <Original>Seconds the beam burns at the target.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserCharge">
+            <Original>Charge Time</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserChargeTooltip">
+            <Original>Seconds the laser charges before the beam fires.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserColor">
+            <Original>Beam Color</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserColorTooltip">
+            <Original>Color of the beam: 0 red, 1 green, 2 blue.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserDamage">
+            <Original>Apply Damage</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserDamageTooltip">
+            <Original>The detonation damages units around the target point. Respects the global damage setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserDmgRadius">
+            <Original>Damage Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserDmgRadiusTooltip">
+            <Original>Radius in meters of the damage zone around the target point.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmDamage">
+            <Original>Apply Burn Damage</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmDamageTooltip">
+            <Original>Units inside the corridor take periodic burn damage. Respects the global damage setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmDuration">
+            <Original>Burn Duration</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmDurationTooltip">
+            <Original>Seconds the fire keeps burning.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmHeading">
+            <Original>Attack Heading</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmHeadingTooltip">
+            <Original>Direction of the attack run in degrees.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmLength">
+            <Original>Fire Line Length</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmLengthTooltip">
+            <Original>Length in meters of the burning corridor.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmPlane">
+            <Original>Aircraft Class</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmPlaneTooltip">
+            <Original>Class name of the aircraft performing the attack run.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_CarpetStarted">
+            <Original>Carpet bombing run inbound!</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_LaserColorBlue">
+            <Original>Blue</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_LaserColorGreen">
+            <Original>Green</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_LaserColorRed">
+            <Original>Red</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_LaserStarted">
+            <Original>Orbital laser charging!</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_ModuleCarpet">
+            <Original>Carpet Bombing Strike</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_ModuleCarpetDesc">
+            <Original>Bombers drop a walking stick of real bombs along a line over the module position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_ModuleLaser">
+            <Original>Orbital Laser Strike</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_ModuleLaserDesc">
+            <Original>A charging glow followed by a blinding beam from the sky that detonates at the module position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_ModuleNapalm">
+            <Original>Napalm Strike</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_ModuleNapalmDesc">
+            <Original>An attack run that ignites a burning corridor along the module position, cooking anything caught inside.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_NapalmStarted">
+            <Original>Napalm strike inbound!</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingAllowDamage">
+            <Original>Allow Strike Damage</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingAllowDamageTooltip">
+            <Original>Permit strike modules to damage units. Carpet bombing is fully blocked when disabled since real bombs cannot be harmless.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingCarpet">
+            <Original>Enable Carpet Bombing Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingCarpetTooltip">
+            <Original>Allow carpet bombing strikes to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingCategoryName">
+            <Original>Strikes</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingLaser">
+            <Original>Enable Laser Strike Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingLaserTooltip">
+            <Original>Allow orbital laser strikes to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingMaxBombs">
+            <Original>Maximum Bombs per Strike</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingMaxBombsTooltip">
+            <Original>Upper limit on the number of bombs a single carpet strike may drop.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingNapalm">
+            <Original>Enable Napalm Strike Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingNapalmTooltip">
+            <Original>Allow napalm strikes to be started from Zeus or 3DEN.</Original>
+        </Key>
+    </Package>
+</Project>

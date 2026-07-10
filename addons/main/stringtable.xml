@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="Main">
+        <Key ID="STR_root_effects_main_Aborted">
+            <Original>Aborted.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_CategoryName">
+            <Original>Root's Effects</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_EffectDisabled">
+            <Original>This effect is disabled by the server's CBA settings.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_ModuleTerminate">
+            <Original>Terminate Effects</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_NoActiveEffects">
+            <Original>No Root's Effects are currently running.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingCategory">
+            <Original>Root's Effects</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingCategoryGeneral">
+            <Original>General</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingDamage">
+            <Original>Allow Effect Damage</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingDamageTooltip">
+            <Original>Global kill-switch for all damage dealt by effect modules (volcano lethality, strikes, acid rain and so on).</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingDebug">
+            <Original>Verbose Debug Logging</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingDebugTooltip">
+            <Original>Writes detailed effect lifecycle information to the RPT log for troubleshooting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingEnabled">
+            <Original>Enable Root's Effects</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingEnabledTooltip">
+            <Original>Master switch. When disabled, no effect module of this mod can be started.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingParticleBudget">
+            <Original>Particle Budget</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingParticleBudgetTooltip">
+            <Original>Client side multiplier applied to particle density of all effects. Lower values improve FPS on weaker machines.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingViewDistance">
+            <Original>Effect View Distance</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_SettingViewDistanceTooltip">
+            <Original>Maximum distance in meters at which clients render effect visuals. Lower values improve performance.</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_StopAllOfType">
+            <Original>Stop ALL: %1 (%2 instances)</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_StopEverything">
+            <Original>Stop EVERYTHING</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_StopInstance">
+            <Original>Stop: %1 at grid %2 (running %3m %4s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_TerminationSent">
+            <Original>Termination request sent.</Original>
+        </Key>
+    </Package>
+</Project>
