@@ -49,6 +49,12 @@
         <Key ID="STR_root_effects_strikes_AttrLaserBeamTooltip">
             <Original>Seconds the beam burns at the target.</Original>
         </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserBlue">
+            <Original>Beam Color Blue</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserBlueTooltip">
+            <Original>Blue channel of the beam color, 0 to 1.</Original>
+        </Key>
         <Key ID="STR_root_effects_strikes_AttrLaserCharge">
             <Original>Charge Time</Original>
         </Key>
@@ -59,7 +65,7 @@
             <Original>Beam Color</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrLaserColorTooltip">
-            <Original>Color of the beam: 0 red, 1 green, 2 blue.</Original>
+            <Original>Color of the beam, its light and its impact dust.</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrLaserDamage">
             <Original>Apply Damage</Original>
@@ -73,11 +79,29 @@
         <Key ID="STR_root_effects_strikes_AttrLaserDmgRadiusTooltip">
             <Original>Radius in meters of the damage zone around the target point.</Original>
         </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserGreen">
+            <Original>Beam Color Green</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserGreenTooltip">
+            <Original>Green channel of the beam color, 0 to 1.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserRed">
+            <Original>Beam Color Red</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserRedTooltip">
+            <Original>Red channel of the beam color, 0 to 1.</Original>
+        </Key>
         <Key ID="STR_root_effects_strikes_AttrNapalmDamage">
             <Original>Apply Burn Damage</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrNapalmDamageTooltip">
             <Original>Units inside the corridor take periodic burn damage. Respects the global damage setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmDropDelay">
+            <Original>Drop Delay</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrNapalmDropDelayTooltip">
+            <Original>Seconds between the flyby starting and the first bomb coming down.</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrNapalmDuration">
             <Original>Burn Duration</Original>
@@ -103,17 +127,26 @@
         <Key ID="STR_root_effects_strikes_AttrNapalmPlaneTooltip">
             <Original>Class name of the aircraft performing the attack run.</Original>
         </Key>
+        <Key ID="STR_root_effects_strikes_AttrSingularityCharge">
+            <Original>Charge Time</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrSingularityChargeTooltip">
+            <Original>Seconds the anomaly builds up before it collapses.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrSingularityLethal">
+            <Original>Apply Damage</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrSingularityLethalTooltip">
+            <Original>The collapse injures what it throws, scaled by distance from the center. Respects the global damage setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrSingularityRadius">
+            <Original>Anomaly Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrSingularityRadiusTooltip">
+            <Original>Radius in meters the collapse reaches. Everything inside is thrown into the air.</Original>
+        </Key>
         <Key ID="STR_root_effects_strikes_CarpetStarted">
             <Original>Carpet bombing run inbound!</Original>
-        </Key>
-        <Key ID="STR_root_effects_strikes_LaserColorBlue">
-            <Original>Blue</Original>
-        </Key>
-        <Key ID="STR_root_effects_strikes_LaserColorGreen">
-            <Original>Green</Original>
-        </Key>
-        <Key ID="STR_root_effects_strikes_LaserColorRed">
-            <Original>Red</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_LaserStarted">
             <Original>Orbital laser charging!</Original>
@@ -135,6 +168,12 @@
         </Key>
         <Key ID="STR_root_effects_strikes_ModuleNapalmDesc">
             <Original>An attack run that ignites a burning corridor along the module position, cooking anything caught inside.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_ModuleSingularity">
+            <Original>Singularity Strike</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_ModuleSingularityDesc">
+            <Original>A gravity anomaly that charges at the module position, then collapses and hurls everything around it into the air.</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_NapalmStarted">
             <Original>Napalm strike inbound!</Original>
@@ -171,6 +210,15 @@
         </Key>
         <Key ID="STR_root_effects_strikes_SettingNapalmTooltip">
             <Original>Allow napalm strikes to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingSingularity">
+            <Original>Enable Singularity Strike</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SettingSingularityTooltip">
+            <Original>Allow singularity strikes to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_SingularityStarted">
+            <Original>Singularity charging!</Original>
         </Key>
     </Package>
 </Project>

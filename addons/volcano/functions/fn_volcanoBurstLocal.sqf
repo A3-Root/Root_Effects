@@ -30,6 +30,30 @@ if ((player distance2D _anchor) > ((EGVAR(main,maxViewDistance)) max 3000)) exit
 private _budget = (EGVAR(main,particleBudget)) max 0.1;
 private _pos = getPosATL _anchor;
 
+// A single shake fires once and dies, which reads as a bump rather than an
+// eruption. Staging it gives an initial jolt, a sustained tremor scaled to how
+// big the mountain is, and a long settling tail. Distance takes the edge off.
+private _fnc_tremor = {
+    params ["_anchor", "_radius", "_soundDuration"];
+
+    private _distance = player distance2D _anchor;
+    private _falloff = linearConversion [500, 4000, _distance, 1, 0.1, true];
+    private _size = linearConversion [50, 300, _radius, 0.6, 1.6, true];
+
+    enableCamShake true;
+    addCamShake [3 * _size * _falloff, 2, 30];
+
+    [{
+        params ["_size", "_falloff", "_soundDuration"];
+        addCamShake [1.2 * _size * _falloff, _soundDuration max 8, 20];
+
+        [{
+            params ["_size", "_falloff"];
+            addCamShake [0.4 * _size * _falloff, 25, 12];
+        }, [_size, _falloff], (_soundDuration max 8) * 0.6] call CBA_fnc_waitAndExecute;
+    }, [_size, _falloff, _soundDuration], 1.5] call CBA_fnc_waitAndExecute;
+};
+
 _anchor say3D [_sound, 5000];
 
 // Distant rumble echo once the initial blast has played out.
@@ -61,10 +85,8 @@ switch (_burstType) do {
             drop [["\A3\data_f\ParticleEffects\Universal\Universal", 16, 12, 9, 0], "", "BillBoard", 1, 7, [0, 0, 10], [0, 0, 100], 0, 500, 5, 0, [100, 200, 300], [[1, 0.7, 0, 1], [1, 0.7, 0, 1], [0, 0, 0, 0]], [1], 1, 0, "", "", _anchor];
         }, [_anchor], 0.3] call CBA_fnc_waitAndExecute;
 
-        private _tremor = selectRandom [[QGVAR(earthquake_2), 10], [QGVAR(earthquake_1), 25]];
-        playSound (_tremor select 0);
-        enableCamShake true;
-        addCamShake [0.5, (_tremor select 1) * 2, 25];
+        playSound (selectRandom [QGVAR(earthquake_2), QGVAR(earthquake_1)]);
+        [_anchor, _radius, _soundDuration] call _fnc_tremor;
 
         [{
             params ["_sparkEmitter", "_chunkEmitter"];
@@ -93,17 +115,36 @@ switch (_burstType) do {
         };
         _rockEmitter setDropInterval (0.05 / _budget);
 
-        [{
-            private _tremor = selectRandom [[QGVAR(earthquake_2), 10], [QGVAR(earthquake_1), 25]];
-            playSound (_tremor select 0);
-            enableCamShake true;
-            addCamShake [0.5, (_tremor select 1) * 2, 25];
-        }, [], 0.5] call CBA_fnc_waitAndExecute;
+        // Heavy lava bombs on ballistic arcs that bounce where they land,
+        // trailing dust as they tumble down the slopes.
+        private _bombEmitter = "#particlesource" createVehicleLocal _pos;
+        _bombEmitter setParticleCircle [_radius / 4, [0, 0, 0]];
+        _bombEmitter setParticleRandom [3, [15, 15, 20], [60, 60, 40], 0, 0.4, [0, 0, 0, 0.2], 1, 0];
+        _bombEmitter setParticleParams [["\A3\data_f\ParticleEffects\Universal\Mud.p3d", 1, 0, 1], "", "SpaceObject", 1, 12, [0, 0, 10], [0, 0, 110], 1, 400, 6, 0, [4, 4, 3], [[1, 0.5, 0.05, 1], [0.8, 0.25, 0.02, 1], [0.2, 0.15, 0.12, 1]], [0.2, 0.6], 1, 0, "", "", _anchor, 0, true, 0.5, [[0, 0, 0, 0]]];
+        _bombEmitter setDropInterval (0.12 / _budget);
+
+        private _bombDust = "#particlesource" createVehicleLocal _pos;
+        _bombDust setParticleCircle [_radius / 2, [0, 0, 0]];
+        _bombDust setParticleRandom [2, [_radius / 3, _radius / 3, 2], [4, 4, 2], 0, 0.4, [0, 0, 0, 0.1], 0, 0];
+        _bombDust setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 5, [0, 0, 1], [0, 0, 2], 0, 10, 7.5, 0.05, [3, 12], [[0.35, 0.32, 0.28, 0.6], [0.4, 0.38, 0.35, 0.3], [0.45, 0.42, 0.4, 0]], [0.4, 1], 1, 0, "", "", _anchor];
+        _bombDust setDropInterval (0.08 / _budget);
 
         [{
-            params ["_rockEmitter"];
+            params ["_anchor", "_radius", "_soundDuration", "_fnc_tremor"];
+            playSound (selectRandom [QGVAR(earthquake_2), QGVAR(earthquake_1)]);
+            [_anchor, _radius, _soundDuration] call _fnc_tremor;
+        }, [_anchor, _radius, _soundDuration, _fnc_tremor], 0.5] call CBA_fnc_waitAndExecute;
+
+        [{
+            params ["_rockEmitter", "_bombEmitter"];
             deleteVehicle _rockEmitter;
-        }, [_rockEmitter], 1.5] call CBA_fnc_waitAndExecute;
+            deleteVehicle _bombEmitter;
+        }, [_rockEmitter, _bombEmitter], 1.5] call CBA_fnc_waitAndExecute;
+
+        [{
+            params ["_bombDust"];
+            deleteVehicle _bombDust;
+        }, [_bombDust], 6] call CBA_fnc_waitAndExecute;
 
         [{
             params ["_burstEmitter"];
@@ -112,8 +153,7 @@ switch (_burstType) do {
     };
 
     case "puff": {
-        enableCamShake true;
-        addCamShake [0.5, _soundDuration, 25];
+        [_anchor, _radius, _soundDuration] call _fnc_tremor;
 
         drop [["\a3\Data_f\ParticleEffects\Universal\Universal", 16, 1, 15, 1], "", "Billboard", 0.8, 1, [0, 0, 50], [0, 0, 100], 0, 10, 8, 0, [(_radius / 10) * 50, (_radius / 10) * 60, (_radius / 10) * 2], [[1, 1, 1, 0.5], [1, 1, 1, 1], [1, 1, 1, 1]], [1], 1, 0, QPATHTOF(functions\fn_volcanoSmokePuff.sqf), "", _anchor];
         [{

@@ -43,27 +43,40 @@ private _state = [_anchor, _heading, _length, []];
     if (_inRange && {_visuals isEqualTo []}) then {
         private _budget = (EGVAR(main,particleBudget)) max 0.1;
         private _center = getPosATL _anchor;
-        private _spacing = 12;
-        private _segments = ceil (_length / _spacing) min 40;
+        private _spacing = 9;
+        private _segments = ceil (_length / _spacing) min 50;
 
         for "_i" from 0 to (_segments - 1) do {
             private _offset = -_length / 2 + _i * _spacing + random (_spacing / 2);
             private _firePos = _center getPos [abs _offset, [_heading + 180, _heading] select (_offset >= 0)];
             _firePos set [2, 0];
 
+            // Tall rolling flame body: the sprite animates through the fire
+            // frames of the universal sheet while the colour ramp carries it
+            // from white hot at the base to dark smoke at the top.
             private _fire = "#particlesource" createVehicleLocal _firePos;
-            _fire setParticleClass "MediumDestructionFire";
-            _fire setDropInterval (0.05 / _budget);
+            _fire setParticleCircle [0, [0, 0, 0]];
+            _fire setParticleRandom [0.5, [1.5, 1.5, 0], [1.2, 1.2, 1.5], 0, 0.4, [0, 0, 0, 0.1], 0, 0];
+            _fire setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 2, 32], "", "Billboard", 1, 2, [0, 0, 0.4], [0, 0, 2.5], 0, 10, 7.9, 0.075, [2.5, 5, 3], [[1, 1, 0.6, 0.9], [1, 0.5, 0.1, 0.75], [0.6, 0.2, 0.05, 0.4], [0.15, 0.15, 0.15, 0]], [0.25, 0.5, 0.75], 1, 0, "", "", _firePos];
+            _fire setDropInterval (0.03 / _budget);
             _visuals pushBack _fire;
 
             private _smoke = "#particlesource" createVehicleLocal _firePos;
             _smoke setParticleClass "BigDestructionSmoke";
-            _smoke setDropInterval (0.2 / _budget);
+            _smoke setDropInterval (0.12 / _budget);
             _visuals pushBack _smoke;
 
-            if (_i mod 3 == 0) then {
+            if (_i mod 2 == 0) then {
+                // Embers lifting off the fire on the thermal.
+                private _embers = "#particlesource" createVehicleLocal _firePos;
+                _embers setParticleCircle [1.5, [0, 0, 0]];
+                _embers setParticleRandom [1.5, [2, 2, 0.5], [1.5, 1.5, 2], 0, 0.05, [0, 0, 0, 0.2], 0, 0];
+                _embers setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 4, [0, 0, 1], [0, 0, 3.5], 0, 10, 7.9, 0.05, [0.12, 0.06], [[1, 0.9, 0.5, 1], [1, 0.45, 0.1, 0.8], [0.6, 0.15, 0.05, 0]], [0.3, 0.6], 1, 0, "", "", _firePos];
+                _embers setDropInterval (0.15 / _budget);
+                _visuals pushBack _embers;
+
                 private _glow = "#lightpoint" createVehicleLocal (_firePos vectorAdd [0, 0, 2]);
-                _glow setLightBrightness 2;
+                _glow setLightBrightness 3;
                 _glow setLightColor [1, 0.45, 0.1];
                 _glow setLightAmbient [1, 0.45, 0.1];
                 _glow setLightAttenuation [2, 0, 40, 0, 10, 60];

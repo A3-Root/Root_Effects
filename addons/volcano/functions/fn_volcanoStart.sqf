@@ -83,15 +83,24 @@ if (_lethal && GVAR(allowLethality)) then {
         {
             private _target = _x;
             if (!(_target isKindOf "VirtualMan_F")) then {
-                private _insideCrater = (_target distance2D _anchor) <= _radius;
+                private _distance = _target distance2D _anchor;
+                private _insideCrater = _distance <= _radius;
                 private _isInfantry = _target isKindOf "CAManBase";
                 private _protected = _isInfantry && {[_target, _gear] call FUNC(volcanoIsProtected)};
 
                 if (_insideCrater || {!_protected}) then {
+                    // The crater itself is not survivable; past its lip the
+                    // heat falls off with distance, so protective gear and a
+                    // vehicle hull buy real time out on the slopes.
+                    private _amount = 1;
+                    if (!_insideCrater) then {
+                        _amount = linearConversion [_radius, _lethalRadius, _distance, 1, 0.15, true];
+                    };
+
                     if (_isInfantry) then {
-                        [_target, 1, "Body", "burn", _anchor] call EFUNC(main,doDamage);
+                        [_target, _amount, "Body", "burn", _anchor] call EFUNC(main,doDamage);
                     } else {
-                        [_target, 1] call EFUNC(main,doDamage);
+                        [_target, _amount] call EFUNC(main,doDamage);
                     };
                 };
             };

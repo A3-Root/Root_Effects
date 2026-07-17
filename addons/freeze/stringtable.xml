@@ -7,6 +7,24 @@
         <Key ID="STR_root_effects_freeze_AttrAnimTooltip">
             <Original>Class name of the looping animation to play.</Original>
         </Key>
+        <Key ID="STR_root_effects_freeze_AttrCryoCore">
+            <Original>Lethal Inner Core</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrCryoCoreTooltip">
+            <Original>Units in the inner quarter of the radius take cold damage. Respects the global damage setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrCryoDuration">
+            <Original>Freeze Duration</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrCryoDurationTooltip">
+            <Original>Seconds the caught units stay frozen before they thaw.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrCryoRadius">
+            <Original>Blast Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_AttrCryoRadiusTooltip">
+            <Original>Radius in meters of the flash freeze. Everyone inside is locked in place.</Original>
+        </Key>
         <Key ID="STR_root_effects_freeze_AttrFreeze">
             <Original>Freeze</Original>
         </Key>
@@ -25,8 +43,17 @@
         <Key ID="STR_root_effects_freeze_AttrUseAnimTooltip">
             <Original>Freeze by playing a looping animation instead of stopping the simulation. Must also be enabled to unfreeze units frozen with an animation.</Original>
         </Key>
+        <Key ID="STR_root_effects_freeze_CryoStarted">
+            <Original>Cryogenic blast detonated!</Original>
+        </Key>
         <Key ID="STR_root_effects_freeze_FrozeCount">
             <Original>Freezing %1 players.</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_ModuleCryo">
+            <Original>Cryogenic Blast</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_ModuleCryoDesc">
+            <Original>A wave of cold that flash freezes everyone around the module position, with an optional lethal core.</Original>
         </Key>
         <Key ID="STR_root_effects_freeze_ModuleFreeze">
             <Original>Freeze Players</Original>
@@ -37,8 +64,20 @@
         <Key ID="STR_root_effects_freeze_NoSelection">
             <Original>ERROR - Select a side, group or unit.</Original>
         </Key>
+        <Key ID="STR_root_effects_freeze_SettingAllowDamage">
+            <Original>Allow Cryogenic Damage</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_SettingAllowDamageTooltip">
+            <Original>Permit the cryogenic blast core to damage units. When disabled, the lethal core option is ignored.</Original>
+        </Key>
         <Key ID="STR_root_effects_freeze_SettingCategoryName">
             <Original>Freeze</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_SettingCryo">
+            <Original>Enable Cryogenic Blast</Original>
+        </Key>
+        <Key ID="STR_root_effects_freeze_SettingCryoTooltip">
+            <Original>Allow cryogenic blasts to be started from Zeus or 3DEN.</Original>
         </Key>
         <Key ID="STR_root_effects_freeze_SettingEnabled">
             <Original>Enable Freeze Module</Original>

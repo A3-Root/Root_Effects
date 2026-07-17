@@ -28,10 +28,14 @@ if (isNull _logic) exitWith {};
 private _pos = getPosATL _logic;
 private _chargeTime = _logic getVariable ["ROOT_LASER_CHARGE", 5];
 private _beamTime = _logic getVariable ["ROOT_LASER_BEAM", 3];
-private _colorIndex = _logic getVariable ["ROOT_LASER_COLOR", 0];
+private _color = [
+    _logic getVariable ["ROOT_LASER_RED", 1],
+    _logic getVariable ["ROOT_LASER_GREEN", 0.2],
+    _logic getVariable ["ROOT_LASER_BLUE", 0.2]
+];
 private _damage = _logic getVariable ["ROOT_LASER_DAMAGE", true];
 private _damageRadius = _logic getVariable ["ROOT_LASER_DMGRADIUS", 30];
 
 deleteVehicle _logic;
 
-[_pos, _chargeTime, _beamTime, _colorIndex, _damage, _damageRadius] call FUNC(laserStart);
+[_pos, _chargeTime, _beamTime, _color, _damage, _damageRadius] call FUNC(laserStart);

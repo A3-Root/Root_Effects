@@ -128,7 +128,7 @@ playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [getPos _anchor s
                 drop [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.3, [0, 0, 0], [0, 0, 0], 0, 9.999, 7, 0, [1, 10], [[0.443, 0.706, 0.81, 0.2], [0.443, 0.706, 0.81, 0]], [1], 0, 0, "", "", _orbitLight];
 
                 if (_decalCountdown <= 0) then {
-                    "Land_ShellCrater02_decal_F" createVehicleLocal _tracePos;
+                    (["Crater", "Land_ShellCrater_02_small_F"] select (isClass (configFile >> "CfgVehicles" >> "Land_ShellCrater_02_small_F"))) createVehicleLocal _tracePos;
                     _args set [7, _decalSpacing];
                 } else {
                     _args set [7, _decalCountdown - 1];

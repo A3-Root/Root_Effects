@@ -42,7 +42,9 @@ private _state = [_anchor, _activationDistance, _frogs, objNull, 0];
         private _fireflyEmitter = "#particlesource" createVehicleLocal getPosATL _anchor;
         _fireflyEmitter setParticleCircle [10, [0, 0, 0]];
         _fireflyEmitter setParticleRandom [10, [5, 5, 2], [0.2, 0.2, 0.5], 1, 0, [0, 0, 0, 0.1], 1, 1];
-        _fireflyEmitter setParticleParams [["\A3\data_f\proxies\muzzle_flash\mf_machineGunCheetah.p3d", 1, 0, 1], "", "SpaceObject", 1, 14, [0, 0, 5], [0, 0, 0.5], 13, 1.3, 1, 0, [0.01, 0.01], [[1, 1, 1, 1], [1, 1, 1, 1]], [1], 1, 1, "", "", _fireflyEmitter];
+        // Glowing billboard sprite; the colour animation makes each firefly
+        // fade in and out so the swarm twinkles.
+        _fireflyEmitter setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 14, [0, 0, 5], [0, 0, 0.5], 13, 1.3, 1, 0, [0.04], [[0.75, 1, 0.35, 0], [0.85, 1, 0.45, 0.9], [0.75, 1, 0.35, 0]], [1], 1, 1, "", "", _fireflyEmitter];
         _fireflyEmitter setDropInterval (0.1 / ((EGVAR(main,particleBudget)) max 0.1));
         _args set [3, _fireflyEmitter];
     };
@@ -53,7 +55,11 @@ private _state = [_anchor, _activationDistance, _frogs, objNull, 0];
     };
 
     if (_active && _frogs && {CBA_missionTime >= _nextCroak}) then {
-        _anchor say3D [QGVAR(frog_croak), 250];
-        _args set [4, CBA_missionTime + 15 + random 20];
+        // Not every window produces a croak, which keeps the pond from
+        // sounding metronomic. The timer advances either way.
+        if (random 1 < 0.6) then {
+            _anchor say3D [QGVAR(frog_croak), 80];
+        };
+        _args set [4, CBA_missionTime + 45 + random 75];
     };
 }, 1, _state] call CBA_fnc_addPerFrameHandler;

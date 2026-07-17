@@ -2,9 +2,10 @@
 
 /*
  * Author: Root
- * Applies damage to a unit on the server, honouring the global damage
- * kill-switch setting. Infantry gets routed through ACE medical when that is
- * loaded, everything else (or a vanilla setup) receives plain damage.
+ * Applies damage to a unit from the server, honouring the global damage
+ * kill-switch setting. Damage commands only take effect on the machine owning
+ * the unit, so the work is routed there when the server does not own it (any
+ * player, and AI handed to a headless client).
  *
  * Arguments:
  * 0: Unit or vehicle to damage <OBJECT>
@@ -26,8 +27,8 @@ if (!isServer) exitWith {};
 if (!GVAR(damageAllowed)) exitWith {};
 if (isNull _unit || {!alive _unit} || {_damage <= 0}) exitWith {};
 
-if (_unit isKindOf "CAManBase" && GVAR(aceMedicalLoaded)) then {
-    [_unit, _damage, _bodyPart, _damageType, _source] call (missionNamespace getVariable "ace_medical_fnc_addDamageToUnit");
-} else {
-    _unit setDamage [((damage _unit) + _damage) min 1, false];
+if (local _unit) exitWith {
+    [_unit, _damage, _bodyPart, _damageType, _source] call FUNC(doDamageLocal);
 };
+
+[QGVAR(doDamageLocal), [_unit, _damage, _bodyPart, _damageType, _source], _unit] call CBA_fnc_targetEvent;

@@ -1,5 +1,15 @@
 #include "script_component.hpp"
 
+// Damage helpers are routed here by the server whenever it does not own the
+// target, so every machine has to be able to answer.
+[QGVAR(doDamageLocal), {
+    _this call FUNC(doDamageLocal);
+}] call CBA_fnc_addEventHandler;
+
+[QGVAR(hitPointDamageLocal), {
+    _this call FUNC(doHitPointDamageLocal);
+}] call CBA_fnc_addEventHandler;
+
 if (isServer) then {
     // Curator asked for the list of running effect instances; answer with a
     // snapshot so their machine can open the termination dialog.
@@ -49,6 +59,6 @@ if (hasInterface) then {
     // Server answered an instance list request from this machine.
     [QGVAR(showTerminateDialog), {
         params [["_data", [], [[]]]];
-        _data call FUNC(terminateDialog);
+        [_data] call FUNC(terminateDialog);
     }] call CBA_fnc_addEventHandler;
 };

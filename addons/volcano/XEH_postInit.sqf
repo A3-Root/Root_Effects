@@ -4,6 +4,10 @@ if (isServer) then {
     [QGVAR(start), {
         _this call FUNC(volcanoStart);
     }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(startAvalanche), {
+        _this call FUNC(avalancheStart);
+    }] call CBA_fnc_addEventHandler;
 };
 
 if (hasInterface) then {
@@ -13,5 +17,9 @@ if (hasInterface) then {
 
     [QGVAR(burst), {
         _this call FUNC(volcanoBurstLocal);
+    }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(avalancheLocal), {
+        _this call FUNC(avalancheLocal);
     }] call CBA_fnc_addEventHandler;
 };

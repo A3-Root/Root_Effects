@@ -36,7 +36,7 @@ class CfgSounds {
     };
     class GVAR(frog_croak) {
         name = QGVAR(frog_croak);
-        sound[] = {QPATHTOF(sounds\frog_croak.ogg), "db+30", 1};
+        sound[] = {QPATHTOF(sounds\frog_croak.ogg), "db-2", 1};
         titles[] = {};
     };
 };

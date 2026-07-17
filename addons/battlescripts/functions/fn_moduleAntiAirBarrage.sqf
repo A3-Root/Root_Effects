@@ -34,12 +34,14 @@ if (!(["aaa"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER:PERCENT", [LLSTRING(AttrAaaDmgAir), LLSTRING(AttrAaaDmgAirTooltip)], [0.01, 1, 0.05, 2]],
     ["SLIDER:PERCENT", [LLSTRING(AttrAaaDmgInf), LLSTRING(AttrAaaDmgInfTooltip)], [0.01, 1, 0.2, 2]],
     ["SLIDER", [LLSTRING(AttrAaaDelay), LLSTRING(AttrAaaDelayTooltip)], [0.5, 10, 1, 1]],
-    ["TOOLBOX:YESNO", [LLSTRING(AttrAaaSmokeOnly), LLSTRING(AttrAaaSmokeOnlyTooltip)], false]
+    ["TOOLBOX:YESNO", [LLSTRING(AttrAaaSmokeOnly), LLSTRING(AttrAaaSmokeOnlyTooltip)], false],
+    ["SLIDER:PERCENT", [LLSTRING(AttrAaaSpread), LLSTRING(AttrAaaSpreadTooltip)], [0.1, 1, 1, 2]],
+    ["SLIDER", [LLSTRING(AttrAaaFireRate), LLSTRING(AttrAaaFireRateTooltip)], [1, 8, 1, 0]]
 ], {
     params ["_results", "_pos"];
-    _results params ["_radius", "_altitude", "_lethal", "_damageAir", "_damageInf", "_burstDelay", "_smokeOnly"];
+    _results params ["_radius", "_altitude", "_lethal", "_damageAir", "_damageInf", "_burstDelay", "_smokeOnly", "_spread", "_fireRate"];
 
-    [QGVAR(startAAA), [_pos, _radius, _altitude, _lethal, _damageAir, _damageInf, _burstDelay, _smokeOnly]] call CBA_fnc_serverEvent;
+    [QGVAR(startAAA), [_pos, _radius, _altitude, _lethal, _damageAir, _damageInf, _burstDelay, _smokeOnly, _spread, _fireRate]] call CBA_fnc_serverEvent;
     [LLSTRING(AaaStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

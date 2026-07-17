@@ -14,4 +14,11 @@ ADDON = false;
     QGVAR(enabled)
 ] call EFUNC(main,registerEffect);
 
+// The cryogenic blast is one shot as well, so it stays out of the dialog too.
+[
+    "cryoblast",
+    LLSTRING(ModuleCryo),
+    QGVAR(enabledCryo)
+] call EFUNC(main,registerEffect);
+
 ADDON = true;

@@ -31,6 +31,27 @@
         <Key ID="STR_root_effects_meteor_AttrMeteorsTooltip">
             <Original>Meteors spawn and crash near a random player.</Original>
         </Key>
+        <Key ID="STR_root_effects_meteor_AttrTargetMode">
+            <Original>Target Mode</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrTargetModeTooltip">
+            <Original>Where the strikes come down: near random players, anywhere inside the area, or near the selected players only.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrTargetModeTooltip3DEN">
+            <Original>Where the strikes come down: 0 near random players, 1 anywhere inside the target area.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrTargetOwners">
+            <Original>Targeted Players</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrTargetOwnersTooltip">
+            <Original>Sides, groups and players the strikes home in on. Falls back to any player when none of them are around.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrTargetRadius">
+            <Original>Target Area Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrTargetRadiusTooltip">
+            <Original>Radius in meters around the module the strikes scatter over. Area target mode only.</Original>
+        </Key>
         <Key ID="STR_root_effects_meteor_Configured">
             <Original>Meteors and comets configured!</Original>
         </Key>
@@ -60,6 +81,15 @@
         </Key>
         <Key ID="STR_root_effects_meteor_SettingLethalityTooltip">
             <Original>Permit meteor impacts to damage units. When disabled, the lethal option of placed modules is ignored.</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_TargetModeArea">
+            <Original>Anywhere in target area</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_TargetModeOwners">
+            <Original>Selected players only</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_TargetModePlayers">
+            <Original>Random players</Original>
         </Key>
     </Package>
 </Project>

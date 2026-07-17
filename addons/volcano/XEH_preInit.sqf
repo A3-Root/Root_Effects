@@ -12,4 +12,10 @@ ADDON = false;
     QGVAR(enabled)
 ] call EFUNC(main,registerEffect);
 
+[
+    "avalanche",
+    LLSTRING(ModuleAvalanche),
+    QGVAR(enabledAvalanche)
+] call EFUNC(main,registerEffect);
+
 ADDON = true;

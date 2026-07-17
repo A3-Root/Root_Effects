@@ -7,6 +7,12 @@
         <Key ID="STR_root_effects_emp_AttrDurationTooltip">
             <Original>Seconds the electrical interference lasts.</Original>
         </Key>
+        <Key ID="STR_root_effects_emp_AttrElectronics">
+            <Original>Destroy Electronics</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrElectronicsTooltip">
+            <Original>Knocks out street lamps, night vision goggles, weapon lights and IR pointers inside the radius.</Original>
+        </Key>
         <Key ID="STR_root_effects_emp_AttrFuelDrain">
             <Original>Fuel Drain</Original>
         </Key>
@@ -24,6 +30,12 @@
         </Key>
         <Key ID="STR_root_effects_emp_AttrKillEnginesTooltip">
             <Original>Vehicle engines inside the radius cut out and stay dead for the interference duration. Respects the server's vehicle kill setting.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrPermanent">
+            <Original>Permanent Damage</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrPermanentTooltip">
+            <Original>Electronics stay dead instead of recovering once the interference passes.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrRadius">
             <Original>Pulse Radius</Original>

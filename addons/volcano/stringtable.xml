@@ -1,6 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Root_Effects">
     <Package name="Volcano">
+        <Key ID="STR_root_effects_volcano_AttrAvalancheDownhill">
+            <Original>Follow The Slope</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheDownhillTooltip">
+            <Original>The slide runs downhill from the module position. Disable to set the direction by hand.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheDuration">
+            <Original>Slide Duration</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheDurationTooltip">
+            <Original>Seconds the rock takes to cover the slide length.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheHeading">
+            <Original>Slide Heading</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheHeadingTooltip">
+            <Original>Direction the rock travels in degrees. Ignored while the slide follows the slope.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheLength">
+            <Original>Slide Length</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheLengthTooltip">
+            <Original>Distance in meters the rock front travels from the module position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheLethal">
+            <Original>Crush Units</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheLethalTooltip">
+            <Original>Units caught by the moving rock front are crushed. Respects the global damage setting.</Original>
+        </Key>
         <Key ID="STR_root_effects_volcano_AttrCraterLava">
             <Original>Enable Crater Lava</Original>
         </Key>
@@ -49,14 +79,29 @@
         <Key ID="STR_root_effects_volcano_AttrRadiusTooltip">
             <Original>Radius of the volcano crater in meters. Match it to the hill the module is placed on; at least 50 meters is recommended.</Original>
         </Key>
+        <Key ID="STR_root_effects_volcano_AvalancheStarted">
+            <Original>Avalanche started!</Original>
+        </Key>
         <Key ID="STR_root_effects_volcano_Configured">
             <Original>Volcano configured and active!</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_ModuleAvalanche">
+            <Original>Scree Avalanche</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_ModuleAvalancheDesc">
+            <Original>A cascade of boulders and dust running downslope from the module position, crushing anything in the corridor.</Original>
         </Key>
         <Key ID="STR_root_effects_volcano_ModuleVolcano">
             <Original>Volcanic Eruption</Original>
         </Key>
         <Key ID="STR_root_effects_volcano_ModuleVolcanoDesc">
             <Original>Turns the module position into an active volcano with ash column, crater glow, optional eruptions, lava, cloud lightning and lethality.</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_SettingAvalanche">
+            <Original>Enable Avalanche Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_SettingAvalancheTooltip">
+            <Original>Allow avalanches to be started from Zeus or 3DEN.</Original>
         </Key>
         <Key ID="STR_root_effects_volcano_SettingCategoryName">
             <Original>Volcano</Original>

@@ -52,6 +52,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_LIGHTNING_MININT,CSTRING(AttrLightningMinInt),CSTRING(AttrLightningMinIntTooltip),5);
             ROOT_ATTR_NUMBER(ROOT_LIGHTNING_MAXINT,CSTRING(AttrLightningMaxInt),CSTRING(AttrLightningMaxIntTooltip),20);
             ROOT_ATTR_BOOL(ROOT_LIGHTNING_DAMAGE,CSTRING(AttrLightningDamage),CSTRING(AttrLightningDamageTooltip),false);
+            ROOT_ATTR_BOOL(ROOT_LIGHTNING_AMBIENCE,CSTRING(AttrLightningAmbience),CSTRING(AttrLightningAmbienceTooltip),true);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

@@ -62,6 +62,7 @@ class CfgFunctions {
             class moduleBirdSwarm {};
             class moduleBirdSwarm3DEN {};
             class birdSwarmStart {};
+            class birdSwarmStartLocal {};
         };
     };
 };

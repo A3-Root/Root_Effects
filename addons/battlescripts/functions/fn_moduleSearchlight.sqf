@@ -28,12 +28,14 @@ if (!(["searchlight"] call EFUNC(main,isEffectEnabled))) exitWith {
 };
 
 [LLSTRING(ModuleSearchlight), [
-    ["TOOLBOX:YESNO", [LLSTRING(AttrSearchlightAlarm), LLSTRING(AttrSearchlightAlarmTooltip)], false]
+    ["TOOLBOX:YESNO", [LLSTRING(AttrSearchlightAlarm), LLSTRING(AttrSearchlightAlarmTooltip)], false],
+    ["TOOLBOX:YESNO", [LLSTRING(AttrSearchlightAttach), LLSTRING(AttrSearchlightAttachTooltip)], false],
+    ["TOOLBOX:YESNO", [LLSTRING(AttrSearchlightAiSearch), LLSTRING(AttrSearchlightAiSearchTooltip)], true]
 ], {
     params ["_results", "_pos"];
-    _results params ["_alarm"];
+    _results params ["_alarm", "_attach", "_aiSearch"];
 
-    [QGVAR(startSearchlight), [_pos, _alarm]] call CBA_fnc_serverEvent;
+    [QGVAR(startSearchlight), [_pos, _alarm, _attach, _aiSearch]] call CBA_fnc_serverEvent;
     [LLSTRING(SearchlightStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

@@ -31,6 +31,8 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_METEOR_COMETS,CSTRING(AttrComets),CSTRING(AttrCometsTooltip),false);
             ROOT_ATTR_NUMBER(ROOT_METEOR_COMETFREQ,CSTRING(AttrCometFreq),CSTRING(AttrCometFreqTooltip),30);
             ROOT_ATTR_BOOL(ROOT_METEOR_LETHAL,CSTRING(AttrLethal),CSTRING(AttrLethalTooltip),true);
+            ROOT_ATTR_NUMBER(ROOT_METEOR_TARGETMODE,CSTRING(AttrTargetMode),CSTRING(AttrTargetModeTooltip3DEN),0);
+            ROOT_ATTR_NUMBER(ROOT_METEOR_TARGETRADIUS,CSTRING(AttrTargetRadius),CSTRING(AttrTargetRadiusTooltip),300);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

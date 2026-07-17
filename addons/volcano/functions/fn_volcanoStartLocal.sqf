@@ -138,8 +138,30 @@ private _state = [_anchor, _radius, _craterLava, _lavaFlow, _lightning, [], -1, 
                 _lavaStream setDropInterval (0.1 / _budget);
                 _lavaStream setParticleFire [1, 50, 0.1];
                 _visuals pushBack _lavaStream;
+
+                // Each stream carries its own glow, which is what sells molten
+                // rock after dark; in daylight it barely registers.
+                private _streamGlow = "#lightpoint" createVehicleLocal (_rimPos vectorAdd [0, 0, 3]);
+                _streamGlow setLightBrightness ([1.5, 5] select (sunOrMoon < 0.4));
+                _streamGlow setLightColor [1, 0.35, 0.05];
+                _streamGlow setLightAmbient [1, 0.35, 0.05];
+                _streamGlow setLightAttenuation [3, 0, 60, 0, 15, 90];
+                _visuals pushBack _streamGlow;
             };
         };
+
+        // Ash carried off the column and settling downwind of the mountain.
+        private _windDir = (wind select 0) atan2 (wind select 1);
+        private _windSpeed = (vectorMagnitude wind) max 1;
+        private _ashPos = _pos getPos [_radius * 1.5, _windDir];
+        _ashPos set [2, 0];
+
+        private _ashFall = "#particlesource" createVehicleLocal _ashPos;
+        _ashFall setParticleCircle [_radius, [0, 0, 0]];
+        _ashFall setParticleRandom [8, [_radius, _radius, 30], [2, 2, 0.5], 0, 0.5, [0, 0, 0, 0.05], 0, 0];
+        _ashFall setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 20, [0, 0, 80], [(wind select 0) * 0.5, (wind select 1) * 0.5, -1.5], 0, 10, 7.5, 0.02, [1, 4], [[0.3, 0.3, 0.3, 0.35], [0.35, 0.35, 0.35, 0.2], [0.4, 0.4, 0.4, 0]], [0.3, 0.8], 1, 0, "", "", _anchor];
+        _ashFall setDropInterval ((0.05 / _windSpeed) / _budget);
+        _visuals pushBack _ashFall;
 
         _args set [5, _visuals];
     };

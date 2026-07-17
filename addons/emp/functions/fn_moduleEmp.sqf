@@ -32,12 +32,14 @@ if (!(["emp"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER", [LLSTRING(AttrDuration), LLSTRING(AttrDurationTooltip)], [5, 120, 20, 0]],
     ["TOOLBOX:YESNO", [LLSTRING(AttrKillEngines), LLSTRING(AttrKillEnginesTooltip)], true],
     ["SLIDER:PERCENT", [LLSTRING(AttrFuelDrain), LLSTRING(AttrFuelDrainTooltip)], [0, 1, 0, 2]],
-    ["TOOLBOX:YESNO", [LLSTRING(AttrHud), LLSTRING(AttrHudTooltip)], true]
+    ["TOOLBOX:YESNO", [LLSTRING(AttrHud), LLSTRING(AttrHudTooltip)], true],
+    ["TOOLBOX:YESNO", [LLSTRING(AttrElectronics), LLSTRING(AttrElectronicsTooltip)], true],
+    ["TOOLBOX:YESNO", [LLSTRING(AttrPermanent), LLSTRING(AttrPermanentTooltip)], false]
 ], {
     params ["_results", "_pos"];
-    _results params ["_radius", "_duration", "_killEngines", "_fuelDrain", "_hud"];
+    _results params ["_radius", "_duration", "_killEngines", "_fuelDrain", "_hud", "_electronics", "_permanent"];
 
-    [QGVAR(start), [_pos, _radius, _duration, _killEngines, _fuelDrain, _hud]] call CBA_fnc_serverEvent;
+    [QGVAR(start), [_pos, _radius, _duration, _killEngines, _fuelDrain, _hud, _electronics, _permanent]] call CBA_fnc_serverEvent;
     [LLSTRING(Started)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

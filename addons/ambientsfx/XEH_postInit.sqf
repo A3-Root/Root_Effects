@@ -38,4 +38,8 @@ if (hasInterface) then {
     [QGVAR(sparkBurst), {
         _this call FUNC(sparkBurstLocal);
     }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(birdSwarmLocal), {
+        _this call FUNC(birdSwarmStartLocal);
+    }] call CBA_fnc_addEventHandler;
 };

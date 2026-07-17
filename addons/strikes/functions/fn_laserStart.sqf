@@ -11,7 +11,7 @@
  * 0: Target position ATL <ARRAY>
  * 1: Charge up time in seconds <NUMBER>
  * 2: Beam duration in seconds <NUMBER>
- * 3: Beam color index: 0 red, 1 green, 2 blue <NUMBER>
+ * 3: Beam color as [r, g, b] <ARRAY>
  * 4: Apply damage <BOOL>
  * 5: Damage radius in meters <NUMBER>
  *
@@ -19,14 +19,14 @@
  * None
  *
  * Example:
- * [[1000, 2000, 0], 5, 3, 0, true, 30] call root_effects_strikes_fnc_laserStart
+ * [[1000, 2000, 0], 5, 3, [1, 0.2, 0.2], true, 30] call root_effects_strikes_fnc_laserStart
  */
 
 params [
     ["_pos", [0, 0, 0], [[]], 3],
     ["_chargeTime", 5, [0]],
     ["_beamTime", 3, [0]],
-    ["_colorIndex", 0, [0]],
+    ["_color", [1, 0.2, 0.2], [[]], 3],
     ["_damage", true, [false]],
     ["_damageRadius", 30, [0]]
 ];
@@ -38,7 +38,7 @@ _chargeTime = _chargeTime max 1;
 _beamTime = _beamTime max 1;
 _damage = _damage && GVAR(allowDamage);
 
-[QGVAR(laserLocal), [_pos, _chargeTime, _beamTime, _colorIndex]] call CBA_fnc_globalEvent;
+[QGVAR(laserLocal), [_pos, _chargeTime, _beamTime, _color]] call CBA_fnc_globalEvent;
 
 [{
     params ["_pos", "_damage", "_damageRadius"];

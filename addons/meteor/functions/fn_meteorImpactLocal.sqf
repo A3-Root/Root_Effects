@@ -73,14 +73,23 @@ _impactLight setLightColor [1, 0.5, 0];
 // The bang arrives later the further away the player stands.
 private _soundSource = "Land_HelipadEmpty_F" createVehicleLocal _impactPos;
 private _soundDelay = linearConversion [0, 2000, player distance _impactPos, 0, 1, true];
-private _shakePower = linearConversion [0, 2000, player distance _impactPos, 6, 0.1, true];
+private _shakePower = linearConversion [0, 2000, player distance _impactPos, 8, 0.15, true];
 
 [{
-    params ["_soundSource", "_shakePower"];
+    params ["_soundSource", "_shakePower", "_impactPos"];
     _soundSource say3D [QGVAR(impact), 3000];
     enableCamShake true;
     addCamShake [_shakePower, 5, 35];
-}, [_soundSource, _shakePower], _soundDelay] call CBA_fnc_waitAndExecute;
+
+    // Detonation layers pitched down under the impact sample: the crack of the
+    // strike first, then the sub-bass of the ground taking it.
+    playSound3D ["z\root_effects\addons\battlescripts\sounds\explosion_2.ogg", objNull, false, ATLToASL _impactPos, 6, 0.8, 3500];
+
+    [{
+        params ["_impactPos"];
+        playSound3D ["z\root_effects\addons\battlescripts\sounds\explosion_4.ogg", objNull, false, ATLToASL _impactPos, 5, 0.5, 3500];
+    }, [_impactPos], 0.3] call CBA_fnc_waitAndExecute;
+}, [_soundSource, _shakePower, _impactPos], _soundDelay] call CBA_fnc_waitAndExecute;
 
 [{
     params ["_splashHot", "_shockwaveEmitter"];

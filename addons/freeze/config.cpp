@@ -41,6 +41,11 @@ class CfgFunctions {
             class moduleFreezePlayers3DEN {};
             class freezeApply {};
             class freezeLocal {};
+            class moduleCryoBlast {};
+            class moduleCryoBlast3DEN {};
+            class cryoBlastStart {};
+            class cryoBlastFreeze {};
+            class cryoBlastLocal {};
         };
     };
 };

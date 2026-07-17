@@ -6,3 +6,5 @@ PREP(moduleEmp3DEN);
 PREP(empStart);
 PREP(empLocal);
 PREP(empVehicleLocal);
+PREP(empLampsLocal);
+PREP(empUnitLocal);

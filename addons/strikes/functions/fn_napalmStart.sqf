@@ -3,9 +3,11 @@
 /*
  * Author: Root
  * Runs a napalm strike on the server: sends a plane over the target line,
- * then ignites a burning corridor along it. The fire wall is rendered
- * locally by every client; the server only runs the periodic burn damage to
- * units inside the corridor and removes the instance once the fire dies.
+ * walks a stick of real bombs along it and ignites a burning corridor in
+ * their wake. The fire wall is rendered locally by every client; the server
+ * only runs the periodic burn damage to units inside the corridor and removes
+ * the instance once the fire dies. Without damage allowed the bombs are
+ * skipped and the corridor simply lights up.
  *
  * Arguments:
  * 0: Center position ATL of the fire line <ARRAY>
@@ -14,12 +16,13 @@
  * 3: Fire line length in meters <NUMBER>
  * 4: Burn duration in seconds <NUMBER>
  * 5: Apply burn damage <BOOL>
+ * 6: Seconds between the flyby start and the first bomb <NUMBER>
  *
  * Return Value:
  * None
  *
  * Example:
- * [[1000, 2000, 0], "B_Plane_CAS_01_dynamicLoadout_F", 0, 150, 90, true] call root_effects_strikes_fnc_napalmStart
+ * [[1000, 2000, 0], "B_Plane_CAS_01_dynamicLoadout_F", 0, 150, 180, true, 20] call root_effects_strikes_fnc_napalmStart
  */
 
 params [
@@ -27,8 +30,9 @@ params [
     ["_planeClass", "B_Plane_CAS_01_dynamicLoadout_F", [""]],
     ["_heading", 0, [0]],
     ["_length", 150, [0]],
-    ["_duration", 90, [0]],
-    ["_damage", true, [false]]
+    ["_duration", 180, [0]],
+    ["_damage", true, [false]],
+    ["_dropDelay", 20, [0]]
 ];
 
 if (!isServer) exitWith {};
@@ -40,6 +44,7 @@ if (!isClass (configFile >> "CfgVehicles" >> _planeClass)) exitWith {
 _length = _length max 50;
 _duration = _duration max 15;
 _damage = _damage && GVAR(allowDamage);
+_dropDelay = _dropDelay max 5;
 
 // Attack run announcing the drop.
 [_planeClass, ATLToASL _pos, true, 300, 4000, floor (_heading / 45), 2, 1] call zen_modules_fnc_moduleAmbientFlyby;
@@ -47,34 +52,44 @@ _damage = _damage && GVAR(allowDamage);
 [{
     params ["_pos", "_heading", "_length", "_duration", "_damage"];
 
-    private _anchor = ["napalmstrike", QGVAR(napalmLocal), [_heading, _length], _pos] call EFUNC(main,startEffect);
-    if (isNull _anchor) exitWith {};
-
-    if (_damage) then {
-        [{
-            params ["_args", "_handle"];
-            _args params ["_anchor", "_heading", "_length"];
-
-            if (isNull _anchor) exitWith {
-                _handle call CBA_fnc_removePerFrameHandler;
-            };
-
-            private _exposed = ((getPosATL _anchor) nearEntities [["Man", "LandVehicle"], _length]) select {
-                _x inArea [getPosATL _anchor, _length / 2 + 10, 18, _heading, true]
-            };
-            {
-                if (!(_x isKindOf "VirtualMan_F") && {(getPosATL _x select 2) < 10}) then {
-                    [_x, 0.25, "Body", "burn", _anchor] call EFUNC(main,doDamage);
-                };
-            } forEach _exposed;
-        }, 2, [_anchor, _heading, _length]] call CBA_fnc_addPerFrameHandler;
+    // Real ordnance only when this strike is allowed to hurt anyone; a visual
+    // strike goes straight to the fire so nothing is destroyed by the drop.
+    if (!_damage) exitWith {
+        [_pos, _heading, _length, _duration, _damage] call FUNC(napalmIgnite);
     };
 
-    // The fire burns out after the configured duration.
+    [QGVAR(carpetSound), [_pos, "jet"]] call CBA_fnc_globalEvent;
+
+    private _firstDrop = _pos getPos [_length / 2, _heading + 180];
+    private _bombCount = round (_length / 15) max 4;
+    private _increment = _length / _bombCount;
+
+    // Walk the stick of bombs along the fire line, one drop per step.
+    // [firstDrop, heading, increment, index, total]
     [{
-        params ["_anchor"];
-        ["napalmstrike", _anchor] call EFUNC(main,stopEffect);
-    }, [_anchor], _duration] call CBA_fnc_waitAndExecute;
-}, [_pos, _heading, _length, _duration, _damage], 12] call CBA_fnc_waitAndExecute;
+        params ["_args", "_handle"];
+        _args params ["_firstDrop", "_heading", "_increment", "_index", "_total"];
+
+        if (_index >= _total) exitWith {
+            _handle call CBA_fnc_removePerFrameHandler;
+        };
+        _args set [3, _index + 1];
+
+        private _linePos = _firstDrop getPos [_increment * _index, _heading];
+        private _dropPos = [_linePos select 0, _linePos select 1, 200] vectorAdd [random 20 - 10, random 20 - 10, random 10 - 5];
+
+        private _bomb = createVehicle ["Bo_Mk82", _dropPos, [], 0, "CAN_COLLIDE"];
+        _bomb setPosASL (ATLToASL _dropPos);
+        _bomb setVectorDirAndUp [[0, 0, -1], [0, 0.8, 0]];
+        _bomb setVelocityModelSpace [0, 50, -50];
+
+        [QGVAR(carpetSound), [ASLToATL getPosASL _bomb, "whistle"]] call CBA_fnc_globalEvent;
+    }, 0.25, [_firstDrop, _heading, _increment, 0, _bombCount]] call CBA_fnc_addPerFrameHandler;
+
+    // Let the last bomb land before the corridor catches.
+    [{
+        _this call FUNC(napalmIgnite);
+    }, [_pos, _heading, _length, _duration, _damage], _bombCount * 0.25 + 2] call CBA_fnc_waitAndExecute;
+}, [_pos, _heading, _length, _duration, _damage], _dropDelay] call CBA_fnc_waitAndExecute;
 
 DBG(FORMAT_2("napalm strike inbound, length %1, duration %2",_length,_duration));

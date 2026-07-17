@@ -42,6 +42,10 @@ class CfgFunctions {
             class volcanoStart {};
             class volcanoStartLocal {};
             class volcanoBurstLocal {};
+            class moduleAvalanche {};
+            class moduleAvalanche3DEN {};
+            class avalancheStart {};
+            class avalancheLocal {};
             class volcanoIsProtected {};
         };
     };

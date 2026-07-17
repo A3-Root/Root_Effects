@@ -34,6 +34,12 @@
         <Key ID="STR_root_effects_weather_AttrAcidTintTooltip">
             <Original>Strength of the sickly color grading inside the area.</Original>
         </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningAmbience">
+            <Original>Storm Ambience</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningAmbienceTooltip">
+            <Original>Pulls an overcast storm sky over the mission while the storm runs and eases the weather back afterwards.</Original>
+        </Key>
         <Key ID="STR_root_effects_weather_AttrLightningDamage">
             <Original>Strikes Damage Units</Original>
         </Key>

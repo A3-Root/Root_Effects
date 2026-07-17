@@ -45,6 +45,6 @@ if (_showNow) then {
 if (_diary) then {
     player createDiaryRecord ["Diary", [
         _diaryTab,
-        format ["<execute expression='[""%1""] call %2'>%3</execute>", _articleId, QFUNC(openArticle), _articleData select 0]
+        format ["<executeClose expression='[""%1""] call %2'>%3</executeClose>", _articleId, QFUNC(openArticle), _articleData select 0]
     ]];
 };

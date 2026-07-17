@@ -27,7 +27,9 @@ if (isNull _logic) exitWith {};
 
 private _pos = getPosATL _logic;
 private _alarm = _logic getVariable ["ROOT_SEARCHLIGHT_ALARM", false];
+private _attach = _logic getVariable ["ROOT_SEARCHLIGHT_ATTACH", false];
+private _aiSearch = _logic getVariable ["ROOT_SEARCHLIGHT_AISEARCH", true];
 
 deleteVehicle _logic;
 
-[_pos, _alarm] call FUNC(searchlightStart);
+[_pos, _alarm, _attach, _aiSearch] call FUNC(searchlightStart);

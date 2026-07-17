@@ -40,7 +40,11 @@ _damage = _damage && GVAR(allowDamage);
 private _anchor = ["acidrain", QGVAR(acidRainLocal), [_radius, _tint], _pos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
-// Force heavy rain while the acid rain is active.
+// Rain only renders while the sky is overcast, so the cloud cover has to be
+// forced alongside it. Both are restored when the instance stops.
+private _prevOvercast = overcast;
+private _prevRain = rain;
+0 setOvercast 0.85;
 0 setRain 1;
 0 setRainbow 0;
 forceWeatherChange;
@@ -48,11 +52,12 @@ forceWeatherChange;
 if (_damage) then {
     [{
         params ["_args", "_handle"];
-        _args params ["_anchor", "_radius", "_damagePerTick"];
+        _args params ["_anchor", "_radius", "_damagePerTick", "_prevRain", "_prevOvercast"];
 
         if (isNull _anchor) exitWith {
-            // Let the weather drift back to natural once the rain stops.
-            30 setRain rainParams;
+            // Let the weather drift back to what it was once the rain stops.
+            30 setRain _prevRain;
+            30 setOvercast _prevOvercast;
             _handle call CBA_fnc_removePerFrameHandler;
         };
 
@@ -67,18 +72,19 @@ if (_damage) then {
                 };
             };
         } forEach ((getPosATL _anchor) nearEntities [["Man"], _radius]);
-    }, _tick, [_anchor, _radius, _damagePerTick]] call CBA_fnc_addPerFrameHandler;
+    }, _tick, [_anchor, _radius, _damagePerTick, _prevRain, _prevOvercast]] call CBA_fnc_addPerFrameHandler;
 } else {
     // Without damage a light watcher still restores the weather on stop.
     [{
         params ["_args", "_handle"];
-        _args params ["_anchor"];
+        _args params ["_anchor", "_prevRain", "_prevOvercast"];
 
         if (isNull _anchor) exitWith {
-            30 setRain rainParams;
+            30 setRain _prevRain;
+            30 setOvercast _prevOvercast;
             _handle call CBA_fnc_removePerFrameHandler;
         };
-    }, 5, [_anchor]] call CBA_fnc_addPerFrameHandler;
+    }, 5, [_anchor, _prevRain, _prevOvercast]] call CBA_fnc_addPerFrameHandler;
 };
 
 DBG(FORMAT_2("acid rain started, radius %1, damage %2",_radius,_damage));

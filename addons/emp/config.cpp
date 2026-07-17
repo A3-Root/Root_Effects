@@ -42,6 +42,8 @@ class CfgFunctions {
             class empStart {};
             class empLocal {};
             class empVehicleLocal {};
+            class empLampsLocal {};
+            class empUnitLocal {};
         };
     };
 };

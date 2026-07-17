@@ -67,6 +67,12 @@
         <Key ID="STR_root_effects_battlescripts_AttrAaaDmgInfTooltip">
             <Original>Damage added per burst to infantry passing through or paradropping inside the zone.</Original>
         </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaFireRate">
+            <Original>Bursts Per Cycle</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaFireRateTooltip">
+            <Original>Number of detonations per fire delay cycle, spaced evenly across it.</Original>
+        </Key>
         <Key ID="STR_root_effects_battlescripts_AttrAaaLethal">
             <Original>Lethal Barrage</Original>
         </Key>
@@ -84,6 +90,12 @@
         </Key>
         <Key ID="STR_root_effects_battlescripts_AttrAaaSmokeOnlyTooltip">
             <Original>Only show smoke from the detonations without the flash.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaSpread">
+            <Original>Burst Spread</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrAaaSpreadTooltip">
+            <Original>Fraction of the radius the detonations spread over. Lower values concentrate the flak around the module position.</Original>
         </Key>
         <Key ID="STR_root_effects_battlescripts_AttrArtyDelay">
             <Original>Fire Delay</Original>
@@ -121,11 +133,23 @@
         <Key ID="STR_root_effects_battlescripts_AttrMissilesSafeDistTooltip">
             <Original>Players closer than this many meters do not see rockets launch.</Original>
         </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrSearchlightAiSearch">
+            <Original>AI Search Mode</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrSearchlightAiSearchTooltip">
+            <Original>A mounted light with no gunner keeps sweeping the sky. When disabled it holds a fixed shaft along the way the mount faces.</Original>
+        </Key>
         <Key ID="STR_root_effects_battlescripts_AttrSearchlightAlarm">
             <Original>Enable Alarm</Original>
         </Key>
         <Key ID="STR_root_effects_battlescripts_AttrSearchlightAlarmTooltip">
             <Original>Plays a recurring air raid alarm at the searchlight position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrSearchlightAttach">
+            <Original>Attach To Nearby Object</Original>
+        </Key>
+        <Key ID="STR_root_effects_battlescripts_AttrSearchlightAttachTooltip">
+            <Original>Mounts the beam on the closest vehicle or static weapon within 8 meters. A gunner in its turret aims the light.</Original>
         </Key>
         <Key ID="STR_root_effects_battlescripts_AttrTracersActDist">
             <Original>Activation Distance</Original>

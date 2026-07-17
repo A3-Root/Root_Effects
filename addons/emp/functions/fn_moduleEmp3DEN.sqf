@@ -31,7 +31,9 @@ private _duration = _logic getVariable ["ROOT_EMP_DURATION", 20];
 private _killEngines = _logic getVariable ["ROOT_EMP_KILLENGINES", true];
 private _fuelDrain = _logic getVariable ["ROOT_EMP_FUELDRAIN", 0];
 private _hud = _logic getVariable ["ROOT_EMP_HUD", true];
+private _electronics = _logic getVariable ["ROOT_EMP_ELECTRONICS", true];
+private _permanent = _logic getVariable ["ROOT_EMP_PERMANENT", false];
 
 deleteVehicle _logic;
 
-[_pos, _radius, _duration, _killEngines, _fuelDrain, _hud] call FUNC(empStart);
+[_pos, _radius, _duration, _killEngines, _fuelDrain, _hud, _electronics, _permanent] call FUNC(empStart);

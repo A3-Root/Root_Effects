@@ -33,7 +33,9 @@ private _damageAir = _logic getVariable ["ROOT_AAA_DMGAIR", 0.05];
 private _damageInf = _logic getVariable ["ROOT_AAA_DMGINF", 0.2];
 private _burstDelay = _logic getVariable ["ROOT_AAA_DELAY", 1];
 private _smokeOnly = _logic getVariable ["ROOT_AAA_SMOKEONLY", false];
+private _spread = _logic getVariable ["ROOT_AAA_SPREAD", 1];
+private _fireRate = _logic getVariable ["ROOT_AAA_FIRERATE", 1];
 
 deleteVehicle _logic;
 
-[_pos, _radius, _altitude, _lethal, _damageAir, _damageInf, _burstDelay, _smokeOnly] call FUNC(aaaStart);
+[_pos, _radius, _altitude, _lethal, _damageAir, _damageInf, _burstDelay, _smokeOnly, _spread, _fireRate] call FUNC(aaaStart);

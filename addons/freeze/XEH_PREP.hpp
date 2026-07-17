@@ -5,3 +5,8 @@ PREP(moduleFreezePlayers);
 PREP(moduleFreezePlayers3DEN);
 PREP(freezeApply);
 PREP(freezeLocal);
+PREP(moduleCryoBlast);
+PREP(moduleCryoBlast3DEN);
+PREP(cryoBlastStart);
+PREP(cryoBlastFreeze);
+PREP(cryoBlastLocal);

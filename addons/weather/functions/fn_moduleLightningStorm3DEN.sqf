@@ -31,7 +31,8 @@ private _duration = _logic getVariable ["ROOT_LIGHTNING_DURATION", 300];
 private _minInterval = _logic getVariable ["ROOT_LIGHTNING_MININT", 5];
 private _maxInterval = _logic getVariable ["ROOT_LIGHTNING_MAXINT", 20];
 private _damage = _logic getVariable ["ROOT_LIGHTNING_DAMAGE", false];
+private _ambience = _logic getVariable ["ROOT_LIGHTNING_AMBIENCE", true];
 
 deleteVehicle _logic;
 
-[_pos, _radius, _duration, _minInterval, _maxInterval, _damage] call FUNC(lightningStart);
+[_pos, _radius, _duration, _minInterval, _maxInterval, _damage, _ambience] call FUNC(lightningStart);

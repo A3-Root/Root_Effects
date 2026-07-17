@@ -7,3 +7,7 @@ PREP(volcanoStart);
 PREP(volcanoStartLocal);
 PREP(volcanoBurstLocal);
 PREP(volcanoIsProtected);
+PREP(moduleAvalanche);
+PREP(moduleAvalanche3DEN);
+PREP(avalancheStart);
+PREP(avalancheLocal);

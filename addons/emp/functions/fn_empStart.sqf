@@ -14,12 +14,14 @@
  * 3: Cut vehicle engines <BOOL>
  * 4: Fraction of fuel drained from vehicles, 0..1 <NUMBER>
  * 5: Distort the HUD of players inside the radius <BOOL>
+ * 6: Knock out lamps and carried electronics <BOOL>
+ * 7: Electronics stay dead instead of recovering after the duration <BOOL>
  *
  * Return Value:
  * None
  *
  * Example:
- * [[1000, 2000, 0], 300, 20, true, 0, true] call root_effects_emp_fnc_empStart
+ * [[1000, 2000, 0], 300, 20, true, 0, true, true, false] call root_effects_emp_fnc_empStart
  */
 
 params [
@@ -28,7 +30,9 @@ params [
     ["_duration", 20, [0]],
     ["_killEngines", true, [false]],
     ["_fuelDrain", 0, [0]],
-    ["_hud", true, [false]]
+    ["_hud", true, [false]],
+    ["_electronics", true, [false]],
+    ["_permanent", false, [false]]
 ];
 
 if (!isServer) exitWith {};
@@ -46,6 +50,20 @@ if (_killEngines || {_fuelDrain > 0}) then {
             [QGVAR(vehicleLocal), [_vehicle, _duration, _killEngines, _fuelDrain], [_vehicle]] call CBA_fnc_targetEvent;
         };
     } forEach (_pos nearEntities [["LandVehicle", "Air", "Ship"], _radius]);
+};
+
+if (_electronics) then {
+    // Terrain lamps exist on every machine and switchLight is a local effect,
+    // so each machine darkens its own copies.
+    [QGVAR(lampsLocal), [_pos, _radius, _duration, _permanent]] call CBA_fnc_globalEvent;
+
+    // Worn and carried gear can only be touched where the unit is local.
+    {
+        private _unit = _x;
+        if (alive _unit && {!(_unit isKindOf "VirtualMan_F")}) then {
+            [QGVAR(unitLocal), [_unit, _duration, _permanent], [_unit]] call CBA_fnc_targetEvent;
+        };
+    } forEach (_pos nearEntities [["CAManBase"], _radius]);
 };
 
 DBG(FORMAT_2("emp pulse fired, radius %1, duration %2",_radius,_duration));

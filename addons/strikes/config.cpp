@@ -48,11 +48,17 @@ class CfgFunctions {
             class moduleNapalmStrike {};
             class moduleNapalmStrike3DEN {};
             class napalmStart {};
+            class napalmIgnite {};
             class napalmStartLocal {};
             class moduleCarpetStrike {};
             class moduleCarpetStrike3DEN {};
             class carpetStart {};
             class carpetSoundLocal {};
+            class moduleSingularity {};
+            class moduleSingularity3DEN {};
+            class singularityStart {};
+            class singularityLocal {};
+            class singularityFlingLocal {};
         };
     };
 };

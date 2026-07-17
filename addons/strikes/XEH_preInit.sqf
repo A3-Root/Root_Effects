@@ -9,5 +9,6 @@ ADDON = false;
 ["laserstrike", LLSTRING(ModuleLaser), QGVAR(enabledLaser)] call EFUNC(main,registerEffect);
 ["napalmstrike", LLSTRING(ModuleNapalm), QGVAR(enabledNapalm)] call EFUNC(main,registerEffect);
 ["carpetstrike", LLSTRING(ModuleCarpet), QGVAR(enabledCarpet)] call EFUNC(main,registerEffect);
+["singularity", LLSTRING(ModuleSingularity), QGVAR(enabledSingularity)] call EFUNC(main,registerEffect);
 
 ADDON = true;

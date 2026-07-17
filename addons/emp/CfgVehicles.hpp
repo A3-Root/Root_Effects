@@ -31,6 +31,8 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_EMP_KILLENGINES,CSTRING(AttrKillEngines),CSTRING(AttrKillEnginesTooltip),true);
             ROOT_ATTR_NUMBER(ROOT_EMP_FUELDRAIN,CSTRING(AttrFuelDrain),CSTRING(AttrFuelDrainTooltip),0);
             ROOT_ATTR_BOOL(ROOT_EMP_HUD,CSTRING(AttrHud),CSTRING(AttrHudTooltip),true);
+            ROOT_ATTR_BOOL(ROOT_EMP_ELECTRONICS,CSTRING(AttrElectronics),CSTRING(AttrElectronicsTooltip),true);
+            ROOT_ATTR_BOOL(ROOT_EMP_PERMANENT,CSTRING(AttrPermanent),CSTRING(AttrPermanentTooltip),false);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

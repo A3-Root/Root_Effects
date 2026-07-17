@@ -23,6 +23,13 @@ class CfgVehicles {
         function = QFUNC(moduleCarpetStrike);
         displayName = CSTRING(ModuleCarpet);
     };
+    class ROOT_Singularity_ModuleZeus: zen_modules_moduleBase {
+        author = "Root";
+        _generalMacro = "ROOT_Singularity_ModuleZeus";
+        category = "ROOT_EFFECTS";
+        function = QFUNC(moduleSingularity);
+        displayName = CSTRING(ModuleSingularity);
+    };
 
     class Logic;
     class Module_F: Logic {
@@ -42,7 +49,9 @@ class CfgVehicles {
         class Attributes: AttributesBase {
             ROOT_ATTR_NUMBER(ROOT_LASER_CHARGE,CSTRING(AttrLaserCharge),CSTRING(AttrLaserChargeTooltip),5);
             ROOT_ATTR_NUMBER(ROOT_LASER_BEAM,CSTRING(AttrLaserBeam),CSTRING(AttrLaserBeamTooltip),3);
-            ROOT_ATTR_NUMBER(ROOT_LASER_COLOR,CSTRING(AttrLaserColor),CSTRING(AttrLaserColorTooltip),0);
+            ROOT_ATTR_NUMBER(ROOT_LASER_RED,CSTRING(AttrLaserRed),CSTRING(AttrLaserRedTooltip),1);
+            ROOT_ATTR_NUMBER(ROOT_LASER_GREEN,CSTRING(AttrLaserGreen),CSTRING(AttrLaserGreenTooltip),0.2);
+            ROOT_ATTR_NUMBER(ROOT_LASER_BLUE,CSTRING(AttrLaserBlue),CSTRING(AttrLaserBlueTooltip),0.2);
             ROOT_ATTR_BOOL(ROOT_LASER_DAMAGE,CSTRING(AttrLaserDamage),CSTRING(AttrLaserDamageTooltip),true);
             ROOT_ATTR_NUMBER(ROOT_LASER_DMGRADIUS,CSTRING(AttrLaserDmgRadius),CSTRING(AttrLaserDmgRadiusTooltip),30);
             class ModuleDescription: ModuleDescription {};
@@ -61,8 +70,9 @@ class CfgVehicles {
             ROOT_ATTR_STRING(ROOT_NAPALM_PLANE,CSTRING(AttrNapalmPlane),CSTRING(AttrNapalmPlaneTooltip),"'B_Plane_CAS_01_dynamicLoadout_F'");
             ROOT_ATTR_NUMBER(ROOT_NAPALM_HEADING,CSTRING(AttrNapalmHeading),CSTRING(AttrNapalmHeadingTooltip),0);
             ROOT_ATTR_NUMBER(ROOT_NAPALM_LENGTH,CSTRING(AttrNapalmLength),CSTRING(AttrNapalmLengthTooltip),150);
-            ROOT_ATTR_NUMBER(ROOT_NAPALM_DURATION,CSTRING(AttrNapalmDuration),CSTRING(AttrNapalmDurationTooltip),90);
+            ROOT_ATTR_NUMBER(ROOT_NAPALM_DURATION,CSTRING(AttrNapalmDuration),CSTRING(AttrNapalmDurationTooltip),180);
             ROOT_ATTR_BOOL(ROOT_NAPALM_DAMAGE,CSTRING(AttrNapalmDamage),CSTRING(AttrNapalmDamageTooltip),true);
+            ROOT_ATTR_NUMBER(ROOT_NAPALM_DROPDELAY,CSTRING(AttrNapalmDropDelay),CSTRING(AttrNapalmDropDelayTooltip),20);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
@@ -87,6 +97,22 @@ class CfgVehicles {
         };
         class ModuleDescription: ModuleDescription {
             description = CSTRING(ModuleCarpetDesc);
+        };
+    };
+    class ROOT_Singularity_Module3DEN: Module_F {
+        ROOT_MODULE_3DEN_COMMON;
+        author = "Root";
+        displayName = CSTRING(ModuleSingularity);
+        function = QFUNC(moduleSingularity3DEN);
+        class AttributeValues {};
+        class Attributes: AttributesBase {
+            ROOT_ATTR_NUMBER(ROOT_SINGULARITY_RADIUS,CSTRING(AttrSingularityRadius),CSTRING(AttrSingularityRadiusTooltip),120);
+            ROOT_ATTR_NUMBER(ROOT_SINGULARITY_CHARGE,CSTRING(AttrSingularityCharge),CSTRING(AttrSingularityChargeTooltip),6);
+            ROOT_ATTR_BOOL(ROOT_SINGULARITY_LETHAL,CSTRING(AttrSingularityLethal),CSTRING(AttrSingularityLethalTooltip),true);
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = CSTRING(ModuleSingularityDesc);
         };
     };
 };

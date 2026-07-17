@@ -31,13 +31,14 @@ if (!(["napalmstrike"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["EDIT", [LLSTRING(AttrNapalmPlane), LLSTRING(AttrNapalmPlaneTooltip)], ["B_Plane_CAS_01_dynamicLoadout_F"]],
     ["SLIDER", [LLSTRING(AttrNapalmHeading), LLSTRING(AttrNapalmHeadingTooltip)], [0, 360, 0, 0]],
     ["SLIDER", [LLSTRING(AttrNapalmLength), LLSTRING(AttrNapalmLengthTooltip)], [50, 500, 150, 0]],
-    ["SLIDER", [LLSTRING(AttrNapalmDuration), LLSTRING(AttrNapalmDurationTooltip)], [15, 600, 90, 0]],
-    ["TOOLBOX:YESNO", [LLSTRING(AttrNapalmDamage), LLSTRING(AttrNapalmDamageTooltip)], true]
+    ["SLIDER", [LLSTRING(AttrNapalmDuration), LLSTRING(AttrNapalmDurationTooltip)], [15, 600, 180, 0]],
+    ["TOOLBOX:YESNO", [LLSTRING(AttrNapalmDamage), LLSTRING(AttrNapalmDamageTooltip)], true],
+    ["SLIDER", [LLSTRING(AttrNapalmDropDelay), LLSTRING(AttrNapalmDropDelayTooltip)], [5, 120, 20, 0]]
 ], {
     params ["_results", "_pos"];
-    _results params ["_planeClass", "_heading", "_length", "_duration", "_damage"];
+    _results params ["_planeClass", "_heading", "_length", "_duration", "_damage", "_dropDelay"];
 
-    [QGVAR(startNapalm), [_pos, _planeClass, _heading, _length, _duration, _damage]] call CBA_fnc_serverEvent;
+    [QGVAR(startNapalm), [_pos, _planeClass, _heading, _length, _duration, _damage, _dropDelay]] call CBA_fnc_serverEvent;
     [LLSTRING(NapalmStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

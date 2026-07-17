@@ -61,6 +61,8 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_AAA_DMGINF,CSTRING(AttrAaaDmgInf),CSTRING(AttrAaaDmgInfTooltip),0.2);
             ROOT_ATTR_NUMBER(ROOT_AAA_DELAY,CSTRING(AttrAaaDelay),CSTRING(AttrAaaDelayTooltip),1);
             ROOT_ATTR_BOOL(ROOT_AAA_SMOKEONLY,CSTRING(AttrAaaSmokeOnly),CSTRING(AttrAaaSmokeOnlyTooltip),false);
+            ROOT_ATTR_NUMBER(ROOT_AAA_SPREAD,CSTRING(AttrAaaSpread),CSTRING(AttrAaaSpreadTooltip),1);
+            ROOT_ATTR_NUMBER(ROOT_AAA_FIRERATE,CSTRING(AttrAaaFireRate),CSTRING(AttrAaaFireRateTooltip),1);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
@@ -107,6 +109,8 @@ class CfgVehicles {
         class AttributeValues {};
         class Attributes: AttributesBase {
             ROOT_ATTR_BOOL(ROOT_SEARCHLIGHT_ALARM,CSTRING(AttrSearchlightAlarm),CSTRING(AttrSearchlightAlarmTooltip),false);
+            ROOT_ATTR_BOOL(ROOT_SEARCHLIGHT_ATTACH,CSTRING(AttrSearchlightAttach),CSTRING(AttrSearchlightAttachTooltip),false);
+            ROOT_ATTR_BOOL(ROOT_SEARCHLIGHT_AISEARCH,CSTRING(AttrSearchlightAiSearch),CSTRING(AttrSearchlightAiSearchTooltip),true);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

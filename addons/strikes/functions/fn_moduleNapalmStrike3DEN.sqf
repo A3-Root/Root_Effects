@@ -29,9 +29,10 @@ private _pos = getPosATL _logic;
 private _planeClass = _logic getVariable ["ROOT_NAPALM_PLANE", "B_Plane_CAS_01_dynamicLoadout_F"];
 private _heading = _logic getVariable ["ROOT_NAPALM_HEADING", 0];
 private _length = _logic getVariable ["ROOT_NAPALM_LENGTH", 150];
-private _duration = _logic getVariable ["ROOT_NAPALM_DURATION", 90];
+private _duration = _logic getVariable ["ROOT_NAPALM_DURATION", 180];
 private _damage = _logic getVariable ["ROOT_NAPALM_DAMAGE", true];
+private _dropDelay = _logic getVariable ["ROOT_NAPALM_DROPDELAY", 20];
 
 deleteVehicle _logic;
 
-[_pos, _planeClass, _heading, _length, _duration, _damage] call FUNC(napalmStart);
+[_pos, _planeClass, _heading, _length, _duration, _damage, _dropDelay] call FUNC(napalmStart);

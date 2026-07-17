@@ -20,3 +20,4 @@ PREP(sparkBurstLocal);
 PREP(moduleBirdSwarm);
 PREP(moduleBirdSwarm3DEN);
 PREP(birdSwarmStart);
+PREP(birdSwarmStartLocal);

@@ -20,7 +20,12 @@ params [["_anchor", objNull, [objNull]]];
 
 if (!isServer) exitWith {};
 
-private _target = [getPosATL _anchor] call FUNC(pickTarget);
+private _target = [
+    getPosATL _anchor,
+    _anchor getVariable [QGVAR(targetMode), 0],
+    _anchor getVariable [QGVAR(targetRadius), 300],
+    _anchor getVariable [QGVAR(targetOwners), []]
+] call FUNC(pickTarget);
 private _startPos = [
     (_target select 0) + random (selectRandom [500, -500]),
     (_target select 1) + random (selectRandom [500, -500]),

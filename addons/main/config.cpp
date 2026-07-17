@@ -39,6 +39,9 @@ class CfgFunctions {
             class startEffect {};
             class stopEffect {};
             class doDamage {};
+            class doDamageLocal {};
+            class doHitPointDamage {};
+            class doHitPointDamageLocal {};
             class isEffectEnabled {};
             class log {};
             class moduleTerminate {};
