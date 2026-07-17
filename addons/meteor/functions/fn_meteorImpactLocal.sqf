@@ -11,6 +11,7 @@
  * 1: Horizontal velocity X of the meteor <NUMBER>
  * 2: Horizontal velocity Y of the meteor <NUMBER>
  * 3: Show the dust shockwave ring <BOOL>
+ * 4: NetId of the spawner anchor the crater belongs to <STRING> (optional, default "")
  *
  * Return Value:
  * None
@@ -19,7 +20,7 @@
  * [[1000, 2000, 0], 5, 5, true] call root_effects_meteor_fnc_meteorImpactLocal
  */
 
-params [["_impactPos", [0, 0, 0], [[]], 3], ["_velocityX", 0, [0]], ["_velocityY", 0, [0]], ["_shockwave", true, [false]]];
+params [["_impactPos", [0, 0, 0], [[]], 3], ["_velocityX", 0, [0]], ["_velocityY", 0, [0]], ["_shockwave", true, [false]], ["_anchorNetId", "", [""]]];
 
 if (!hasInterface) exitWith {};
 if ((player distance2D _impactPos) > ((EGVAR(main,maxViewDistance)) max 2000)) exitWith {};
@@ -59,7 +60,11 @@ _smokeEmitter setParticleRandom [0.5, [1, 1, 0], [50, 50, 70], 3, 0.5, [0, 0, 0,
 _smokeEmitter setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 10, [0, 0, 0], [0, 0, 20], 5, 30, 5, 1, [30, 50, 100], [[0, 0, 0, 1], [0, 0, 0, 0.5], [0.5, 0.5, 0.5, 0]], [0.08], 1, 0, "", "", _impactPos];
 _smokeEmitter setDropInterval (0.01 / _budget);
 
-"Crater" createVehicleLocal _impactPos;
+private _crater = "Crater" createVehicleLocal _impactPos;
+private _spawnerAnchor = objectFromNetId _anchorNetId;
+if (!isNull _spawnerAnchor) then {
+    [_spawnerAnchor, _crater] call EFUNC(main,registerLocalObject);
+};
 
 private _impactLight = "#lightpoint" createVehicleLocal _impactPos;
 _impactLight setLightIntensity 5000;

@@ -11,4 +11,5 @@ PREP(doHitPointDamageLocal);
 PREP(isEffectEnabled);
 PREP(log);
 PREP(moduleTerminate);
+PREP(registerLocalObject);
 PREP(terminateDialog);

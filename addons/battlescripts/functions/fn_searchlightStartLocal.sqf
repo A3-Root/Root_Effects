@@ -94,7 +94,9 @@ private _state = [_anchor, _alarm, objNull, 30, 10 + random 350, true, 0, _attac
         };
         private _up = _right vectorCrossProduct _dir;
 
-        _beam setVectorDirAndUp [vectorNormalized _dir, vectorNormalized _up];
+        // The volumetric cone projects along the model's negative direction axis,
+        // so the direction is inverted to make the shaft shine where the turret aims.
+        _beam setVectorDirAndUp [vectorNormalized (_dir vectorMultiply -1), vectorNormalized _up];
     } else {
         private _sweeping = !_mounted || _aiSearch;
 

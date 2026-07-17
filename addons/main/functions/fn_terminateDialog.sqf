@@ -46,17 +46,17 @@ private _seenKeys = [];
 
         private _instanceCount = _instanceCounts getOrDefault [_effectKey, 0];
         if (_instanceCount > 1) then {
-            _rows pushBack ["CHECKBOX", format [LLSTRING(StopAllOfType), _displayName, _instanceCount], false];
+            _rows pushBack ["TOOLBOX:YESNO", format [LLSTRING(StopAllOfType), _displayName, _instanceCount], false];
             _actions pushBack ["all", _effectKey, objNull];
         };
     };
 
     private _label = format [LLSTRING(StopInstance), _displayName, _grid, floor (_elapsed / 60), _elapsed mod 60];
-    _rows pushBack ["CHECKBOX", _label, false];
+    _rows pushBack ["TOOLBOX:YESNO", _label, false];
     _actions pushBack ["instance", _effectKey, _anchor];
 } forEach _data;
 
-_rows pushBack ["CHECKBOX", LLSTRING(StopEverything), false];
+_rows pushBack ["TOOLBOX:YESNO", LLSTRING(StopEverything), false];
 _actions pushBack ["everything", "", objNull];
 
 [LLSTRING(ModuleTerminate), _rows, {

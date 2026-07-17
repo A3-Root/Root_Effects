@@ -2,10 +2,11 @@
 
 /*
  * Author: Root
- * Starts acid rain on the server: forces rain over the mission, broadcasts
- * the sickly tint to all clients (JIP safe) and runs the periodic exposure
- * damage to units standing in the open inside the area. Stopping the
- * instance releases the rain override.
+ * Starts acid rain on the server: broadcasts the localised falling rain and
+ * sickly tint to all clients (JIP safe) and runs the periodic exposure damage
+ * to units standing in the open inside the area. The downpour is rendered as a
+ * client side particle column confined to the area rather than a map wide
+ * weather override, so only the target radius sees rain.
  *
  * Arguments:
  * 0: Position ATL of the affected area center <ARRAY>
@@ -40,24 +41,12 @@ _damage = _damage && GVAR(allowDamage);
 private _anchor = ["acidrain", QGVAR(acidRainLocal), [_radius, _tint], _pos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
-// Rain only renders while the sky is overcast, so the cloud cover has to be
-// forced alongside it. Both are restored when the instance stops.
-private _prevOvercast = overcast;
-private _prevRain = rain;
-0 setOvercast 0.85;
-0 setRain 1;
-0 setRainbow 0;
-forceWeatherChange;
-
 if (_damage) then {
     [{
         params ["_args", "_handle"];
-        _args params ["_anchor", "_radius", "_damagePerTick", "_prevRain", "_prevOvercast"];
+        _args params ["_anchor", "_radius", "_damagePerTick"];
 
         if (isNull _anchor) exitWith {
-            // Let the weather drift back to what it was once the rain stops.
-            30 setRain _prevRain;
-            30 setOvercast _prevOvercast;
             _handle call CBA_fnc_removePerFrameHandler;
         };
 
@@ -72,19 +61,7 @@ if (_damage) then {
                 };
             };
         } forEach ((getPosATL _anchor) nearEntities [["Man"], _radius]);
-    }, _tick, [_anchor, _radius, _damagePerTick, _prevRain, _prevOvercast]] call CBA_fnc_addPerFrameHandler;
-} else {
-    // Without damage a light watcher still restores the weather on stop.
-    [{
-        params ["_args", "_handle"];
-        _args params ["_anchor", "_prevRain", "_prevOvercast"];
-
-        if (isNull _anchor) exitWith {
-            30 setRain _prevRain;
-            30 setOvercast _prevOvercast;
-            _handle call CBA_fnc_removePerFrameHandler;
-        };
-    }, 5, [_anchor, _prevRain, _prevOvercast]] call CBA_fnc_addPerFrameHandler;
+    }, _tick, [_anchor, _radius, _damagePerTick]] call CBA_fnc_addPerFrameHandler;
 };
 
 DBG(FORMAT_2("acid rain started, radius %1, damage %2",_radius,_damage));

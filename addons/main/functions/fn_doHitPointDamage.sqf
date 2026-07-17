@@ -10,6 +10,7 @@
  * Arguments:
  * 0: Vehicle to damage <OBJECT>
  * 1: Damage to add per hitpoint, 0..1 <NUMBER>
+ * 2: Randomise the amount independently per hitpoint, drawing 0..arg1 <BOOL> (optional, default false)
  *
  * Return Value:
  * None
@@ -18,14 +19,14 @@
  * [_heli, 0.2] call root_effects_main_fnc_doHitPointDamage
  */
 
-params [["_vehicle", objNull, [objNull]], ["_damage", 0, [0]]];
+params [["_vehicle", objNull, [objNull]], ["_damage", 0, [0]], ["_randomize", false, [false]]];
 
 if (!isServer) exitWith {};
 if (!GVAR(damageAllowed)) exitWith {};
 if (isNull _vehicle || {!alive _vehicle} || {_damage <= 0}) exitWith {};
 
 if (local _vehicle) exitWith {
-    [_vehicle, _damage] call FUNC(doHitPointDamageLocal);
+    [_vehicle, _damage, _randomize] call FUNC(doHitPointDamageLocal);
 };
 
-[QGVAR(hitPointDamageLocal), [_vehicle, _damage], _vehicle] call CBA_fnc_targetEvent;
+[QGVAR(hitPointDamageLocal), [_vehicle, _damage, _randomize], _vehicle] call CBA_fnc_targetEvent;

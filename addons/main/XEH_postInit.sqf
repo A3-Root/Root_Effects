@@ -10,6 +10,17 @@
     _this call FUNC(doHitPointDamageLocal);
 }] call CBA_fnc_addEventHandler;
 
+// Fired for every machine when an instance is terminated so each deletes the
+// persistent local props (craters, decals) it created for that anchor.
+[QGVAR(cleanupLocalObjects), {
+    params ["_key"];
+    private _objects = GVAR(localObjects) getOrDefault [_key, []];
+    {
+        deleteVehicle _x;
+    } forEach _objects;
+    GVAR(localObjects) deleteAt _key;
+}] call CBA_fnc_addEventHandler;
+
 if (isServer) then {
     // Curator asked for the list of running effect instances; answer with a
     // snapshot so their machine can open the termination dialog.

@@ -60,7 +60,7 @@ playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [getPos _anchor s
         deleteVehicle _shockwaveEmitter;
     }, [_shockwaveEmitter], 0.2] call CBA_fnc_waitAndExecute;
 
-    "Crater" createVehicleLocal getPos _anchor;
+    [_anchor, "Crater" createVehicleLocal getPos _anchor] call EFUNC(main,registerLocalObject);
 
     // Pattern tracer. Per tick the orb advances one degree, drops its glow
     // and occasionally burns a flattened decal into the ground.
@@ -128,7 +128,8 @@ playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [getPos _anchor s
                 drop [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.3, [0, 0, 0], [0, 0, 0], 0, 9.999, 7, 0, [1, 10], [[0.443, 0.706, 0.81, 0.2], [0.443, 0.706, 0.81, 0]], [1], 0, 0, "", "", _orbitLight];
 
                 if (_decalCountdown <= 0) then {
-                    (["Crater", "Land_ShellCrater_02_small_F"] select (isClass (configFile >> "CfgVehicles" >> "Land_ShellCrater_02_small_F"))) createVehicleLocal _tracePos;
+                    private _decal = (["Crater", "Land_ShellCrater_02_decal_F"] select (isClass (configFile >> "CfgVehicles" >> "Land_ShellCrater_02_decal_F"))) createVehicleLocal _tracePos;
+                    [_anchor, _decal] call EFUNC(main,registerLocalObject);
                     _args set [7, _decalSpacing];
                 } else {
                     _args set [7, _decalCountdown - 1];

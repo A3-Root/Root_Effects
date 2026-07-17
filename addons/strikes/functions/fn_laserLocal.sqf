@@ -100,7 +100,7 @@ private _chargeStep = 4 / (_chargeTime * 10);
     // washes out, so it is skipped.
     private _shaft = objNull;
     if (sunOrMoon < 0.4) then {
-        _shaft = createSimpleObject ["A3\data_f\VolumeLight_searchLight.p3d", getPosASL _pos, true];
+        _shaft = createSimpleObject ["A3\data_f\VolumeLight_searchLight.p3d", ATLToASL _pos, true];
         _shaft setVectorDirAndUp [[0, 0, 1], [0, 1, 0]];
     };
 

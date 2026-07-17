@@ -4,9 +4,9 @@
  * Author: Root
  * Detonates one firework on this client: a hard flash, a spherical shell of
  * stars fading from the shell's primary colour into its secondary, a glitter
- * layer, a handful of bright embers thrown clear of the burst and, now and
- * then, small secondary pops a moment later. Everything is local and cleans
- * itself up.
+ * layer, a spray of burning flare-object stars that arc out on smoke trails
+ * with their own coloured lights and, now and then, small secondary pops a
+ * moment later. Everything is local and cleans itself up.
  *
  * Arguments:
  * 0: Burst position ATL <ARRAY>
@@ -54,46 +54,44 @@ _glitter setParticleRandom [0.8, [0.3, 0.3, 0.3], [18 * _scale, 18 * _scale, 18 
 _glitter setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 4.5, [0, 0, 0], [0, 0, 0], 0, 1.1, 1, 0.05, [0.12 * _scale], [[1, 1, 0.95, 1], [1, 0.9, 0.5, 0.6], [1, 0.85, 0.4, 1], [1, 1, 1, 0]], [0.05, 0.2, 0.5, 0.8], 0, 0, "", "", _burstPos];
 _glitter setDropInterval (0.004 / _budget);
 
-// A few embers flung clear of the shell, each carrying its own light.
-private _embers = [];
-for "_i" from 1 to (2 + floor random 3) do {
-    private _ember = "#lightpoint" createVehicleLocal _burstPos;
-    _ember setLightBrightness 2 * _scale;
-    _ember setLightColor _secondary;
-    _ember setLightAmbient _secondary;
-    _ember setLightUseFlare true;
-    _ember setLightFlareSize 3 * _scale;
-    _ember setLightFlareMaxDistance 3000;
+// Burning flare stars: real objects flung out on their own ballistic arcs,
+// each trailing smoke and carrying a coloured light, so the shell leaves live
+// streaking trails instead of a flat cloud of sprites.
+private _flareCount = (round (14 * _scale)) max 6;
+private _flares = [];
+for "_i" from 1 to _flareCount do {
+    private _star = "CMflare_Chaff_ammo" createVehicleLocal _burstPos;
+    _star setPosATL _burstPos;
 
-    // Random direction on a sphere, so embers do not favour any axis.
-    private _dir = vectorNormalized [random 2 - 1, random 2 - 1, random 2 - 1];
-    _embers pushBack [_ember, _dir vectorMultiply ((8 + random 10) * _scale)];
+    // Spread the stars over a sphere biased slightly upward, then let gravity
+    // pull each arc back down.
+    private _dir = vectorNormalized [random 2 - 1, random 2 - 1, (random 2 - 1) * 0.7 + 0.25];
+    _star setVelocity (_dir vectorMultiply ((14 + random 12) * _scale));
+
+    // Alternate the two shell colours across the stars for a richer burst.
+    private _starColor = [_primary, _secondary] select (_i % 2);
+    private _starLight = "#lightpoint" createVehicleLocal _burstPos;
+    _starLight setLightBrightness 1.4 * _scale;
+    _starLight setLightColor _starColor;
+    _starLight setLightAmbient _starColor;
+    _starLight setLightUseFlare true;
+    _starLight setLightFlareSize 2.5 * _scale;
+    _starLight setLightFlareMaxDistance 3000;
+    _starLight setLightAttenuation [0, 0, 0, 0, 5, 30];
+    _starLight lightAttachObject [_star, [0, 0, 0]];
+
+    _flares pushBack [_star, _starLight];
 };
 
-// One loop integrates every ember: position by velocity, velocity by gravity.
+// Let the stars burn and arc, then clear each star and its attached light.
 [{
-    params ["_args", "_handle"];
-    _args params ["_embers", "_brightness"];
-
-    _brightness = _brightness - 0.12;
-    _args set [1, _brightness];
-
-    if (_brightness <= 0) exitWith {
-        {
-            deleteVehicle (_x select 0);
-        } forEach _embers;
-        _handle call CBA_fnc_removePerFrameHandler;
-    };
-
+    params ["_flares"];
     {
-        _x params ["_ember", "_velocity"];
-        if (isNull _ember) then {continue};
-
-        _ember setPosATL ((getPosATL _ember) vectorAdd (_velocity vectorMultiply 0.1));
-        _x set [1, _velocity vectorAdd [0, 0, -0.6]];
-        _ember setLightBrightness (_brightness max 0);
-    } forEach _embers;
-}, 0.1, [_embers, 2 * _scale]] call CBA_fnc_addPerFrameHandler;
+        _x params ["_star", "_starLight"];
+        deleteVehicle _starLight;
+        deleteVehicle _star;
+    } forEach _flares;
+}, [_flares], 4 + random 1.5] call CBA_fnc_waitAndExecute;
 
 if (_sounds && {(player distance2D _burstPos) < 2500}) then {
     // The report arrives after the light, delayed by distance.

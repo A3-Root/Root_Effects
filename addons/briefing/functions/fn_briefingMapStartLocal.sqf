@@ -5,8 +5,10 @@
  * Client side live map feed for one briefing map board. Paints a procedural
  * UI texture onto the board once, creates the map control inside it once and
  * then refreshes the feed at the configured interval, but only while the
- * player is near the board. Ends itself and stops refreshing once the anchor
- * is deleted.
+ * player is near the board. A second watcher offers the "take control" action
+ * so a player can drive what area the board shows by clicking their own map,
+ * with exclusive ownership that releases on distance, unconsciousness or death.
+ * Both loops end themselves once the anchor is deleted.
  *
  * Arguments:
  * 0: Instance anchor <OBJECT>
@@ -53,9 +55,16 @@ private _state = [_anchor, _centerMarker, _zoom, _activationDistance, false, "",
     private _display = findDisplay _displayName;
     if (isNull _display) exitWith {};
 
+    // A player-clicked area overrides everything; otherwise a marker; otherwise
+    // the board's own position.
     private _center = getPosATL _board;
-    if (_centerMarker isNotEqualTo "" && {getMarkerColor _centerMarker isNotEqualTo ""}) then {
-        _center = getMarkerPos _centerMarker;
+    private _override = _anchor getVariable [QGVAR(feedCenter), []];
+    if (_override isNotEqualTo []) then {
+        _center = _override;
+    } else {
+        if (_centerMarker isNotEqualTo "" && {getMarkerColor _centerMarker isNotEqualTo ""}) then {
+            _center = getMarkerPos _centerMarker;
+        };
     };
 
     private _map = _display getVariable [QGVAR(mapControl), controlNull];
@@ -75,3 +84,74 @@ private _state = [_anchor, _centerMarker, _zoom, _activationDistance, false, "",
 
     displayUpdate _display;
 }, GVAR(mapUpdateInterval), _state] call CBA_fnc_addPerFrameHandler;
+
+// Control ownership watcher: adds the take/release actions once the board is
+// known and, while this player owns the board, marks it as the anchor the
+// global map-click handler feeds and auto-releases when they can no longer use
+// it. [anchor, actionsAdded, inControl, actDist]
+private _ctrlState = [_anchor, false, false, _activationDistance];
+
+[{
+    params ["_args", "_handle"];
+    _args params ["_anchor", "_actionsAdded", "_inControl", "_activationDistance"];
+
+    if (isNull _anchor) exitWith {
+        if (_inControl && {(uiNamespace getVariable [QGVAR(controlledAnchor), objNull]) isEqualTo _anchor}) then {
+            uiNamespace setVariable [QGVAR(controlledAnchor), objNull];
+        };
+        _handle call CBA_fnc_removePerFrameHandler;
+    };
+
+    private _board = _anchor getVariable [QGVAR(board), objNull];
+    if (isNull _board) exitWith {};
+
+    if (!_actionsAdded) then {
+        _board addAction [
+            LLSTRING(ActionTakeControl),
+            {
+                (_this select 3) params ["_anchor"];
+                [QGVAR(requestControl), [_anchor, player]] call CBA_fnc_serverEvent;
+            },
+            [_anchor], 1.5, true, true, "",
+            "isNull (_target getVariable ['" + QGVAR(controller) + "', objNull])",
+            4
+        ];
+        _board addAction [
+            LLSTRING(ActionReleaseControl),
+            {
+                (_this select 3) params ["_anchor"];
+                [QGVAR(releaseControl), [_anchor, player]] call CBA_fnc_serverEvent;
+            },
+            [_anchor], 1.5, true, true, "",
+            "player isEqualTo (_target getVariable ['" + QGVAR(controller) + "', objNull])",
+            4
+        ];
+        _args set [1, true];
+    };
+
+    private _amController = (_anchor getVariable [QGVAR(controller), objNull]) isEqualTo player;
+
+    if (_amController && {!_inControl}) then {
+        uiNamespace setVariable [QGVAR(controlledAnchor), _anchor];
+        hint (LLSTRING(ControlTaken));
+        _args set [2, true];
+    };
+
+    if (!_amController && _inControl) then {
+        if ((uiNamespace getVariable [QGVAR(controlledAnchor), objNull]) isEqualTo _anchor) then {
+            uiNamespace setVariable [QGVAR(controlledAnchor), objNull];
+        };
+        hint (LLSTRING(ControlReleased));
+        _args set [2, false];
+    };
+
+    if (_amController) then {
+        // Give the board up if the owner is no longer fit or close enough to run it.
+        private _lost = !alive player
+            || {lifeState player in ["INCAPACITATED", "UNCONSCIOUS", "DEAD", "DEAD-RESPAWN"]}
+            || {(player distance _board) > (_activationDistance * 2)};
+        if (_lost) then {
+            [QGVAR(releaseControl), [_anchor, player]] call CBA_fnc_serverEvent;
+        };
+    };
+}, 0.5, _ctrlState] call CBA_fnc_addPerFrameHandler;

@@ -62,7 +62,9 @@ _dropDelay = _dropDelay max 5;
 
     private _firstDrop = _pos getPos [_length / 2, _heading + 180];
     private _bombCount = round (_length / 15) max 4;
-    private _increment = _length / _bombCount;
+    // Space the drops so the first and last land on the two ends of the line,
+    // covering its whole length rather than stopping a step short.
+    private _increment = _length / (_bombCount - 1);
 
     // Walk the stick of bombs along the fire line, one drop per step.
     // [firstDrop, heading, increment, index, total]
@@ -76,12 +78,15 @@ _dropDelay = _dropDelay max 5;
         _args set [3, _index + 1];
 
         private _linePos = _firstDrop getPos [_increment * _index, _heading];
-        private _dropPos = [_linePos select 0, _linePos select 1, 200] vectorAdd [random 20 - 10, random 20 - 10, random 10 - 5];
+        // Drop from directly above each line position and fall straight down so
+        // the craters land on the line instead of drifting off with a fixed
+        // world-space velocity that ignored the attack heading.
+        private _dropPos = [_linePos select 0, _linePos select 1, 150] vectorAdd [random 10 - 5, random 10 - 5, 0];
 
         private _bomb = createVehicle ["Bo_Mk82", _dropPos, [], 0, "CAN_COLLIDE"];
         _bomb setPosASL (ATLToASL _dropPos);
-        _bomb setVectorDirAndUp [[0, 0, -1], [0, 0.8, 0]];
-        _bomb setVelocityModelSpace [0, 50, -50];
+        _bomb setVectorDirAndUp [[0, 0, -1], [0, 1, 0]];
+        _bomb setVelocity [0, 0, -80];
 
         [QGVAR(carpetSound), [ASLToATL getPosASL _bomb, "whistle"]] call CBA_fnc_globalEvent;
     }, 0.25, [_firstDrop, _heading, _increment, 0, _bombCount]] call CBA_fnc_addPerFrameHandler;

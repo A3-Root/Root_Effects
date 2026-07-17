@@ -10,32 +10,45 @@
  * Arguments:
  * 0: Position ATL of the board <ARRAY>
  * 1: Facing direction of the board <NUMBER>
- * 2: Marker the map centers on, "" for the board position <STRING>
- * 3: Map zoom, smaller is closer <NUMBER>
- * 4: Player distance at which the feed refreshes <NUMBER>
+ * 2: Explicit area centre to show, [] for the marker or board position <ARRAY>
+ * 3: Marker the map centers on, "" for the board position <STRING>
+ * 4: Display object class the map is drawn onto <STRING>
+ * 5: Map zoom, smaller is closer <NUMBER>
+ * 6: Player distance at which the feed refreshes <NUMBER>
  *
  * Return Value:
  * None
  *
  * Example:
- * [[1000, 2000, 0], 90, "", 0.1, 50] call root_effects_briefing_fnc_briefingMapStart
+ * [[1000, 2000, 0], 90, [], "", "Land_MapBoard_F", 0.1, 50] call root_effects_briefing_fnc_briefingMapStart
  */
 
 params [
     ["_pos", [0, 0, 0], [[]], 3],
     ["_dir", 0, [0]],
+    ["_center", [], [[]]],
     ["_centerMarker", "", [""]],
+    ["_class", "Land_MapBoard_F", [""]],
     ["_zoom", 0.1, [0]],
     ["_activationDistance", 50, [0]]
 ];
 
 if (!isServer) exitWith {};
 if (!(["briefingmap"] call EFUNC(main,isEffectEnabled))) exitWith {};
+if (!isClass (configFile >> "CfgVehicles" >> _class)) then {
+    _class = "Land_MapBoard_F";
+};
 
 private _anchor = ["briefingmap", QGVAR(mapLocal), [_centerMarker, _zoom, _activationDistance], _pos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
-private _board = createVehicle ["Land_MapBoard_F", _pos, [], 0, "CAN_COLLIDE"];
+// A clicked centre is stored on the anchor as the live feed override so every
+// machine, including JIP clients, resolves the same shown area.
+if (_center isNotEqualTo []) then {
+    _anchor setVariable [QGVAR(feedCenter), _center, true];
+};
+
+private _board = createVehicle [_class, _pos, [], 0, "CAN_COLLIDE"];
 _board setDir _dir;
 _board setPosATL _pos;
 _board enableSimulationGlobal false;

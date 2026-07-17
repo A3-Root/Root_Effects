@@ -36,6 +36,8 @@ class CfgVehicles {
         class Attributes: AttributesBase {
             ROOT_ATTR_NUMBER(ROOT_BMAP_ZOOM,CSTRING(AttrMapZoom),CSTRING(AttrMapZoomTooltip),0.1);
             ROOT_ATTR_NUMBER(ROOT_BMAP_ACTDIST,CSTRING(AttrMapActDist),CSTRING(AttrMapActDistTooltip),50);
+            ROOT_ATTR_STRING(ROOT_BMAP_CLASS,CSTRING(AttrMapClass),CSTRING(AttrMapClassTooltip),"'Land_MapBoard_F'");
+            ROOT_ATTR_STRING(ROOT_BMAP_MARKER,CSTRING(AttrMapMarker),CSTRING(AttrMapMarkerTooltip),"''");
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

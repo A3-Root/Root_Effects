@@ -90,8 +90,11 @@ if (isNull _anchor) exitWith {};
                     [_target, _damageInf, _bodyPart, _damageType, _anchor] call EFUNC(main,doDamage);
                 } else {
                     if (_target isKindOf "Air") then {
-                        // Flak shrapnel peppers the aircraft hitpoints.
-                        [_target, random _damageAir] call EFUNC(main,doHitPointDamage);
+                        // Flak shrapnel peppers the aircraft hitpoints unevenly; two
+                        // passes of independently randomised damage per burst make the
+                        // wear accumulate in frequent, scattered increments.
+                        [_target, _damageAir, true] call EFUNC(main,doHitPointDamage);
+                        [_target, _damageAir, true] call EFUNC(main,doHitPointDamage);
                     };
                 };
             };

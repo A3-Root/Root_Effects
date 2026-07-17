@@ -11,7 +11,8 @@ class CfgPatches {
         units[] = {
             "ROOT_LaserStrike_ModuleZeus", "ROOT_LaserStrike_Module3DEN",
             "ROOT_NapalmStrike_ModuleZeus", "ROOT_NapalmStrike_Module3DEN",
-            "ROOT_CarpetStrike_ModuleZeus", "ROOT_CarpetStrike_Module3DEN"
+            "ROOT_CarpetStrike_ModuleZeus", "ROOT_CarpetStrike_Module3DEN",
+            "ROOT_Singularity_ModuleZeus", "ROOT_Singularity_Module3DEN"
         };
         weapons[] = {};
         requiredAddons[] = {

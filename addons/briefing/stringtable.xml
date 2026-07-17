@@ -1,17 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Root_Effects">
     <Package name="Briefing">
+        <Key ID="STR_root_effects_briefing_ActionReleaseControl">
+            <Original>Release briefing map control</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_ActionTakeControl">
+            <Original>Take control of briefing map</Original>
+        </Key>
         <Key ID="STR_root_effects_briefing_AttrMapActDist">
             <Original>Refresh Distance</Original>
         </Key>
         <Key ID="STR_root_effects_briefing_AttrMapActDistTooltip">
             <Original>Player distance in meters at which the feed keeps refreshing. Further away the map freezes to save performance.</Original>
         </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapClass">
+            <Original>Display Object</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapClassTooltip">
+            <Original>Object the live map is drawn onto. Pick a preset or type a custom class below.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapCustomClass">
+            <Original>Custom Display Class</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapCustomClassTooltip">
+            <Original>Optional class name of a custom object. When set it overrides the preset above.</Original>
+        </Key>
         <Key ID="STR_root_effects_briefing_AttrMapMarker">
             <Original>Center Marker</Original>
         </Key>
         <Key ID="STR_root_effects_briefing_AttrMapMarkerTooltip">
             <Original>Marker the map centers and stays on. Leave empty to center on the board position.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapPickCenter">
+            <Original>Pick Center On Map</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrMapPickCenterTooltip">
+            <Original>After confirming, click a point on the map to set what the board shows. Otherwise the marker or board position is used.</Original>
         </Key>
         <Key ID="STR_root_effects_briefing_AttrMapZoom">
             <Original>Map Zoom</Original>
@@ -43,6 +67,12 @@
         <Key ID="STR_root_effects_briefing_AttrTableTerrainTooltip">
             <Original>Rebuild the terrain heights and surface textures as a cube grid under the objects.</Original>
         </Key>
+        <Key ID="STR_root_effects_briefing_ControlReleased">
+            <Original>You released control of the briefing map.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_ControlTaken">
+            <Original>You control the briefing map. Open your map and click to set the area it shows.</Original>
+        </Key>
         <Key ID="STR_root_effects_briefing_MapStarted">
             <Original>Briefing map placed!</Original>
         </Key>
@@ -63,6 +93,9 @@
         </Key>
         <Key ID="STR_root_effects_briefing_PlaceOnTable">
             <Original>Place the module on a table object!</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_SelectMapCenter">
+            <Original>Select the area the map should show</Original>
         </Key>
         <Key ID="STR_root_effects_briefing_SettingCategoryName">
             <Original>Briefing</Original>

@@ -28,21 +28,25 @@ private _target = [
     _anchor getVariable [QGVAR(targetRadius), 300],
     _anchor getVariable [QGVAR(targetOwners), []]
 ] call FUNC(pickTarget);
-private _startPos = [
-    (_target select 0) + random (selectRandom [1000, -1000]),
-    (_target select 1) + random (selectRandom [1000, -1000]),
-    800
+// Spawn high above the chosen impact point with a modest lateral offset so the
+// meteor streaks in on a slant, then aim its velocity straight at that point so
+// it actually converges on the target rather than drifting off ballistically.
+private _targetGround = [_target select 0, _target select 1, 0];
+private _startPos = _targetGround vectorAdd [
+    (selectRandom [1, -1]) * (150 + random 200),
+    (selectRandom [1, -1]) * (150 + random 200),
+    1000
 ];
 
 private _meteor = createVehicle ["Land_Battery_F", _startPos, [], 0, "CAN_COLLIDE"];
 _meteor setPosATL _startPos;
 
-private _velocityX = ((_startPos select 0) + random (selectRandom [1000, -1000])) / 200;
-private _velocityY = ((_startPos select 1) + random (selectRandom [1, -1])) / 200;
+private _velocity = (_targetGround vectorDiff _startPos) vectorMultiply (180 / (_targetGround vectorDistance _startPos));
+_velocity params ["_velocityX", "_velocityY"];
 
 [QGVAR(meteorLocal), [_meteor]] call CBA_fnc_globalEvent;
 
-_meteor setVelocity [_velocityX, _velocityY, -100];
+_meteor setVelocity _velocity;
 
 [{
     params ["_args", "_handle"];
@@ -59,7 +63,7 @@ _meteor setVelocity [_velocityX, _velocityY, -100];
     private _impactPos = getPos _meteor;
     deleteVehicle _meteor;
 
-    [QGVAR(meteorImpact), [_impactPos, _velocityX, _velocityY, true]] call CBA_fnc_globalEvent;
+    [QGVAR(meteorImpact), [_impactPos, _velocityX, _velocityY, true, netId _anchor]] call CBA_fnc_globalEvent;
 
     if (_lethal) then {
         {

@@ -62,7 +62,7 @@ _dust setDropInterval (0.01 / _budget);
 private _plume = "#particlesource" createVehicleLocal _impactPos;
 _plume setParticleCircle [1, [0.5, 0.5, 0]];
 _plume setParticleRandom [2, [1.5, 1.5, 0.5], [0.6, 0.6, 0.5], 0, 0.4, [0, 0, 0, 0.08], 0, 0];
-_plume setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 14, [0, 0, 1], [0, 0, 1.5], 0, 10, 7.5, 0.02, [2, 8, 16], [[0.18, 0.18, 0.18, 0.6], [0.25, 0.25, 0.25, 0.3], [0.35, 0.35, 0.35, 0]], [0.5, 1], 1, 0, "", "", _impactPos];
+_plume setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 5, [0, 0, 1], [0, 0, 1.5], 0, 10, 7.5, 0.02, [2, 8, 16], [[0.18, 0.18, 0.18, 0.6], [0.25, 0.25, 0.25, 0.3], [0.35, 0.35, 0.35, 0]], [0.5, 1], 1, 0, "", "", _impactPos];
 _plume setDropInterval (0.06 / _budget);
 
 [{
@@ -78,4 +78,4 @@ _plume setDropInterval (0.06 / _budget);
 [{
     params ["_plume"];
     deleteVehicle _plume;
-}, [_plume], 4] call CBA_fnc_waitAndExecute;
+}, [_plume], 1] call CBA_fnc_waitAndExecute;

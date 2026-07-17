@@ -8,7 +8,7 @@ class CfgPatches {
         url = "https://github.com/A3-Root/Root_Effects";
         addonRootClass = "root_effects_main";
         requiredVersion = REQUIRED_VERSION;
-        units[] = {"ROOT_Freeze_ModuleZeus", "ROOT_Freeze_Module3DEN"};
+        units[] = {"ROOT_Freeze_ModuleZeus", "ROOT_Freeze_Module3DEN", "ROOT_CryoBlast_ModuleZeus", "ROOT_CryoBlast_Module3DEN"};
         weapons[] = {};
         requiredAddons[] = {
             "root_effects_main",

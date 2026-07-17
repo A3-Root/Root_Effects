@@ -29,7 +29,9 @@ private _pos = getPosATL _logic;
 private _dir = getDir _logic;
 private _zoom = _logic getVariable ["ROOT_BMAP_ZOOM", 0.1];
 private _activationDistance = _logic getVariable ["ROOT_BMAP_ACTDIST", 50];
+private _class = _logic getVariable ["ROOT_BMAP_CLASS", "Land_MapBoard_F"];
+private _marker = _logic getVariable ["ROOT_BMAP_MARKER", ""];
 
 deleteVehicle _logic;
 
-[_pos, _dir, "", _zoom, _activationDistance] call FUNC(briefingMapStart);
+[_pos, _dir, [], _marker, _class, _zoom, _activationDistance] call FUNC(briefingMapStart);

@@ -45,10 +45,14 @@ private _state = [_anchor, _heading, _length, []];
         private _center = getPosATL _anchor;
         private _spacing = 9;
         private _segments = ceil (_length / _spacing) min 50;
+        // Unit vector across the attack line, used to give the flames width so
+        // the corridor reads as a body of fire rather than a flat edge-on sheet.
+        private _perp = [sin (_heading + 90), cos (_heading + 90), 0];
 
         for "_i" from 0 to (_segments - 1) do {
             private _offset = -_length / 2 + _i * _spacing + random (_spacing / 2);
             private _firePos = _center getPos [abs _offset, [_heading + 180, _heading] select (_offset >= 0)];
+            _firePos = _firePos vectorAdd (_perp vectorMultiply ((random 16) - 8));
             _firePos set [2, 0];
 
             // Tall rolling flame body: the sprite animates through the fire
@@ -82,6 +86,23 @@ private _state = [_anchor, _heading, _length, []];
                 _glow setLightAttenuation [2, 0, 40, 0, 10, 60];
                 _visuals pushBack _glow;
             };
+        };
+
+        // Loose fires scattered across the corridor width fill in the gaps
+        // between the main line so the burn looks patchy and three dimensional.
+        private _scatterCount = round (_segments / 3);
+        for "_j" from 1 to _scatterCount do {
+            private _along = (random _length) - _length / 2;
+            private _scatterPos = _center getPos [abs _along, [_heading + 180, _heading] select (_along >= 0)];
+            _scatterPos = _scatterPos vectorAdd (_perp vectorMultiply ((random 22) - 11));
+            _scatterPos set [2, 0];
+
+            private _spot = "#particlesource" createVehicleLocal _scatterPos;
+            _spot setParticleCircle [0, [0, 0, 0]];
+            _spot setParticleRandom [0.5, [1, 1, 0], [0.8, 0.8, 1.2], 0, 0.4, [0, 0, 0, 0.1], 0, 0];
+            _spot setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 2, 32], "", "Billboard", 1, 1.6, [0, 0, 0.3], [0, 0, 1.8], 0, 10, 7.9, 0.075, [1.5, 3, 2], [[1, 1, 0.6, 0.9], [1, 0.5, 0.1, 0.75], [0.6, 0.2, 0.05, 0.4], [0.15, 0.15, 0.15, 0]], [0.25, 0.5, 0.75], 1, 0, "", "", _scatterPos];
+            _spot setDropInterval (0.05 / _budget);
+            _visuals pushBack _spot;
         };
 
         _args set [3, _visuals];

@@ -32,6 +32,11 @@ private _toStop = if (_target isEqualType objNull) then {[_target]} else {+_anch
         {
             deleteVehicle _x;
         } forEach _helpers;
+
+        // Clear any persistent local props (craters, decals) this instance left
+        // on each machine before the anchor and its netId disappear.
+        [QGVAR(cleanupLocalObjects), [netId _anchor]] call CBA_fnc_globalEvent;
+
         deleteVehicle _anchor;
     };
 } forEach _toStop;
