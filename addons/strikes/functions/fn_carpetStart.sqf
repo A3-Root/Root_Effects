@@ -22,7 +22,7 @@
  * None
  *
  * Example:
- * [[1000, 2000, 0], "B_Plane_CAS_01_dynamicLoadout_F", 1, "Bo_Mk82", 45, 25, 150, 32] call root_effects_strikes_fnc_carpetStart
+ * [[1000, 2000, 0], "B_Plane_CAS_01_dynamicLoadout_F", 1, "Bo_Mk82", 45, 50, 150, 34] call root_effects_strikes_fnc_carpetStart
  */
 
 params [
@@ -31,9 +31,9 @@ params [
     ["_planeCount", 1, [0]],
     ["_bombClass", "Bo_Mk82", [""]],
     ["_heading", 0, [0]],
-    ["_bombCount", 25, [0]],
+    ["_bombCount", 50, [0]],
     ["_length", 150, [0]],
-    ["_dropDelay", 32, [0]]
+    ["_dropDelay", 35, [0]]
 ];
 
 if (!isServer) exitWith {};

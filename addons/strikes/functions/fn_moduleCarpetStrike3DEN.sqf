@@ -30,9 +30,9 @@ private _planeClass = _logic getVariable ["ROOT_CARPET_PLANE", "B_Plane_CAS_01_d
 private _planeCount = _logic getVariable ["ROOT_CARPET_PLANES", 1];
 private _bombClass = _logic getVariable ["ROOT_CARPET_BOMB", "Bo_Mk82"];
 private _heading = _logic getVariable ["ROOT_CARPET_HEADING", 0];
-private _bombCount = _logic getVariable ["ROOT_CARPET_COUNT", 25];
+private _bombCount = _logic getVariable ["ROOT_CARPET_COUNT", 50];
 private _length = _logic getVariable ["ROOT_CARPET_LENGTH", 150];
-private _dropDelay = _logic getVariable ["ROOT_CARPET_DELAY", 32];
+private _dropDelay = _logic getVariable ["ROOT_CARPET_DELAY", 35];
 
 deleteVehicle _logic;
 

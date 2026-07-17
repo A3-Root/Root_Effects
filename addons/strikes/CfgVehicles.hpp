@@ -90,9 +90,9 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_CARPET_PLANES,CSTRING(AttrCarpetPlanes),CSTRING(AttrCarpetPlanesTooltip),1);
             ROOT_ATTR_STRING(ROOT_CARPET_BOMB,CSTRING(AttrCarpetBomb),CSTRING(AttrCarpetBombTooltip),"'Bo_Mk82'");
             ROOT_ATTR_NUMBER(ROOT_CARPET_HEADING,CSTRING(AttrCarpetHeading),CSTRING(AttrCarpetHeadingTooltip),0);
-            ROOT_ATTR_NUMBER(ROOT_CARPET_COUNT,CSTRING(AttrCarpetCount),CSTRING(AttrCarpetCountTooltip),25);
+            ROOT_ATTR_NUMBER(ROOT_CARPET_COUNT,CSTRING(AttrCarpetCount),CSTRING(AttrCarpetCountTooltip),50);
             ROOT_ATTR_NUMBER(ROOT_CARPET_LENGTH,CSTRING(AttrCarpetLength),CSTRING(AttrCarpetLengthTooltip),150);
-            ROOT_ATTR_NUMBER(ROOT_CARPET_DELAY,CSTRING(AttrCarpetDelay),CSTRING(AttrCarpetDelayTooltip),32);
+            ROOT_ATTR_NUMBER(ROOT_CARPET_DELAY,CSTRING(AttrCarpetDelay),CSTRING(AttrCarpetDelayTooltip),35);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

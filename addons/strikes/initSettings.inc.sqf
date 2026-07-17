@@ -39,5 +39,5 @@
     QGVAR(maxBombs), "SLIDER",
     [LLSTRING(SettingMaxBombs), LLSTRING(SettingMaxBombsTooltip)],
     [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],
-    [5, 50, 32, 0], 1
+    [1, 250, 35, 0], 1
 ] call CBA_fnc_addSetting;

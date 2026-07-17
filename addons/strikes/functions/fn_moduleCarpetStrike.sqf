@@ -32,9 +32,9 @@ if (!(["carpetstrike"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER", [LLSTRING(AttrCarpetPlanes), LLSTRING(AttrCarpetPlanesTooltip)], [1, 4, 1, 0]],
     ["EDIT", [LLSTRING(AttrCarpetBomb), LLSTRING(AttrCarpetBombTooltip)], ["Bo_Mk82"]],
     ["SLIDER", [LLSTRING(AttrCarpetHeading), LLSTRING(AttrCarpetHeadingTooltip)], [0, 360, 0, 0]],
-    ["SLIDER", [LLSTRING(AttrCarpetCount), LLSTRING(AttrCarpetCountTooltip)], [5, 50, 25, 0]],
+    ["SLIDER", [LLSTRING(AttrCarpetCount), LLSTRING(AttrCarpetCountTooltip)], [1, 500, 50, 0]],
     ["SLIDER", [LLSTRING(AttrCarpetLength), LLSTRING(AttrCarpetLengthTooltip)], [50, 1000, 150, 0]],
-    ["SLIDER", [LLSTRING(AttrCarpetDelay), LLSTRING(AttrCarpetDelayTooltip)], [10, 60, 32, 0]]
+    ["SLIDER", [LLSTRING(AttrCarpetDelay), LLSTRING(AttrCarpetDelayTooltip)], [10, 60, 35, 0]]
 ], {
     params ["_results", "_pos"];
     _results params ["_planeClass", "_planeCount", "_bombClass", "_heading", "_bombCount", "_length", "_dropDelay"];
