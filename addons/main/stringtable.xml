@@ -4,8 +4,32 @@
         <Key ID="STR_root_effects_main_Aborted">
             <Original>Aborted.</Original>
         </Key>
-        <Key ID="STR_root_effects_main_CategoryName">
-            <Original>Root's Effects</Original>
+        <Key ID="STR_root_effects_main_CategoryAmbient">
+            <Original>Root's Effects - Ambient</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_CategoryBattle">
+            <Original>Root's Effects - Battle</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_CategoryControl">
+            <Original>Root's Effects - Control</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_CategoryProps">
+            <Original>Root's Effects - Props</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_CategoryStrikes">
+            <Original>Root's Effects - Strikes</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_CategoryTerrain">
+            <Original>Root's Effects - Terrain</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_CategoryUfo">
+            <Original>Root's Effects - UFO</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_CategoryUtility">
+            <Original>Root's Effects - Utility</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_CategoryWeather">
+            <Original>Root's Effects - Weather</Original>
         </Key>
         <Key ID="STR_root_effects_main_EffectDisabled">
             <Original>This effect is disabled by the server's CBA settings.</Original>
@@ -58,8 +82,14 @@
         <Key ID="STR_root_effects_main_StopEverything">
             <Original>Stop EVERYTHING</Original>
         </Key>
+        <Key ID="STR_root_effects_main_StopFullEffect">
+            <Original>Terminate full effect: %1</Original>
+        </Key>
         <Key ID="STR_root_effects_main_StopInstance">
-            <Original>Stop: %1 at grid %2 (running %3m %4s)</Original>
+            <Original>%1 [%2] (%3m %4s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_StopParticleCreation">
+            <Original>Stop new particles: %1</Original>
         </Key>
         <Key ID="STR_root_effects_main_TerminationSent">
             <Original>Termination request sent.</Original>

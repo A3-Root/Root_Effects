@@ -43,7 +43,7 @@ _ripple setParticleRandom [1, [3, 3, 1], [0, 0, 0.5], 0, 0.3, [0, 0, 0, 0], 0, 0
 _ripple setParticleParams [["\A3\data_f\ParticleEffects\Universal\Refract.p3d", 1, 0, 1], "", "Billboard", 1, 2, [0, 0, 2], [0, 0, 1], 0, 9, 7, 0, [3, 10], [[1, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 0]], [1], 0, 0, "", "", _anchor];
 _ripple setDropInterval (0.05 / _budget);
 
-playSound3D ["A3\Sounds_F\sfx\blesk1.wss", objNull, false, ATLToASL _pos, 3, 0.4, 2000];
+playSound3D ["A3\Sounds_F\sfx\alarm_independent.wss", objNull, false, ATLToASL _pos, 3, 0.4, 2000];
 
 // Pulse the core over the charge window, then hand over to the collapse.
 [{
@@ -113,7 +113,7 @@ playSound3D ["A3\Sounds_F\sfx\blesk1.wss", objNull, false, ATLToASL _pos, 3, 0.4
     } forEach [
         "\A3\data_f\ParticleEffects\Universal\Mud.p3d",
         "\A3\data_f\ParticleEffects\Universal\TreePart.p3d",
-        "\A3\data_f\ParticleEffects\Universal\WallPart.p3d"
+        "\A3\data_f\ParticleEffects\Universal\StoneSmall.p3d"
     ];
 
     private _distance = player distance2D _pos;

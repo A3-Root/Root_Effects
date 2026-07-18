@@ -55,9 +55,11 @@ _glitter setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard"
 _glitter setDropInterval (0.004 / _budget);
 
 // Burning flare stars: real objects flung out on their own ballistic arcs,
-// each trailing smoke and carrying a coloured light, so the shell leaves live
-// streaking trails instead of a flat cloud of sprites.
-private _flareCount = (round (14 * _scale)) max 6;
+// each trailing smoke and self-illuminating, so the shell leaves live streaking
+// trails. The flares carry the burst's light themselves, so no extra dynamic
+// lights are attached, and the count scales with the particle budget to keep
+// the object and light load down when the sky is busy.
+private _flareCount = (round (9 * _scale * _budget)) max 4;
 private _flares = [];
 for "_i" from 1 to _flareCount do {
     private _star = "CMflare_Chaff_ammo" createVehicleLocal _burstPos;
@@ -68,28 +70,14 @@ for "_i" from 1 to _flareCount do {
     private _dir = vectorNormalized [random 2 - 1, random 2 - 1, (random 2 - 1) * 0.7 + 0.25];
     _star setVelocity (_dir vectorMultiply ((14 + random 12) * _scale));
 
-    // Alternate the two shell colours across the stars for a richer burst.
-    private _starColor = [_primary, _secondary] select (_i % 2);
-    private _starLight = "#lightpoint" createVehicleLocal _burstPos;
-    _starLight setLightBrightness 1.4 * _scale;
-    _starLight setLightColor _starColor;
-    _starLight setLightAmbient _starColor;
-    _starLight setLightUseFlare true;
-    _starLight setLightFlareSize 2.5 * _scale;
-    _starLight setLightFlareMaxDistance 3000;
-    _starLight setLightAttenuation [0, 0, 0, 0, 5, 30];
-    _starLight lightAttachObject [_star, [0, 0, 0]];
-
-    _flares pushBack [_star, _starLight];
+    _flares pushBack _star;
 };
 
-// Let the stars burn and arc, then clear each star and its attached light.
+// Let the stars burn and arc, then clear them.
 [{
     params ["_flares"];
     {
-        _x params ["_star", "_starLight"];
-        deleteVehicle _starLight;
-        deleteVehicle _star;
+        deleteVehicle _x;
     } forEach _flares;
 }, [_flares], 4 + random 1.5] call CBA_fnc_waitAndExecute;
 
@@ -106,9 +94,11 @@ if (_sounds && {(player distance2D _burstPos) < 2500}) then {
 };
 
 // Some shells throw small secondary pops around the main burst. These never
-// pop again themselves, so the chain always ends here.
-if (_allowSub && {random 1 < 0.3}) then {
-    for "_i" from 1 to (2 + floor random 2) do {
+// pop again themselves, so the chain always ends here. The chance and count are
+// held down and scaled by the particle budget so a volley cannot cascade into a
+// framerate sink.
+if (_allowSub && {random 1 < 0.15 * _budget}) then {
+    for "_i" from 1 to (1 + floor random 2) do {
         private _subPos = _burstPos vectorAdd [random 30 - 15, random 30 - 15, random 20 - 10];
         [FUNC(fireworkBurstLocal), [_subPos, [_secondary, _primary], false, _scale * 0.5, false], 0.3 + random 0.5] call CBA_fnc_waitAndExecute;
     };

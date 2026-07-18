@@ -1,11 +1,13 @@
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
+#define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_PROPS"
+
 class CfgVehicles {
     class zen_modules_moduleBase;
     class ROOT_News_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_News_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleNewsArticle);
         displayName = CSTRING(ModuleNews);
     };

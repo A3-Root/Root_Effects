@@ -41,14 +41,16 @@ for "_i" from 1 to _burstCount do {
         if (_orange) then {
             _sparkEmitter setParticleCircle [0, [0, 0, 0]];
             _sparkEmitter setParticleRandom [1, [0.1, 0.1, 0.1], [0, 0, 0], 0, 0.25, [0, 0, 0, 0], 0, 0];
-            // Hot orange sparks cooling to a dull ember as they fall.
-            _sparkEmitter setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 1 + random 2, [0, 0, 0], [0, 0, 0], 0, 15, 7.9, 0, [0.5, 0.35, 0.04], [[2, 1.8, 1.2, 1], [1.6, 0.9, 0.2, 1], [1, 0.3, 0.05, 0]], [0.08], 1, 0, "", "", _anchor, 0, true, 0.3, [[0, 0, 0, 0]]];
+            // Hot orange sparks cooling to a dull ember as they fall. A crisp
+            // point texture keeps each spark sharp instead of a soft blur.
+            _sparkEmitter setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 1 + random 2, [0, 0, 0], [0, 0, 0], 0, 15, 7.9, 0, [0.5, 0.35, 0.04], [[3, 2.4, 1.4, 1], [2.2, 1.1, 0.25, 1], [1.2, 0.35, 0.06, 0]], [0.08], 1, 0, "", "", _anchor, 0, true, 0.3, [[0, 0, 0, 0]]];
             _sparkEmitter setDropInterval (0.001 + random 0.05);
         } else {
             _sparkEmitter setParticleCircle [0, [0, 0, 0]];
             _sparkEmitter setParticleRandom [1, [0.05, 0.05, 0.1], [5, 5, 3], 0, 0.0025, [0, 0, 0, 0], 0, 0];
-            // Electrical arc sparks: white hot with a cold blue tail.
-            _sparkEmitter setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 1 + random 2, [0, 0, 0], [0, 0, 0], 0, 20, 7.9, 0, [0.5, 0.35, 0.04], [[2, 2, 2, 1], [1.4, 1.5, 1.8, 1], [0.8, 0.9, 1, 0]], [0.08], 1, 0, "", "", _anchor, 0, true, 0.3, [[0, 0, 0, 0]]];
+            // Electrical arc sparks: white hot with a cold blue tail. A crisp
+            // point texture keeps each spark sharp instead of a soft blur.
+            _sparkEmitter setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 1 + random 2, [0, 0, 0], [0, 0, 0], 0, 20, 7.9, 0, [0.5, 0.35, 0.04], [[3, 3, 3, 1], [2, 2.1, 2.6, 1], [1.1, 1.2, 1.4, 0]], [0.08], 1, 0, "", "", _anchor, 0, true, 0.3, [[0, 0, 0, 0]]];
             _sparkEmitter setDropInterval 0.001;
         };
 

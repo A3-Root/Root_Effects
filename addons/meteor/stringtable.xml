@@ -31,6 +31,12 @@
         <Key ID="STR_root_effects_meteor_AttrMeteorsTooltip">
             <Original>Meteors spawn and crash near a random player.</Original>
         </Key>
+        <Key ID="STR_root_effects_meteor_AttrStructureDamage">
+            <Original>Damage Structures</Original>
+        </Key>
+        <Key ID="STR_root_effects_meteor_AttrStructureDamageTooltip">
+            <Original>Impacts also level nearby buildings and flatten vegetation around the crater. Respects the global damage setting.</Original>
+        </Key>
         <Key ID="STR_root_effects_meteor_AttrTargetMode">
             <Original>Target Mode</Original>
         </Key>

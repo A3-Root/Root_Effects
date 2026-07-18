@@ -34,10 +34,12 @@ if (isServer) then {
             private _anchors = (GVAR(instances) getOrDefault [_effectKey, []]) select {!isNull _x};
             GVAR(instances) set [_effectKey, _anchors];
 
-            private _displayName = (GVAR(effectRegistry) getOrDefault [_effectKey, [_effectKey, ""]]) select 0;
+            private _entry = GVAR(effectRegistry) getOrDefault [_effectKey, [_effectKey, "", false]];
+            private _displayName = _entry select 0;
+            private _pausable = _entry param [2, false];
             {
                 private _elapsed = floor (CBA_missionTime - (_x getVariable [QGVAR(startTime), CBA_missionTime]));
-                _data pushBack [_effectKey, _displayName, _x, mapGridPosition _x, _elapsed];
+                _data pushBack [_effectKey, _displayName, _x, mapGridPosition _x, _elapsed, _pausable];
             } forEach _anchors;
         } forEach keys GVAR(instances);
 
@@ -52,6 +54,24 @@ if (isServer) then {
             switch (_mode) do {
                 case "instance": {
                     [_effectKey, _anchor] call FUNC(stopEffect);
+                };
+                case "pause": {
+                    // Stop new particles but leave the instance and its existing
+                    // particles running; the flag is read by the effect's own loop.
+                    if (!isNull _anchor) then {
+                        _anchor setVariable [QGVAR(paused), true, true];
+                    };
+                };
+                case "fade": {
+                    // Signal the loop to stop emitting, then tear the whole
+                    // instance down a few seconds later so it clears gradually.
+                    if (!isNull _anchor) then {
+                        _anchor setVariable [QGVAR(paused), true, true];
+                        [{
+                            params ["_effectKey", "_anchor"];
+                            [_effectKey, _anchor] call FUNC(stopEffect);
+                        }, [_effectKey, _anchor], 5] call CBA_fnc_waitAndExecute;
+                    };
                 };
                 case "all": {
                     [_effectKey, "ALL"] call FUNC(stopEffect);

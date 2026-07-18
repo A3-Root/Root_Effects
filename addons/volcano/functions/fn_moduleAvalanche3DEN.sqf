@@ -31,6 +31,7 @@ private _heading = _logic getVariable ["ROOT_AVALANCHE_HEADING", 0];
 private _length = _logic getVariable ["ROOT_AVALANCHE_LENGTH", 200];
 private _duration = _logic getVariable ["ROOT_AVALANCHE_DURATION", 25];
 private _lethal = _logic getVariable ["ROOT_AVALANCHE_LETHAL", true];
+private _objects = _logic getVariable ["ROOT_AVALANCHE_OBJECTS", ""];
 
 deleteVehicle _logic;
 
@@ -39,4 +40,4 @@ if (_downhill) then {
     _heading = -1;
 };
 
-[_pos, _heading, _length, _duration, _lethal] call FUNC(avalancheStart);
+[_pos, _heading, _length, _duration, _lethal, _objects] call FUNC(avalancheStart);

@@ -31,6 +31,12 @@
         <Key ID="STR_root_effects_volcano_AttrAvalancheLethalTooltip">
             <Original>Units caught by the moving rock front are crushed. Respects the global damage setting.</Original>
         </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheObjects">
+            <Original>Rolling Object Classes</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheObjectsTooltip">
+            <Original>Optional comma separated vehicle class names to roll physical props down the slope alongside the rocks, e.g. Land_TimberLog_04_F, Land_MetalBarrel_F, MetalBarrel_burning_F. Leave blank for rock particles only.</Original>
+        </Key>
         <Key ID="STR_root_effects_volcano_AttrCraterLava">
             <Original>Enable Crater Lava</Original>
         </Key>

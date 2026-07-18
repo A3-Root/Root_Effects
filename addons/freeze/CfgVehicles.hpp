@@ -1,18 +1,20 @@
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
+#define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_CONTROL"
+
 class CfgVehicles {
     class zen_modules_moduleBase;
     class ROOT_Freeze_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Freeze_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleFreezePlayers);
         displayName = CSTRING(ModuleFreeze);
     };
     class ROOT_CryoBlast_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_CryoBlast_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleCryoBlast);
         displayName = CSTRING(ModuleCryo);
     };

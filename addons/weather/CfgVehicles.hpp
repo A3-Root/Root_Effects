@@ -1,32 +1,34 @@
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
+#define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_WEATHER"
+
 class CfgVehicles {
     class zen_modules_moduleBase;
     class ROOT_LightningStorm_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_LightningStorm_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleLightningStorm);
         displayName = CSTRING(ModuleLightning);
     };
     class ROOT_AcidRain_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_AcidRain_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleAcidRain);
         displayName = CSTRING(ModuleAcidRain);
     };
     class ROOT_HeatMirage_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_HeatMirage_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleHeatMirage);
         displayName = CSTRING(ModuleMirage);
     };
     class ROOT_WaterTint_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_WaterTint_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleWaterTint);
         displayName = CSTRING(ModuleWaterTint);
     };

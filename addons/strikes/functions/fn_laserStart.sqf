@@ -14,12 +14,13 @@
  * 3: Beam color as [r, g, b] <ARRAY>
  * 4: Apply damage <BOOL>
  * 5: Damage radius in meters <NUMBER>
+ * 6: Beam thickness multiplier <NUMBER>
  *
  * Return Value:
  * None
  *
  * Example:
- * [[1000, 2000, 0], 5, 3, [1, 0.2, 0.2], true, 30] call root_effects_strikes_fnc_laserStart
+ * [[1000, 2000, 0], 5, 3, [1, 0.2, 0.2], true, 30, 1] call root_effects_strikes_fnc_laserStart
  */
 
 params [
@@ -28,7 +29,8 @@ params [
     ["_beamTime", 3, [0]],
     ["_color", [1, 0.2, 0.2], [[]], 3],
     ["_damage", true, [false]],
-    ["_damageRadius", 30, [0]]
+    ["_damageRadius", 30, [0]],
+    ["_thickness", 1, [0]]
 ];
 
 if (!isServer) exitWith {};
@@ -36,9 +38,10 @@ if (!(["laserstrike"] call EFUNC(main,isEffectEnabled))) exitWith {};
 
 _chargeTime = _chargeTime max 1;
 _beamTime = _beamTime max 1;
+_thickness = _thickness max 0.5;
 _damage = _damage && GVAR(allowDamage);
 
-[QGVAR(laserLocal), [_pos, _chargeTime, _beamTime, _color]] call CBA_fnc_globalEvent;
+[QGVAR(laserLocal), [_pos, _chargeTime, _beamTime, _color, _thickness]] call CBA_fnc_globalEvent;
 
 [{
     params ["_pos", "_damage", "_damageRadius"];

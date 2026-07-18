@@ -1,32 +1,34 @@
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
+#define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_STRIKES"
+
 class CfgVehicles {
     class zen_modules_moduleBase;
     class ROOT_LaserStrike_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_LaserStrike_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleLaserStrike);
         displayName = CSTRING(ModuleLaser);
     };
     class ROOT_NapalmStrike_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_NapalmStrike_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleNapalmStrike);
         displayName = CSTRING(ModuleNapalm);
     };
     class ROOT_CarpetStrike_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_CarpetStrike_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleCarpetStrike);
         displayName = CSTRING(ModuleCarpet);
     };
     class ROOT_Singularity_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Singularity_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleSingularity);
         displayName = CSTRING(ModuleSingularity);
     };
@@ -49,6 +51,7 @@ class CfgVehicles {
         class Attributes: AttributesBase {
             ROOT_ATTR_NUMBER(ROOT_LASER_CHARGE,CSTRING(AttrLaserCharge),CSTRING(AttrLaserChargeTooltip),5);
             ROOT_ATTR_NUMBER(ROOT_LASER_BEAM,CSTRING(AttrLaserBeam),CSTRING(AttrLaserBeamTooltip),3);
+            ROOT_ATTR_NUMBER(ROOT_LASER_THICKNESS,CSTRING(AttrLaserThickness),CSTRING(AttrLaserThicknessTooltip),1);
             ROOT_ATTR_NUMBER(ROOT_LASER_RED,CSTRING(AttrLaserRed),CSTRING(AttrLaserRedTooltip),1);
             ROOT_ATTR_NUMBER(ROOT_LASER_GREEN,CSTRING(AttrLaserGreen),CSTRING(AttrLaserGreenTooltip),0.2);
             ROOT_ATTR_NUMBER(ROOT_LASER_BLUE,CSTRING(AttrLaserBlue),CSTRING(AttrLaserBlueTooltip),0.2);

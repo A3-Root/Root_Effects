@@ -33,6 +33,14 @@ private _state = [_anchor, objNull];
         _handle call CBA_fnc_removePerFrameHandler;
     };
 
+    // Paused by the termination module: keep whatever is already in the sky but
+    // stop feeding the emitter so no new light band is created.
+    if (_anchor getVariable [QEGVAR(main,paused), false]) exitWith {
+        if (!isNull _emitter) then {
+            _emitter setDropInterval 0;
+        };
+    };
+
     private _active = sunOrMoon == 0;
 
     if (_active && {isNull _emitter}) then {

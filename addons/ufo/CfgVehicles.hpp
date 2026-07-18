@@ -1,25 +1,27 @@
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
+#define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_UFO"
+
 class CfgVehicles {
     class zen_modules_moduleBase;
     class ROOT_UfoEncounter_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_UfoEncounter_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleUfoEncounter);
         displayName = CSTRING(ModuleEncounter);
     };
     class ROOT_UfoSeeker_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_UfoSeeker_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleUfoSeeker);
         displayName = CSTRING(ModuleSeeker);
     };
     class ROOT_UfoCropCircle_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_UfoCropCircle_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleUfoCropCircle);
         displayName = CSTRING(ModuleCropCircle);
     };

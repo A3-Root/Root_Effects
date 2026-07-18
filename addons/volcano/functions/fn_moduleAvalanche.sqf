@@ -32,17 +32,18 @@ if (!(["avalanche"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER", [LLSTRING(AttrAvalancheHeading), LLSTRING(AttrAvalancheHeadingTooltip)], [0, 360, 0, 0]],
     ["SLIDER", [LLSTRING(AttrAvalancheLength), LLSTRING(AttrAvalancheLengthTooltip)], [50, 800, 200, 0]],
     ["SLIDER", [LLSTRING(AttrAvalancheDuration), LLSTRING(AttrAvalancheDurationTooltip)], [10, 300, 25, 0]],
-    ["TOOLBOX:YESNO", [LLSTRING(AttrAvalancheLethal), LLSTRING(AttrAvalancheLethalTooltip)], true]
+    ["TOOLBOX:YESNO", [LLSTRING(AttrAvalancheLethal), LLSTRING(AttrAvalancheLethalTooltip)], true],
+    ["EDIT", [LLSTRING(AttrAvalancheObjects), LLSTRING(AttrAvalancheObjectsTooltip)], ""]
 ], {
     params ["_results", "_pos"];
-    _results params ["_downhill", "_heading", "_length", "_duration", "_lethal"];
+    _results params ["_downhill", "_heading", "_length", "_duration", "_lethal", "_objects"];
 
     // A negative heading tells the server to work the slope out for itself.
     if (_downhill) then {
         _heading = -1;
     };
 
-    [QGVAR(startAvalanche), [_pos, _heading, _length, _duration, _lethal]] call CBA_fnc_serverEvent;
+    [QGVAR(startAvalanche), [_pos, _heading, _length, _duration, _lethal, _objects]] call CBA_fnc_serverEvent;
     [LLSTRING(AvalancheStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

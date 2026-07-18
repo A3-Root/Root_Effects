@@ -75,4 +75,19 @@ _meteor setVelocity _velocity;
             };
         } forEach (_impactPos nearEntities [["Man", "LandVehicle", "Air"], 100]);
     };
+
+    // Optional destruction of the impact site itself: level nearby buildings and
+    // flatten vegetation so the strike leaves a scar on the world, not just on
+    // the units standing in it. Gated by the global damage kill switch.
+    if ((_anchor getVariable [QGVAR(structureDamage), false]) && EGVAR(main,damageAllowed)) then {
+        private _structureRadius = 25;
+        {
+            _x setDamage 1;
+        } forEach (nearestTerrainObjects [_impactPos, ["HOUSE", "BUILDING", "CHURCH", "TREE", "SMALL TREE", "BUSH", "FENCE", "WALL"], _structureRadius, false, true]);
+        {
+            if (!(_x isKindOf "Man") && {!(_x isKindOf "AllVehicles")}) then {
+                _x setDamage 1;
+            };
+        } forEach (nearestObjects [_impactPos, ["Building", "Wall", "Fence"], _structureRadius]);
+    };
 }, 0.1, [_meteor, _velocityX, _velocityY, _lethal, _anchor]] call CBA_fnc_addPerFrameHandler;

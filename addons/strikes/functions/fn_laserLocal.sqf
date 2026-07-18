@@ -12,15 +12,17 @@
  * 1: Charge up time in seconds <NUMBER>
  * 2: Beam duration in seconds <NUMBER>
  * 3: Beam color as [r, g, b] <ARRAY>
+ * 4: Beam thickness multiplier <NUMBER>
  *
  * Return Value:
  * None
  *
  * Example:
- * [[1000, 2000, 0], 5, 3, [1, 0.2, 0.2]] call root_effects_strikes_fnc_laserLocal
+ * [[1000, 2000, 0], 5, 3, [1, 0.2, 0.2], 1] call root_effects_strikes_fnc_laserLocal
  */
 
-params [["_pos", [0, 0, 0], [[]], 3], ["_chargeTime", 5, [0]], ["_beamTime", 3, [0]], ["_color", [1, 0.2, 0.2], [[]], 3]];
+params [["_pos", [0, 0, 0], [[]], 3], ["_chargeTime", 5, [0]], ["_beamTime", 3, [0]], ["_color", [1, 0.2, 0.2], [[]], 3], ["_thickness", 1, [0]]];
+_thickness = _thickness max 0.5;
 
 if (!hasInterface) exitWith {};
 if ((player distance2D _pos) > EGVAR(main,maxViewDistance)) exitWith {};
@@ -55,19 +57,18 @@ private _chargeStep = 4 / (_chargeTime * 10);
 
 // Beam column after the charge completes.
 [{
-    params ["_pos", "_beamTime", "_color"];
+    params ["_pos", "_beamTime", "_color", "_thickness"];
 
-    // Closely spaced lights keep the column lit end to end; too few and too
-    // bright reads as a string of separate lamps rather than a beam.
+    // Closely spaced lights keep the column lit end to end. Flares are left off
+    // so the column glows without leaving bright flare orbs that would linger
+    // over the impact explosion and read as stray light points.
     private _beamLights = [];
-    for "_i" from 0 to 13 do {
-        private _beamLight = "#lightpoint" createVehicleLocal (_pos vectorAdd [0, 0, 5 + _i * 55]);
+    for "_i" from 0 to 17 do {
+        private _beamLight = "#lightpoint" createVehicleLocal (_pos vectorAdd [0, 0, 5 + _i * 40]);
         _beamLight setLightBrightness 4;
         _beamLight setLightColor _color;
         _beamLight setLightAmbient _color;
-        _beamLight setLightUseFlare true;
-        _beamLight setLightFlareSize 10;
-        _beamLight setLightFlareMaxDistance 6000;
+        _beamLight setLightUseFlare false;
         _beamLights pushBack _beamLight;
     };
 
@@ -76,17 +77,20 @@ private _chargeStep = 4 / (_chargeTime * 10);
     // The beam is built from two collimated columns: a coloured sheath and a
     // white core inside it. Particles are dense, small and barely spread
     // sideways, which is what makes the column read as solid light.
+    // A longer particle lifetime keeps far more sprites alive along the column
+    // at once, and the thickness multiplier widens both the sprite size and the
+    // sideways spread so the two columns overlap into a solid shaft with no gaps.
     private _beamCore = "#particlesource" createVehicleLocal (_pos vectorAdd [0, 0, 2]);
     _beamCore setParticleCircle [0, [0, 0, 0]];
-    _beamCore setParticleRandom [0, [0.3, 0.3, 400], [0, 0, 0], 0, 0.1, [0, 0, 0, 0], 0, 0];
-    _beamCore setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.35, [0, 0, 400], [0, 0, 0], 0, 9.999, 7, 0, [3, 3], [(_color + [0.9]), (_color + [0])], [0.08], 0, 0, "", "", _pos];
-    _beamCore setDropInterval (0.0008 / _budget);
+    _beamCore setParticleRandom [0, [0.3 * _thickness, 0.3 * _thickness, 400], [0, 0, 0], 0, 0.1, [0, 0, 0, 0], 0, 0];
+    _beamCore setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.7, [0, 0, 400], [0, 0, 0], 0, 9.999, 7, 0, [3 * _thickness, 3 * _thickness], [(_color + [0.9]), (_color + [0])], [0.08], 0, 0, "", "", _pos];
+    _beamCore setDropInterval (0.0005 / _budget);
 
     private _beamInner = "#particlesource" createVehicleLocal (_pos vectorAdd [0, 0, 2]);
     _beamInner setParticleCircle [0, [0, 0, 0]];
-    _beamInner setParticleRandom [0, [0.05, 0.05, 400], [0, 0, 0], 0, 0.05, [0, 0, 0, 0], 0, 0];
-    _beamInner setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.35, [0, 0, 400], [0, 0, 0], 0, 9.999, 7, 0, [1.2, 1.2], [[1, 1, 1, 1], [1, 1, 1, 0]], [0.08], 0, 0, "", "", _pos];
-    _beamInner setDropInterval (0.0012 / _budget);
+    _beamInner setParticleRandom [0, [0.05 * _thickness, 0.05 * _thickness, 400], [0, 0, 0], 0, 0.05, [0, 0, 0, 0], 0, 0];
+    _beamInner setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.7, [0, 0, 400], [0, 0, 0], 0, 9.999, 7, 0, [1.2 * _thickness, 1.2 * _thickness], [[1, 1, 1, 1], [1, 1, 1, 0]], [0.08], 0, 0, "", "", _pos];
+    _beamInner setDropInterval (0.0008 / _budget);
 
     // Haze runs the full height of the column, not just the base, so the air
     // around the whole beam boils rather than only the impact point.
@@ -182,4 +186,4 @@ private _chargeStep = 4 / (_chargeTime * 10);
         deleteVehicle _heatShimmer;
         deleteVehicle _shaft;
     }, [_beamLights, _beamCore, _beamInner, _heatShimmer, _shaft], _beamTime] call CBA_fnc_waitAndExecute;
-}, [_pos, _beamTime, _color], _chargeTime] call CBA_fnc_waitAndExecute;
+}, [_pos, _beamTime, _color, _thickness], _chargeTime] call CBA_fnc_waitAndExecute;

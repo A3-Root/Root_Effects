@@ -1,32 +1,34 @@
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
+#define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_AMBIENT"
+
 class CfgVehicles {
     class zen_modules_moduleBase;
     class ROOT_Fireflies_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Fireflies_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleFireflies);
         displayName = CSTRING(ModuleFireflies);
     };
     class ROOT_Aurora_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Aurora_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleAurora);
         displayName = CSTRING(ModuleAurora);
     };
     class ROOT_Rupture_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Rupture_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleRupture);
         displayName = CSTRING(ModuleRupture);
     };
     class ROOT_Sparks_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Sparks_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleSparks);
         displayName = CSTRING(ModuleSparks);
         curatorCanAttach = 1;
@@ -34,7 +36,7 @@ class CfgVehicles {
     class ROOT_BirdSwarm_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_BirdSwarm_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleBirdSwarm);
         displayName = CSTRING(ModuleBirdSwarm);
     };

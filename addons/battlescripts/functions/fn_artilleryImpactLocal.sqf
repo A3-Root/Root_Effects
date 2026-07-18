@@ -58,11 +58,12 @@ _dust setParticleRandom [0.4, [1, 1, 0.2], [3, 3, 1], 0, 0.3, [0, 0, 0, 0.1], 0,
 _dust setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 2.5, [0, 0, 0.2], [0, 0, 0.5], 0, 10, 7.5, 0.05, [4, 14], [[0.45, 0.4, 0.32, 0.7], [0.5, 0.46, 0.38, 0.35], [0.55, 0.5, 0.42, 0]], [0.6, 1], 1, 0, "", "", _impactPos];
 _dust setDropInterval (0.01 / _budget);
 
-// Slow dark plume rising out of the crater once the dust settles.
+// Slow dark plume rising out of the crater once the dust settles. Kept short
+// so the visual smoke clears quickly rather than lingering over the area.
 private _plume = "#particlesource" createVehicleLocal _impactPos;
 _plume setParticleCircle [1, [0.5, 0.5, 0]];
 _plume setParticleRandom [2, [1.5, 1.5, 0.5], [0.6, 0.6, 0.5], 0, 0.4, [0, 0, 0, 0.08], 0, 0];
-_plume setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 5, [0, 0, 1], [0, 0, 1.5], 0, 10, 7.5, 0.02, [2, 8, 16], [[0.18, 0.18, 0.18, 0.6], [0.25, 0.25, 0.25, 0.3], [0.35, 0.35, 0.35, 0]], [0.5, 1], 1, 0, "", "", _impactPos];
+_plume setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 3, [0, 0, 1], [0, 0, 1.5], 0, 10, 7.5, 0.02, [2, 8, 16], [[0.18, 0.18, 0.18, 0.6], [0.25, 0.25, 0.25, 0.3], [0.35, 0.35, 0.35, 0]], [0.5, 1], 1, 0, "", "", _impactPos];
 _plume setDropInterval (0.06 / _budget);
 
 [{

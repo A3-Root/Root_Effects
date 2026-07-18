@@ -3,10 +3,12 @@
 // their module class bodies to keep attribute declarations uniform.
 
 // Common properties for every Root's Effects 3DEN module. The module function
-// runs once on the server at mission start and never inside the editor.
+// runs once on the server at mission start and never inside the editor. Each
+// including file defines ROOT_MODULE_CATEGORY to place its modules in the right
+// themed sub-category of the editor menu.
 #define ROOT_MODULE_3DEN_COMMON \
     scope = 2; \
-    category = "ROOT_EFFECTS"; \
+    category = ROOT_MODULE_CATEGORY; \
     functionPriority = 1; \
     isGlobal = 0; \
     isTriggerActivated = 0; \

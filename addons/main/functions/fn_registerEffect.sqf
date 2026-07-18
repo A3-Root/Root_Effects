@@ -10,6 +10,7 @@
  * 0: Unique effect key <STRING>
  * 1: Human readable effect name <STRING>
  * 2: Name of the CBA setting variable that enables this effect <STRING>
+ * 3: Effect supports pausing particle creation separately from a full stop <BOOL> (default: false)
  *
  * Return Value:
  * None
@@ -18,8 +19,8 @@
  * ["volcano", "Volcano Eruption", "root_effects_volcano_enabledVolcano"] call root_effects_main_fnc_registerEffect
  */
 
-params [["_effectKey", "", [""]], ["_displayName", "", [""]], ["_settingVar", "", [""]]];
+params [["_effectKey", "", [""]], ["_displayName", "", [""]], ["_settingVar", "", [""]], ["_pausable", false, [false]]];
 
 if (_effectKey isEqualTo "") exitWith {};
 
-GVAR(effectRegistry) set [_effectKey, [_displayName, _settingVar]];
+GVAR(effectRegistry) set [_effectKey, [_displayName, _settingVar, _pausable]];

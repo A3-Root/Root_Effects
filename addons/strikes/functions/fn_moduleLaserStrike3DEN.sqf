@@ -35,7 +35,8 @@ private _color = [
 ];
 private _damage = _logic getVariable ["ROOT_LASER_DAMAGE", true];
 private _damageRadius = _logic getVariable ["ROOT_LASER_DMGRADIUS", 30];
+private _thickness = _logic getVariable ["ROOT_LASER_THICKNESS", 1];
 
 deleteVehicle _logic;
 
-[_pos, _chargeTime, _beamTime, _color, _damage, _damageRadius] call FUNC(laserStart);
+[_pos, _chargeTime, _beamTime, _color, _damage, _damageRadius, _thickness] call FUNC(laserStart);

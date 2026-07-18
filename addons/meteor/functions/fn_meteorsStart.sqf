@@ -14,12 +14,13 @@
  * 3: Target mode, 0 random players / 1 module area / 2 specific owners <NUMBER>
  * 4: Area radius in meters, target mode 1 only <NUMBER>
  * 5: Owners to target [sides, groups, players, tab], target mode 2 only <ARRAY>
+ * 6: Impacts damage nearby buildings and vegetation <BOOL>
  *
  * Return Value:
  * None
  *
  * Example:
- * [[1000, 2000, 0], 30, true, 0, 300, []] call root_effects_meteor_fnc_meteorsStart
+ * [[1000, 2000, 0], 30, true, 0, 300, [], false] call root_effects_meteor_fnc_meteorsStart
  */
 
 params [
@@ -28,7 +29,8 @@ params [
     ["_lethal", true, [false]],
     ["_targetMode", 0, [0]],
     ["_targetRadius", 300, [0]],
-    ["_owners", [], [[]]]
+    ["_owners", [], [[]]],
+    ["_structureDamage", false, [false]]
 ];
 
 if (!isServer) exitWith {};
@@ -45,6 +47,7 @@ if (isNull _anchor) exitWith {};
 _anchor setVariable [QGVAR(targetMode), _targetMode];
 _anchor setVariable [QGVAR(targetRadius), _targetRadius];
 _anchor setVariable [QGVAR(targetOwners), _owners];
+_anchor setVariable [QGVAR(structureDamage), _structureDamage];
 
 [{
     params ["_args", "_handle"];

@@ -30,14 +30,15 @@ if (!(["laserstrike"] call EFUNC(main,isEffectEnabled))) exitWith {
 [LLSTRING(ModuleLaser), [
     ["SLIDER", [LLSTRING(AttrLaserCharge), LLSTRING(AttrLaserChargeTooltip)], [1, 30, 5, 0]],
     ["SLIDER", [LLSTRING(AttrLaserBeam), LLSTRING(AttrLaserBeamTooltip)], [1, 30, 3, 0]],
+    ["SLIDER", [LLSTRING(AttrLaserThickness), LLSTRING(AttrLaserThicknessTooltip)], [0.5, 4, 1, 1]],
     ["COLOR", [LLSTRING(AttrLaserColor), LLSTRING(AttrLaserColorTooltip)], [1, 0.2, 0.2]],
     ["TOOLBOX:YESNO", [LLSTRING(AttrLaserDamage), LLSTRING(AttrLaserDamageTooltip)], true],
     ["SLIDER:RADIUS", [LLSTRING(AttrLaserDmgRadius), LLSTRING(AttrLaserDmgRadiusTooltip)], [5, 100, 30, 0, _pos, [7, 120, 32, 1]]]
 ], {
     params ["_results", "_pos"];
-    _results params ["_chargeTime", "_beamTime", "_color", "_damage", "_damageRadius"];
+    _results params ["_chargeTime", "_beamTime", "_thickness", "_color", "_damage", "_damageRadius"];
 
-    [QGVAR(startLaser), [_pos, _chargeTime, _beamTime, _color select [0, 3], _damage, _damageRadius]] call CBA_fnc_serverEvent;
+    [QGVAR(startLaser), [_pos, _chargeTime, _beamTime, _color select [0, 3], _damage, _damageRadius, _thickness]] call CBA_fnc_serverEvent;
     [LLSTRING(LaserStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

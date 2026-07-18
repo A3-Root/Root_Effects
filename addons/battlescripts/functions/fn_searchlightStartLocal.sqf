@@ -29,7 +29,7 @@ if (isNull _anchor) exitWith {};
 
 // Turret aim can only be read off a crewed turret; without one there is
 // nothing to follow and the light falls back to sweeping or sitting still.
-private _turreted = _attachTo isNotEqualTo objNull && {((configOf _attachTo) >> "Turrets") isNotEqualTo configNull} && {count ("true" configClasses ((configOf _attachTo) >> "Turrets")) > 0};
+private _turreted = _attachTo isNotEqualTo objNull && {(allTurrets _attachTo) isNotEqualTo []};
 
 // [anchor, alarm, beamObject, pitch, rotation, rising, nextAlarmTime, attachTo, aiSearch, turreted]
 private _state = [_anchor, _alarm, objNull, 30, 10 + random 350, true, 0, _attachTo, _aiSearch, _turreted];
@@ -73,16 +73,29 @@ private _state = [_anchor, _alarm, objNull, 30, 10 + random 350, true, 0, _attac
     };
 
     // Crew can mount or leave at any time, so the mode is re-checked each tick
-    // rather than locked in at creation.
+    // rather than locked in at creation. Any crewed turret drives the beam, so
+    // commander or independent turrets work as well as the main gun.
     private _gunner = objNull;
     if (_turreted) then {
-        _gunner = _attachTo turretUnit [0];
+        {
+            private _unit = _attachTo turretUnit _x;
+            if (!isNull _unit && {alive _unit}) exitWith {
+                _gunner = _unit;
+            };
+        } forEach (allTurrets _attachTo);
     };
     private _followAim = !isNull _gunner;
 
     if (_followAim) then {
         // Pure local read of where the gunner is looking; no network traffic.
-        private _dir = _gunner weaponDirection (currentWeapon _gunner);
+        // Fall back through the gunner's look direction to the hull heading only
+        // when the turret weapon reports no direction, so the beam keeps tracking
+        // live turret rotation instead of freezing at the starting angle.
+        private _weapon = currentWeapon _gunner;
+        private _dir = if (_weapon isNotEqualTo "") then {_gunner weaponDirection _weapon} else {[0, 0, 0]};
+        if (_dir isEqualTo [0, 0, 0]) then {
+            _dir = eyeDirection _gunner;
+        };
         if (_dir isEqualTo [0, 0, 0]) then {
             _dir = vectorDir _attachTo;
         };

@@ -1,18 +1,20 @@
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
+#define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_TERRAIN"
+
 class CfgVehicles {
     class zen_modules_moduleBase;
     class ROOT_Volcano_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Volcano_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleVolcano);
         displayName = CSTRING(ModuleVolcano);
     };
     class ROOT_Avalanche_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Avalanche_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleAvalanche);
         displayName = CSTRING(ModuleAvalanche);
     };
@@ -59,6 +61,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_AVALANCHE_LENGTH,CSTRING(AttrAvalancheLength),CSTRING(AttrAvalancheLengthTooltip),200);
             ROOT_ATTR_NUMBER(ROOT_AVALANCHE_DURATION,CSTRING(AttrAvalancheDuration),CSTRING(AttrAvalancheDurationTooltip),25);
             ROOT_ATTR_BOOL(ROOT_AVALANCHE_LETHAL,CSTRING(AttrAvalancheLethal),CSTRING(AttrAvalancheLethalTooltip),true);
+            ROOT_ATTR_STRING(ROOT_AVALANCHE_OBJECTS,CSTRING(AttrAvalancheObjects),CSTRING(AttrAvalancheObjectsTooltip),"''");
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

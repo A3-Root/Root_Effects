@@ -31,6 +31,7 @@ private _meteorFreq = _logic getVariable ["ROOT_METEOR_METEORFREQ", 30];
 private _comets = _logic getVariable ["ROOT_METEOR_COMETS", false];
 private _cometFreq = _logic getVariable ["ROOT_METEOR_COMETFREQ", 30];
 private _lethal = _logic getVariable ["ROOT_METEOR_LETHAL", true];
+private _structureDamage = _logic getVariable ["ROOT_METEOR_STRUCTUREDAMAGE", false];
 
 // Only the player and area modes are offered here; picking out specific sides,
 // groups or players needs the curator interface.
@@ -40,7 +41,7 @@ private _targetRadius = _logic getVariable ["ROOT_METEOR_TARGETRADIUS", 300];
 deleteVehicle _logic;
 
 if (_meteors) then {
-    [_pos, _meteorFreq, _lethal, _targetMode, _targetRadius, []] call FUNC(meteorsStart);
+    [_pos, _meteorFreq, _lethal, _targetMode, _targetRadius, [], _structureDamage] call FUNC(meteorsStart);
 };
 if (_comets) then {
     [_pos, _cometFreq, _targetMode, _targetRadius, []] call FUNC(cometsStart);

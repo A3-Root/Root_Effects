@@ -1,39 +1,41 @@
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
+#define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_BATTLE"
+
 class CfgVehicles {
     class zen_modules_moduleBase;
     class ROOT_AAA_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_AAA_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleAntiAirBarrage);
         displayName = CSTRING(ModuleAAA);
     };
     class ROOT_Artillery_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Artillery_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleArtilleryBarrage);
         displayName = CSTRING(ModuleArtillery);
     };
     class ROOT_Missiles_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Missiles_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleMissileLauncher);
         displayName = CSTRING(ModuleMissiles);
     };
     class ROOT_Searchlight_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Searchlight_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleSearchlight);
         displayName = CSTRING(ModuleSearchlight);
     };
     class ROOT_Tracers_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Tracers_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleTracerFire);
         displayName = CSTRING(ModuleTracers);
     };

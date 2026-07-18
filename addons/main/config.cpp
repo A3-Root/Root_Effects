@@ -52,8 +52,34 @@ class CfgFunctions {
 
 class CfgFactionClasses {
     class NO_CATEGORY;
-    class ROOT_EFFECTS: NO_CATEGORY {
-        displayName = CSTRING(CategoryName);
+    // Themed sub-categories so the many modules group sensibly in the Zeus and
+    // 3DEN module menus instead of piling into one long list.
+    class ROOT_EFFECTS_BATTLE: NO_CATEGORY {
+        displayName = CSTRING(CategoryBattle);
+    };
+    class ROOT_EFFECTS_STRIKES: NO_CATEGORY {
+        displayName = CSTRING(CategoryStrikes);
+    };
+    class ROOT_EFFECTS_AMBIENT: NO_CATEGORY {
+        displayName = CSTRING(CategoryAmbient);
+    };
+    class ROOT_EFFECTS_WEATHER: NO_CATEGORY {
+        displayName = CSTRING(CategoryWeather);
+    };
+    class ROOT_EFFECTS_TERRAIN: NO_CATEGORY {
+        displayName = CSTRING(CategoryTerrain);
+    };
+    class ROOT_EFFECTS_UFO: NO_CATEGORY {
+        displayName = CSTRING(CategoryUfo);
+    };
+    class ROOT_EFFECTS_PROPS: NO_CATEGORY {
+        displayName = CSTRING(CategoryProps);
+    };
+    class ROOT_EFFECTS_CONTROL: NO_CATEGORY {
+        displayName = CSTRING(CategoryControl);
+    };
+    class ROOT_EFFECTS_UTILITY: NO_CATEGORY {
+        displayName = CSTRING(CategoryUtility);
     };
 };
 
@@ -62,7 +88,7 @@ class CfgVehicles {
     class ROOT_Terminate_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_Terminate_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = "ROOT_EFFECTS_UTILITY";
         function = QFUNC(moduleTerminate);
         displayName = CSTRING(ModuleTerminate);
     };

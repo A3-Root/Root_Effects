@@ -44,7 +44,7 @@ private _state = [_anchor, _activationDistance, _frogs, objNull, 0];
         _fireflyEmitter setParticleRandom [10, [5, 5, 2], [0.2, 0.2, 0.5], 1, 0, [0, 0, 0, 0.1], 1, 1];
         // Glowing billboard sprite; the colour animation makes each firefly
         // fade in and out so the swarm twinkles.
-        _fireflyEmitter setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 14, [0, 0, 5], [0, 0, 0.5], 13, 1.3, 1, 0, [0.16], [[0.75, 1, 0.35, 0], [0.9, 1, 0.5, 1], [0.75, 1, 0.35, 0]], [1], 1, 1, "", "", _fireflyEmitter];
+        _fireflyEmitter setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 14, [0, 0, 5], [0, 0, 0.5], 13, 1.3, 1, 0, [0.28], [[1.5, 2, 0.7, 0], [1.8, 2.2, 1, 1], [1.5, 2, 0.7, 0]], [1], 1, 1, "", "", _fireflyEmitter];
         _fireflyEmitter setDropInterval (0.1 / ((EGVAR(main,particleBudget)) max 0.1));
         _args set [3, _fireflyEmitter];
     };

@@ -46,8 +46,10 @@ _duration = _duration max 15;
 _damage = _damage && GVAR(allowDamage);
 _dropDelay = _dropDelay max 5;
 
-// Attack run announcing the drop.
-[_planeClass, ATLToASL _pos, true, 300, 4000, floor (_heading / 45), 2, 1] call zen_modules_fnc_moduleAmbientFlyby;
+// Attack run announcing the drop. Pass the true heading as a fractional
+// direction index so the plane flies exactly along the attack line instead of
+// snapping to the nearest 45 degrees.
+[_planeClass, ATLToASL _pos, true, 300, 4000, _heading / 45, 2, 1] call zen_modules_fnc_moduleAmbientFlyby;
 
 [{
     params ["_pos", "_heading", "_length", "_duration", "_damage"];

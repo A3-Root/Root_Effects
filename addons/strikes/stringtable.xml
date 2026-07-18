@@ -91,6 +91,12 @@
         <Key ID="STR_root_effects_strikes_AttrLaserRedTooltip">
             <Original>Red channel of the beam color, 0 to 1.</Original>
         </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserThickness">
+            <Original>Beam Thickness</Original>
+        </Key>
+        <Key ID="STR_root_effects_strikes_AttrLaserThicknessTooltip">
+            <Original>Width multiplier for the beam column. Higher values make a thicker, more solid shaft.</Original>
+        </Key>
         <Key ID="STR_root_effects_strikes_AttrNapalmDamage">
             <Original>Apply Burn Damage</Original>
         </Key>

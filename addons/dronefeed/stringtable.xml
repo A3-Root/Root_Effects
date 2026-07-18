@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project name="Root_Effects">
+    <Package name="DroneFeed">
+        <Key ID="STR_root_effects_dronefeed_ActionCycleView">
+            <Original>Drone Feed: Cycle Camera View</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ActionVision">
+            <Original>Drone Feed: Cycle Vision Mode</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ActionZoomIn">
+            <Original>Drone Feed: Zoom In</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ActionZoomOut">
+            <Original>Drone Feed: Zoom Out</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrDeleteSpawned">
+            <Original>Delete Spawned Objects</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrDeleteSpawnedTooltip">
+            <Original>Also delete the screen and drone that were spawned for this feed. Pre-existing objects are always kept.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrDroneAlt">
+            <Original>Drone Altitude</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrDroneAltTooltip">
+            <Original>Altitude in meters the spawned drone loiters at.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrDroneClass">
+            <Original>Drone Class</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrDroneClassTooltip">
+            <Original>Class name of the UAV to spawn as the feed source.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrDroneSource">
+            <Original>Source Drone</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrDroneSourceTooltip">
+            <Original>Pick an existing UAV to show, or spawn a new one.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrFeed">
+            <Original>Feed</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrFeedTooltip">
+            <Original>Which running feed to act on.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrMode">
+            <Original>Feed Mode</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrModeTooltip">
+            <Original>Drone camera feed or top-down satellite feed.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrProxy">
+            <Original>Proxy Render</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrProxyAlt">
+            <Original>Proxy Altitude</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrProxyAltTooltip">
+            <Original>Altitude in meters the proxy camera looks down from.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrProxyTooltip">
+            <Original>Render the gunner view as a top-down proxy over the aim point instead of the exact camera.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrRadius">
+            <Original>Activation Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrRadiusChange">
+            <Original>New Radius (0 = keep)</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrRadiusChangeTooltip">
+            <Original>Set a new activation radius, or leave at 0 to keep the current one.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrRadiusTooltip">
+            <Original>Distance in meters at which the feed renders on nearby players' screens.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrRender">
+            <Original>Render Mode</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrRenderTooltip">
+            <Original>Accurate follows the real camera; proxy shows a top-down view over the aim point.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrSatAlt">
+            <Original>Satellite Altitude</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrSatAltTooltip">
+            <Original>Altitude in meters the satellite camera looks down from.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrSatellite">
+            <Original>Satellite Feed</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrSatelliteTooltip">
+            <Original>Show a top-down satellite view instead of a drone camera.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrScreenClass">
+            <Original>Screen Class</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrScreenClassTooltip">
+            <Original>Object the feed is projected onto.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrScreenCustom">
+            <Original>Custom Screen Class</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrScreenCustomTooltip">
+            <Original>Type a class name to override the screen dropdown.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrTextureId">
+            <Original>Texture Index</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrTextureIdTooltip">
+            <Original>Hidden selection index on the screen the feed is drawn to.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrView">
+            <Original>Camera View</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrViewTooltip">
+            <Original>Which drone camera to show, or both alternating.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrVision">
+            <Original>Vision Mode</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_AttrVisionTooltip">
+            <Original>Camera vision mode shown on the feed.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ConfirmKillAll">
+            <Original>Stop All Feeds</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ConfirmKillAllTooltip">
+            <Original>Confirm stopping every running drone feed.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_DroneSpawnNew">
+            <Original>-- Spawn New Drone --</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_FeedCreated">
+            <Original>Drone feed created.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_FeedDeleted">
+            <Original>Drone feed stopped.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_FeedModified">
+            <Original>Drone feed updated.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_FeedsStopped">
+            <Original>All drone feeds stopped.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ModeDrone">
+            <Original>Drone</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ModeSatellite">
+            <Original>Satellite</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ModuleCreate">
+            <Original>Create Drone Feed</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ModuleCreateDesc">
+            <Original>Projects a UAV camera or satellite view onto an in-world screen. Drop on a UAV or a screen to skip straight to the relevant options.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ModuleDelete">
+            <Original>Delete Drone Feed</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ModuleDeleteDesc">
+            <Original>Stops a single running drone feed.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ModuleKillAll">
+            <Original>Stop All Drone Feeds</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ModuleKillAllDesc">
+            <Original>Stops every running drone feed at once.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ModuleModify">
+            <Original>Modify Drone Feed</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ModuleModifyDesc">
+            <Original>Changes the view, vision, render mode or radius of a running feed.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_NoChange">
+            <Original>No Change</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_NoFeeds">
+            <Original>No drone feeds are currently running.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_RenderAccurate">
+            <Original>Accurate</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_RenderProxy">
+            <Original>Proxy (Top-Down)</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_SettingCategoryName">
+            <Original>Drone Feed</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_SettingCycleInterval">
+            <Original>Auto-Cycle Interval</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_SettingCycleIntervalTooltip">
+            <Original>Seconds between gunner and driver views when a feed shows both.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_SettingEnabled">
+            <Original>Enable Drone Feed Module</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_SettingEnabledTooltip">
+            <Original>Allow drone and satellite feeds to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_SettingMaxFeeds">
+            <Original>Maximum Feeds</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_SettingMaxFeedsTooltip">
+            <Original>Most feeds allowed to run at once.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_SettingResolution">
+            <Original>Feed Resolution</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_SettingResolutionTooltip">
+            <Original>Render-to-texture resolution for feeds. Higher looks sharper but costs more performance.</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ViewBoth">
+            <Original>Both (Alternating)</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ViewDriver">
+            <Original>Driver</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ViewGunner">
+            <Original>Gunner</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_VisionNV">
+            <Original>Night Vision</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_VisionNormal">
+            <Original>Normal</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_VisionThermal">
+            <Original>Thermal</Original>
+        </Key>
+    </Package>
+</Project>

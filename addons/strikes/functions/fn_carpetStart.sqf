@@ -53,7 +53,9 @@ _bombCount = (_bombCount max 1) min GVAR(maxBombs);
 _length = _length max 50;
 _dropDelay = _dropDelay max 5;
 
-[_planeClass, ATLToASL _pos, true, 1000, 5000, floor (_heading / 45), 1, _planeCount] call zen_modules_fnc_moduleAmbientFlyby;
+// Pass the true heading as a fractional direction index so the flyby flies
+// exactly along the attack line instead of snapping to the nearest 45 degrees.
+[_planeClass, ATLToASL _pos, true, 1000, 5000, _heading / 45, 1, _planeCount] call zen_modules_fnc_moduleAmbientFlyby;
 
 [{
     params ["_pos", "_bombClass", "_heading", "_bombCount", "_length"];
@@ -61,8 +63,10 @@ _dropDelay = _dropDelay max 5;
     // Jet roar for everyone close to the target line.
     [QGVAR(carpetSound), [_pos, "jet"]] call CBA_fnc_globalEvent;
 
+    // Start the stick at one end of the line and space the drops so the last
+    // bomb reaches the far end, keeping the pattern centered on the module.
     private _firstImpact = (_pos getPos [_length / 2, _heading + 180]) vectorAdd [0, 0, 200];
-    private _increment = _length / _bombCount;
+    private _increment = _length / ((_bombCount - 1) max 1);
 
     // Walk the stick of bombs along the line, one drop per step.
     // [firstImpact, bombClass, heading, increment, index, total]
@@ -75,16 +79,20 @@ _dropDelay = _dropDelay max 5;
         };
         _args set [4, _index + 1];
 
-        private _dropPos = ((_firstImpact select [0, 2]) + [200]) vectorAdd [random 40 - 20, random 40 - 20, random 10 - 5];
+        // Tight scatter keeps the stick reading as a line while landing on the
+        // module center rather than drifting tens of meters off it.
+        private _dropPos = ((_firstImpact select [0, 2]) + [200]) vectorAdd [random 10 - 5, random 10 - 5, random 10 - 5];
         if (_index > 0) then {
             private _linePos = _firstImpact getPos [_increment * _index, _heading];
-            _dropPos = [_linePos select 0, _linePos select 1, 200] vectorAdd [random 40 - 20, random 40 - 20, random 10 - 5];
+            _dropPos = [_linePos select 0, _linePos select 1, 200] vectorAdd [random 10 - 5, random 10 - 5, random 10 - 5];
         };
 
         private _bomb = createVehicle [_bombClass, _dropPos, [], 0, "CAN_COLLIDE"];
         _bomb setPosASL (ATLToASL _dropPos);
         _bomb setVectorDirAndUp [[0, 0, -1], [0, 0.8, 0]];
-        _bomb setVelocityModelSpace [0, 50, -50];
+        // Fall straight down so impacts land under the drop point instead of
+        // being carried off by a fixed horizontal velocity.
+        _bomb setVelocity [0, 0, -80];
 
         // Falling whistle at the projected impact point.
         [QGVAR(carpetSound), [ASLToATL getPosASL _bomb, "whistle"]] call CBA_fnc_globalEvent;

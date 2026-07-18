@@ -1,18 +1,20 @@
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
+#define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_PROPS"
+
 class CfgVehicles {
     class zen_modules_moduleBase;
     class ROOT_BriefingMap_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_BriefingMap_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleBriefingMap);
         displayName = CSTRING(ModuleMap);
     };
     class ROOT_BriefingTable_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_BriefingTable_ModuleZeus";
-        category = "ROOT_EFFECTS";
+        category = ROOT_MODULE_CATEGORY;
         function = QFUNC(moduleBriefingTable);
         displayName = CSTRING(ModuleTable);
         curatorCanAttach = 1;
