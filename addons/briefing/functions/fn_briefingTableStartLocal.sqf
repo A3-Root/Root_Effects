@@ -28,7 +28,7 @@
 params [["_anchor", objNull, [objNull]], ["_table", objNull, [objNull]], ["_marker", "", [""]], ["_resolution", 20, [0]], ["_scale", 1, [0]], ["_useTerrain", true, [false]]];
 
 if (!hasInterface) exitWith {};
-if (isNull _anchor || {isNull _table} || {_marker isEqualTo ""}) exitWith {};
+if (isNull _anchor || {isNull _table} || _marker isEqualTo "") exitWith {};
 if (getMarkerColor _marker isEqualTo "") exitWith {};
 
 _resolution = (_resolution max 8) min 40;

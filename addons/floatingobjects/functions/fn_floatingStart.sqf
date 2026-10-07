@@ -151,7 +151,7 @@ private _state = [
         _args set [16, _pitch];
     };
 
-    if (_orbitStep != 0 && {_orbitRadius > 0}) then {
+    if (_orbitStep != 0 && _orbitRadius > 0) then {
         _orbitAngle = (_orbitAngle + _orbitStep) mod 360;
         _args set [20, _orbitAngle];
     };

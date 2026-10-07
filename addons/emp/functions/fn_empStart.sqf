@@ -43,7 +43,7 @@ _killEngines = _killEngines && GVAR(allowVehicleKill);
 
 [QGVAR(pulseLocal), [_pos, _radius, _duration, _hud]] call CBA_fnc_globalEvent;
 
-if (_killEngines || {_fuelDrain > 0}) then {
+if (_killEngines || _fuelDrain > 0) then {
     {
         private _vehicle = _x;
         if (!(_vehicle isKindOf "Man") && {alive _vehicle}) then {

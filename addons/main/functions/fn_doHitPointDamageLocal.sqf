@@ -20,7 +20,7 @@
 
 params [["_vehicle", objNull, [objNull]], ["_damage", 0, [0]], ["_randomize", false, [false]]];
 
-if (isNull _vehicle || {!alive _vehicle} || {_damage <= 0}) exitWith {};
+if (isNull _vehicle || {!alive _vehicle} || _damage <= 0) exitWith {};
 
 private _hitPoints = getAllHitPointsDamage _vehicle;
 if (_hitPoints isEqualTo []) exitWith {};

@@ -25,7 +25,7 @@ params [["_unit", objNull, [objNull]], ["_damage", 0, [0]], ["_bodyPart", "Body"
 
 if (!isServer) exitWith {};
 if (!GVAR(damageAllowed)) exitWith {};
-if (isNull _unit || {!alive _unit} || {_damage <= 0}) exitWith {};
+if (isNull _unit || {!alive _unit} || _damage <= 0) exitWith {};
 
 if (local _unit) exitWith {
     [_unit, _damage, _bodyPart, _damageType, _source] call FUNC(doDamageLocal);

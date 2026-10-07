@@ -23,7 +23,7 @@ params [["_vehicle", objNull, [objNull]], ["_damage", 0, [0]], ["_randomize", fa
 
 if (!isServer) exitWith {};
 if (!GVAR(damageAllowed)) exitWith {};
-if (isNull _vehicle || {!alive _vehicle} || {_damage <= 0}) exitWith {};
+if (isNull _vehicle || {!alive _vehicle} || _damage <= 0) exitWith {};
 
 if (local _vehicle) exitWith {
     [_vehicle, _damage, _randomize] call FUNC(doHitPointDamageLocal);

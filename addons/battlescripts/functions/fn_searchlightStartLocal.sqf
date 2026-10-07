@@ -143,7 +143,7 @@ private _state = [_anchor, _alarm, objNull, 30, 10 + random 350, true, 0, _attac
         _beam setVectorDirAndUp [_dir, _up];
     };
 
-    if (_alarm && _inRange && {CBA_missionTime >= _nextAlarm}) then {
+    if (_alarm && _inRange && CBA_missionTime >= _nextAlarm) then {
         _origin say3D [QGVAR(air_raid_siren), 3000];
         _args set [6, CBA_missionTime + 30];
     };

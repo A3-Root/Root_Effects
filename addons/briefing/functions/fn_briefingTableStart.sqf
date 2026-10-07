@@ -31,7 +31,7 @@ params [
 
 if (!isServer) exitWith {};
 if (!(["briefingtable"] call EFUNC(main,isEffectEnabled))) exitWith {};
-if (isNull _table || {_marker isEqualTo ""}) exitWith {};
+if (isNull _table || _marker isEqualTo "") exitWith {};
 
 _table enableSimulationGlobal false;
 

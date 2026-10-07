@@ -178,7 +178,7 @@ private _state = [_anchor, _radius, _craterLava, _lavaFlow, _lightning, [], -1, 
         };
     };
 
-    if (_inRange && {CBA_missionTime >= _nextMurmur}) then {
+    if (_inRange && CBA_missionTime >= _nextMurmur) then {
         _anchor say3D [QGVAR(murmur), 5000];
         _args set [7, CBA_missionTime + 60];
     };

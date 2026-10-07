@@ -86,7 +86,7 @@ private _trackPFH = [{
     // leave the screen frozen for more than a moment.
     private _sig = [cameraView, visibleMap, !isNull (findDisplay 312), !isNull (findDisplay 49), isGamePaused];
     private _timer = (_state getOrDefault ["clobberTimer", 0]) + diag_deltaTime;
-    if (_sig isNotEqualTo (_state getOrDefault ["clobberSig", []]) || {_timer >= 1}) then {
+    if (_sig isNotEqualTo (_state getOrDefault ["clobberSig", []]) || _timer >= 1) then {
         _cam cameraEffect ["INTERNAL", "BACK", _rtt];
         _cam camCommit 0;
         _rtt setPiPEffect [_vision];
@@ -122,7 +122,7 @@ private _trackPFH = [{
     ([_drone, _actualView] call FUNC(getTurretAim)) params ["_camPos", "_dir"];
 
     private _renderMode = _screen getVariable [QGVAR(renderMode), RENDER_MODE_ACCURATE];
-    if (_renderMode isEqualTo RENDER_MODE_PROXY && {_actualView isEqualTo VIEW_GUNNER}) then {
+    if (_renderMode isEqualTo RENDER_MODE_PROXY && _actualView isEqualTo VIEW_GUNNER) then {
         // Top down proxy: look straight down at the ground point the turret is
         // aimed at, from the configured proxy altitude.
         private _hits = lineIntersectsSurfaces [_camPos, _camPos vectorAdd (_dir vectorMultiply 12000), _drone, objNull, true, 1, "GEOM", "NONE"];

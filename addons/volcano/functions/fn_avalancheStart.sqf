@@ -70,7 +70,7 @@ if (_classes isNotEqualTo []) then {
         params ["_args", "_handle"];
         _args params ["_anchor", "_classes", "_heading", "_speed", "_spawned", "_endTime"];
 
-        if (isNull _anchor || {CBA_missionTime > _endTime}) exitWith {
+        if (isNull _anchor || CBA_missionTime > _endTime) exitWith {
             _handle call CBA_fnc_removePerFrameHandler;
         };
 

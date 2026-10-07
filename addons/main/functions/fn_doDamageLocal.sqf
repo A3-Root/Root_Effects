@@ -24,7 +24,7 @@
 
 params [["_unit", objNull, [objNull]], ["_damage", 0, [0]], ["_bodyPart", "Body", [""]], ["_damageType", "explosive", [""]], ["_source", objNull, [objNull]]];
 
-if (isNull _unit || {!alive _unit} || {_damage <= 0}) exitWith {};
+if (isNull _unit || {!alive _unit} || _damage <= 0) exitWith {};
 
 if (_unit isKindOf "CAManBase" && GVAR(aceMedicalLoaded)) then {
     [_unit, _damage, _bodyPart, _damageType, _source] call (missionNamespace getVariable "ace_medical_fnc_addDamageToUnit");

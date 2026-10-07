@@ -54,7 +54,7 @@ private _state = [_anchor, _activationDistance, _frogs, objNull, 0];
         _args set [3, objNull];
     };
 
-    if (_active && _frogs && {CBA_missionTime >= _nextCroak}) then {
+    if (_active && _frogs && CBA_missionTime >= _nextCroak) then {
         // Not every window produces a croak, which keeps the pond from
         // sounding metronomic. The timer advances either way.
         if (random 1 < 0.6) then {

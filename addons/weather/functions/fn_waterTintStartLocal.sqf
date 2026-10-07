@@ -48,7 +48,7 @@ private _state = [_anchor, _radius, _tintColor, _strength, -1, 0];
         _target = [_strength * 0.35, _strength] select (underwater player);
     };
 
-    if (abs (_blend - _target) < 0.01 && {_ppHandle != -1 || {_target == 0}}) exitWith {};
+    if (abs (_blend - _target) < 0.01 && {_ppHandle != -1 || _target == 0}) exitWith {};
 
     _blend = _blend + ((_target - _blend) max -0.08 min 0.08);
     _args set [5, _blend];
@@ -63,7 +63,7 @@ private _state = [_anchor, _radius, _tintColor, _strength, -1, 0];
     _ppHandle ppEffectAdjust [1, 1, 0, [_red * 0.1 * _blend, _green * 0.1 * _blend, _blue * 0.1 * _blend, 0], [1 - _blend * (1 - _red), 1 - _blend * (1 - _green), 1 - _blend * (1 - _blue), 1], [0.5, 0.5, 0.5, 0.1 * _blend]];
     _ppHandle ppEffectCommit 0.5;
 
-    if (_blend <= 0.01 && {_target == 0}) then {
+    if (_blend <= 0.01 && _target == 0) then {
         ppEffectDestroy _ppHandle;
         _args set [4, -1];
         _args set [5, 0];

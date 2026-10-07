@@ -40,7 +40,7 @@ private _state = [_anchor, _activationDistance, _color, 0, 0];
     _args set [3, CBA_missionTime + 1 + random 3];
 
     private _distance = player distance _anchor;
-    if (_distance <= _activationDistance || {_distance > EGVAR(main,maxViewDistance)}) exitWith {};
+    if (_distance <= _activationDistance || _distance > EGVAR(main,maxViewDistance)) exitWith {};
 
     if (CBA_missionTime >= _nextSound) then {
         _anchor say3D [QGVAR(tracer_fire), 2000];
