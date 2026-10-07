@@ -110,7 +110,7 @@ private _chargeStep = 4 / (_chargeTime * 10);
 
     // Sound in layers: the crack of the beam striking, then a rolling echo off
     // the terrain a beat later.
-    playSound3D ["A3\Sounds_F\arsenal\weapons_vehicles\cannon_120mm\Gatling_30mm_burst_02.wss", objNull, false, ATLToASL (_pos vectorAdd [0, 0, 50]), 3, 0.7, 3000];
+    playSound3D ["A3\sounds_f\weapons\explosion\expl_big_1.wss", objNull, false, ATLToASL (_pos vectorAdd [0, 0, 50]), 3, 0.7, 3000];
     [{
         params ["_pos"];
         playSound3D ["A3\Sounds_F\arsenal\explosives\shells\Artillery_shell_explosion_04.wss", objNull, false, ATLToASL _pos, 4, 0.45, 4000];

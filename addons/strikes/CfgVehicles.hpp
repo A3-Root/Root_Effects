@@ -55,7 +55,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_LASER_RED,CSTRING(AttrLaserRed),CSTRING(AttrLaserRedTooltip),1);
             ROOT_ATTR_NUMBER(ROOT_LASER_GREEN,CSTRING(AttrLaserGreen),CSTRING(AttrLaserGreenTooltip),0.2);
             ROOT_ATTR_NUMBER(ROOT_LASER_BLUE,CSTRING(AttrLaserBlue),CSTRING(AttrLaserBlueTooltip),0.2);
-            ROOT_ATTR_BOOL(ROOT_LASER_DAMAGE,CSTRING(AttrLaserDamage),CSTRING(AttrLaserDamageTooltip),true);
+            ROOT_ATTR_NUMBER(ROOT_LASER_DMGPCT,CSTRING(AttrLaserDamage),CSTRING(AttrLaserDamageTooltip),1);
             ROOT_ATTR_NUMBER(ROOT_LASER_DMGRADIUS,CSTRING(AttrLaserDmgRadius),CSTRING(AttrLaserDmgRadiusTooltip),30);
             class ModuleDescription: ModuleDescription {};
         };
@@ -111,7 +111,7 @@ class CfgVehicles {
         class Attributes: AttributesBase {
             ROOT_ATTR_NUMBER(ROOT_SINGULARITY_RADIUS,CSTRING(AttrSingularityRadius),CSTRING(AttrSingularityRadiusTooltip),120);
             ROOT_ATTR_NUMBER(ROOT_SINGULARITY_CHARGE,CSTRING(AttrSingularityCharge),CSTRING(AttrSingularityChargeTooltip),6);
-            ROOT_ATTR_BOOL(ROOT_SINGULARITY_LETHAL,CSTRING(AttrSingularityLethal),CSTRING(AttrSingularityLethalTooltip),true);
+            ROOT_ATTR_NUMBER(ROOT_SINGULARITY_DMGPCT,CSTRING(AttrSingularityLethal),CSTRING(AttrSingularityLethalTooltip),1);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

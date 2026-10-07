@@ -32,17 +32,4 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootNewsCategory {
-            file = QPATHTOF(functions);
-            class moduleNewsArticle {};
-            class moduleNewsArticle3DEN {};
-            class showArticleLocal {};
-            class openArticle {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"

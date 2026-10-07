@@ -38,35 +38,5 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootBattleCategory {
-            file = QPATHTOF(functions);
-            class moduleAntiAirBarrage {};
-            class moduleAntiAirBarrage3DEN {};
-            class aaaStart {};
-            class aaaStartLocal {};
-            class aaaBurstLocal {};
-            class moduleArtilleryBarrage {};
-            class moduleArtilleryBarrage3DEN {};
-            class artilleryStart {};
-            class artilleryImpactLocal {};
-            class moduleMissileLauncher {};
-            class moduleMissileLauncher3DEN {};
-            class missilesStart {};
-            class missileLaunchLocal {};
-            class moduleSearchlight {};
-            class moduleSearchlight3DEN {};
-            class searchlightStart {};
-            class searchlightStartLocal {};
-            class moduleTracerFire {};
-            class moduleTracerFire3DEN {};
-            class tracersStart {};
-            class tracersStartLocal {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"
 #include "CfgSounds.hpp"

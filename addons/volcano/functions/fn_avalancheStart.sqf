@@ -92,11 +92,12 @@ if (_classes isNotEqualTo []) then {
 };
 
 if (_lethal) then {
-    // The kill band tracks the rock front rather than the whole corridor, so
-    // getting clear ahead of it actually works.
+    // The kill zone is the rock mass itself: a band trailing the front and as
+    // wide as the particle spread, so anything the stones visibly roll over is
+    // hit, not only what sits on the centreline.
     [{
         params ["_args", "_handle"];
-        _args params ["_anchor", "_heading", "_length", "_duration", "_startTime"];
+        _args params ["_anchor", "_heading", "_length", "_duration", "_startTime", "_lastHit"];
 
         if (isNull _anchor) exitWith {
             _handle call CBA_fnc_removePerFrameHandler;
@@ -108,14 +109,43 @@ if (_lethal) then {
         };
 
         private _head = getPosATL _anchor;
-        private _frontPos = _head getPos [_length * _progress, _heading];
+        private _frontDist = _length * _progress;
+        private _midPos = _head getPos [(_frontDist - 20) max 0, _heading];
+        private _speed = _length / _duration;
 
         {
-            if (!(_x isKindOf "VirtualMan_F")) then {
-                [_x, 0.6 + random 0.4, "Body", "explosive", _anchor] call EFUNC(main,doDamage);
+            private _target = _x;
+            // Position along and across the slide, relative to its head.
+            private _rel = (getPosATL _target) vectorDiff _head;
+            private _along = (_rel select 0) * sin _heading + (_rel select 1) * cos _heading;
+            private _across = abs ((_rel select 0) * cos _heading - (_rel select 1) * sin _heading);
+            private _netId = netId _target;
+
+            if (
+                !(_target isKindOf "VirtualMan_F")
+                && {_along > _frontDist - 45 && _along < _frontDist + 5 && _across < 25}
+                && {CBA_missionTime > (_lastHit getOrDefault [_netId, -10]) + 1.5}
+            ) then {
+                _lastHit set [_netId, CBA_missionTime];
+
+                if (_target isKindOf "CAManBase") then {
+                    if (isNull objectParent _target) then {
+                        [_target, 0.6 + random 0.4, selectRandom ["Body", "LeftLeg", "RightLeg", "Head"], "explosive", _anchor] call EFUNC(main,doDamage);
+                    };
+                } else {
+                    // Hulls take spread hitpoint wear plus overall structural
+                    // damage, and get shoved downhill by the rock.
+                    [_target, 0.15 + random 0.25, true] call EFUNC(main,doHitPointDamage);
+                    [_target, 0.1 + random 0.15, "Body", "explosive", _anchor] call EFUNC(main,doDamage);
+                    private _push = [sin _heading * _speed * 0.6, cos _heading * _speed * 0.6, 1 + random 2];
+                    [QGVAR(avalanchePush), [_target, _push], _target] call CBA_fnc_targetEvent;
+                    {
+                        [_x, 0.1 + random 0.2, selectRandom ["Body", "LeftLeg", "RightLeg"], "explosive", _anchor] call EFUNC(main,doDamage);
+                    } forEach (crew _target);
+                };
             };
-        } forEach (_frontPos nearEntities [["Man", "LandVehicle"], 18]);
-    }, 1, [_anchor, _heading, _length, _duration, CBA_missionTime]] call CBA_fnc_addPerFrameHandler;
+        } forEach (_midPos nearEntities [["Man", "LandVehicle", "Ship", "StaticWeapon"], 50]);
+    }, 0.5, [_anchor, _heading, _length, _duration, CBA_missionTime, createHashMap]] call CBA_fnc_addPerFrameHandler;
 };
 
 [{

@@ -36,29 +36,5 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootUfoCategory {
-            file = QPATHTOF(functions);
-            class moduleUfoEncounter {};
-            class moduleUfoEncounter3DEN {};
-            class moduleUfoSeeker {};
-            class moduleUfoSeeker3DEN {};
-            class moduleUfoCropCircle {};
-            class moduleUfoCropCircle3DEN {};
-            class encounterStart {};
-            class seekerStart {};
-            class cropCircleStart {};
-            class pickTarget {};
-            class crossFlyby {};
-            class crossLocal {};
-            class jumpLocal {};
-            class seekerLocal {};
-            class cropCircleLocal {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"
 #include "CfgSounds.hpp"

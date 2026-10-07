@@ -35,21 +35,4 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootBriefingCategory {
-            file = QPATHTOF(functions);
-            class moduleBriefingMap {};
-            class moduleBriefingMap3DEN {};
-            class briefingMapStart {};
-            class briefingMapStartLocal {};
-            class moduleBriefingTable {};
-            class moduleBriefingTable3DEN {};
-            class briefingTableStart {};
-            class briefingTableStartLocal {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"

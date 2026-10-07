@@ -40,7 +40,7 @@ _flash setLightFlareMaxDistance 5000;
     deleteVehicle _flash;
 }, [_flash], 0.4] call CBA_fnc_waitAndExecute;
 
-playSound3D ["A3\Sounds_F\sfx\SpottedNoise.wss", objNull, false, ATLToASL _pos, 5, 0.6, _radius * 2];
+playSound3D ["A3\Sounds_F\ambient\thunder\thunder_01.wss", objNull, false, ATLToASL _pos, 5, 0.6, _radius * 2];
 
 if (!_hud || {(player distance2D _pos) > _radius}) exitWith {};
 

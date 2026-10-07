@@ -12,33 +12,58 @@
  * 0: Instance anchor <OBJECT>
  * 1: Area radius in meters <NUMBER>
  * 2: Tint strength 0..1 <NUMBER>
+ * 3: Rain intensity 0.1 - 1 <NUMBER>
  *
  * Return Value:
  * None
  *
  * Example:
- * [_anchor, 500, 0.5] call root_effects_weather_fnc_acidRainStartLocal
+ * [_anchor, 500, 0.5, 0.7] call root_effects_weather_fnc_acidRainStartLocal
  */
 
-params [["_anchor", objNull, [objNull]], ["_radius", 500, [0]], ["_tint", 0.5, [0]]];
+params [["_anchor", objNull, [objNull]], ["_radius", 500, [0]], ["_tint", 0.5, [0]], ["_intensity", 0.7, [0]]];
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 
-// [anchor, radius, tint, ppHandle, currentBlend, rainEmitter]
-private _state = [_anchor, _radius, _tint, -1, 0, objNull];
+_intensity = (_intensity max 0.1) min 1;
+
+// Rain drops: heavy and fast so they streak straight down. Weight must stay
+// well above volume or the drops float and drift upwards.
+private _fnc_rainParams = {
+    params ["_emitter", "_intensity"];
+    private _alpha = 0.55 + 0.4 * _intensity;
+    _emitter setParticleCircle [0, [0, 0, 0]];
+    _emitter setParticleRandom [0.3, [14 + 14 * _intensity, 14 + 14 * _intensity, 2], [0.4, 0.4, 3], 0, 0.02, [0.05, 0.1, 0.05, 0.1], 0, 0];
+    _emitter setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 7, 1], "", "SpaceObject", 1, 1.4, [0, 0, 0], [0, 0, -26], 0, 20, 1, 0, [0.06 + 0.06 * _intensity, 0.06 + 0.06 * _intensity], [[0.55, 0.85, 0.2, _alpha], [0.5, 0.8, 0.15, _alpha * 0.8]], [1], 1, 0, "", "", _emitter, 0, true, 0, [[0.6, 1, 0.2, _alpha * 0.4]]];
+    _emitter setDropInterval ((0.0025 / _intensity) / ((EGVAR(main,particleBudget)) max 0.1));
+};
+
+// Low acidic haze hanging over the ground.
+private _fnc_mistParams = {
+    params ["_emitter", "_intensity"];
+    _emitter setParticleCircle [20, [0, 0, 0]];
+    _emitter setParticleRandom [3, [20, 20, 1], [0.4, 0.4, 0.1], 0, 0.3, [0, 0.05, 0, 0.05], 0, 0];
+    _emitter setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 8, [0, 0, 0.5], [0, 0, 0.05], 0, 10.1, 7.9, 0.05, [6, 10], [[0.45, 0.6, 0.2, 0], [0.45, 0.6, 0.2, 0.12 * _intensity], [0.45, 0.6, 0.2, 0]], [1], 0, 0, "", "", _emitter];
+    _emitter setDropInterval ((0.15 / _intensity) / ((EGVAR(main,particleBudget)) max 0.1));
+};
+
+// [anchor, radius, tint, ppHandle, currentBlend, rainEmitter, mistEmitter, covered, intensity, rainFn, mistFn, grainHandle]
+private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _intensity, _fnc_rainParams, _fnc_mistParams, -1];
 
 [{
     params ["_args", "_handle"];
-    _args params ["_anchor", "_radius", "_tint", "_ppHandle", "_blend", "_rain"];
+    _args params ["_anchor", "_radius", "_tint", "_ppHandle", "_blend", "_rain", "_mist", "_covered", "_intensity", "_fnc_rainParams", "_fnc_mistParams", "_grain"];
 
     if (isNull _anchor) exitWith {
         if (_ppHandle != -1) then {
             ppEffectDestroy _ppHandle;
         };
-        if (!isNull _rain) then {
-            deleteVehicle _rain;
+        if (_grain != -1) then {
+            ppEffectDestroy _grain;
         };
+        deleteVehicle _rain;
+        deleteVehicle _mist;
         _handle call CBA_fnc_removePerFrameHandler;
     };
 
@@ -50,17 +75,36 @@ private _state = [_anchor, _radius, _tint, -1, 0, objNull];
     if (_inside) then {
         if (isNull _rain) then {
             _rain = "#particlesource" createVehicleLocal (eyePos player);
-            _rain setParticleCircle [0, [0, 0, 0]];
-            _rain setParticleRandom [0.2, [22, 22, 0], [0.5, 0.5, 1], 0, 0, [0, 0, 0, 0], 0, 0];
-            _rain setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 7, 1], "", "SpaceObject", 1, 1, [0, 0, 0], [0, 0, -22], 1, 0.004, 0.5, 1, [0.12, 0.06], [[0.5, 0.75, 0.25, 0.85], [0.45, 0.65, 0.2, 0.6]], [1], 1, 0, "", "", _rain];
-            _rain setDropInterval (0.001 / ((EGVAR(main,particleBudget)) max 0.1));
+            [_rain, _intensity] call _fnc_rainParams;
             _args set [5, _rain];
+
+            _mist = "#particlesource" createVehicleLocal (getPosATL player);
+            [_mist, _intensity] call _fnc_mistParams;
+            _args set [6, _mist];
         };
-        _rain setPosATL ((eyePos player) vectorAdd [0, 0, 16]);
+
+        // Drops would fall straight through a roof, so the column stops while
+        // the player is sheltered and resumes once back outside.
+        private _nowCovered = [player] call FUNC(isUnderCover);
+        if (_nowCovered isNotEqualTo _covered) then {
+            _args set [7, _nowCovered];
+            if (_nowCovered) then {
+                _rain setDropInterval 0;
+            } else {
+                [_rain, _intensity] call _fnc_rainParams;
+            };
+        };
+
+        private _camPos = AGLToASL positionCameraToWorld [0, 0, 0];
+        _rain setPosASL (_camPos vectorAdd [0, 0, 18]);
+        _mist setPosATL [_camPos select 0, _camPos select 1, 0];
     } else {
         if (!isNull _rain) then {
             deleteVehicle _rain;
+            deleteVehicle _mist;
             _args set [5, objNull];
+            _args set [6, objNull];
+            _args set [7, false];
         };
     };
 
@@ -74,9 +118,17 @@ private _state = [_anchor, _radius, _tint, -1, 0, objNull];
         _ppHandle = ppEffectCreate ["ColorCorrections", 1550];
         _ppHandle ppEffectEnable true;
         _args set [3, _ppHandle];
+
+        _grain = ppEffectCreate ["FilmGrain", 2005];
+        _grain ppEffectEnable true;
+        _args set [11, _grain];
     };
 
-    // Sickly green-yellow grading scaled by the blend factor.
-    _ppHandle ppEffectAdjust [1, 1, 0, [0, 0, 0, 0], [1 - 0.2 * _blend, 1, 1 - 0.4 * _blend, 1 - 0.2 * _blend], [0.5, 0.6, 0.2, 0.1 * _blend]];
+    // Sickly green-yellow grading scaled by the blend factor and darkened by
+    // the storm intensity.
+    private _dark = 1 - 0.25 * _intensity * _blend;
+    _ppHandle ppEffectAdjust [_dark, 1 + 0.1 * _blend, 0, [0.2, 0.35, 0, 0.12 * _blend], [1 - 0.25 * _blend, 1, 1 - 0.5 * _blend, 1 - 0.3 * _blend], [0.5, 0.6, 0.2, 0.15 * _blend]];
     _ppHandle ppEffectCommit 0.5;
-}, 0.5, _state] call CBA_fnc_addPerFrameHandler;
+    _grain ppEffectAdjust [0.12 * _blend * _intensity, 1, 1.2, 0.4, 0.2, false];
+    _grain ppEffectCommit 0.5;
+}, 0.25, _state] call CBA_fnc_addPerFrameHandler;

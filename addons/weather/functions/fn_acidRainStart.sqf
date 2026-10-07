@@ -15,6 +15,7 @@
  * 3: Damage exposed units <BOOL>
  * 4: Damage per tick 0..1 <NUMBER>
  * 5: Seconds between damage ticks <NUMBER>
+ * 6: Rain intensity 0.1 - 1 <NUMBER>
  *
  * Return Value:
  * None
@@ -29,7 +30,8 @@ params [
     ["_tint", 0.5, [0]],
     ["_damage", true, [false]],
     ["_damagePerTick", 0.05, [0]],
-    ["_tick", 5, [0]]
+    ["_tick", 5, [0]],
+    ["_intensity", 0.7, [0]]
 ];
 
 if (!isServer) exitWith {};
@@ -38,7 +40,7 @@ if (!(["acidrain"] call EFUNC(main,isEffectEnabled))) exitWith {};
 _tick = _tick max 1;
 _damage = _damage && GVAR(allowDamage);
 
-private _anchor = ["acidrain", QGVAR(acidRainLocal), [_radius, _tint], _pos] call EFUNC(main,startEffect);
+private _anchor = ["acidrain", QGVAR(acidRainLocal), [_radius, _tint, _intensity], _pos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
 if (_damage) then {
@@ -54,9 +56,7 @@ if (_damage) then {
             private _target = _x;
             if (!(_target isKindOf "VirtualMan_F") && {isNull objectParent _target}) then {
                 // Only units without a roof over their head get burned.
-                private _eyePos = eyePos _target;
-                private _covered = lineIntersectsSurfaces [_eyePos, _eyePos vectorAdd [0, 0, 50], _target, objNull, true, 1] isNotEqualTo [];
-                if (!_covered) then {
+                if (!([_target] call FUNC(isUnderCover))) then {
                     [_target, _damagePerTick, "Body", "burn", _anchor] call EFUNC(main,doDamage);
                 };
             };

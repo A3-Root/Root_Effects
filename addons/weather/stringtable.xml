@@ -16,6 +16,12 @@
         <Key ID="STR_root_effects_weather_AttrAcidDpsTooltip">
             <Original>Damage added per tick to each exposed unit.</Original>
         </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidIntensity">
+            <Original>Rain Intensity</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidIntensityTooltip">
+            <Original>How heavy and visible the acid downpour is.</Original>
+        </Key>
         <Key ID="STR_root_effects_weather_AttrAcidRadius">
             <Original>Affected Radius</Original>
         </Key>
@@ -69,6 +75,12 @@
         </Key>
         <Key ID="STR_root_effects_weather_AttrLightningRadiusTooltip">
             <Original>Radius in meters strikes can land in.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningStrength">
+            <Original>Storm Strength</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningStrengthTooltip">
+            <Original>Scales cloud, rain, fog, strike frequency and bolt brightness.</Original>
         </Key>
         <Key ID="STR_root_effects_weather_AttrMirageIntensity">
             <Original>Haze Intensity</Original>

@@ -31,7 +31,8 @@ private _tint = _logic getVariable ["ROOT_ACIDRAIN_TINT", 0.5];
 private _damage = _logic getVariable ["ROOT_ACIDRAIN_DAMAGE", true];
 private _damagePerTick = _logic getVariable ["ROOT_ACIDRAIN_DPS", 0.05];
 private _tick = _logic getVariable ["ROOT_ACIDRAIN_TICK", 5];
+private _intensity = _logic getVariable ["ROOT_ACIDRAIN_INTENSITY", 0.7];
 
 deleteVehicle _logic;
 
-[_pos, _radius, _tint, _damage, _damagePerTick, _tick] call FUNC(acidRainStart);
+[_pos, _radius, _tint, _damage, _damagePerTick, _tick, _intensity] call FUNC(acidRainStart);

@@ -11,7 +11,7 @@
  * 0: Anomaly center position ATL <ARRAY>
  * 1: Effect radius in meters <NUMBER>
  * 2: Charge time in seconds before the collapse <NUMBER>
- * 3: Damage what the collapse throws <BOOL>
+ * 3: Damage strength 0..1, 0 for none (old BOOL accepted) <NUMBER>
  *
  * Return Value:
  * None
@@ -24,7 +24,7 @@ params [
     ["_pos", [0, 0, 0], [[]], 3],
     ["_radius", 120, [0]],
     ["_chargeTime", 6, [0]],
-    ["_lethal", true, [false]]
+    ["_lethal", 1, [0, false]]
 ];
 
 if (!isServer) exitWith {};
@@ -32,7 +32,8 @@ if (!(["singularity"] call EFUNC(main,isEffectEnabled))) exitWith {};
 
 _radius = (_radius max 50) min 300;
 _chargeTime = _chargeTime max 2;
-_lethal = _lethal && GVAR(allowDamage);
+if (_lethal isEqualType false) then {_lethal = [0, 1] select _lethal};
+if (!GVAR(allowDamage)) then {_lethal = 0};
 
 private _anchor = ["singularity", QGVAR(singularityLocal), [_radius, _chargeTime], _pos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
@@ -51,17 +52,14 @@ if (isNull _anchor) exitWith {};
             // setVelocity only takes on the owning machine, same reason the
             // damage helpers route: anything a player owns is remote here.
             [QGVAR(singularityFlingLocal), [_target, _falloff], _target] call CBA_fnc_targetEvent;
-
-            if (_lethal) then {
-                private _damage = _falloff * (0.6 + random 0.4);
-                if (_target isKindOf "CAManBase") then {
-                    [_target, _damage, selectRandom ["Body", "Head", "LeftLeg", "RightLeg"], "explosive", _anchor] call EFUNC(main,doDamage);
-                } else {
-                    [_target, _damage] call EFUNC(main,doDamage);
-                };
-            };
         };
-    } forEach (_center nearEntities [["Man", "LandVehicle", "Ship"], _radius]);
+    } forEach (_center nearEntities [["Man", "LandVehicle", "Ship", "StaticWeapon"], _radius]);
+
+    // The collapse goes off like a heavy bomb: real GBU-12 blast at the core
+    // plus scaled damage over the whole radius, buildings included.
+    if (_lethal > 0) then {
+        [_center, _radius, _lethal, _anchor] call FUNC(strikeDamage);
+    };
 
     // The anomaly collapses with the pulse; the visuals fade on their own.
     [{

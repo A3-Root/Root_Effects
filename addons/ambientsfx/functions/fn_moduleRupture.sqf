@@ -28,12 +28,18 @@ if (!(["rupture"] call EFUNC(main,isEffectEnabled))) exitWith {
 };
 
 [LLSTRING(ModuleRupture), [
-    ["SLIDER", [LLSTRING(AttrRuptureAltitude), LLSTRING(AttrRuptureAltitudeTooltip)], [1, 4000, 500, 0]]
+    ["SLIDER", [LLSTRING(AttrRuptureAltitude), LLSTRING(AttrRuptureAltitudeTooltip)], [1, 4000, 500, 0]],
+    ["COMBO", [LLSTRING(AttrSkyShape), LLSTRING(AttrSkyShapeTooltip)], [[0, 1, 2, 3, 4, 5], [LLSTRING(ShapeBand), LLSTRING(ShapeArc), LLSTRING(ShapeWave), LLSTRING(ShapeRing), LLSTRING(ShapeSpiral), LLSTRING(ShapeRandom)], 0]],
+    ["SLIDER", [LLSTRING(AttrSkyFadeIn), LLSTRING(AttrSkyFadeInTooltip)], [0.5, 120, 20, 1]],
+    ["SLIDER", [LLSTRING(AttrSkyFadeOut), LLSTRING(AttrSkyFadeOutTooltip)], [0.5, 120, 20, 1]],
+    ["SLIDER", [LLSTRING(AttrSkyLifetime), LLSTRING(AttrSkyLifetimeTooltip)], [5, 600, 180, 0]],
+    ["SLIDER:PERCENT", [LLSTRING(AttrSkyDensity), LLSTRING(AttrSkyDensityTooltip)], [0.1, 1, 0.5, 0]],
+    ["CHECKBOX", [LLSTRING(AttrSkyFixed), LLSTRING(AttrSkyFixedTooltip)], false]
 ], {
     params ["_results", "_pos"];
-    _results params ["_altitude"];
+    _results params ["_altitude", "_shape", "_fadeIn", "_fadeOut", "_lifetime", "_density", "_fixed"];
 
-    [QGVAR(startRupture), [_pos, _altitude]] call CBA_fnc_serverEvent;
+    [QGVAR(startRupture), [_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, _fixed]] call CBA_fnc_serverEvent;
     [LLSTRING(RuptureStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

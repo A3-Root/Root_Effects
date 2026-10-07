@@ -32,20 +32,4 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootEmpCategory {
-            file = QPATHTOF(functions);
-            class moduleEmp {};
-            class moduleEmp3DEN {};
-            class empStart {};
-            class empLocal {};
-            class empVehicleLocal {};
-            class empLampsLocal {};
-            class empUnitLocal {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"

@@ -17,5 +17,6 @@ PREP(carpetSoundLocal);
 PREP(moduleSingularity);
 PREP(moduleSingularity3DEN);
 PREP(singularityStart);
+PREP(strikeDamage);
 PREP(singularityLocal);
 PREP(singularityFlingLocal);

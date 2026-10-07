@@ -13,6 +13,7 @@ PREP(moduleRupture);
 PREP(moduleRupture3DEN);
 PREP(ruptureStart);
 PREP(ruptureStartLocal);
+PREP(skyBandLocal);
 PREP(moduleSparks);
 PREP(moduleSparks3DEN);
 PREP(sparksStart);

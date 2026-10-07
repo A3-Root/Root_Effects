@@ -33,7 +33,7 @@ private _color = [
     _logic getVariable ["ROOT_LASER_GREEN", 0.2],
     _logic getVariable ["ROOT_LASER_BLUE", 0.2]
 ];
-private _damage = _logic getVariable ["ROOT_LASER_DAMAGE", true];
+private _damage = _logic getVariable ["ROOT_LASER_DMGPCT", 1];
 private _damageRadius = _logic getVariable ["ROOT_LASER_DMGRADIUS", 30];
 private _thickness = _logic getVariable ["ROOT_LASER_THICKNESS", 1];
 

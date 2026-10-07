@@ -8,52 +8,21 @@
  *
  * Arguments:
  * 0: Instance anchor <OBJECT>
+ * 1: Shape index <NUMBER>
+ * 2: Fade in seconds <NUMBER>
+ * 3: Fade out seconds <NUMBER>
+ * 4: Particle lifetime seconds <NUMBER>
+ * 5: Density 0.1 - 1 <NUMBER>
+ * 6: Fixed in place <BOOL>
+ * 7: Shape seed <NUMBER>
  *
  * Return Value:
  * None
  *
  * Example:
- * [_anchor] call root_effects_ambientsfx_fnc_ruptureStartLocal
+ * [_anchor, 0, 20, 20, 120, 0.5, false, 1234] call root_effects_ambientsfx_fnc_ruptureStartLocal
  */
 
-params [["_anchor", objNull, [objNull]]];
+params [["_anchor", objNull, [objNull]], ["_shape", 0, [0]], ["_fadeIn", 20, [0]], ["_fadeOut", 20, [0]], ["_lifetime", 180, [0]], ["_density", 0.5, [0]], ["_fixed", false, [false]], ["_seed", 0, [0]]];
 
-if (!hasInterface) exitWith {};
-if (isNull _anchor) exitWith {};
-
-// [anchor, emitter]
-private _state = [_anchor, objNull];
-
-[{
-    params ["_args", "_handle"];
-    _args params ["_anchor", "_emitter"];
-
-    if (isNull _anchor) exitWith {
-        deleteVehicle _emitter;
-        _handle call CBA_fnc_removePerFrameHandler;
-    };
-
-    // Paused by the termination module: keep whatever is already in the sky but
-    // stop feeding the emitter so no new light band is created.
-    if (_anchor getVariable [QEGVAR(main,paused), false]) exitWith {
-        if (!isNull _emitter) then {
-            _emitter setDropInterval 0;
-        };
-    };
-
-    private _active = sunOrMoon == 0;
-
-    if (_active && {isNull _emitter}) then {
-        private _rupture = "#particlesource" createVehicleLocal getPosATL _anchor;
-        _rupture setParticleCircle [0, [0, 0, 0]];
-        _rupture setParticleRandom [10, [2000, 5, 5], [0, 0, 0], 0.01, 1, [0, 0, 0, 0.1], 1, 0];
-        _rupture setParticleParams [["\A3\data_f\VolumeLight", 1, 0, 1], "", "SpaceObject", 1, 180, [0, 0, 0], [0, 0, 0], 0, 9.996, 7.84, 0, [20, 30, 20], [[0, 0, 0, 0], [1, 1, 0.25, 1], [0.5, 1, 0.5, 0]], [0.08], 1, 0, "", "", _anchor];
-        _rupture setDropInterval (0.05 / ((EGVAR(main,particleBudget)) max 0.1));
-        _args set [1, _rupture];
-    };
-
-    if (!_active && {!isNull _emitter}) then {
-        deleteVehicle _emitter;
-        _args set [1, objNull];
-    };
-}, 2, _state] call CBA_fnc_addPerFrameHandler;
+[_anchor, "rupture", _shape, _fadeIn, _fadeOut, _lifetime, _density, _fixed, _seed] call FUNC(skyBandLocal);

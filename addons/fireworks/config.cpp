@@ -32,18 +32,4 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootFireworksCategory {
-            file = QPATHTOF(functions);
-            class moduleFireworks {};
-            class moduleFireworks3DEN {};
-            class fireworksStart {};
-            class fireworksStartLocal {};
-            class fireworkBurstLocal {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"

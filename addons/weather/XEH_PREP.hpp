@@ -4,6 +4,8 @@
 PREP(moduleLightningStorm);
 PREP(moduleLightningStorm3DEN);
 PREP(lightningStart);
+PREP(lightningStrikeLocal);
+PREP(isUnderCover);
 PREP(moduleAcidRain);
 PREP(moduleAcidRain3DEN);
 PREP(acidRainStart);

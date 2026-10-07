@@ -55,7 +55,7 @@ _glow setLightColor [0.5, 0.75, 1];
 _glow setLightAmbient [0.3, 0.5, 0.8];
 _glow setLightAttenuation [4, 0, _radius, 0, 20, _radius * 1.5];
 
-playSound3D ["A3\Sounds_F\sfx\blesk2.wss", objNull, false, ATLToASL _pos, 4, 0.6, 2000];
+playSound3D ["A3\Sounds_F\ambient\thunder\thunder_01.wss", objNull, false, ATLToASL _pos, 4, 0.6, 2000];
 
 if (_distance < _radius * 2) then {
     enableCamShake true;

@@ -10,6 +10,13 @@ if (isServer) then {
     }] call CBA_fnc_addEventHandler;
 };
 
+// Rock shoves a vehicle downhill; velocity only takes on the owning machine.
+[QGVAR(avalanchePush), {
+    params ["_object", "_push"];
+    if (isNull _object || {!alive _object}) exitWith {};
+    _object setVelocity ((velocity _object) vectorAdd _push);
+}] call CBA_fnc_addEventHandler;
+
 if (hasInterface) then {
     [QGVAR(startLocal), {
         _this call FUNC(volcanoStartLocal);

@@ -28,7 +28,7 @@ if (isNull _logic) exitWith {};
 private _pos = getPosATL _logic;
 private _radius = _logic getVariable ["ROOT_SINGULARITY_RADIUS", 120];
 private _chargeTime = _logic getVariable ["ROOT_SINGULARITY_CHARGE", 6];
-private _lethal = _logic getVariable ["ROOT_SINGULARITY_LETHAL", true];
+private _lethal = _logic getVariable ["ROOT_SINGULARITY_DMGPCT", 1];
 
 deleteVehicle _logic;
 

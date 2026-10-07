@@ -43,6 +43,42 @@
         <Key ID="STR_root_effects_ambientsfx_AttrRuptureAltitudeTooltip">
             <Original>Altitude in meters of the rupture above terrain.</Original>
         </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyDensity">
+            <Original>Density</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyDensityTooltip">
+            <Original>How many lights make up the band.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyFadeIn">
+            <Original>Spawn Speed (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyFadeInTooltip">
+            <Original>Seconds each light takes to fade in.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyFadeOut">
+            <Original>Despawn Speed (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyFadeOutTooltip">
+            <Original>Seconds each light takes to fade out.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyFixed">
+            <Original>Fixed in Place</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyFixedTooltip">
+            <Original>Keep the band static: no lights despawn or spawn elsewhere and the shape never changes.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyLifetime">
+            <Original>Light Lifetime (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyLifetimeTooltip">
+            <Original>Seconds each light stays in the sky, including fades.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyShape">
+            <Original>Shape</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyShapeTooltip">
+            <Original>Path the band follows across the sky. Random picks a shape, length and rotation per instance.</Original>
+        </Key>
         <Key ID="STR_root_effects_ambientsfx_AttrSparksAltitude">
             <Original>Sparks Altitude</Original>
         </Key>
@@ -135,6 +171,24 @@
         </Key>
         <Key ID="STR_root_effects_ambientsfx_SettingSparksTooltip">
             <Original>Allow ambient sparks to be started from Zeus or 3DEN.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ShapeArc">
+            <Original>Arc</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ShapeBand">
+            <Original>Band</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ShapeRandom">
+            <Original>Random</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ShapeRing">
+            <Original>Ring</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ShapeSpiral">
+            <Original>Spiral</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ShapeWave">
+            <Original>Wave</Original>
         </Key>
         <Key ID="STR_root_effects_ambientsfx_SparksStarted">
             <Original>Sparks active!</Original>

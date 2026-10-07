@@ -27,7 +27,13 @@ if (isNull _logic) exitWith {};
 
 private _pos = getPosATL _logic;
 private _altitude = _logic getVariable ["ROOT_RUPTURE_ALTITUDE", 500];
+private _shape = _logic getVariable ["ROOT_RUPTURE_SHAPE", 0];
+private _fadeIn = _logic getVariable ["ROOT_RUPTURE_FADEIN", 20];
+private _fadeOut = _logic getVariable ["ROOT_RUPTURE_FADEOUT", 20];
+private _lifetime = _logic getVariable ["ROOT_RUPTURE_LIFETIME", 180];
+private _density = _logic getVariable ["ROOT_RUPTURE_DENSITY", 0.5];
+private _fixed = _logic getVariable ["ROOT_RUPTURE_FIXED", false];
 
 deleteVehicle _logic;
 
-[_pos, _altitude] call FUNC(ruptureStart);
+[_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, _fixed] call FUNC(ruptureStart);

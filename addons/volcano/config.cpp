@@ -32,24 +32,5 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootVolcanoCategory {
-            file = QPATHTOF(functions);
-            class moduleVolcano {};
-            class moduleVolcano3DEN {};
-            class volcanoStart {};
-            class volcanoStartLocal {};
-            class volcanoBurstLocal {};
-            class moduleAvalanche {};
-            class moduleAvalanche3DEN {};
-            class avalancheStart {};
-            class avalancheLocal {};
-            class volcanoIsProtected {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"
 #include "CfgSounds.hpp"

@@ -32,7 +32,7 @@ if (!(["laserstrike"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER", [LLSTRING(AttrLaserBeam), LLSTRING(AttrLaserBeamTooltip)], [1, 30, 3, 0]],
     ["SLIDER", [LLSTRING(AttrLaserThickness), LLSTRING(AttrLaserThicknessTooltip)], [0.5, 4, 1, 1]],
     ["COLOR", [LLSTRING(AttrLaserColor), LLSTRING(AttrLaserColorTooltip)], [1, 0.2, 0.2]],
-    ["TOOLBOX:YESNO", [LLSTRING(AttrLaserDamage), LLSTRING(AttrLaserDamageTooltip)], true],
+    ["SLIDER:PERCENT", [LLSTRING(AttrLaserDamage), LLSTRING(AttrLaserDamageTooltip)], [0, 1, 1, 0]],
     ["SLIDER:RADIUS", [LLSTRING(AttrLaserDmgRadius), LLSTRING(AttrLaserDmgRadiusTooltip)], [5, 100, 30, 0, _pos, [7, 120, 32, 1]]]
 ], {
     params ["_results", "_pos"];

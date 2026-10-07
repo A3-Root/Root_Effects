@@ -30,26 +30,6 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootEffectsFramework {
-            file = QPATHTOF(functions);
-            class registerEffect {};
-            class startEffect {};
-            class stopEffect {};
-            class doDamage {};
-            class doDamageLocal {};
-            class doHitPointDamage {};
-            class doHitPointDamageLocal {};
-            class isEffectEnabled {};
-            class log {};
-            class moduleTerminate {};
-            class terminateDialog {};
-        };
-    };
-};
-
 class CfgFactionClasses {
     class NO_CATEGORY;
     // Themed sub-categories so the many modules group sensibly in the Zeus and

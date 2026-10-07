@@ -15,3 +15,10 @@
 - Open-sourced project. You can view code, comment on how terrible or disgusting it is via issues. Bonus points if you contribute by raising pull requests [url=https://github.com/A3-Root/Root_Effects]by clicking here![/url]
 - License changed to ARMA PUBLIC LICENSE SHARE ALIKE (APL-SA) - Have fun with the code. Don't forget to credit the authors (Root and Aliascartoons).
 - New logo added (and now be visible in-game) with link to Github repository.
+- Fireflies glow and blink at random; sparks glow in the dark.
+- Aurora and Spacetime Rupture: shape, spawn/despawn speed, lifetime, density and fixed-in-place options.
+- Acid Rain falls down, has an intensity setting and does no damage indoors.
+- Lightning Storm: visible bolts with flash, strength setting for cloud, rain and fog.
+- Orbital Laser and Singularity: damage % slider, GBU-12 blast, buildings flattened at high damage.
+- Scree Avalanche damages and shoves vehicles and their crews.
+- Fixed Drone Feed dialog errors, missing sound files and final-function override warnings.

@@ -32,12 +32,13 @@ if (!(["acidrain"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER:PERCENT", [LLSTRING(AttrAcidTint), LLSTRING(AttrAcidTintTooltip)], [0, 1, 0.5, 2]],
     ["TOOLBOX:YESNO", [LLSTRING(AttrAcidDamage), LLSTRING(AttrAcidDamageTooltip)], true],
     ["SLIDER:PERCENT", [LLSTRING(AttrAcidDps), LLSTRING(AttrAcidDpsTooltip)], [0.01, 0.5, 0.05, 2]],
-    ["SLIDER", [LLSTRING(AttrAcidTick), LLSTRING(AttrAcidTickTooltip)], [1, 60, 5, 0]]
+    ["SLIDER", [LLSTRING(AttrAcidTick), LLSTRING(AttrAcidTickTooltip)], [1, 60, 5, 0]],
+    ["SLIDER:PERCENT", [LLSTRING(AttrAcidIntensity), LLSTRING(AttrAcidIntensityTooltip)], [0.1, 1, 0.7, 0]]
 ], {
     params ["_results", "_pos"];
-    _results params ["_radius", "_tint", "_damage", "_damagePerTick", "_tick"];
+    _results params ["_radius", "_tint", "_damage", "_damagePerTick", "_tick", "_intensity"];
 
-    [QGVAR(startAcidRain), [_pos, _radius, _tint, _damage, _damagePerTick, _tick]] call CBA_fnc_serverEvent;
+    [QGVAR(startAcidRain), [_pos, _radius, _tint, _damage, _damagePerTick, _tick, _intensity]] call CBA_fnc_serverEvent;
     [LLSTRING(AcidRainStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

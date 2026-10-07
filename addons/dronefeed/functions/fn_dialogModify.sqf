@@ -32,13 +32,18 @@ private _feedLabels = [];
 
 [LLSTRING(ModuleModify), [
     ["COMBO", [LLSTRING(AttrFeed), LLSTRING(AttrFeedTooltip)], [_feedIds, _feedLabels, 0]],
-    ["TOOLBOX", [LLSTRING(AttrView), LLSTRING(AttrViewTooltip)], [["", VIEW_GUNNER, VIEW_DRIVER, VIEW_BOTH], [LLSTRING(NoChange), LLSTRING(ViewGunner), LLSTRING(ViewDriver), LLSTRING(ViewBoth)], 0]],
-    ["TOOLBOX", [LLSTRING(AttrVision), LLSTRING(AttrVisionTooltip)], [[-1, 0, 1, 2], [LLSTRING(NoChange), LLSTRING(VisionNormal), LLSTRING(VisionNV), LLSTRING(VisionThermal)], 0]],
-    ["TOOLBOX", [LLSTRING(AttrRender), LLSTRING(AttrRenderTooltip)], [["", RENDER_MODE_ACCURATE, RENDER_MODE_PROXY], [LLSTRING(NoChange), LLSTRING(RenderAccurate), LLSTRING(RenderProxy)], 0]],
+    ["TOOLBOX", [LLSTRING(AttrView), LLSTRING(AttrViewTooltip)], [0, 1, 4, [LLSTRING(NoChange), LLSTRING(ViewGunner), LLSTRING(ViewDriver), LLSTRING(ViewBoth)]]],
+    ["TOOLBOX", [LLSTRING(AttrVision), LLSTRING(AttrVisionTooltip)], [0, 1, 4, [LLSTRING(NoChange), LLSTRING(VisionNormal), LLSTRING(VisionNV), LLSTRING(VisionThermal)]]],
+    ["TOOLBOX", [LLSTRING(AttrRender), LLSTRING(AttrRenderTooltip)], [0, 1, 3, [LLSTRING(NoChange), LLSTRING(RenderAccurate), LLSTRING(RenderProxy)]]],
     ["SLIDER", [LLSTRING(AttrRadiusChange), LLSTRING(AttrRadiusChangeTooltip)], [0, 500, 0, 0]]
 ], {
     params ["_results"];
     _results params ["_feedId", "_view", "_vision", "_render", "_radius"];
+
+    // Toolboxes return the selected index; index 0 is "no change" in each.
+    _view = ["", VIEW_GUNNER, VIEW_DRIVER, VIEW_BOTH] select _view;
+    _vision = [-1, 0, 1, 2] select _vision;
+    _render = ["", RENDER_MODE_ACCURATE, RENDER_MODE_PROXY] select _render;
 
     [QGVAR(requestModify), [[_feedId, _view, _vision, _render, _radius, "", ""]]] call CBA_fnc_serverEvent;
     [LLSTRING(FeedModified)] call zen_common_fnc_showMessage;

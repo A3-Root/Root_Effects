@@ -55,6 +55,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_LIGHTNING_MAXINT,CSTRING(AttrLightningMaxInt),CSTRING(AttrLightningMaxIntTooltip),20);
             ROOT_ATTR_BOOL(ROOT_LIGHTNING_DAMAGE,CSTRING(AttrLightningDamage),CSTRING(AttrLightningDamageTooltip),false);
             ROOT_ATTR_BOOL(ROOT_LIGHTNING_AMBIENCE,CSTRING(AttrLightningAmbience),CSTRING(AttrLightningAmbienceTooltip),true);
+            ROOT_ATTR_NUMBER(ROOT_LIGHTNING_STRENGTH,CSTRING(AttrLightningStrength),CSTRING(AttrLightningStrengthTooltip),0.7);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
@@ -73,6 +74,7 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_ACIDRAIN_DAMAGE,CSTRING(AttrAcidDamage),CSTRING(AttrAcidDamageTooltip),true);
             ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_DPS,CSTRING(AttrAcidDps),CSTRING(AttrAcidDpsTooltip),0.05);
             ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_TICK,CSTRING(AttrAcidTick),CSTRING(AttrAcidTickTooltip),5);
+            ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_INTENSITY,CSTRING(AttrAcidIntensity),CSTRING(AttrAcidIntensityTooltip),0.7);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

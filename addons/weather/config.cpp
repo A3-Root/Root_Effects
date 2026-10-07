@@ -37,28 +37,4 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootWeatherCategory {
-            file = QPATHTOF(functions);
-            class moduleLightningStorm {};
-            class moduleLightningStorm3DEN {};
-            class lightningStart {};
-            class moduleAcidRain {};
-            class moduleAcidRain3DEN {};
-            class acidRainStart {};
-            class acidRainStartLocal {};
-            class moduleHeatMirage {};
-            class moduleHeatMirage3DEN {};
-            class mirageStart {};
-            class mirageStartLocal {};
-            class moduleWaterTint {};
-            class moduleWaterTint3DEN {};
-            class waterTintStart {};
-            class waterTintStartLocal {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"

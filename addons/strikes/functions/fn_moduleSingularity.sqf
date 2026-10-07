@@ -30,7 +30,7 @@ if (!(["singularity"] call EFUNC(main,isEffectEnabled))) exitWith {
 [LLSTRING(ModuleSingularity), [
     ["SLIDER:RADIUS", [LLSTRING(AttrSingularityRadius), LLSTRING(AttrSingularityRadiusTooltip)], [50, 300, 120, 0, _pos, [7, 120, 32, 1]]],
     ["SLIDER", [LLSTRING(AttrSingularityCharge), LLSTRING(AttrSingularityChargeTooltip)], [2, 30, 6, 0]],
-    ["TOOLBOX:YESNO", [LLSTRING(AttrSingularityLethal), LLSTRING(AttrSingularityLethalTooltip)], true]
+    ["SLIDER:PERCENT", [LLSTRING(AttrSingularityLethal), LLSTRING(AttrSingularityLethalTooltip)], [0, 1, 1, 0]]
 ], {
     params ["_results", "_pos"];
     _results params ["_radius", "_chargeTime", "_lethal"];

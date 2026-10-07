@@ -36,13 +36,17 @@ private _droneLabels = [LLSTRING(DroneSpawnNew)];
     ["SLIDER", [LLSTRING(AttrDroneAlt), LLSTRING(AttrDroneAltTooltip)], [100, 3000, 500, 0]],
     ["SLIDER", [LLSTRING(AttrTextureId), LLSTRING(AttrTextureIdTooltip)], [0, 5, 0, 0]],
     ["SLIDER:RADIUS", [LLSTRING(AttrRadius), LLSTRING(AttrRadiusTooltip)], [10, 500, 100, 0, _pos, [7, 120, 32, 1]]],
-    ["TOOLBOX", [LLSTRING(AttrRender), LLSTRING(AttrRenderTooltip)], [[RENDER_MODE_ACCURATE, RENDER_MODE_PROXY], [LLSTRING(RenderAccurate), LLSTRING(RenderProxy)], 0]],
-    ["TOOLBOX", [LLSTRING(AttrView), LLSTRING(AttrViewTooltip)], [[VIEW_GUNNER, VIEW_DRIVER, VIEW_BOTH], [LLSTRING(ViewGunner), LLSTRING(ViewDriver), LLSTRING(ViewBoth)], 0]],
+    ["TOOLBOX", [LLSTRING(AttrRender), LLSTRING(AttrRenderTooltip)], [0, 1, 2, [LLSTRING(RenderAccurate), LLSTRING(RenderProxy)]]],
+    ["TOOLBOX", [LLSTRING(AttrView), LLSTRING(AttrViewTooltip)], [0, 1, 3, [LLSTRING(ViewGunner), LLSTRING(ViewDriver), LLSTRING(ViewBoth)]]],
     ["SLIDER", [LLSTRING(AttrProxyAlt), LLSTRING(AttrProxyAltTooltip)], [200, 3000, 1200, 0]]
 ], {
     params ["_results", "_data"];
     _data params ["_pos", "_screenNetId"];
     _results params ["_droneSel", "_droneClass", "_droneAlt", "_textureId", "_radius", "_render", "_view", "_proxyAlt"];
+
+    // Toolboxes return the selected index; map it back to the mode constant.
+    _render = [RENDER_MODE_ACCURATE, RENDER_MODE_PROXY] select _render;
+    _view = [VIEW_GUNNER, VIEW_DRIVER, VIEW_BOTH] select _view;
 
     private _config = [_pos, FEED_MODE_DRONE, _screenNetId, "", _droneSel, _droneClass, _droneAlt, _textureId, _radius, _render, _view, 1000, _proxyAlt, netId player];
     [QGVAR(requestCreate), [_config]] call CBA_fnc_serverEvent;

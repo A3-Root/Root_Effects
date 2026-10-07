@@ -32,24 +32,5 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootMeteorCategory {
-            file = QPATHTOF(functions);
-            class moduleMeteorsComets {};
-            class moduleMeteorsComets3DEN {};
-            class meteorsStart {};
-            class cometsStart {};
-            class pickTarget {};
-            class spawnMeteor {};
-            class spawnComet {};
-            class meteorLocal {};
-            class meteorImpactLocal {};
-            class cometLocal {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"
 #include "CfgSounds.hpp"

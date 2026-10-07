@@ -32,22 +32,4 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootFreezeCategory {
-            file = QPATHTOF(functions);
-            class moduleFreezePlayers {};
-            class moduleFreezePlayers3DEN {};
-            class freezeApply {};
-            class freezeLocal {};
-            class moduleCryoBlast {};
-            class moduleCryoBlast3DEN {};
-            class cryoBlastStart {};
-            class cryoBlastFreeze {};
-            class cryoBlastLocal {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"

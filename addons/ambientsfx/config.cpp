@@ -38,34 +38,5 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootAmbientCategory {
-            file = QPATHTOF(functions);
-            class moduleFireflies {};
-            class moduleFireflies3DEN {};
-            class firefliesStart {};
-            class firefliesStartLocal {};
-            class moduleAurora {};
-            class moduleAurora3DEN {};
-            class auroraStart {};
-            class auroraStartLocal {};
-            class moduleRupture {};
-            class moduleRupture3DEN {};
-            class ruptureStart {};
-            class ruptureStartLocal {};
-            class moduleSparks {};
-            class moduleSparks3DEN {};
-            class sparksStart {};
-            class sparkBurstLocal {};
-            class moduleBirdSwarm {};
-            class moduleBirdSwarm3DEN {};
-            class birdSwarmStart {};
-            class birdSwarmStartLocal {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"
 #include "CfgSounds.hpp"

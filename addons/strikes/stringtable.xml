@@ -68,10 +68,10 @@
             <Original>Color of the beam, its light and its impact dust.</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrLaserDamage">
-            <Original>Apply Damage</Original>
+            <Original>Damage</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrLaserDamageTooltip">
-            <Original>The detonation damages units around the target point. Respects the global damage setting.</Original>
+            <Original>Strike damage, 0% for a harmless strike. Any damage detonates a real GBU-12 and adds scaled damage on top, falling off to the edge of the radius. 100% destroys everything at the core and flattens buildings, walls and trees in roughly the inner half. Respects the global damage setting.</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrLaserDmgRadius">
             <Original>Damage Radius</Original>
@@ -140,10 +140,10 @@
             <Original>Seconds the anomaly builds up before it collapses.</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrSingularityLethal">
-            <Original>Apply Damage</Original>
+            <Original>Damage</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrSingularityLethalTooltip">
-            <Original>The collapse injures what it throws, scaled by distance from the center. Respects the global damage setting.</Original>
+            <Original>Collapse damage, 0% for a harmless collapse. Any damage detonates a real GBU-12 at the core and adds scaled damage over the radius. 100% destroys everything at the core and flattens buildings, walls and trees in roughly the inner half. Respects the global damage setting.</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrSingularityRadius">
             <Original>Anomaly Radius</Original>

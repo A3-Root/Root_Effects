@@ -32,16 +32,4 @@ class Extended_PostInit_EventHandlers {
     };
 };
 
-class CfgFunctions {
-    class ADDON {
-        tag = QUOTE(ADDON);
-        class RootFloatingCategory {
-            file = QPATHTOF(functions);
-            class moduleFloatingObjects {};
-            class moduleFloatingObjects3DEN {};
-            class floatingStart {};
-        };
-    };
-};
-
 #include "CfgVehicles.hpp"

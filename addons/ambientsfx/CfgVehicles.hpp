@@ -74,6 +74,12 @@ class CfgVehicles {
         class AttributeValues {};
         class Attributes: AttributesBase {
             ROOT_ATTR_NUMBER(ROOT_AURORA_ALTITUDE,CSTRING(AttrAuroraAltitude),CSTRING(AttrAuroraAltitudeTooltip),500);
+            ROOT_ATTR_NUMBER(ROOT_AURORA_SHAPE,CSTRING(AttrSkyShape),CSTRING(AttrSkyShapeTooltip),0);
+            ROOT_ATTR_NUMBER(ROOT_AURORA_FADEIN,CSTRING(AttrSkyFadeIn),CSTRING(AttrSkyFadeInTooltip),20);
+            ROOT_ATTR_NUMBER(ROOT_AURORA_FADEOUT,CSTRING(AttrSkyFadeOut),CSTRING(AttrSkyFadeOutTooltip),20);
+            ROOT_ATTR_NUMBER(ROOT_AURORA_LIFETIME,CSTRING(AttrSkyLifetime),CSTRING(AttrSkyLifetimeTooltip),180);
+            ROOT_ATTR_NUMBER(ROOT_AURORA_DENSITY,CSTRING(AttrSkyDensity),CSTRING(AttrSkyDensityTooltip),0.5);
+            ROOT_ATTR_BOOL(ROOT_AURORA_FIXED,CSTRING(AttrSkyFixed),CSTRING(AttrSkyFixedTooltip),false);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
@@ -88,6 +94,12 @@ class CfgVehicles {
         class AttributeValues {};
         class Attributes: AttributesBase {
             ROOT_ATTR_NUMBER(ROOT_RUPTURE_ALTITUDE,CSTRING(AttrRuptureAltitude),CSTRING(AttrRuptureAltitudeTooltip),500);
+            ROOT_ATTR_NUMBER(ROOT_RUPTURE_SHAPE,CSTRING(AttrSkyShape),CSTRING(AttrSkyShapeTooltip),0);
+            ROOT_ATTR_NUMBER(ROOT_RUPTURE_FADEIN,CSTRING(AttrSkyFadeIn),CSTRING(AttrSkyFadeInTooltip),20);
+            ROOT_ATTR_NUMBER(ROOT_RUPTURE_FADEOUT,CSTRING(AttrSkyFadeOut),CSTRING(AttrSkyFadeOutTooltip),20);
+            ROOT_ATTR_NUMBER(ROOT_RUPTURE_LIFETIME,CSTRING(AttrSkyLifetime),CSTRING(AttrSkyLifetimeTooltip),180);
+            ROOT_ATTR_NUMBER(ROOT_RUPTURE_DENSITY,CSTRING(AttrSkyDensity),CSTRING(AttrSkyDensityTooltip),0.5);
+            ROOT_ATTR_BOOL(ROOT_RUPTURE_FIXED,CSTRING(AttrSkyFixed),CSTRING(AttrSkyFixedTooltip),false);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

@@ -12,7 +12,7 @@
  * 1: Charge up time in seconds <NUMBER>
  * 2: Beam duration in seconds <NUMBER>
  * 3: Beam color as [r, g, b] <ARRAY>
- * 4: Apply damage <BOOL>
+ * 4: Damage strength 0..1, 0 for none (old BOOL accepted) <NUMBER>
  * 5: Damage radius in meters <NUMBER>
  * 6: Beam thickness multiplier <NUMBER>
  *
@@ -28,7 +28,7 @@ params [
     ["_chargeTime", 5, [0]],
     ["_beamTime", 3, [0]],
     ["_color", [1, 0.2, 0.2], [[]], 3],
-    ["_damage", true, [false]],
+    ["_damage", 1, [0, false]],
     ["_damageRadius", 30, [0]],
     ["_thickness", 1, [0]]
 ];
@@ -39,24 +39,21 @@ if (!(["laserstrike"] call EFUNC(main,isEffectEnabled))) exitWith {};
 _chargeTime = _chargeTime max 1;
 _beamTime = _beamTime max 1;
 _thickness = _thickness max 0.5;
-_damage = _damage && GVAR(allowDamage);
+if (_damage isEqualType false) then {_damage = [0, 1] select _damage};
+if (!GVAR(allowDamage)) then {_damage = 0};
 
 [QGVAR(laserLocal), [_pos, _chargeTime, _beamTime, _color, _thickness]] call CBA_fnc_globalEvent;
 
 [{
     params ["_pos", "_damage", "_damageRadius"];
 
-    // The engine explosion carries the audiovisual impact for everyone.
-    private _explosion = createVehicle ["HelicopterExploBig", _pos, [], 0, "CAN_COLLIDE"];
-    _explosion setPosATL _pos;
-
-    if (_damage) then {
-        {
-            if (!(_x isKindOf "VirtualMan_F")) then {
-                private _scaled = linearConversion [0, _damageRadius, _x distance2D _pos, 1, 0.2, true];
-                [_x, _scaled, "Body", "explosive"] call EFUNC(main,doDamage);
-            };
-        } forEach (_pos nearEntities [["Man", "LandVehicle", "Air", "Ship"], _damageRadius]);
+    // A damaging strike detonates a real GBU-12 and adds scaled damage on
+    // top; a harmless one only shows the engine explosion.
+    if (_damage > 0) then {
+        [_pos, _damageRadius, _damage] call FUNC(strikeDamage);
+    } else {
+        private _explosion = createVehicle ["HelicopterExploBig", _pos, [], 0, "CAN_COLLIDE"];
+        _explosion setPosATL _pos;
     };
 }, [_pos, _damage, _damageRadius], _chargeTime + (_beamTime / 2)] call CBA_fnc_waitAndExecute;
 

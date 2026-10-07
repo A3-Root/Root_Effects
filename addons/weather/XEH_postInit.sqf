@@ -19,6 +19,10 @@ if (isServer) then {
 };
 
 if (hasInterface) then {
+    [QGVAR(lightningStrike), {
+        _this call FUNC(lightningStrikeLocal);
+    }] call CBA_fnc_addEventHandler;
+
     [QGVAR(acidRainLocal), {
         _this call FUNC(acidRainStartLocal);
     }] call CBA_fnc_addEventHandler;
