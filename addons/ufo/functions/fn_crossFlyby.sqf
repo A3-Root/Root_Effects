@@ -19,6 +19,8 @@
 
 params [["_appearPos", [0, 0, 0], [[]], 3]];
 
+DBG(FORMAT_1("crossFlyby called with %1",_this));
+
 if (!isServer) exitWith {};
 
 private _ufo = createVehicle ["Land_Battery_F", [0, 0, 0], [], 0, "CAN_COLLIDE"];

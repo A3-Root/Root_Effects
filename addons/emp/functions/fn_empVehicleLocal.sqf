@@ -21,6 +21,8 @@
 
 params [["_vehicle", objNull, [objNull]], ["_duration", 20, [0]], ["_killEngines", true, [false]], ["_fuelDrain", 0, [0]]];
 
+DBG(FORMAT_1("empVehicleLocal called with %1",_this));
+
 if (isNull _vehicle || {!local _vehicle}) exitWith {};
 
 if (_fuelDrain > 0) then {

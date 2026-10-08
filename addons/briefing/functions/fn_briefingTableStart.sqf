@@ -29,6 +29,8 @@ params [
     ["_useTerrain", true, [false]]
 ];
 
+DBG(FORMAT_1("briefingTableStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["briefingtable"] call EFUNC(main,isEffectEnabled))) exitWith {};
 if (isNull _table || _marker isEqualTo "") exitWith {};

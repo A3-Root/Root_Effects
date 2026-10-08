@@ -8,6 +8,8 @@
  * calls this with _this set to the particle position.
  */
 
+DBG(FORMAT_1("volcanoLightning called with %1",_this));
+
 if ((random 10) < 9.9) exitWith {};
 
 private _lightningPos = _this;

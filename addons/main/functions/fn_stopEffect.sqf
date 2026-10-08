@@ -20,6 +20,8 @@
 
 params [["_effectKey", "", [""]], ["_target", "ALL", ["", objNull]]];
 
+DBG(FORMAT_1("stopEffect called with %1",_this));
+
 if (!isServer) exitWith {};
 
 private _anchors = GVAR(instances) getOrDefault [_effectKey, []];

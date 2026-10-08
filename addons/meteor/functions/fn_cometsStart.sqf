@@ -27,6 +27,8 @@ params [
     ["_owners", [], [[]]]
 ];
 
+DBG(FORMAT_1("cometsStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["comets"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

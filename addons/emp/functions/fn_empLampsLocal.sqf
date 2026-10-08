@@ -23,6 +23,8 @@
 
 params [["_pos", [0, 0, 0], [[]], 3], ["_radius", 300, [0]], ["_duration", 20, [0]], ["_permanent", false, [false]]];
 
+DBG(FORMAT_1("empLampsLocal called with %1",_this));
+
 private _lamps = nearestObjects [_pos, ["Lamps_base_F", "PowerLines_base_F"], _radius];
 if (_lamps isEqualTo []) exitWith {};
 

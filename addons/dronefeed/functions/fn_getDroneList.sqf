@@ -15,6 +15,8 @@
  * call root_effects_dronefeed_fnc_getDroneList
  */
 
+DBG(FORMAT_1("getDroneList called with %1",_this));
+
 private _result = [];
 {
     if (alive _x && {unitIsUAV _x} && {_x isKindOf "Air"}) then {

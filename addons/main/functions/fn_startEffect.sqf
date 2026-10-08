@@ -25,6 +25,8 @@
 
 params [["_effectKey", "", [""]], ["_startEvent", "", [""]], ["_params", [], [[]]], ["_pos", [0, 0, 0], [[]], 3]];
 
+DBG(FORMAT_1("startEffect called with %1",_this));
+
 if (!isServer) exitWith {objNull};
 if (_effectKey isEqualTo "") exitWith {objNull};
 

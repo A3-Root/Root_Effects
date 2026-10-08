@@ -18,6 +18,8 @@
 
 params [["_pos", [0, 0, 0], [[]], 3], ["_drone", objNull, [objNull]]];
 
+DBG(FORMAT_1("dialogDroneSource called with %1",_this));
+
 if (isNull _drone) exitWith {};
 
 private _screenPresets = ["Land_TripodScreen_01_large_F", "Land_BriefingRoomScreen_01_F", "Land_PCSet_01_screen_F", "Land_MapBoard_F"];

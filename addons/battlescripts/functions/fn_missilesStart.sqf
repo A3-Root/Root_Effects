@@ -24,6 +24,8 @@ params [
     ["_launchDelay", 10, [0]]
 ];
 
+DBG(FORMAT_1("missilesStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["missiles"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

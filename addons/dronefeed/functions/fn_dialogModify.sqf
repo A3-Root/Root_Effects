@@ -18,6 +18,8 @@
 
 params [["_data", [], [[]]]];
 
+DBG(FORMAT_1("dialogModify called with %1",_this));
+
 if (_data isEqualTo []) exitWith {
     [LLSTRING(NoFeeds)] call zen_common_fnc_showMessage;
 };

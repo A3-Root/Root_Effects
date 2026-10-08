@@ -38,6 +38,8 @@ params [
     ["_fireRate", 1, [0]]
 ];
 
+DBG(FORMAT_1("aaaStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["aaa"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

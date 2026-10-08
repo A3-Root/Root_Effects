@@ -25,6 +25,8 @@ params [
     ["_cropType", "circle", [""]]
 ];
 
+DBG(FORMAT_1("cropCircleStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["cropcircle"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

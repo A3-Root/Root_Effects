@@ -20,6 +20,8 @@
 
 params [["_class", "", [""]], ["_pos", [0, 0, 0], [[]], 3], ["_alt", 500, [0]]];
 
+DBG(FORMAT_1("spawnDrone called with %1",_this));
+
 if (!isServer) exitWith {objNull};
 if (!isClass (configFile >> "CfgVehicles" >> _class)) exitWith {objNull};
 

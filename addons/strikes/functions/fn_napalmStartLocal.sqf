@@ -39,7 +39,7 @@ private _state = [_anchor, _heading, _length, []];
         _handle call CBA_fnc_removePerFrameHandler;
     };
 
-    private _inRange = (player distance2D _anchor) < EGVAR(main,maxViewDistance);
+    private _inRange = (VIEWER_POS distance2D _anchor) < EGVAR(main,maxViewDistance);
 
     if (_inRange && {_visuals isEqualTo []}) then {
         private _budget = (EGVAR(main,particleBudget)) max 0.1;

@@ -8,6 +8,8 @@
  * to the particle position.
  */
 
+DBG(FORMAT_1("volcanoRockTrail called with %1",_this));
+
 private _trailPos = _this;
 private _elapsed = diag_tickTime - (missionNamespace getVariable [QGVAR(rockTrailStart), diag_tickTime]);
 private _shrink = (_elapsed / 0.3) min 50;

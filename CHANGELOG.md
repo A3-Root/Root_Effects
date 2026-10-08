@@ -33,3 +33,13 @@
 - Aurora/Rupture: size, length, shape switch timer, rupture movement; new Modify Sky Effect module.
 - Debug Output setting: who/where/what logging for every module, chat relay for Zeus.
 - Fixed missing module icon texture.
+- Fixed Acid Rain crashing the game (texture used as particle model).
+- Fixed smoke showing icon sprites (artillery, cryo, laser, singularity, volcano, tornado).
+- Effects are drawn by camera distance, so Zeus sees them from afar.
+- Scree Avalanche: dust and scree back; boulders roll and bounce down the terrain, same for every player.
+- Singularity: units thrown into ragdoll, everyone in the zone killed after the collapse when damage is on.
+- Orbital Laser and Singularity put out street lamps and vehicle lights in the radius.
+- Drone Feed: Zeus no longer kicked out near a screen; gunner view picks a ground-facing source; satellite action labels.
+- Live Briefing Map: map clicks apply instantly, double clicks no longer open the marker dialog.
+- Briefing Table: table top measured by ray, solid ground colours, placement logged.
+- Debug Output defaults to RPT; every function logs its call and arguments.

@@ -33,6 +33,8 @@ params [
     ["_thickness", 1, [0]]
 ];
 
+DBG(FORMAT_1("laserStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["laserstrike"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

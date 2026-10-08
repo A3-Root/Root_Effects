@@ -22,4 +22,6 @@
 
 params [["_anchor", objNull, [objNull]], ["_fadeIn", 20, [0]], ["_fadeOut", 20, [0]], ["_lifetime", 180, [0]], ["_density", 0.5, [0]]];
 
+DBG(FORMAT_1("ruptureStartLocal called with %1",_this));
+
 [_anchor, "rupture", _fadeIn, _fadeOut, _lifetime, _density] call FUNC(skyBandLocal);

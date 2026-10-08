@@ -13,7 +13,9 @@ Within 6 m of the screen:
 - Drone only: **Cycle Camera View** (gunner, driver, both).
 - Satellite only: **Retarget Satellite (Map Click)**: opens the map, the next click becomes the new spot.
 
-Controller, zoom, vision, view and satellite position are shared, so every viewer sees the same picture.
+Controller, zoom, vision, view and satellite position are shared, so every viewer sees the same picture. Satellite feeds label their actions "Satellite Feed".
+
+The gunner view uses the first of these that looks at the ground: the gunner's view direction, the gunner camera memory points, the turret gun points, the turret weapon. Opening Zeus next to a screen is safe; the feed leaves the camera alone while Zeus is open.
 
 ## Notes
 - Render mode *Proxy* shows the ground point the gunner camera aims at from straight above.

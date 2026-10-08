@@ -27,6 +27,8 @@ params [
     ["_lethalCore", true, [false]]
 ];
 
+DBG(FORMAT_1("cryoBlastStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["cryoblast"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

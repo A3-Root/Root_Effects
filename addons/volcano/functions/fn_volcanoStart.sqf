@@ -35,6 +35,8 @@ params [
     ["_gearText", "", [""]]
 ];
 
+DBG(FORMAT_1("volcanoStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["volcano"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

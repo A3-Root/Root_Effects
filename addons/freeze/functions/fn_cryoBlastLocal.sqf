@@ -23,7 +23,7 @@ params [["_pos", [0, 0, 0], [[]], 3], ["_radius", 80, [0]], ["_duration", 30, [0
 
 if (!hasInterface) exitWith {};
 
-private _distance = player distance2D _pos;
+private _distance = VIEWER_POS distance2D _pos;
 if (_distance > ((EGVAR(main,maxViewDistance)) max 1000)) exitWith {};
 DBG(FORMAT_1("cryoBlastLocal running here with %1",_this));
 
@@ -40,7 +40,7 @@ _shock setDropInterval (0.001 / _budget);
 private _sheen = "#particlesource" createVehicleLocal _pos;
 _sheen setParticleCircle [3, [_radius / 3, _radius / 3, 0]];
 _sheen setParticleRandom [1, [_radius / 4, _radius / 4, 0.3], [3, 3, 0], 0, 0.3, [0, 0, 0, 0.1], 0, 0];
-_sheen setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 6, [0, 0, 0.3], [0, 0, 0.2], 0, 10, 7.5, 0.02, [4, 14], [[0.75, 0.88, 1, 0.5], [0.7, 0.85, 1, 0.25], [0.65, 0.8, 1, 0]], [0.4, 1], 1, 0, "", "", _pos];
+_sheen setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 9, 0], "", "Billboard", 1, 6, [0, 0, 0.3], [0, 0, 0.2], 0, 10, 7.5, 0.02, [4, 14], [[0.75, 0.88, 1, 0.5], [0.7, 0.85, 1, 0.25], [0.65, 0.8, 1, 0]], [0.4, 1], 1, 0, "", "", _pos];
 _sheen setDropInterval (0.01 / _budget);
 
 // Frost fog rolling up out of the frozen ground.

@@ -8,3 +8,7 @@
 // Shared class name of the invisible helper object that anchors a running
 // effect instance in the world.
 #define ANCHOR_CLASS "Land_HelipadEmpty_F"
+
+// Where this client is looking from: the camera, not the player's body, so a Zeus
+// watching from far away still gets every effect drawn.
+#define VIEWER_POS (positionCameraToWorld [0, 0, 0])

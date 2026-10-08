@@ -25,6 +25,8 @@ params [
     ["_color", [1, 1, 1], [[]], 3]
 ];
 
+DBG(FORMAT_1("tracersStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["tracers"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

@@ -42,9 +42,24 @@ private _boundingBox = 0 boundingBoxReal _table;
 _boundingBox params ["_boxMin", "_boxMax"];
 private _tableWidth = abs ((_boxMax select 0) - (_boxMin select 0));
 private _tableLength = abs ((_boxMax select 1) - (_boxMin select 1));
-private _topZ = (_boxMax select 2) + 0.01;
 private _centreX = ((_boxMin select 0) + (_boxMax select 0)) / 2;
 private _centreY = ((_boxMin select 1) + (_boxMax select 1)) / 2;
+private _topZ = (_boxMax select 2) + 0.01;
+
+// The bounding box top is not always the playing surface (lamps, rims, legs and
+// LOD differences), so the real top is measured with a ray dropped onto the table.
+private _rayFrom = AGLToASL (_table modelToWorld [_centreX, _centreY, (_boxMax select 2) + 2]);
+private _hits = lineIntersectsSurfaces [_rayFrom, _rayFrom vectorAdd [0, 0, -((_boxMax select 2) - (_boxMin select 2) + 6)], objNull, objNull, true, 5, "GEOM", "VIEW"];
+private _tableHit = _hits findIf {(_x select 2) isEqualTo _table || {(_x select 3) isEqualTo _table}};
+private _topSource = "bounding box";
+if (_tableHit != -1) then {
+    private _hitASL = (_hits select _tableHit) select 0;
+    _topZ = ((_table worldToModel (ASLToAGL _hitASL)) select 2) + 0.01;
+    _topSource = "surface ray";
+};
+DBG(FORMAT_4("briefing table %1: bounding box %2, top z %3 from %4",typeOf _table,_boundingBox,_topZ,_topSource));
+private _hitSummary = _hits apply {[_x select 0, typeOf (_x select 2)]};
+DBG(FORMAT_3("briefing table surface ray hits: %1, table ASL %2, dir %3",_hitSummary,getPosASL _table,getDir _table));
 
 // Source area geometry. Area offsets are taken in the marker's own frame, so a
 // rotated marker still lays out along the table.
@@ -139,6 +154,8 @@ private _state = [_anchor, _table, _sized, _cells, [], false, _tableSize, _setti
         _handle call CBA_fnc_removePerFrameHandler;
     };
 
+    private _topASL = (_table modelToWorldWorld [_centreX, _centreY, _topZ]) select 2;
+
     // Lay the terrain tiles first, so objects visibly land on top of them.
     if (_terrainQueue isNotEqualTo []) exitWith {
         private _batch = _terrainQueue select [0, 20 min count _terrainQueue];
@@ -153,13 +170,12 @@ private _state = [_anchor, _table, _sized, _cells, [], false, _tableSize, _setti
             // Cube top flush with the relief; the body sinks into the table.
             private _modelPos = [_worldPos, _relief - _cubeSize / 2] call _fnc_worldToTable;
 
+            // Terrain textures are tiling detail maps that read as blank on a small
+            // tile, so every tile is coloured by its ground type instead.
             private _texture = "";
             private _water = surfaceIsWater _worldPos;
             private _road = roadAt _worldPos;
-            if (!_water) then {
-                _texture = [(getRoadInfo _road) param [3, ""], surfaceTexture _worldPos] select (isNull _road);
-            };
-            if (_texture isEqualTo "") then {
+            if (true) then {
                 // Fall back to a flat colour from the ground type so no tile is blank.
                 private _surface = toLowerANSI surfaceType _worldPos;
                 private _rgb = switch (true) do {
@@ -171,18 +187,28 @@ private _state = [_anchor, _table, _sized, _cells, [], false, _tableSize, _setti
                     case ("concrete" in _surface || {"asphalt" in _surface}): {"0.35,0.35,0.35"};
                     default {"0.42,0.36,0.25"};
                 };
-                _texture = format ["#(rgb,8,8,3)color(%1,1)", _rgb];
+                // Higher ground is a touch lighter so the relief reads at a glance.
+                private _shade = linearConversion [_baseHeight, _baseHeight + 150, _height, 0.85, 1.15, true];
+                private _rgbArr = (_rgb splitString ",") apply {((parseNumber _x) * _shade) min 1};
+                _texture = format ["#(rgb,8,8,3)color(%1,%2,%3,1)", _rgbArr select 0, _rgbArr select 1, _rgbArr select 2];
             };
 
             private _cube = createSimpleObject ["Land_VR_Shape_01_cube_1m_F", [0, 0, 0], true];
-            _cube setPosWorld (_table modelToWorldWorld _modelPos);
-            _cube setVectorDirAndUp _dirAndUp;
-            for "_selection" from 0 to 6 do {
-                _cube setObjectMaterial [_selection, "\a3\data_f\default.rvmat"];
-                _cube setObjectTexture [_selection, _texture];
+            {
+                _cube setObjectMaterial [_forEachIndex, "\a3\data_f\default.rvmat"];
+                _cube setObjectTexture [_forEachIndex, _texture];
+            } forEach (getObjectTextures _cube);
+            if ((getObjectTextures _cube) isEqualTo []) then {
+                _cube setObjectTexture [0, _texture];
             };
             _cube setObjectScale _cubeSize;
+            _cube setVectorDirAndUp _dirAndUp;
+            _cube setPosWorld (_table modelToWorldWorld _modelPos);
             _clones pushBack _cube;
+            if ((count _clones) <= 5 || {(count _clones) mod 100 == 0}) then {
+                DBG(FORMAT_4("briefing tile %1: ground %2 m, texture %3, tile top ASL %4",count _clones,round _height,_texture,((getPosWorld _cube) select 2) + _cubeSize / 2));
+                DBG(FORMAT_2("briefing tile %1: table top ASL %2",count _clones,_topASL));
+            };
         } forEach _batch;
     };
 
@@ -201,11 +227,14 @@ private _state = [_anchor, _table, _sized, _cells, [], false, _tableSize, _setti
                 private _modelPos = [_centre, ((_centre select 2) - _ground) * _modelScale] call _fnc_worldToTable;
 
                 private _clone = createSimpleObject [_model, [0, 0, 0], true];
-                _clone setPosWorld (_table modelToWorldWorld _modelPos);
-                _clone setDir ((getDir _table) + (getDir _source) - _markerDir);
-                _clone setVectorUp (vectorUp _table);
+                private _relDir = (getDir _source) - _markerDir;
                 _clone setObjectScale (_modelScale * getObjectScale _source);
+                _clone setVectorDirAndUp [_table vectorModelToWorld [sin _relDir, cos _relDir, 0], vectorUp _table];
+                _clone setPosWorld (_table modelToWorldWorld _modelPos);
                 _clones pushBack _clone;
+                if ((count _clones) mod 25 == 0) then {
+                    DBG(FORMAT_4("briefing object %1 (%2): centre ASL %3, table top ASL %4",count _clones,_model,(getPosWorld _clone) select 2,_topASL));
+                };
             };
         } forEach _batch;
     };

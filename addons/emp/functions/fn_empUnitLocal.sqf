@@ -21,6 +21,8 @@
 
 params [["_unit", objNull, [objNull]], ["_duration", 20, [0]], ["_permanent", false, [false]]];
 
+DBG(FORMAT_1("empUnitLocal called with %1",_this));
+
 if (isNull _unit || {!alive _unit}) exitWith {};
 
 private _nvg = hmd _unit;

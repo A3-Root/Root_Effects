@@ -19,6 +19,8 @@
 
 params [["_pos", [0, 0, 0], [[]], 3], ["_screen", objNull, [objNull]]];
 
+DBG(FORMAT_1("dialogScreenSource called with %1",_this));
+
 if (isNull _screen) exitWith {};
 
 // Build the drone picker: a "spawn new" entry first, then every existing UAV.

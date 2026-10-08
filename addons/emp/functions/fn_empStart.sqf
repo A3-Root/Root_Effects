@@ -35,6 +35,8 @@ params [
     ["_permanent", false, [false]]
 ];
 
+DBG(FORMAT_1("empStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["emp"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

@@ -43,6 +43,8 @@ params [
     ["_tornadoFling", false, [false]]
 ];
 
+DBG(FORMAT_1("lightningStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["lightningstorm"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

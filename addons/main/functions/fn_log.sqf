@@ -24,7 +24,7 @@
 
 params [["_component", "", [""]], ["_message", "", [""]]];
 
-private _level = missionNamespace getVariable [QGVAR(debugOutput), 0];
+private _level = missionNamespace getVariable [QGVAR(debugOutput), 1];
 if (_level isEqualType true) then {_level = parseNumber _level};
 if (_level <= 0) exitWith {};
 

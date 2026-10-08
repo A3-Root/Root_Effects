@@ -17,6 +17,8 @@
 
 params [["_articleId", "", [""]]];
 
+DBG(FORMAT_1("openArticle called with %1",_this));
+
 if (!hasInterface) exitWith {};
 
 private _articleData = GVAR(articles) getOrDefault [_articleId, []];

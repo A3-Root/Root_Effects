@@ -24,7 +24,7 @@ params [["_impactPos", [0, 0, 0], [[]], 3], ["_soundOnly", false, [false]]];
 
 if (!hasInterface) exitWith {};
 
-private _distance = player distance2D _impactPos;
+private _distance = VIEWER_POS distance2D _impactPos;
 if (_distance > EGVAR(main,maxViewDistance)) exitWith {};
 DBG(FORMAT_1("artilleryImpactLocal running here with %1",_this));
 
@@ -96,7 +96,7 @@ _fire setDropInterval (0.01 / _budget);
 private _sparks = "#particlesource" createVehicleLocal _impactPos;
 _sparks setParticleCircle [0.5, [0, 0, 0]];
 _sparks setParticleRandom [0.4, [0.5, 0.5, 0.3], [14, 14, 12], 0, 0.05, [0, 0, 0, 0], 0, 0];
-_sparks setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 13, 2, 0], "", "Billboard", 1, 1.2, [0, 0, 1], [0, 0, 14], 0, 25, 7.9, 0.08, [0.25, 0.15], [[1, 0.7, 0.3, 1], [1, 0.4, 0.1, 0]], [1], 1, 0, "", "", _impactPos, 0, true, 0.3, [[60, 30, 10, 1], [0, 0, 0, 0]]];
+_sparks setParticleParams [["\A3\data_f\cl_exp", 1, 0, 1], "", "Billboard", 1, 1.2, [0, 0, 1], [0, 0, 14], 0, 25, 7.9, 0.08, [0.25, 0.15], [[1, 0.7, 0.3, 1], [1, 0.4, 0.1, 0]], [1], 1, 0, "", "", _impactPos, 0, true, 0.3, [[60, 30, 10, 1], [0, 0, 0, 0]]];
 _sparks setDropInterval (0.004 / _budget);
 
 // Clods of earth and stone on ballistic arcs.
@@ -110,7 +110,7 @@ _debris setDropInterval (0.01 / _budget);
 private _dust = "#particlesource" createVehicleLocal _impactPos;
 _dust setParticleCircle [4, [12, 12, 0]];
 _dust setParticleRandom [0.6, [2, 2, 0.3], [5, 5, 1], 0, 0.4, [0, 0, 0, 0.1], 0, 0];
-_dust setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 4, [0, 0, 0.3], [0, 0, 0.6], 0, 10, 7.5, 0.06, [10, 22, 30], [[0.45, 0.4, 0.32, 0.75], [0.5, 0.46, 0.38, 0.4], [0.55, 0.5, 0.42, 0]], [0.6, 1], 1, 0, "", "", _impactPos];
+_dust setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 9, 0], "", "Billboard", 1, 4, [0, 0, 0.3], [0, 0, 0.6], 0, 10, 7.5, 0.06, [10, 22, 30], [[0.45, 0.4, 0.32, 0.75], [0.5, 0.46, 0.38, 0.4], [0.55, 0.5, 0.42, 0]], [0.6, 1], 1, 0, "", "", _impactPos];
 _dust setDropInterval (0.006 / _budget);
 
 // Thick dark column climbing out of the crater and drifting off.

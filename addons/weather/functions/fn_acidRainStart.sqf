@@ -53,6 +53,8 @@ params [
     ["_safeAreas", "", [""]]
 ];
 
+DBG(FORMAT_1("acidRainStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["acidrain"] call EFUNC(main,isEffectEnabled))) exitWith {
     DBG("acid rain rejected, effect disabled");

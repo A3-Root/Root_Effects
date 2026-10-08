@@ -52,7 +52,7 @@ private _state = [_anchor, _alarm, objNull, 30, 10 + random 350, true, 0, _attac
     };
 
     private _origin = [_anchor, _attachTo] select _mounted;
-    private _inRange = (player distance2D _origin) < EGVAR(main,maxViewDistance);
+    private _inRange = (VIEWER_POS distance2D _origin) < EGVAR(main,maxViewDistance);
 
     if (_inRange && {isNull _beam}) then {
         _beam = createSimpleObject ["A3\data_f\VolumeLight_searchLight.p3d", getPosASL _origin, true];

@@ -27,6 +27,8 @@ params [
     ["_lethal", 1, [0, false]]
 ];
 
+DBG(FORMAT_1("singularityStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["singularity"] call EFUNC(main,isEffectEnabled))) exitWith {};
 
@@ -64,6 +66,19 @@ if (isNull _anchor) exitWith {};
     // plus scaled damage over the whole radius, buildings included.
     if (_lethal > 0) then {
         [_center, _radius, _lethal, _anchor] call FUNC(strikeDamage);
+
+        // Nobody survives the zone: once the thrown have come down, every unit
+        // still inside, on foot or in a vehicle, is killed.
+        [{
+            params ["_center", "_radius"];
+            private _victims = (_center nearEntities [["CAManBase"], _radius]) select {alive _x && {!(_x isKindOf "VirtualMan_F")}};
+            {
+                _victims append ((crew _x) select {alive _x});
+            } forEach (_center nearEntities [["LandVehicle", "Air", "Ship", "StaticWeapon"], _radius]);
+            _victims = _victims arrayIntersect _victims;
+            {_x setDamage 1} forEach _victims;
+            DBG(FORMAT_3("singularity aftermath at %1: %2 units killed within %3 m",mapGridPosition _center,count _victims,_radius));
+        }, [_center, _radius], 3.5] call CBA_fnc_waitAndExecute;
     };
 
     // The anomaly collapses with the pulse; the visuals fade on their own.

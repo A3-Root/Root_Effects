@@ -25,7 +25,7 @@ params [["_pos", [0, 0, 0], [[]], 3], ["_chargeTime", 5, [0]], ["_beamTime", 3, 
 _thickness = _thickness max 0.5;
 
 if (!hasInterface) exitWith {};
-if ((player distance2D _pos) > EGVAR(main,maxViewDistance)) exitWith {};
+if ((VIEWER_POS distance2D _pos) > EGVAR(main,maxViewDistance)) exitWith {};
 DBG(FORMAT_1("laserLocal running here with %1",_this));
 
 // Charging glow that grows until the beam fires.
@@ -117,7 +117,7 @@ private _chargeStep = 4 / (_chargeTime * 10);
         playSound3D ["A3\Sounds_F\arsenal\explosives\shells\Artillery_shell_explosion_04.wss", objNull, false, ATLToASL _pos, 4, 0.45, 4000];
     }, [_pos], 0.5] call CBA_fnc_waitAndExecute;
 
-    private _distance = player distance2D _pos;
+    private _distance = VIEWER_POS distance2D _pos;
     if (_distance < 500) then {
         // Shake in stages across the burn: the hit, then a settling rumble.
         enableCamShake true;
@@ -169,7 +169,7 @@ private _chargeStep = 4 / (_chargeTime * 10);
     private _impactDust = "#particlesource" createVehicleLocal _pos;
     _impactDust setParticleCircle [2, [4, 4, 0]];
     _impactDust setParticleRandom [1, [2, 2, 0.5], [2, 2, 1.5], 0, 0.3, [0, 0, 0, 0.1], 0, 0];
-    _impactDust setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 4, [0, 0, 0.5], [0, 0, 1.2], 0, 10, 7.5, 0.05, [2, 8], [(_color + [0.5]), (_color + [0.25]), [0.4, 0.4, 0.4, 0]], [0.4, 1], 1, 0, "", "", _pos];
+    _impactDust setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 9, 0], "", "Billboard", 1, 4, [0, 0, 0.5], [0, 0, 1.2], 0, 10, 7.5, 0.05, [2, 8], [(_color + [0.5]), (_color + [0.25]), [0.4, 0.4, 0.4, 0]], [0.4, 1], 1, 0, "", "", _pos];
     _impactDust setDropInterval (0.03 / _budget);
 
     [{

@@ -20,6 +20,8 @@
 
 params [["_logic", objNull, [objNull]], ["_units", [], [[]]], ["_activated", true, [true]]];
 
+DBG(FORMAT_1("moduleHeatMirage3DEN called with %1",_this));
+
 if (!_activated) exitWith {};
 if (!isServer) exitWith {};
 if (is3DEN) exitWith {};

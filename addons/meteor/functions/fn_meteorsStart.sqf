@@ -33,6 +33,8 @@ params [
     ["_structureDamage", false, [false]]
 ];
 
+DBG(FORMAT_1("meteorsStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["meteors"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

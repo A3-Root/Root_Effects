@@ -39,6 +39,8 @@ params [
     ["_moveMode", 0, [0]]
 ];
 
+DBG(FORMAT_1("ruptureStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["rupture"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

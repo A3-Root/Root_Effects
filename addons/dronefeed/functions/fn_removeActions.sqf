@@ -16,6 +16,8 @@
 
 params [["_feedId", "", [""]]];
 
+DBG(FORMAT_1("removeActions called with %1",_this));
+
 private _state = GVAR(activeFeeds) getOrDefault [_feedId, createHashMap];
 if (count _state == 0) exitWith {};
 

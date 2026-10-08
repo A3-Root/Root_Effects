@@ -21,6 +21,8 @@
 
 params [["_feedId", "", [""]]];
 
+DBG(FORMAT_1("activateFeed called with %1",_this));
+
 private _state = GVAR(activeFeeds) getOrDefault [_feedId, createHashMap];
 if (count _state == 0) exitWith {};
 if (_state get "active") exitWith {};
@@ -84,9 +86,12 @@ private _trackPFH = [{
     // Re-assert the render binding on any interface change, and unconditionally
     // once a second, so opening Zeus, the arsenal, the map or optics cannot
     // leave the screen frozen for more than a moment.
-    private _sig = [cameraView, visibleMap, !isNull (findDisplay 312), !isNull (findDisplay 49), isGamePaused];
+    // While Zeus is open the render binding is left alone: re-applying a camera
+    // effect there throws the curator out of its interface into first person.
+    private _inZeus = !isNull (findDisplay 312) || {!isNull curatorCamera};
+    private _sig = [cameraView, visibleMap, _inZeus, !isNull (findDisplay 49), isGamePaused];
     private _timer = (_state getOrDefault ["clobberTimer", 0]) + diag_deltaTime;
-    if (_sig isNotEqualTo (_state getOrDefault ["clobberSig", []]) || _timer >= 1) then {
+    if (!_inZeus && {_sig isNotEqualTo (_state getOrDefault ["clobberSig", []]) || _timer >= 1}) then {
         _cam cameraEffect ["INTERNAL", "BACK", _rtt];
         _cam camCommit 0;
         _rtt setPiPEffect [_vision];
@@ -147,6 +152,7 @@ private _trackPFH = [{
 }, 0, [_feedId]] call CBA_fnc_addPerFrameHandler;
 
 _state set ["trackPFH", _trackPFH];
+DBG(FORMAT_4("feed %1 activated on screen %2 (mode %3, view %4)",_feedId,typeOf _screen,_screen getVariable [ARR_2(QGVAR(mode),"?")],_screen getVariable [ARR_2(QGVAR(view),"?")]));
 
 // Auto-cycle gunner and driver for the "both" view so every viewer sees the
 // same picture at the same time.

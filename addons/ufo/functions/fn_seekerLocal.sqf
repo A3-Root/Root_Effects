@@ -20,7 +20,7 @@
 params [["_visitPos", [0, 0, 0], [[]], 3]];
 
 if (!hasInterface) exitWith {};
-if ((player distance2D _visitPos) > EGVAR(main,maxViewDistance)) exitWith {};
+if ((VIEWER_POS distance2D _visitPos) > EGVAR(main,maxViewDistance)) exitWith {};
 DBG(FORMAT_1("seekerLocal running here with %1",_this));
 
 enableCamShake true;

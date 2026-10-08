@@ -41,7 +41,7 @@ private _state = [_anchor, _radius, _height, _sounds, 60 / (_rate max 1), 0];
     if (CBA_missionTime < _nextLaunch) exitWith {};
     _args set [5, CBA_missionTime + _baseInterval * (0.6 + random 0.8)];
 
-    if ((player distance2D _anchor) > EGVAR(main,maxViewDistance)) exitWith {};
+    if ((VIEWER_POS distance2D _anchor) > EGVAR(main,maxViewDistance)) exitWith {};
 
     private _launchPos = _anchor getPos [random _radius, random 360];
     private _burstPos = _launchPos vectorAdd [random 20 - 10, random 20 - 10, _height * (0.8 + random 0.4)];

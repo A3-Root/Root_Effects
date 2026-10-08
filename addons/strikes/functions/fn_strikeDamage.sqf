@@ -23,6 +23,8 @@
 
 params [["_pos", [0, 0, 0], [[]], 3], ["_radius", 30, [0]], ["_strength", 1, [0]], ["_source", objNull, [objNull]]];
 
+DBG(FORMAT_1("strikeDamage called with %1",_this));
+
 if (!isServer) exitWith {};
 _strength = (_strength max 0) min 1;
 if (_strength <= 0) exitWith {};
@@ -66,6 +68,21 @@ private _hit = 0;
 DBG(FORMAT_2("strike damage hit %1 entities, %2 destroyed outright",_hit,_killed));
 
 if (!(EGVAR(main,damageAllowed))) exitWith {};
+
+// Every light inside the radius goes out: street lamps, floodlights, power line
+// lamps and the lights of any vehicle caught in the blast.
+private _lamps = nearestObjects [_pos, ["Lamps_base_F", "PowerLines_base_F", "PowerLines_Small_base_F", "Land_PowerPoleWooden_L_F", "Land_LampStreet_small_F", "Land_LampHalogen_F", "Land_PortableLight_single_F", "Land_PortableLight_double_F", "Land_FloodLight_F"], _radius, false, true];
+_lamps append ((nearestTerrainObjects [_pos, ["POWER LINES", "HIDE"], _radius, false, true]) select {"lamp" in toLowerANSI ((getModelInfo _x) select 0)});
+_lamps = _lamps arrayIntersect _lamps;
+{
+    _x setDamage [1, false];
+} forEach (_lamps select {damage _x < 1});
+{
+    if (alive _x) then {
+        [_x, ["HitLight", 1]] remoteExec ["setHitPointDamage", _x];
+    };
+} forEach (_pos nearEntities [["LandVehicle", "Air", "Ship"], _radius]);
+DBG(FORMAT_2("strike damage put out %1 lights within %2 m",count _lamps,_radius));
 
 // Structures get a gentler falloff than units so a full strength hit levels
 // roughly the inner half of the radius rather than a tiny spot.

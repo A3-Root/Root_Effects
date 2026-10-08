@@ -40,6 +40,8 @@ params [
     ["_actDist", 9999, [0]]
 ];
 
+DBG(FORMAT_1("floatingStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["floatingobjects"] call EFUNC(main,isEffectEnabled))) exitWith {};
 if (isNull _object) exitWith {};

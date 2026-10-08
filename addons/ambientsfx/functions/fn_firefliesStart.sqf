@@ -26,6 +26,8 @@ params [
     ["_frogs", true, [false]]
 ];
 
+DBG(FORMAT_1("firefliesStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["fireflies"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

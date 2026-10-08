@@ -23,6 +23,8 @@
 
 params [["_anchor", objNull, [objNull]], ["_radius", 500, [0]], ["_tint", 0.5, [0]], ["_intensity", 0.7, [0]], ["_weatherRain", false, [false]]];
 
+DBG(FORMAT_1("acidRainStartLocal called with %1",_this));
+
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 
@@ -39,7 +41,8 @@ private _fnc_rainParams = {
     private _spread = 16 + 14 * _intensity;
     _emitter setParticleCircle [0, [0, 0, 0]];
     _emitter setParticleRandom [0.3, [_spread, _spread, 3], [0.3, 0.3, 2], 0, 0.25, [0.05, 0.1, 0.05, 0.1], 0, 0];
-    _emitter setParticleParams [["\A3\data_f\rain_CA.paa", 1, 0, 1], "", "Billboard", 1, 2.2, [0, 0, 0], [0, 0, -14], 0, 20, 1, 0, [0.9 + 0.5 * _intensity], [[0.55, 0.9, 0.2, _alpha], [0.5, 0.85, 0.15, _alpha * 0.85]], [1], 0, 0, "", "", _emitter, 0, true, 0, [[0.5, 0.9, 0.15, _alpha * 0.3]]];
+    // Particle shapes must be models (.p3d); a texture here crashes the game.
+    _emitter setParticleParams [["\A3\data_f\RainDrop.p3d", 1, 0, 1], "", "SpaceObject", 1, 2.2, [0, 0, 0], [0, 0, -14], 0, 20, 1, 0, [0.6 + 0.6 * _intensity], [[0.55, 0.9, 0.2, _alpha], [0.5, 0.85, 0.15, _alpha * 0.85]], [1], 0, 0, "", "", _emitter, 0, true, 0, [[0.5, 0.9, 0.15, _alpha * 0.3]]];
     _emitter setDropInterval ((0.0008 / _intensity) / ((EGVAR(main,particleBudget)) max 0.1));
 };
 

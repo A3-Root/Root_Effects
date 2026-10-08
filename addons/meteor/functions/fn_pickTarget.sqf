@@ -21,6 +21,8 @@
 
 params [["_fallback", [0, 0, 0], [[]], 3], ["_mode", 0, [0]], ["_radius", 300, [0]], ["_owners", [], [[]]]];
 
+DBG(FORMAT_1("pickTarget called with %1",_this));
+
 private _fnc_livingPlayers = {
     (call CBA_fnc_players) select {alive _x && {!(_x isKindOf "VirtualMan_F")}}
 };

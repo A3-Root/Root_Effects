@@ -41,7 +41,7 @@ private _state = [_anchor, _radius, _smokeOnly, []];
     };
 
     private _viewDistance = (EGVAR(main,maxViewDistance)) max (_radius + 1500);
-    private _inRange = (player distance2D _anchor) < _viewDistance;
+    private _inRange = (VIEWER_POS distance2D _anchor) < _viewDistance;
 
     if (_inRange && {_visuals isEqualTo []}) then {
         private _budget = (EGVAR(main,particleBudget)) max 0.1;

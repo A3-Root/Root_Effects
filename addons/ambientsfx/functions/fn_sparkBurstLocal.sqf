@@ -23,7 +23,7 @@ params [["_anchor", objNull, [objNull]], ["_burstCount", 3, [0]]];
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 DBG(FORMAT_1("sparkBurstLocal running here with %1",_this));
-if ((player distance _anchor) > 200) exitWith {};
+if ((VIEWER_POS distance _anchor) > 200) exitWith {};
 
 private _delay = 0;
 for "_i" from 1 to _burstCount do {
@@ -32,7 +32,7 @@ for "_i" from 1 to _burstCount do {
     [{
         params ["_anchor"];
         if (isNull _anchor) exitWith {};
-        if ((player distance _anchor) > 200) exitWith {};
+        if ((VIEWER_POS distance _anchor) > 200) exitWith {};
 
         private _sparkSound = selectRandom [QGVAR(spark_1), QGVAR(spark_2), QGVAR(spark_3), QGVAR(spark_4), QGVAR(spark_5), QGVAR(spark_6), QGVAR(spark_7)];
         private _orange = selectRandom [true, false];

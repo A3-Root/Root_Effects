@@ -25,6 +25,8 @@ params [
     ["_intensity", 0.5, [0]]
 ];
 
+DBG(FORMAT_1("mirageStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["heatmirage"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

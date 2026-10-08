@@ -17,6 +17,8 @@
 
 params [["_logic", objNull, [objNull]]];
 
+DBG(FORMAT_3("moduleModifySky called with %1 by %2 at %3",_this,profileName,mapGridPosition (positionCameraToWorld [ARR_3(0,0,0)])));
+
 private _pos = getPosATL _logic;
 deleteVehicle _logic;
 

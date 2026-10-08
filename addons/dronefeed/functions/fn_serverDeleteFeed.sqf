@@ -18,6 +18,8 @@
  */
 
 params [["_args", [], [[]]]];
+
+DBG(FORMAT_1("serverDeleteFeed called with %1",_this));
 _args params [["_feedId", "", [""]], ["_deleteSpawned", true, [false]]];
 
 if (!isServer) exitWith {};

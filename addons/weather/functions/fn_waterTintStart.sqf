@@ -27,6 +27,8 @@ params [
     ["_strength", 0.6, [0]]
 ];
 
+DBG(FORMAT_1("waterTintStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["watertint"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

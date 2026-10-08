@@ -35,6 +35,8 @@ params [
     ["_dropDelay", 20, [0]]
 ];
 
+DBG(FORMAT_1("napalmStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["napalmstrike"] call EFUNC(main,isEffectEnabled))) exitWith {};
 if (!isClass (configFile >> "CfgVehicles" >> _planeClass)) exitWith {

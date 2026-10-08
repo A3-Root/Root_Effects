@@ -26,6 +26,8 @@
 
 params [["_anchor", objNull, [objNull]], ["_cfg", [], [[]]], ["_ctl", [], [[]]]];
 
+DBG(FORMAT_1("skyServer called with %1",_this));
+
 if (!isServer || {isNull _anchor}) exitWith {};
 
 _anchor setVariable [QGVAR(skyCfg), _cfg, true];

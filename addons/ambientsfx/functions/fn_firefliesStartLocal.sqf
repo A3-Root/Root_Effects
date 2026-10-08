@@ -62,7 +62,7 @@ private _state = [_anchor, _activationDistance, _frogs, objNull, 0];
         _handle call CBA_fnc_removePerFrameHandler;
     };
 
-    private _active = sunOrMoon == 0 && {(player distance _anchor) < _activationDistance};
+    private _active = sunOrMoon == 0 && {(VIEWER_POS distance _anchor) < _activationDistance};
 
     if (_active && {isNull _emitter}) then {
         private _fireflyEmitter = "#particlesource" createVehicleLocal getPosATL _anchor;

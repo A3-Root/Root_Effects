@@ -14,6 +14,8 @@
  * call root_effects_dronefeed_fnc_serverKillAll
  */
 
+DBG(FORMAT_1("serverKillAll called with %1",_this));
+
 if (!isServer) exitWith {};
 
 {

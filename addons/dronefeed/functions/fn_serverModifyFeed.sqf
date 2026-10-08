@@ -24,6 +24,8 @@
  */
 
 params [["_args", [], [[]]]];
+
+DBG(FORMAT_1("serverModifyFeed called with %1",_this));
 _args params [
     ["_feedId", "", [""]],
     ["_view", "", [""]],

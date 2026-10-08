@@ -26,7 +26,7 @@ params [["_anchor", objNull, [objNull]], ["_radius", 120, [0]], ["_burstType", "
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 DBG(FORMAT_1("volcanoBurstLocal running here with %1",_this));
-if ((player distance2D _anchor) > ((EGVAR(main,maxViewDistance)) max 3000)) exitWith {};
+if ((VIEWER_POS distance2D _anchor) > ((EGVAR(main,maxViewDistance)) max 3000)) exitWith {};
 
 private _budget = (EGVAR(main,particleBudget)) max 0.1;
 private _pos = getPosATL _anchor;
@@ -37,7 +37,7 @@ private _pos = getPosATL _anchor;
 private _fnc_tremor = {
     params ["_anchor", "_radius", "_soundDuration"];
 
-    private _distance = player distance2D _anchor;
+    private _distance = VIEWER_POS distance2D _anchor;
     private _falloff = linearConversion [500, 4000, _distance, 1, 0.1, true];
     private _size = linearConversion [50, 300, _radius, 0.6, 1.6, true];
 
@@ -127,7 +127,7 @@ switch (_burstType) do {
         private _bombDust = "#particlesource" createVehicleLocal _pos;
         _bombDust setParticleCircle [_radius / 2, [0, 0, 0]];
         _bombDust setParticleRandom [2, [_radius / 3, _radius / 3, 2], [4, 4, 2], 0, 0.4, [0, 0, 0, 0.1], 0, 0];
-        _bombDust setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 5, [0, 0, 1], [0, 0, 2], 0, 10, 7.5, 0.05, [3, 12], [[0.35, 0.32, 0.28, 0.6], [0.4, 0.38, 0.35, 0.3], [0.45, 0.42, 0.4, 0]], [0.4, 1], 1, 0, "", "", _anchor];
+        _bombDust setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 9, 0], "", "Billboard", 1, 5, [0, 0, 1], [0, 0, 2], 0, 10, 7.5, 0.05, [3, 12], [[0.35, 0.32, 0.28, 0.6], [0.4, 0.38, 0.35, 0.3], [0.45, 0.42, 0.4, 0]], [0.4, 1], 1, 0, "", "", _anchor];
         _bombDust setDropInterval (0.08 / _budget);
 
         [{

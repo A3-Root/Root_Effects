@@ -77,7 +77,8 @@ private _state = [_anchor, _centerMarker, _zoom, _activationDistance, false, "",
     };
 
     // Re-center only when the tracked position actually moved.
-    if (_center distance2D _lastCenter > 10) then {
+    if (_center distance2D _lastCenter > 1) then {
+        DBG(FORMAT_3("briefing map %1 recentred to %2 (zoom %3)",_displayName,mapGridPosition _center,_zoom));
         _map ctrlMapAnimAdd [0, _zoom, _center];
         ctrlMapAnimCommit _map;
         _args set [6, _center];

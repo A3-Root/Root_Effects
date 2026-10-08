@@ -31,6 +31,8 @@ params [
     ["_sounds", true, [false]]
 ];
 
+DBG(FORMAT_1("fireworksStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["fireworks"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

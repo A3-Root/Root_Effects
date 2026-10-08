@@ -24,6 +24,8 @@
 
 params [["_anchor", objNull, [objNull]], ["_radius", 300, [0]], ["_size", 120, [0]], ["_speed", 8, [0]], ["_seed", 0, [0]]];
 
+DBG(FORMAT_1("tornadoLocal called with %1",_this));
+
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 
@@ -61,7 +63,7 @@ _cap setDropInterval (0.06 / _budget);
 private _skirt = "#particlesource" createVehicleLocal _pos;
 _skirt setParticleCircle [_size * 0.25, [22, 22, 0]];
 _skirt setParticleRandom [1, [_size * 0.1, _size * 0.1, 1], [3, 3, 3], 3, 0.5, [0, 0, 0, 0.1], 0, 0];
-_skirt setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 3.5, [0, 0, 2], [0, 0, 6], 3, 10, 7.6, 0.02, [10, 25], [[0.42, 0.37, 0.3, 0], [0.45, 0.4, 0.33, 0.5], [0.5, 0.45, 0.38, 0]], [0.6], 1, 0, "", "", _skirt];
+_skirt setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 9, 0], "", "Billboard", 1, 3.5, [0, 0, 2], [0, 0, 6], 3, 10, 7.6, 0.02, [10, 25], [[0.42, 0.37, 0.3, 0], [0.45, 0.4, 0.33, 0.5], [0.5, 0.45, 0.38, 0]], [0.6], 1, 0, "", "", _skirt];
 _skirt setDropInterval (0.02 / _budget);
 
 // Debris whipped up and around the foot.

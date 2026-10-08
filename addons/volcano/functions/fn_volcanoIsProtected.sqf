@@ -19,6 +19,8 @@
 
 params [["_unit", objNull, [objNull]], ["_gear", [], [[]]]];
 
+DBG(FORMAT_1("volcanoIsProtected called with %1",_this));
+
 if (isNull _unit || {_gear isEqualTo []}) exitWith {false};
 
 private _equipped = [headgear _unit, goggles _unit, uniform _unit, vest _unit, backpack _unit];

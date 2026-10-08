@@ -19,6 +19,8 @@
 
 params [["_target", objNull, [objNull]], ["_strength", 1, [0]]];
 
+DBG(FORMAT_1("singularityFlingLocal called with %1",_this));
+
 if (isNull _target) exitWith {};
 
 // Mostly upward with a lateral kick, so the pile comes apart as it rises.
@@ -29,22 +31,25 @@ private _velocity = [
     _lift * _strength
 ];
 
-// A soldier on foot ignores setVelocity while his animation holds him to the ground,
-// so a heavy throwaway prop is hooked to him for an instant to knock him into ragdoll.
+// A soldier on foot ignores setVelocity while his animation holds him to the
+// ground. Same trick as the Steamer and Worm anomalies: a pen with enormous mass is
+// hooked to his spine and fired along with him, which tears him into ragdoll and
+// carries him up and away.
 if (_target isKindOf "CAManBase" && {isNull objectParent _target}) exitWith {
-    private _hook = "Land_PenBlack_F" createVehicleLocal [0, 0, 0];
-    _hook attachTo [_target, [0, 0, 0], "Spine3"];
-    _target setVelocity _velocity;
-    [{
-        params ["_hook", "_target", "_velocity"];
+    [_target, _velocity] spawn {
+        params ["_target", "_velocity"];
+        private _hook = "Land_PenBlack_F" createVehicle [0, 0, 0];
+        _hook attachTo [_target, [0, 0, 0], "Spine3"];
+        _target setVelocity _velocity;
+        uiSleep 0.1;
         _hook setMass 1e10;
         _hook setVelocity _velocity;
-        [{
-            params ["_hook"];
-            detach _hook;
-            deleteVehicle _hook;
-        }, [_hook], 0.05] call CBA_fnc_waitAndExecute;
-    }, [_hook, _target, _velocity], 0.1] call CBA_fnc_waitAndExecute;
+        uiSleep 0.01;
+        detach _hook;
+        uiSleep 0.5;
+        deleteVehicle _hook;
+    };
+    DBG(FORMAT_3("singularity threw %1 (%2) with %3",name _target,typeOf _target,_velocity));
 };
 
 _target setVelocity _velocity;

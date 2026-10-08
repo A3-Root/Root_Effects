@@ -18,6 +18,8 @@
 
 params [["_pos", [0, 0, 0], [[]], 3], ["_radius", 50, [0]]];
 
+DBG(FORMAT_1("getScreenList called with %1",_this));
+
 private _result = [];
 {
     // Skip units, crewed vehicles and the invisible effect anchors.

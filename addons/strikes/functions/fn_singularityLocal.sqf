@@ -24,7 +24,7 @@ params [["_anchor", objNull, [objNull]], ["_radius", 120, [0]], ["_chargeTime", 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 DBG(FORMAT_1("singularityLocal running here with %1",_this));
-if ((player distance2D _anchor) > EGVAR(main,maxViewDistance)) exitWith {};
+if ((VIEWER_POS distance2D _anchor) > EGVAR(main,maxViewDistance)) exitWith {};
 
 private _budget = (EGVAR(main,particleBudget)) max 0.1;
 private _pos = getPosATL _anchor;
@@ -88,7 +88,7 @@ DBG(FORMAT_3("singularity local: %1 alarms, charge %2, %3 m away",_alarms,_charg
     private _vortex = "#particlesource" createVehicleLocal _pos;
     _vortex setParticleCircle [_radius, [-25, -25, 0]];
     _vortex setParticleRandom [2, [_radius / 4, _radius / 4, 3], [5, 5, 2], 0, 0.4, [0, 0, 0, 0.1], 0, 0];
-    _vortex setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 4, [0, 0, 1], [0, 0, 4], 0, 10, 7.5, 0.03, [4, 12, 2], [[0.3, 0.28, 0.26, 0.5], [0.35, 0.3, 0.3, 0.3], [0.4, 0.35, 0.35, 0]], [0.3, 0.8], 1, 0, "", "", _anchor];
+    _vortex setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 9, 0], "", "Billboard", 1, 4, [0, 0, 1], [0, 0, 4], 0, 10, 7.5, 0.03, [4, 12, 2], [[0.3, 0.28, 0.26, 0.5], [0.35, 0.3, 0.3, 0.3], [0.4, 0.35, 0.35, 0]], [0.3, 0.8], 1, 0, "", "", _anchor];
     _vortex setDropInterval (0.006 / _budget);
 
     // Descending emissive core marking the moment it lets go.
@@ -127,7 +127,7 @@ DBG(FORMAT_3("singularity local: %1 alarms, charge %2, %3 m away",_alarms,_charg
         "\A3\data_f\ParticleEffects\Universal\StoneSmall.p3d"
     ];
 
-    private _distance = player distance2D _pos;
+    private _distance = VIEWER_POS distance2D _pos;
     if (_distance < _radius * 4) then {
         private _falloff = linearConversion [0, _radius * 4, _distance, 1, 0.1, true];
         enableCamShake true;

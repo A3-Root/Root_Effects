@@ -18,6 +18,8 @@
 
 params [["_fallback", [0, 0, 0], [[]], 3]];
 
+DBG(FORMAT_1("pickTarget called with %1",_this));
+
 private _candidates = (call CBA_fnc_players) select {alive _x && {!(_x isKindOf "VirtualMan_F")}};
 
 if (_candidates isEqualTo []) exitWith {_fallback};

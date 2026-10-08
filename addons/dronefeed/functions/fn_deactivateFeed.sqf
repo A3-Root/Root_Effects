@@ -19,6 +19,8 @@
 
 params [["_feedId", "", [""]]];
 
+DBG(FORMAT_1("deactivateFeed called with %1",_this));
+
 private _state = GVAR(activeFeeds) getOrDefault [_feedId, createHashMap];
 if (count _state == 0) exitWith {};
 if (!(_state get "active")) exitWith {};

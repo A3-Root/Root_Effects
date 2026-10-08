@@ -18,6 +18,8 @@
 
 params [["_anchor", objNull, [objNull]]];
 
+DBG(FORMAT_1("spawnComet called with %1",_this));
+
 if (!isServer) exitWith {};
 
 private _target = [

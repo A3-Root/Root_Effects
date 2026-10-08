@@ -19,6 +19,8 @@
 
 params [["_data", [], [[]]]];
 
+DBG(FORMAT_1("terminateDialog called with %1",_this));
+
 if (!hasInterface) exitWith {};
 
 if (_data isEqualTo []) exitWith {

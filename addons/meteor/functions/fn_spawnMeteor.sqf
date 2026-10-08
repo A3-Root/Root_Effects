@@ -20,6 +20,8 @@
 
 params [["_anchor", objNull, [objNull]], ["_lethal", true, [false]]];
 
+DBG(FORMAT_1("spawnMeteor called with %1",_this));
+
 if (!isServer) exitWith {};
 
 private _target = [

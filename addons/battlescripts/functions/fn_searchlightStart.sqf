@@ -27,6 +27,8 @@ params [
     ["_aiSearch", true, [false]]
 ];
 
+DBG(FORMAT_1("searchlightStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["searchlight"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

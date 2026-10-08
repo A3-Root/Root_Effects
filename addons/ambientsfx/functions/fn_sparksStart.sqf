@@ -25,6 +25,8 @@ params [
     ["_sparkDelay", 10, [0]]
 ];
 
+DBG(FORMAT_1("sparksStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["sparks"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

@@ -33,6 +33,8 @@ params [
     ["_rockCount", 40, [0]]
 ];
 
+DBG(FORMAT_1("avalancheStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["avalanche"] call EFUNC(main,isEffectEnabled))) exitWith {};
 
@@ -54,7 +56,12 @@ if (_heading < 0) then {
     };
 };
 
-private _anchor = ["avalanche", QGVAR(avalancheLocal), [_heading, _length, _duration], _pos] call EFUNC(main,startEffect);
+// Boulder paths are simulated from this seed on every machine.
+_rockCount = round ((_rockCount max 0) min 80);
+private _seed = floor random 1e6;
+private _startTime = CBA_missionTime;
+
+private _anchor = ["avalanche", QGVAR(avalancheLocal), [_heading, _length, _duration, _rockCount, _seed, _startTime], _pos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
 // Optional real props tumbling down the corridor alongside the particle rocks.
@@ -94,7 +101,7 @@ if (_classes isNotEqualTo []) then {
 };
 
 // Real boulders with physics roll down the corridor and do the damage on contact.
-[_anchor, _heading, _length, _duration, _rockCount, _lethal] call FUNC(avalancheRocks);
+[_anchor, _heading, _length, _duration, _rockCount, _seed, _startTime, _lethal] call FUNC(avalancheRocks);
 
 [{
     params ["_anchor"];

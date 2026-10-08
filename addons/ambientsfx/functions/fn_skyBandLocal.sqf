@@ -38,6 +38,8 @@ params [
     ["_density", 0.5, [0]]
 ];
 
+DBG(FORMAT_1("skyBandLocal called with %1",_this));
+
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 

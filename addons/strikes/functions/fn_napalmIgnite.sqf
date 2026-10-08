@@ -29,6 +29,8 @@ params [
     ["_damage", true, [false]]
 ];
 
+DBG(FORMAT_1("napalmIgnite called with %1",_this));
+
 if (!isServer) exitWith {};
 
 private _anchor = ["napalmstrike", QGVAR(napalmLocal), [_heading, _length], _pos] call EFUNC(main,startEffect);

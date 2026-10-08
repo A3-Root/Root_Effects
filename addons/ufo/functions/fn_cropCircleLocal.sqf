@@ -25,7 +25,7 @@ params [["_anchor", objNull, [objNull]], ["_radius", 50, [0]], ["_cropType", "ci
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 DBG(FORMAT_1("cropCircleLocal running here with %1",_this));
-if ((player distance2D _anchor) > EGVAR(main,maxViewDistance)) exitWith {};
+if ((VIEWER_POS distance2D _anchor) > EGVAR(main,maxViewDistance)) exitWith {};
 
 enableCamShake true;
 playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [getPos _anchor select 0, getPos _anchor select 1, 200], 10, 1, 0];

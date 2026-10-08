@@ -20,6 +20,8 @@
 
 params [["_feedId", "", [""]]];
 
+DBG(FORMAT_1("addActions called with %1",_this));
+
 private _state = GVAR(activeFeeds) getOrDefault [_feedId, createHashMap];
 if (count _state == 0) exitWith {};
 
@@ -35,6 +37,7 @@ _ids pushBack (_screen addAction [
     LLSTRING(ActionTakeControl),
     {
         params ["_screen", "_caller"];
+        DBG(FORMAT_2("%1 takes control of feed screen %2",name _caller,typeOf _screen));
         [QGVAR(setController), [_screen, _caller]] call CBA_fnc_serverEvent;
     },
     nil, 7, false, true, "",
@@ -60,7 +63,17 @@ _ids pushBack (_screen addAction [
         private _z = (_screen getVariable [QGVAR(zoom), DEFAULT_FOV]) - 0.08;
         _screen setVariable [QGVAR(zoom), _z max 0.05, true];
     },
-    nil, 6, false, true, "", _isController, 6
+    nil, 6, false, true, "", format ["(%1) && {!(%2)}", _isController, _isSatellite], 6
+]);
+
+_ids pushBack (_screen addAction [
+    LLSTRING(ActionSatZoomIn),
+    {
+        params ["_screen"];
+        private _z = (_screen getVariable [QGVAR(zoom), DEFAULT_FOV]) - 0.08;
+        _screen setVariable [QGVAR(zoom), _z max 0.05, true];
+    },
+    nil, 6, false, true, "", format ["(%1) && {%2}", _isController, _isSatellite], 6
 ]);
 
 _ids pushBack (_screen addAction [
@@ -70,7 +83,17 @@ _ids pushBack (_screen addAction [
         private _z = (_screen getVariable [QGVAR(zoom), DEFAULT_FOV]) + 0.08;
         _screen setVariable [QGVAR(zoom), _z min 1.2, true];
     },
-    nil, 6, false, true, "", _isController, 6
+    nil, 6, false, true, "", format ["(%1) && {!(%2)}", _isController, _isSatellite], 6
+]);
+
+_ids pushBack (_screen addAction [
+    LLSTRING(ActionSatZoomOut),
+    {
+        params ["_screen"];
+        private _z = (_screen getVariable [QGVAR(zoom), DEFAULT_FOV]) + 0.08;
+        _screen setVariable [QGVAR(zoom), _z min 1.2, true];
+    },
+    nil, 6, false, true, "", format ["(%1) && {%2}", _isController, _isSatellite], 6
 ]);
 
 _ids pushBack (_screen addAction [
@@ -80,7 +103,17 @@ _ids pushBack (_screen addAction [
         private _v = ((_screen getVariable [QGVAR(vision), 0]) + 1) mod 3;
         _screen setVariable [QGVAR(vision), _v, true];
     },
-    nil, 6, false, true, "", _isController, 6
+    nil, 6, false, true, "", format ["(%1) && {!(%2)}", _isController, _isSatellite], 6
+]);
+
+_ids pushBack (_screen addAction [
+    LLSTRING(ActionSatVision),
+    {
+        params ["_screen"];
+        private _v = ((_screen getVariable [QGVAR(vision), 0]) + 1) mod 3;
+        _screen setVariable [QGVAR(vision), _v, true];
+    },
+    nil, 6, false, true, "", format ["(%1) && {%2}", _isController, _isSatellite], 6
 ]);
 
 // Drone only: switch between the gunner and driver cameras.

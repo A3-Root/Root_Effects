@@ -32,6 +32,8 @@
  */
 
 params [["_config", [], [[]]]];
+
+DBG(FORMAT_1("serverCreateFeed called with %1",_this));
 _config params [
     ["_center", [0, 0, 0], [[]], 3],
     ["_mode", FEED_MODE_DRONE, [""]],

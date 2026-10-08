@@ -21,6 +21,8 @@
 
 params [["_targets", [], [[]]], ["_freeze", true, [false]], ["_useAnim", false, [false]], ["_animation", "HubSpectator_stand", [""]]];
 
+DBG(FORMAT_1("freezeApply called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["freeze"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

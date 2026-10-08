@@ -20,7 +20,7 @@
 params [["_pos", [0, 0, 0], [[]], 3], ["_cue", "jet", [""]]];
 
 if (!hasInterface) exitWith {};
-if ((player distance2D _pos) > 1500) exitWith {};
+if ((VIEWER_POS distance2D _pos) > 1500) exitWith {};
 DBG(FORMAT_1("carpetSoundLocal running here with %1",_this));
 
 if (_cue isEqualTo "jet") then {

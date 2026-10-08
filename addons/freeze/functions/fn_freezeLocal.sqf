@@ -19,6 +19,8 @@
 
 params [["_unit", objNull, [objNull]], ["_freeze", true, [false]], ["_animation", "HubSpectator_stand", [""]]];
 
+DBG(FORMAT_1("freezeLocal called with %1",_this));
+
 if (isNull _unit || {!local _unit}) exitWith {};
 
 if (_freeze) then {

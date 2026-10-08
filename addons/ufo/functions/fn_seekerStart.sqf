@@ -21,6 +21,8 @@ params [
     ["_interval", 30, [0]]
 ];
 
+DBG(FORMAT_1("seekerStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["ufoseeker"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

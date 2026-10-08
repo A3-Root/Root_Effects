@@ -19,6 +19,8 @@
 
 params [["_targets", [], [[]]], ["_freeze", true, [false]]];
 
+DBG(FORMAT_1("cryoBlastFreeze called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["cryoblast"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

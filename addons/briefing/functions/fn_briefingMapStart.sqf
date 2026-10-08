@@ -33,6 +33,8 @@ params [
     ["_activationDistance", 50, [0]]
 ];
 
+DBG(FORMAT_1("briefingMapStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["briefingmap"] call EFUNC(main,isEffectEnabled))) exitWith {};
 if (!isClass (configFile >> "CfgVehicles" >> _class)) then {

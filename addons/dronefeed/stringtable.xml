@@ -5,13 +5,22 @@
             <Original>Drone Feed: Cycle Camera View</Original>
         </Key>
         <Key ID="STR_root_effects_dronefeed_ActionReleaseControl">
-            <Original>Drone Feed: Release Control</Original>
+            <Original>Feed: Release Control</Original>
         </Key>
         <Key ID="STR_root_effects_dronefeed_ActionRetarget">
-            <Original>Drone Feed: Retarget Satellite (Map Click)</Original>
+            <Original>Satellite Feed: Retarget (Map Click)</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ActionSatVision">
+            <Original>Satellite Feed: Cycle Vision Mode</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ActionSatZoomIn">
+            <Original>Satellite Feed: Zoom In</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ActionSatZoomOut">
+            <Original>Satellite Feed: Zoom Out</Original>
         </Key>
         <Key ID="STR_root_effects_dronefeed_ActionTakeControl">
-            <Original>Drone Feed: Take Control</Original>
+            <Original>Feed: Take Control</Original>
         </Key>
         <Key ID="STR_root_effects_dronefeed_ActionVision">
             <Original>Drone Feed: Cycle Vision Mode</Original>

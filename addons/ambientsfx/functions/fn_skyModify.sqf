@@ -40,6 +40,8 @@ params [
     ["_moveMode", 0, [0]]
 ];
 
+DBG(FORMAT_1("skyModify called with %1",_this));
+
 if (!isServer || {isNull _anchor}) exitWith {};
 
 if (_freeze) then {

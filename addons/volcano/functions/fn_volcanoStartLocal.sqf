@@ -160,7 +160,7 @@ private _state = [_anchor, _radius, _craterLava, _lavaFlow, _lightning, [], -1, 
         private _ashFall = "#particlesource" createVehicleLocal _ashPos;
         _ashFall setParticleCircle [_radius, [0, 0, 0]];
         _ashFall setParticleRandom [8, [_radius, _radius, 30], [2, 2, 0.5], 0, 0.5, [0, 0, 0, 0.05], 0, 0];
-        _ashFall setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 13], "", "Billboard", 1, 20, [0, 0, 80], [(wind select 0) * 0.5, (wind select 1) * 0.5, -1.5], 0, 10, 7.5, 0.02, [1, 4], [[0.3, 0.3, 0.3, 0.35], [0.35, 0.35, 0.35, 0.2], [0.4, 0.4, 0.4, 0]], [0.3, 0.8], 1, 0, "", "", _anchor];
+        _ashFall setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 12, 9, 0], "", "Billboard", 1, 20, [0, 0, 80], [(wind select 0) * 0.5, (wind select 1) * 0.5, -1.5], 0, 10, 7.5, 0.02, [1, 4], [[0.3, 0.3, 0.3, 0.35], [0.35, 0.35, 0.35, 0.2], [0.4, 0.4, 0.4, 0]], [0.3, 0.8], 1, 0, "", "", _anchor];
         _ashFall setDropInterval ((0.05 / _windSpeed) / _budget);
         _visuals pushBack _ashFall;
 

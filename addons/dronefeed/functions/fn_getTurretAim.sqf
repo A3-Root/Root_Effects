@@ -49,29 +49,51 @@ if (_dirSel isEqualTo "") then {_dirSel = "PiP1_dir"};
 private _camModel = _drone selectionPosition [_posSel, "Memory"];
 private _camPos = _drone modelToWorldVisualWorld _camModel;
 
-// Primary: the gunner camera memory points. They are skinned to the turret bones, so
-// they swing with the gimbal wherever the operator (or the AI gunner) points it.
-private _dir = [0, 0, 0];
+// Candidate view directions. Which one is right depends on the drone model and on
+// who is driving the turret (AI gunner, a player through the UAV terminal, nobody),
+// so all are gathered and the first that actually looks at the ground is used.
+private _candidates = [];
+
+// 1: where the turret's gunner (AI or remote operator) is looking.
+private _gunner = gunner _drone;
+if (!isNull _gunner) then {
+    _candidates pushBack ["gunnerView", getCameraViewDirection _gunner];
+};
+
+// 2: the gunner camera memory points, skinned to the turret bones.
 private _dirModel = _drone selectionPosition [_dirSel, "Memory"];
 if (_dirModel isNotEqualTo _camModel) then {
-    _dir = _camPos vectorFromTo (_drone modelToWorldVisualWorld _dirModel);
+    _candidates pushBack ["cameraPoints", _camPos vectorFromTo (_drone modelToWorldVisualWorld _dirModel)];
 };
 
-// Fallback: the turret's gun memory points, same as CBA_fnc_turretDir.
-if (_dir isEqualTo [0, 0, 0]) then {
-    private _turretCfg = [_drone, [0]] call CBA_fnc_getTurret;
-    private _gunBeg = _drone selectionPosition [getText (_turretCfg >> "gunBeg"), "Memory"];
-    private _gunEnd = _drone selectionPosition [getText (_turretCfg >> "gunEnd"), "Memory"];
-    if (_gunBeg isNotEqualTo _gunEnd) then {
-        _dir = (_drone modelToWorldVisualWorld _gunEnd) vectorFromTo (_drone modelToWorldVisualWorld _gunBeg);
-    };
+// 3: the turret gun memory points, as CBA_fnc_turretDir reads them.
+private _turretCfg = [_drone, [0]] call CBA_fnc_getTurret;
+private _gunBeg = _drone selectionPosition [getText (_turretCfg >> "gunBeg"), "Memory"];
+private _gunEnd = _drone selectionPosition [getText (_turretCfg >> "gunEnd"), "Memory"];
+if (_gunBeg isNotEqualTo _gunEnd) then {
+    _candidates pushBack ["gunPoints", (_drone modelToWorldVisualWorld _gunEnd) vectorFromTo (_drone modelToWorldVisualWorld _gunBeg)];
 };
 
-// Last resort: where the gunner is looking.
-if (_dir isEqualTo [0, 0, 0] && {!isNull gunner _drone}) then {
-    _dir = eyeDirection (gunner _drone);
+// 4: the turret weapon direction.
+private _weapons = _drone weaponsTurret [0];
+if (_weapons isNotEqualTo []) then {
+    _candidates pushBack ["weapon", _drone weaponDirection (_weapons select 0)];
 };
 
-if (_dir isEqualTo [0, 0, 0]) then {_dir = vectorDir _drone};
+_candidates = _candidates select {(_x select 1) isNotEqualTo [0, 0, 0]};
+
+// A drone camera looks down at the ground; a candidate pointing at the sky is a
+// model whose points or weapon do not follow the gimbal.
+private _pick = _candidates findIf {((vectorNormalized (_x select 1)) select 2) < 0.15};
+if (_pick == -1) then {_pick = [-1, 0] select (_candidates isNotEqualTo [])};
+private _dir = [vectorDir _drone, (_candidates select _pick) select 1] select (_pick != -1);
+private _source = ["hull", (_candidates select _pick) select 0] select (_pick != -1);
+
+// Log the choice now and then, so a wrong picture can be traced in the RPT.
+if (diag_tickTime > (_drone getVariable [QGVAR(aimLogAt), 0])) then {
+    _drone setVariable [QGVAR(aimLogAt), diag_tickTime + 10];
+    private _summary = _candidates apply {[_x select 0, (vectorNormalized (_x select 1)) apply {_x toFixed 2}]};
+    DBG(FORMAT_4("gunner aim for %1: using %2, candidates %3, camera point %4",typeOf _drone,_source,_summary,_posSel));
+};
 
 [_camPos, vectorNormalized _dir]

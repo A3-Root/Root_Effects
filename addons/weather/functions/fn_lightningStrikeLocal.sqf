@@ -22,7 +22,7 @@ params [["_pos", [0, 0, 0], [[]], 3], ["_strength", 0.7, [0]]];
 
 if (!hasInterface) exitWith {};
 
-private _distance = player distance2D _pos;
+private _distance = VIEWER_POS distance2D _pos;
 if (_distance > ((EGVAR(main,maxViewDistance)) max 3000)) exitWith {};
 DBG(FORMAT_1("lightningStrikeLocal running here with %1",_this));
 

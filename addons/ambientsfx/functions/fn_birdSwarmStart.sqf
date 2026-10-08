@@ -25,6 +25,8 @@ params [
     ["_radius", 150, [0]]
 ];
 
+DBG(FORMAT_1("birdSwarmStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["birdswarm"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

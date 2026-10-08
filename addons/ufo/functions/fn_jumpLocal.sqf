@@ -20,7 +20,7 @@
 params [["_chargePos", [0, 0, 0], [[]], 3]];
 
 if (!hasInterface) exitWith {};
-if ((player distance2D _chargePos) > ((EGVAR(main,maxViewDistance)) max 5000)) exitWith {};
+if ((VIEWER_POS distance2D _chargePos) > ((EGVAR(main,maxViewDistance)) max 5000)) exitWith {};
 DBG(FORMAT_1("jumpLocal running here with %1",_this));
 
 enableCamShake true;

@@ -41,7 +41,7 @@
             <Original>Boulders</Original>
         </Key>
         <Key ID="STR_root_effects_volcano_AttrAvalancheRocksTooltip">
-            <Original>Number of real, physically simulated boulders released down the slope (0 - 80). They bounce, roll and hit people and vehicles; with Lethal on they deal damage scaled by their speed and size. More boulders cost more performance.</Original>
+            <Original>Number of big boulders released down the slope (0 - 80) on top of the dust and scree. They fall, bounce and roll down the terrain and hit people and vehicles in their way; with Lethal on they deal damage scaled by their speed and size. Every player sees the same boulders in the same place.</Original>
         </Key>
         <Key ID="STR_root_effects_volcano_AttrCraterLava">
             <Original>Enable Crater Lava</Original>

@@ -22,6 +22,8 @@ params [
     ["_interval", 30, [0]]
 ];
 
+DBG(FORMAT_1("encounterStart called with %1",_this));
+
 if (!isServer) exitWith {};
 if (!(["ufoencounter"] call EFUNC(main,isEffectEnabled))) exitWith {};
 

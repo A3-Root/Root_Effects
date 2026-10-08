@@ -7,6 +7,8 @@
  * calls this with _this set to the particle position.
  */
 
+DBG(FORMAT_1("volcanoSmokePuff called with %1",_this));
+
 private _effectPos = _this;
 
 private _smokeEmitter = "#particlesource" createVehicleLocal _effectPos;

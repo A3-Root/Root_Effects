@@ -11,7 +11,7 @@
     QGVAR(debugOutput), "LIST",
     [LLSTRING(SettingDebug), LLSTRING(SettingDebugTooltip)],
     [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryGeneral)],
-    [[0, 1, 2], [LLSTRING(DebugOff), LLSTRING(DebugRpt), LLSTRING(DebugChat)], 0], 1
+    [[0, 1, 2], [LLSTRING(DebugOff), LLSTRING(DebugRpt), LLSTRING(DebugChat)], 1], 1
 ] call CBA_fnc_addSetting;
 
 [
