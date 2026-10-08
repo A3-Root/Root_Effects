@@ -33,7 +33,7 @@ if (!(["ufoseeker"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_frequency"];
 
-    [QGVAR(startSeeker), [_pos, _frequency]] call CBA_fnc_serverEvent;
+    [QGVAR(startSeeker), [_pos, _frequency]] call EFUNC(main,serverEventLogged);
     [LLSTRING(SeekerStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

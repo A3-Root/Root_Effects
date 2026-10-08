@@ -26,6 +26,7 @@ params [["_anchor", objNull, [objNull]], ["_alarm", false, [false]], ["_attachTo
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("searchlightStartLocal running here with %1",_this));
 
 // Turret aim can only be read off a crewed turret; without one there is
 // nothing to follow and the light falls back to sweeping or sitting still.

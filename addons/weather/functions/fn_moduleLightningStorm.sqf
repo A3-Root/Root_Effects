@@ -34,12 +34,17 @@ if (!(["lightningstorm"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER", [LLSTRING(AttrLightningMaxInt), LLSTRING(AttrLightningMaxIntTooltip)], [1, 300, 20, 0]],
     ["TOOLBOX:YESNO", [LLSTRING(AttrLightningDamage), LLSTRING(AttrLightningDamageTooltip)], false],
     ["TOOLBOX:YESNO", [LLSTRING(AttrLightningAmbience), LLSTRING(AttrLightningAmbienceTooltip)], true],
-    ["SLIDER:PERCENT", [LLSTRING(AttrLightningStrength), LLSTRING(AttrLightningStrengthTooltip)], [0, 1, 0.7, 0]]
+    ["SLIDER:PERCENT", [LLSTRING(AttrLightningStrength), LLSTRING(AttrLightningStrengthTooltip)], [0, 1, 0.7, 0]],
+    ["CHECKBOX", [LLSTRING(AttrTornado), LLSTRING(AttrTornadoTooltip)], false],
+    ["SLIDER", [LLSTRING(AttrTornadoSize), LLSTRING(AttrTornadoSizeTooltip)], [50, 300, 120, 0]],
+    ["SLIDER", [LLSTRING(AttrTornadoSpeed), LLSTRING(AttrTornadoSpeedTooltip)], [1, 40, 8, 0]],
+    ["CHECKBOX", [LLSTRING(AttrTornadoFling), LLSTRING(AttrTornadoFlingTooltip)], false]
 ], {
     params ["_results", "_pos"];
-    _results params ["_radius", "_duration", "_minInterval", "_maxInterval", "_damage", "_ambience", "_strength"];
+    _results params ["_radius", "_duration", "_minInterval", "_maxInterval", "_damage", "_ambience", "_strength", "_tornado", "_tornadoSize", "_tornadoSpeed", "_tornadoFling"];
 
-    [QGVAR(startLightning), [_pos, _radius, _duration, _minInterval, _maxInterval, _damage, _ambience, _strength]] call CBA_fnc_serverEvent;
+    [QGVAR(startLightning), [_pos, _radius, _duration, _minInterval, _maxInterval, _damage, _ambience, _strength, _tornado, _tornadoSize, _tornadoSpeed, _tornadoFling]] call EFUNC(main,serverEventLogged);
+    DBG(FORMAT_4("lightning storm requested by %1 at %2 (radius %3, tornado %4)",profileName,mapGridPosition _pos,_radius,_tornado));
     [LLSTRING(LightningStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

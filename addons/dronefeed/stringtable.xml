@@ -4,6 +4,15 @@
         <Key ID="STR_root_effects_dronefeed_ActionCycleView">
             <Original>Drone Feed: Cycle Camera View</Original>
         </Key>
+        <Key ID="STR_root_effects_dronefeed_ActionReleaseControl">
+            <Original>Drone Feed: Release Control</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ActionRetarget">
+            <Original>Drone Feed: Retarget Satellite (Map Click)</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_ActionTakeControl">
+            <Original>Drone Feed: Take Control</Original>
+        </Key>
         <Key ID="STR_root_effects_dronefeed_ActionVision">
             <Original>Drone Feed: Cycle Vision Mode</Original>
         </Key>
@@ -183,6 +192,9 @@
         </Key>
         <Key ID="STR_root_effects_dronefeed_RenderProxy">
             <Original>Proxy (Top-Down)</Original>
+        </Key>
+        <Key ID="STR_root_effects_dronefeed_RetargetHint">
+            <Original>Click the map where the satellite should look.</Original>
         </Key>
         <Key ID="STR_root_effects_dronefeed_SettingCategoryName">
             <Original>Drone Feed</Original>

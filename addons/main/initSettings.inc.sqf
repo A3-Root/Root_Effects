@@ -8,10 +8,10 @@
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(debugLogging), "CHECKBOX",
+    QGVAR(debugOutput), "LIST",
     [LLSTRING(SettingDebug), LLSTRING(SettingDebugTooltip)],
     [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryGeneral)],
-    false, 1
+    [[0, 1, 2], [LLSTRING(DebugOff), LLSTRING(DebugRpt), LLSTRING(DebugChat)], 0], 1
 ] call CBA_fnc_addSetting;
 
 [

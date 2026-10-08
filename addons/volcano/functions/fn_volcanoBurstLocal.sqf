@@ -25,6 +25,7 @@ params [["_anchor", objNull, [objNull]], ["_radius", 120, [0]], ["_burstType", "
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("volcanoBurstLocal running here with %1",_this));
 if ((player distance2D _anchor) > ((EGVAR(main,maxViewDistance)) max 3000)) exitWith {};
 
 private _budget = (EGVAR(main,particleBudget)) max 0.1;

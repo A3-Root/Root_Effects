@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","FreezePlayers",mapGridPosition _logic,allVariables _logic));
+
 private _freeze = _logic getVariable ["ROOT_FREEZE_FREEZE", true];
 private _useAnim = _logic getVariable ["ROOT_FREEZE_USEANIM", false];
 private _animation = _logic getVariable ["ROOT_FREEZE_ANIM", "HubSpectator_stand"];

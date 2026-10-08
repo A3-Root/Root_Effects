@@ -27,6 +27,7 @@ params [["_anchor", objNull, [objNull]], ["_centerMarker", "", [""]], ["_zoom", 
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("briefingMapStartLocal running here with %1",_this));
 
 // [anchor, marker, zoom, actDist, texturePainted, displayName, lastCenter]
 private _state = [_anchor, _centerMarker, _zoom, _activationDistance, false, "", [0, 0, 0]];

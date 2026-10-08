@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","MeteorsComets",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _meteors = _logic getVariable ["ROOT_METEOR_METEORS", false];
 private _meteorFreq = _logic getVariable ["ROOT_METEOR_METEORFREQ", 30];

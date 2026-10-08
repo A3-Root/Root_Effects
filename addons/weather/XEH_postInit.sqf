@@ -18,7 +18,18 @@ if (isServer) then {
     }] call CBA_fnc_addEventHandler;
 };
 
+// The tornado throws an object on the machine that owns it.
+[QGVAR(tornadoFling), {
+    params ["_object", "_velocity"];
+    if (isNull _object) exitWith {};
+    _object setVelocity ((velocity _object) vectorAdd _velocity);
+}] call CBA_fnc_addEventHandler;
+
 if (hasInterface) then {
+    [QGVAR(tornadoLocal), {
+        _this call FUNC(tornadoLocal);
+    }] call CBA_fnc_addEventHandler;
+
     [QGVAR(lightningStrike), {
         _this call FUNC(lightningStrikeLocal);
     }] call CBA_fnc_addEventHandler;

@@ -34,7 +34,7 @@ if (!(["missiles"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_safeDistance", "_launchDelay"];
 
-    [QGVAR(startMissiles), [_pos, _safeDistance, _launchDelay]] call CBA_fnc_serverEvent;
+    [QGVAR(startMissiles), [_pos, _safeDistance, _launchDelay]] call EFUNC(main,serverEventLogged);
     [LLSTRING(MissilesStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

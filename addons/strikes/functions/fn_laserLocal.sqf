@@ -26,6 +26,7 @@ _thickness = _thickness max 0.5;
 
 if (!hasInterface) exitWith {};
 if ((player distance2D _pos) > EGVAR(main,maxViewDistance)) exitWith {};
+DBG(FORMAT_1("laserLocal running here with %1",_this));
 
 // Charging glow that grows until the beam fires.
 private _chargeLight = "#lightpoint" createVehicleLocal (_pos vectorAdd [0, 0, 2]);

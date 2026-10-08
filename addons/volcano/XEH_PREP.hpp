@@ -10,4 +10,5 @@ PREP(volcanoIsProtected);
 PREP(moduleAvalanche);
 PREP(moduleAvalanche3DEN);
 PREP(avalancheStart);
+PREP(avalancheRocks);
 PREP(avalancheLocal);

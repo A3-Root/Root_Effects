@@ -23,6 +23,7 @@ params [["_anchor", objNull, [objNull]], ["_activationDistance", 100, [0]], ["_f
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("firefliesStartLocal running here with %1",_this));
 
 // Builds a random blink pattern for the next batch of fireflies: a few pulses
 // of differing length with dark gaps between, ending dark. Colour and emissive
@@ -49,16 +50,15 @@ private _fnc_blinkParams = {
     _emitter setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 6 + random 10, [0, 0, 1.5], [0, 0, 0.1], 13, 1.3, 1, 0.05, [0.12 + random 0.1], _colors, [1], 1.5, 0.4, "", "", _emitter, 0, false, 0, _emissive];
 };
 
-// [anchor, activationDistance, frogs, emitter, nextCroakTime, glowLights]
-private _state = [_anchor, _activationDistance, _frogs, objNull, 0, []];
+// [anchor, activationDistance, frogs, emitter, nextCroakTime]
+private _state = [_anchor, _activationDistance, _frogs, objNull, 0];
 
 [{
     params ["_args", "_handle"];
-    _args params ["_anchor", "_activationDistance", "_frogs", "_emitter", "_nextCroak", "_lights", "_fnc_blinkParams"];
+    _args params ["_anchor", "_activationDistance", "_frogs", "_emitter", "_nextCroak", "_fnc_blinkParams"];
 
     if (isNull _anchor) exitWith {
         deleteVehicle _emitter;
-        {deleteVehicle (_x select 0)} forEach _lights;
         _handle call CBA_fnc_removePerFrameHandler;
     };
 
@@ -72,44 +72,17 @@ private _state = [_anchor, _activationDistance, _frogs, objNull, 0, []];
         _fireflyEmitter setDropInterval (0.15 / ((EGVAR(main,particleBudget)) max 0.1));
         _args set [3, _fireflyEmitter];
         _emitter = _fireflyEmitter;
-
-        // A few drifting light points throw real glow on the grass around the
-        // swarm; each pulses on its own timer.
-        for "_i" from 1 to 3 do {
-            private _light = "#lightpoint" createVehicleLocal ((getPosATL _anchor) vectorAdd [random 16 - 8, random 16 - 8, 1]);
-            _light setLightDayLight false;
-            _light setLightColor [0.6, 1, 0.2];
-            _light setLightAmbient [0.1, 0.2, 0.03];
-            _light setLightBrightness 0;
-            _light setLightAttenuation [0.2, 0, 0, 1, 1, 6];
-            _lights pushBack [_light, 0, 0];
-        };
+        DBG(FORMAT_1("fireflies active near %1",mapGridPosition _anchor));
     };
 
     if (!_active && {!isNull _emitter}) then {
         deleteVehicle _emitter;
-        {deleteVehicle (_x select 0)} forEach _lights;
-        _lights resize 0;
         _args set [3, objNull];
     };
 
     if (_active) then {
         // New blink pattern for the next particles so no two flash in step.
         [_emitter] call _fnc_blinkParams;
-
-        {
-            _x params ["_light", "_level", "_target"];
-            if (random 1 < 0.35) then {
-                _target = [0, 0.15 + random 0.35] select (random 1 < 0.5);
-                _x set [2, _target];
-            };
-            _level = _level + ((_target - _level) max -0.12 min 0.12);
-            _x set [1, _level];
-            _light setLightBrightness _level;
-            if (random 1 < 0.1) then {
-                _light setPosATL ((getPosATL _anchor) vectorAdd [random 16 - 8, random 16 - 8, 0.5 + random 1.5]);
-            };
-        } forEach _lights;
     };
 
     if (_active && _frogs && CBA_missionTime >= _nextCroak) then {

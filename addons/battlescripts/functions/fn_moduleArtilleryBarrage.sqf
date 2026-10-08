@@ -40,7 +40,7 @@ if (!(["artillery"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_radius", "_mode", "_shellClass", "_fireDelay"];
 
-    [QGVAR(startArtillery), [_pos, _radius, _mode, _shellClass, _fireDelay]] call CBA_fnc_serverEvent;
+    [QGVAR(startArtillery), [_pos, _radius, _mode, _shellClass, _fireDelay]] call EFUNC(main,serverEventLogged);
     [LLSTRING(ArtilleryStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

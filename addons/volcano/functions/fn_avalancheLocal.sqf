@@ -24,6 +24,7 @@ params [["_anchor", objNull, [objNull]], ["_heading", 0, [0]], ["_length", 200, 
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("avalancheLocal running here with %1",_this));
 if ((player distance2D _anchor) > ((EGVAR(main,maxViewDistance)) max 2000)) exitWith {};
 
 private _budget = (EGVAR(main,particleBudget)) max 0.1;

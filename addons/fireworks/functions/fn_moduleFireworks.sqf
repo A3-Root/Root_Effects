@@ -37,7 +37,7 @@ if (!(["fireworks"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_duration", "_rate", "_radius", "_height", "_sounds"];
 
-    [QGVAR(start), [_pos, _duration, _rate, _radius, _height, _sounds]] call CBA_fnc_serverEvent;
+    [QGVAR(start), [_pos, _duration, _rate, _radius, _height, _sounds]] call EFUNC(main,serverEventLogged);
     [LLSTRING(Started)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

@@ -31,6 +31,6 @@ if (!(["dronefeed"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results"];
     _results params ["_confirm"];
     if (!_confirm) exitWith {};
-    [QGVAR(requestKillAll), []] call CBA_fnc_serverEvent;
+    [QGVAR(requestKillAll), []] call EFUNC(main,serverEventLogged);
     [LLSTRING(FeedsStopped)] call zen_common_fnc_showMessage;
 }, {}, [], QGVAR(killAllDialog)] call zen_dialog_fnc_create;

@@ -23,6 +23,7 @@ params [["_anchor", objNull, [objNull]], ["_radius", 500, [0]], ["_smokeOnly", f
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("aaaStartLocal running here with %1",_this));
 
 // [anchor, radius, smokeOnly, visuals]
 private _state = [_anchor, _radius, _smokeOnly, []];

@@ -24,6 +24,7 @@ params [["_anchor", objNull, [objNull]], ["_radius", 50, [0]], ["_cropType", "ci
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("cropCircleLocal running here with %1",_this));
 if ((player distance2D _anchor) > EGVAR(main,maxViewDistance)) exitWith {};
 
 enableCamShake true;

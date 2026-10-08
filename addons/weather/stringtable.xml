@@ -4,6 +4,18 @@
         <Key ID="STR_root_effects_weather_AcidRainStarted">
             <Original>Acid rain falling!</Original>
         </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidBuildingCap">
+            <Original>Building Damage Cap</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidBuildingCapTooltip">
+            <Original>Highest damage the rain can do to a structure. 100% lets buildings collapse; lower keeps them standing but battered.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidBuildingRate">
+            <Original>Building Weathering</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidBuildingRateTooltip">
+            <Original>Damage per tick to buildings, walls, fences and props in the zone. 0 = structures are spared.</Original>
+        </Key>
         <Key ID="STR_root_effects_weather_AttrAcidDamage">
             <Original>Damage Exposed Units</Original>
         </Key>
@@ -28,6 +40,30 @@
         <Key ID="STR_root_effects_weather_AttrAcidRadiusTooltip">
             <Original>Radius in meters of the contaminated area.</Original>
         </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidSafeAreas">
+            <Original>Safe Zones</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidSafeAreasTooltip">
+            <Original>Comma separated area marker names or trigger variable names. Nothing inside them is damaged. Any object can also be made immune with: this setVariable ["root_effects_acidSafe", true, true];</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidSafeBuildings">
+            <Original>Protected Buildings</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidSafeBuildingsTooltip">
+            <Original>Comma separated building classnames or parent classes. These never weather, and units inside them are safe.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidSafeGear">
+            <Original>Protective Gear</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidSafeGearTooltip">
+            <Original>Comma separated gear classnames (helmet, goggles, uniform, vest, backpack or NVG slot). A unit wearing any of them takes no acid damage.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidSafeVehicles">
+            <Original>Protected Vehicles</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidSafeVehiclesTooltip">
+            <Original>Comma separated vehicle classnames or parent classes (e.g. Tank). These vehicles never corrode.</Original>
+        </Key>
         <Key ID="STR_root_effects_weather_AttrAcidTick">
             <Original>Damage Tick Interval</Original>
         </Key>
@@ -39,6 +75,18 @@
         </Key>
         <Key ID="STR_root_effects_weather_AttrAcidTintTooltip">
             <Original>Strength of the sickly color grading inside the area.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidVehicleRate">
+            <Original>Vehicle Corrosion</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidVehicleRateTooltip">
+            <Original>Damage per tick to every hitpoint of vehicles left out in the rain. Crews inside are protected. 0 = vehicles are spared.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidWeather">
+            <Original>Weather Rain</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidWeatherTooltip">
+            <Original>Also bring in heavy cloud and real engine rain for the duration of the storm, tinted green for players inside the zone. The previous weather is eased back when the storm ends.</Original>
         </Key>
         <Key ID="STR_root_effects_weather_AttrLightningAmbience">
             <Original>Storm Ambience</Original>
@@ -111,6 +159,30 @@
         </Key>
         <Key ID="STR_root_effects_weather_AttrTintStrengthTooltip">
             <Original>Strength of the underwater tint. Above the surface only a hint is visible.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTornado">
+            <Original>Tornado</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTornadoFling">
+            <Original>Tornado Throws Objects</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTornadoFlingTooltip">
+            <Original>The tornado lifts, spins and throws people, vehicles and props near its foot and damages them. Off = purely visual.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTornadoSize">
+            <Original>Tornado Width (m)</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTornadoSizeTooltip">
+            <Original>Width of the funnel at the top. The foot is a fraction of this.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTornadoSpeed">
+            <Original>Tornado Speed (m/s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTornadoSpeedTooltip">
+            <Original>How fast the tornado travels along its path through the storm.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrTornadoTooltip">
+            <Original>Spawn a tornado inside the storm: a towering, spinning funnel of cloud with a dust and debris skirt that wanders through the storm area.</Original>
         </Key>
         <Key ID="STR_root_effects_weather_LightningStarted">
             <Original>Lightning storm brewing!</Original>

@@ -22,6 +22,7 @@ params [["_anchor", objNull, [objNull]], ["_burstPos", [0, 0, 0], [[]], 3], ["_s
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("aaaBurstLocal running here with %1",_this));
 
 private _flakLight = _anchor getVariable [QGVAR(aaaLight), objNull];
 if (isNull _flakLight) exitWith {};

@@ -35,7 +35,7 @@ if (!(["fireflies"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_altitude", "_activationDistance", "_frogs"];
 
-    [QGVAR(startFireflies), [_pos, _altitude, _activationDistance, _frogs]] call CBA_fnc_serverEvent;
+    [QGVAR(startFireflies), [_pos, _altitude, _activationDistance, _frogs]] call EFUNC(main,serverEventLogged);
     [LLSTRING(FirefliesStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

@@ -10,6 +10,7 @@ PREP(doHitPointDamage);
 PREP(doHitPointDamageLocal);
 PREP(isEffectEnabled);
 PREP(log);
+PREP(serverEventLogged);
 PREP(moduleTerminate);
 PREP(registerLocalObject);
 PREP(terminateDialog);

@@ -104,12 +104,13 @@ private _trackPFH = [{
         _state set ["appliedVision", _vision];
     };
 
-    if ((_state get "mode") isEqualTo FEED_MODE_SATELLITE) exitWith {
-        private _satPos = _screen getVariable [QGVAR(satPos), [0, 0]];
+    // Satellite: straight down from orbit. A camera aimed at a point directly below it
+    // has no usable up vector and renders sky, so the orientation is set explicitly.
+    if ((_screen getVariable [QGVAR(mode), _state get "mode"]) isEqualTo FEED_MODE_SATELLITE) exitWith {
+        private _satPos = _screen getVariable [QGVAR(satPos), [worldSize / 2, worldSize / 2]];
         private _alt = _screen getVariable [QGVAR(satAlt), _state get "satAlt"];
-        _cam camSetPos [_satPos select 0, _satPos select 1, _alt];
-        _cam camSetTarget [_satPos select 0, _satPos select 1, 0];
-        _cam camCommit 0;
+        _cam setPosASL [_satPos select 0, _satPos select 1, (0 max getTerrainHeightASL _satPos) + _alt];
+        _cam setVectorDirAndUp [[0, 0, -1], [0, 1, 0]];
     };
 
     // Drone feed.
@@ -132,13 +133,16 @@ private _trackPFH = [{
             (_hits select 0) select 0
         };
         private _proxyAlt = _state get "proxyAlt";
-        _cam camSetPos [_ground select 0, _ground select 1, (_ground select 2) + _proxyAlt];
-        _cam camSetTarget _ground;
-        _cam camCommit 0;
+        _cam setPosASL [_ground select 0, _ground select 1, (_ground select 2) + _proxyAlt];
+        _cam setVectorDirAndUp [[0, 0, -1], vectorDir _drone];
     } else {
-        _cam camSetPos _camPos;
-        _cam camSetTarget (_camPos vectorAdd (_dir vectorMultiply 1000));
-        _cam camCommit 0;
+        // getTurretAim works in ASL; build an up vector square to the view so the
+        // picture stays level whichever way the gimbal points.
+        private _side = _dir vectorCrossProduct [0, 0, 1];
+        if (vectorMagnitude _side < 0.001) then {_side = _dir vectorCrossProduct (vectorDir _drone)};
+        private _up = vectorNormalized (_side vectorCrossProduct _dir);
+        _cam setPosASL _camPos;
+        _cam setVectorDirAndUp [_dir, _up];
     };
 }, 0, [_feedId]] call CBA_fnc_addPerFrameHandler;
 

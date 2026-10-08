@@ -25,4 +25,4 @@ if (!(["dronefeed"] call EFUNC(main,isEffectEnabled))) exitWith {
     [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
 };
 
-[QGVAR(requestFeedList), ["modify", player]] call CBA_fnc_serverEvent;
+[QGVAR(requestFeedList), ["modify", player]] call EFUNC(main,serverEventLogged);

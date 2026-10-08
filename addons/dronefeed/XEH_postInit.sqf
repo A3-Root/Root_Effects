@@ -37,6 +37,25 @@ if (isServer) then {
         [QGVAR(showFeedList), [_purpose, _data], [_requester]] call CBA_fnc_targetEvent;
     }] call CBA_fnc_addEventHandler;
 
+    // Someone at a screen took or released control of its camera.
+    [QGVAR(setController), {
+        params [["_screen", objNull, [objNull]], ["_unit", objNull, [objNull]]];
+        if (isNull _screen) exitWith {};
+        _screen setVariable [QGVAR(controller), _unit, true];
+        private _feedId = _screen getVariable [QGVAR(feedId), "?"];
+        private _who = ["nobody", name _unit] select (!isNull _unit);
+        DBG(FORMAT_3("feed %1 controller now %2 (%3)",_feedId,_who,mapGridPosition _screen));
+    }] call CBA_fnc_addEventHandler;
+
+    // The controller of a satellite feed clicked a new spot on the map.
+    [QGVAR(setSatPos), {
+        params [["_screen", objNull, [objNull]], ["_pos", [], [[]]]];
+        if (isNull _screen || {count _pos < 2}) exitWith {};
+        _screen setVariable [QGVAR(satPos), [_pos select 0, _pos select 1], true];
+        private _feedId = _screen getVariable [QGVAR(feedId), "?"];
+        DBG(FORMAT_2("feed %1 satellite retargeted to %2",_feedId,mapGridPosition _pos));
+    }] call CBA_fnc_addEventHandler;
+
     // Prune feeds whose drone died or whose screen vanished.
     [FUNC(serverMonitor), 5, []] call CBA_fnc_addPerFrameHandler;
 };

@@ -110,7 +110,7 @@ class CfgVehicles {
         class AttributeValues {};
         class Attributes: AttributesBase {
             ROOT_ATTR_NUMBER(ROOT_SINGULARITY_RADIUS,CSTRING(AttrSingularityRadius),CSTRING(AttrSingularityRadiusTooltip),120);
-            ROOT_ATTR_NUMBER(ROOT_SINGULARITY_CHARGE,CSTRING(AttrSingularityCharge),CSTRING(AttrSingularityChargeTooltip),6);
+            ROOT_ATTR_NUMBER(ROOT_SINGULARITY_CHARGE,CSTRING(AttrSingularityCharge),CSTRING(AttrSingularityChargeTooltip),8);
             ROOT_ATTR_NUMBER(ROOT_SINGULARITY_DMGPCT,CSTRING(AttrSingularityLethal),CSTRING(AttrSingularityLethalTooltip),1);
             class ModuleDescription: ModuleDescription {};
         };

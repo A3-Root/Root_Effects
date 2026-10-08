@@ -22,3 +22,14 @@
 - Orbital Laser and Singularity: damage % slider, GBU-12 blast, buildings flattened at high damage.
 - Scree Avalanche damages and shoves vehicles and their crews.
 - Fixed Drone Feed dialog errors, missing sound files and final-function override warnings.
+- Fireflies no longer light up the ground.
+- Drone Feed: gunner view follows the turret; satellite looks down, map-click retarget; Take/Release Control.
+- Briefing Table: objects sit on the table top, no empty tiles, follows the marker shape.
+- Singularity: collapse waits for the alarm, throws props and vehicles, lethal at the core with ACE.
+- Scree Avalanche: real physics boulders that hit and damage units and vehicles.
+- Acid Rain: visible downpour, optional engine rain, damages vehicles and buildings, safe zones.
+- Lightning Storm: optional tornado, optionally throws objects.
+- Artillery Barrage: bigger flash, fireball and smoke; sounds no longer cut off.
+- Aurora/Rupture: size, length, shape switch timer, rupture movement; new Modify Sky Effect module.
+- Debug Output setting: who/where/what logging for every module, chat relay for Zeus.
+- Fixed missing module icon texture.

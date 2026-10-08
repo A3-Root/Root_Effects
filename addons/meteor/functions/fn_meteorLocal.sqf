@@ -20,6 +20,7 @@ params [["_meteor", objNull, [objNull]]];
 
 if (!hasInterface) exitWith {};
 if (isNull _meteor) exitWith {};
+DBG(FORMAT_1("meteorLocal running here with %1",_this));
 
 _meteor say3D [selectRandom [QGVAR(entry_1), QGVAR(entry_2), QGVAR(entry_3), QGVAR(entry_4), QGVAR(entry_5)], 4000];
 

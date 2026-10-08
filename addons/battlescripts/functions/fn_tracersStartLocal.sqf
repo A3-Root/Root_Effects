@@ -24,6 +24,7 @@ params [["_anchor", objNull, [objNull]], ["_activationDistance", 150, [0]], ["_c
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("tracersStartLocal running here with %1",_this));
 
 // [anchor, activationDistance, color, nextVolleyTime, nextSoundTime]
 private _state = [_anchor, _activationDistance, _color, 0, 0];

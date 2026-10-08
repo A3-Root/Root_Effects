@@ -14,7 +14,7 @@
     isTriggerActivated = 0; \
     isDisposable = 1; \
     is3DEN = 0; \
-    icon = "\A3\Modules_F_Curator\Data\portraitEffectsZeus_ca.paa"
+    icon = "\a3\Modules_F_Curator\Data\iconLightning_ca.paa"
 
 // Numeric attribute rendered as an edit box.
 #define ROOT_ATTR_NUMBER(PROP,NAME,TIP,DEFVAL) \

@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","BirdSwarm",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _count = _logic getVariable ["ROOT_BIRDSWARM_COUNT", 15];
 private _radius = _logic getVariable ["ROOT_BIRDSWARM_RADIUS", 150];

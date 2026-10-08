@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","Emp",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _radius = _logic getVariable ["ROOT_EMP_RADIUS", 300];
 private _duration = _logic getVariable ["ROOT_EMP_DURATION", 20];

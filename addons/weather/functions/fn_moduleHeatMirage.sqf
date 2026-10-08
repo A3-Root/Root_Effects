@@ -34,7 +34,7 @@ if (!(["heatmirage"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_radius", "_intensity"];
 
-    [QGVAR(startMirage), [_pos, _radius, _intensity]] call CBA_fnc_serverEvent;
+    [QGVAR(startMirage), [_pos, _radius, _intensity]] call EFUNC(main,serverEventLogged);
     [LLSTRING(MirageStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

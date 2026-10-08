@@ -25,9 +25,11 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","Singularity",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _radius = _logic getVariable ["ROOT_SINGULARITY_RADIUS", 120];
-private _chargeTime = _logic getVariable ["ROOT_SINGULARITY_CHARGE", 6];
+private _chargeTime = _logic getVariable ["ROOT_SINGULARITY_CHARGE", 8];
 private _lethal = _logic getVariable ["ROOT_SINGULARITY_DMGPCT", 1];
 
 deleteVehicle _logic;

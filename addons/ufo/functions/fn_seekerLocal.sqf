@@ -21,6 +21,7 @@ params [["_visitPos", [0, 0, 0], [[]], 3]];
 
 if (!hasInterface) exitWith {};
 if ((player distance2D _visitPos) > EGVAR(main,maxViewDistance)) exitWith {};
+DBG(FORMAT_1("seekerLocal running here with %1",_this));
 
 enableCamShake true;
 playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [_visitPos select 0, _visitPos select 1, 200], 10, 1, 3000];

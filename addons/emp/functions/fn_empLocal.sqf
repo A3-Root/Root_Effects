@@ -24,6 +24,7 @@ params [["_pos", [0, 0, 0], [[]], 3], ["_radius", 300, [0]], ["_duration", 20, [
 
 if (!hasInterface) exitWith {};
 if ((player distance2D _pos) > (_radius * 2 max 1000)) exitWith {};
+DBG(FORMAT_1("empLocal running here with %1",_this));
 
 // Flash visible even from outside the radius.
 private _flash = "#lightpoint" createVehicleLocal (_pos vectorAdd [0, 0, 30]);

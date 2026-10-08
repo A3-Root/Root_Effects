@@ -24,6 +24,7 @@ params [["_anchor", objNull, [objNull]], ["_radius", 500, [0]], ["_colorIndex", 
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("waterTintStartLocal running here with %1",_this));
 
 private _tintColor = [[0.6, 0.05, 0.05], [0.25, 0.6, 0.1], [0.08, 0.08, 0.1]] param [_colorIndex, [0.6, 0.05, 0.05]];
 

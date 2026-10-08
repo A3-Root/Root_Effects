@@ -44,6 +44,7 @@ private _list = GVAR(instances) getOrDefault [_effectKey, []];
 _list pushBack _anchor;
 GVAR(instances) set [_effectKey, _list];
 
-DBG(FORMAT_2("started effect %1 at %2",_effectKey,mapGridPosition _anchor));
+DBG(FORMAT_4("started effect %1 at %2 (anchor %3), client event %4",_effectKey,mapGridPosition _anchor,netId _anchor,_startEvent));
+DBG(FORMAT_2("effect %1 parameters %2",_effectKey,_params));
 
 _anchor

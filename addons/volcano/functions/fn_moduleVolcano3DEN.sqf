@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","Volcano",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _radius = _logic getVariable ["ROOT_VOLCANO_RADIUS", 120];
 private _eruption = _logic getVariable ["ROOT_VOLCANO_ERUPTION", false];

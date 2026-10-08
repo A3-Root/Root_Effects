@@ -33,6 +33,13 @@ class CfgVehicles {
         displayName = CSTRING(ModuleSparks);
         curatorCanAttach = 1;
     };
+    class ROOT_ModifySky_ModuleZeus: zen_modules_moduleBase {
+        author = "Root";
+        _generalMacro = "ROOT_ModifySky_ModuleZeus";
+        category = ROOT_MODULE_CATEGORY;
+        function = QFUNC(moduleModifySky);
+        displayName = CSTRING(ModuleModifySky);
+    };
     class ROOT_BirdSwarm_ModuleZeus: zen_modules_moduleBase {
         author = "Root";
         _generalMacro = "ROOT_BirdSwarm_ModuleZeus";
@@ -80,6 +87,9 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_AURORA_LIFETIME,CSTRING(AttrSkyLifetime),CSTRING(AttrSkyLifetimeTooltip),180);
             ROOT_ATTR_NUMBER(ROOT_AURORA_DENSITY,CSTRING(AttrSkyDensity),CSTRING(AttrSkyDensityTooltip),0.5);
             ROOT_ATTR_BOOL(ROOT_AURORA_FIXED,CSTRING(AttrSkyFixed),CSTRING(AttrSkyFixedTooltip),false);
+            ROOT_ATTR_NUMBER(ROOT_AURORA_SIZE,CSTRING(AttrSkySize),CSTRING(AttrSkySizeTooltip),1);
+            ROOT_ATTR_NUMBER(ROOT_AURORA_LENGTH,CSTRING(AttrSkyLength),CSTRING(AttrSkyLengthTooltip),1);
+            ROOT_ATTR_NUMBER(ROOT_AURORA_SWITCH,CSTRING(AttrSkySwitch),CSTRING(AttrSkySwitchTooltip),0);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
@@ -100,10 +110,46 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_RUPTURE_LIFETIME,CSTRING(AttrSkyLifetime),CSTRING(AttrSkyLifetimeTooltip),180);
             ROOT_ATTR_NUMBER(ROOT_RUPTURE_DENSITY,CSTRING(AttrSkyDensity),CSTRING(AttrSkyDensityTooltip),0.5);
             ROOT_ATTR_BOOL(ROOT_RUPTURE_FIXED,CSTRING(AttrSkyFixed),CSTRING(AttrSkyFixedTooltip),false);
+            ROOT_ATTR_NUMBER(ROOT_RUPTURE_SIZE,CSTRING(AttrSkySize),CSTRING(AttrSkySizeTooltip),1);
+            ROOT_ATTR_NUMBER(ROOT_RUPTURE_LENGTH,CSTRING(AttrSkyLength),CSTRING(AttrSkyLengthTooltip),1);
+            ROOT_ATTR_NUMBER(ROOT_RUPTURE_SWITCH,CSTRING(AttrSkySwitch),CSTRING(AttrSkySwitchTooltip),0);
+            ROOT_ATTR_NUMBER(ROOT_RUPTURE_MOVESPEED,CSTRING(AttrSkyMoveSpeed),CSTRING(AttrSkyMoveSpeedTooltip),0);
+            ROOT_ATTR_NUMBER(ROOT_RUPTURE_MOVEMODE,CSTRING(AttrSkyMoveMode),CSTRING(AttrSkyMoveModeTooltip3DEN),0);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
             description = CSTRING(ModuleRuptureDesc);
+        };
+    };
+    class ROOT_ModifySky_Module3DEN: Module_F {
+        // Runs when its trigger fires (or at start without one), after the sky effects exist.
+        scope = 2;
+        category = ROOT_MODULE_CATEGORY;
+        functionPriority = 5;
+        isGlobal = 0;
+        isTriggerActivated = 1;
+        isDisposable = 1;
+        is3DEN = 0;
+        icon = "\a3\Modules_F_Curator\Data\iconLightning_ca.paa";
+        author = "Root";
+        displayName = CSTRING(ModuleModifySky);
+        function = QFUNC(moduleModifySky3DEN);
+        class AttributeValues {};
+        class Attributes: AttributesBase {
+            ROOT_ATTR_NUMBER(ROOT_SKYMOD_RANGE,CSTRING(AttrSkyModRange),CSTRING(AttrSkyModRangeTooltip),3000);
+            ROOT_ATTR_BOOL(ROOT_SKYMOD_FREEZE,CSTRING(AttrSkyModFreeze),CSTRING(AttrSkyModFreezeTooltip),false);
+            ROOT_ATTR_BOOL(ROOT_SKYMOD_SPAWN,CSTRING(AttrSkyModSpawn),CSTRING(AttrSkyModSpawnTooltip),true);
+            ROOT_ATTR_BOOL(ROOT_SKYMOD_DESPAWN,CSTRING(AttrSkyModDespawn),CSTRING(AttrSkyModDespawnTooltip),true);
+            ROOT_ATTR_NUMBER(ROOT_SKYMOD_SIZE,CSTRING(AttrSkySize),CSTRING(AttrSkySizeTooltip),1);
+            ROOT_ATTR_NUMBER(ROOT_SKYMOD_LENGTH,CSTRING(AttrSkyLength),CSTRING(AttrSkyLengthTooltip),1);
+            ROOT_ATTR_NUMBER(ROOT_SKYMOD_SHAPE,CSTRING(AttrSkyModShape),CSTRING(AttrSkyModShapeTooltip),6);
+            ROOT_ATTR_NUMBER(ROOT_SKYMOD_SWITCH,CSTRING(AttrSkySwitch),CSTRING(AttrSkySwitchTooltip),0);
+            ROOT_ATTR_NUMBER(ROOT_SKYMOD_MOVESPEED,CSTRING(AttrSkyMoveSpeed),CSTRING(AttrSkyMoveSpeedTooltip),0);
+            ROOT_ATTR_NUMBER(ROOT_SKYMOD_MOVEMODE,CSTRING(AttrSkyMoveMode),CSTRING(AttrSkyMoveModeTooltip3DEN),0);
+            class ModuleDescription: ModuleDescription {};
+        };
+        class ModuleDescription: ModuleDescription {
+            description = CSTRING(ModuleModifySkyDesc);
         };
     };
     class ROOT_Sparks_Module3DEN: Module_F {

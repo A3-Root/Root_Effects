@@ -36,7 +36,7 @@ if (!(["watertint"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_radius", "_colorIndex", "_strength"];
 
-    [QGVAR(startWaterTint), [_pos, _radius, _colorIndex, _strength]] call CBA_fnc_serverEvent;
+    [QGVAR(startWaterTint), [_pos, _radius, _colorIndex, _strength]] call EFUNC(main,serverEventLogged);
     [LLSTRING(WaterTintStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

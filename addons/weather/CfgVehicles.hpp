@@ -56,6 +56,10 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_LIGHTNING_DAMAGE,CSTRING(AttrLightningDamage),CSTRING(AttrLightningDamageTooltip),false);
             ROOT_ATTR_BOOL(ROOT_LIGHTNING_AMBIENCE,CSTRING(AttrLightningAmbience),CSTRING(AttrLightningAmbienceTooltip),true);
             ROOT_ATTR_NUMBER(ROOT_LIGHTNING_STRENGTH,CSTRING(AttrLightningStrength),CSTRING(AttrLightningStrengthTooltip),0.7);
+            ROOT_ATTR_BOOL(ROOT_LIGHTNING_TORNADO,CSTRING(AttrTornado),CSTRING(AttrTornadoTooltip),false);
+            ROOT_ATTR_NUMBER(ROOT_LIGHTNING_TORNADOSIZE,CSTRING(AttrTornadoSize),CSTRING(AttrTornadoSizeTooltip),120);
+            ROOT_ATTR_NUMBER(ROOT_LIGHTNING_TORNADOSPEED,CSTRING(AttrTornadoSpeed),CSTRING(AttrTornadoSpeedTooltip),8);
+            ROOT_ATTR_BOOL(ROOT_LIGHTNING_TORNADOFLING,CSTRING(AttrTornadoFling),CSTRING(AttrTornadoFlingTooltip),false);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {
@@ -75,6 +79,14 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_DPS,CSTRING(AttrAcidDps),CSTRING(AttrAcidDpsTooltip),0.05);
             ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_TICK,CSTRING(AttrAcidTick),CSTRING(AttrAcidTickTooltip),5);
             ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_INTENSITY,CSTRING(AttrAcidIntensity),CSTRING(AttrAcidIntensityTooltip),0.7);
+            ROOT_ATTR_BOOL(ROOT_ACIDRAIN_WEATHER,CSTRING(AttrAcidWeather),CSTRING(AttrAcidWeatherTooltip),true);
+            ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_VEHRATE,CSTRING(AttrAcidVehicleRate),CSTRING(AttrAcidVehicleRateTooltip),0.02);
+            ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_BLDGRATE,CSTRING(AttrAcidBuildingRate),CSTRING(AttrAcidBuildingRateTooltip),0.01);
+            ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_BLDGCAP,CSTRING(AttrAcidBuildingCap),CSTRING(AttrAcidBuildingCapTooltip),0.9);
+            ROOT_ATTR_STRING(ROOT_ACIDRAIN_SAFEGEAR,CSTRING(AttrAcidSafeGear),CSTRING(AttrAcidSafeGearTooltip),"''");
+            ROOT_ATTR_STRING(ROOT_ACIDRAIN_SAFEVEH,CSTRING(AttrAcidSafeVehicles),CSTRING(AttrAcidSafeVehiclesTooltip),"''");
+            ROOT_ATTR_STRING(ROOT_ACIDRAIN_SAFEBLDG,CSTRING(AttrAcidSafeBuildings),CSTRING(AttrAcidSafeBuildingsTooltip),"''");
+            ROOT_ATTR_STRING(ROOT_ACIDRAIN_SAFEAREAS,CSTRING(AttrAcidSafeAreas),CSTRING(AttrAcidSafeAreasTooltip),"''");
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

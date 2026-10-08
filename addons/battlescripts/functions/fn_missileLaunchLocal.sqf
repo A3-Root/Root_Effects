@@ -23,6 +23,7 @@ params [["_anchor", objNull, [objNull]], ["_safeDistance", 25, [0]], ["_launchDe
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("missileLaunchLocal running here with %1",_this));
 
 private _distance = player distance _anchor;
 if (_distance <= _safeDistance) exitWith {};

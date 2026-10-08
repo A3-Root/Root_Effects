@@ -22,4 +22,4 @@ deleteVehicle _logic;
 
 if (!hasInterface) exitWith {};
 
-[QGVAR(requestInstances), [player]] call CBA_fnc_serverEvent;
+[QGVAR(requestInstances), [player]] call EFUNC(main,serverEventLogged);

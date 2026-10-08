@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","Avalanche",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _downhill = _logic getVariable ["ROOT_AVALANCHE_DOWNHILL", true];
 private _heading = _logic getVariable ["ROOT_AVALANCHE_HEADING", 0];
@@ -32,6 +34,7 @@ private _length = _logic getVariable ["ROOT_AVALANCHE_LENGTH", 200];
 private _duration = _logic getVariable ["ROOT_AVALANCHE_DURATION", 25];
 private _lethal = _logic getVariable ["ROOT_AVALANCHE_LETHAL", true];
 private _objects = _logic getVariable ["ROOT_AVALANCHE_OBJECTS", ""];
+private _rocks = _logic getVariable ["ROOT_AVALANCHE_ROCKS", 40];
 
 deleteVehicle _logic;
 
@@ -40,4 +43,5 @@ if (_downhill) then {
     _heading = -1;
 };
 
-[_pos, _heading, _length, _duration, _lethal, _objects] call FUNC(avalancheStart);
+DBG(FORMAT_3("avalanche 3DEN module at %1 (length %2, boulders %3)",mapGridPosition _pos,_length,_rocks));
+[_pos, _heading, _length, _duration, _lethal, _objects, round _rocks] call FUNC(avalancheStart);

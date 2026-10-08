@@ -77,7 +77,7 @@ if (isNull _object) exitWith {
         _actDist = 9999;
     };
 
-    [QGVAR(start), [_object, _elevation, _allowDamage, _allowSimulation, [_slideVel, _slideDist], [_bounceSpeed, _bounceAlt], [_rotVel, _rotCw], _rollVel, [_orbitRadius, _orbitSpeed, _orbitCw], _actDist]] call CBA_fnc_serverEvent;
+    [QGVAR(start), [_object, _elevation, _allowDamage, _allowSimulation, [_slideVel, _slideDist], [_bounceSpeed, _bounceAlt], [_rotVel, _rotCw], _rollVel, [_orbitRadius, _orbitSpeed, _orbitCw], _actDist]] call EFUNC(main,serverEventLogged);
     [LLSTRING(Configured)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

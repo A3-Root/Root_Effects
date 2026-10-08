@@ -25,6 +25,7 @@ params [["_anchor", objNull, [objNull]], ["_rate", 12, [0]], ["_radius", 50, [0]
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("fireworksStartLocal running here with %1",_this));
 
 // [anchor, radius, height, sounds, baseInterval, nextLaunchTime]
 private _state = [_anchor, _radius, _height, _sounds, 60 / (_rate max 1), 0];

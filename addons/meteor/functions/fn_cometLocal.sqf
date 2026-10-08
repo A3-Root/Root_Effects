@@ -21,6 +21,7 @@ params [["_comet", objNull, [objNull]]];
 
 if (!hasInterface) exitWith {};
 if (isNull _comet) exitWith {};
+DBG(FORMAT_1("cometLocal running here with %1",_this));
 
 private _smokeEmitter = "#particlesource" createVehicleLocal getPosATL _comet;
 _smokeEmitter setParticleCircle [0, [0, 0, 0]];

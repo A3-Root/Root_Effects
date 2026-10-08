@@ -33,12 +33,21 @@ if (!(["acidrain"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["TOOLBOX:YESNO", [LLSTRING(AttrAcidDamage), LLSTRING(AttrAcidDamageTooltip)], true],
     ["SLIDER:PERCENT", [LLSTRING(AttrAcidDps), LLSTRING(AttrAcidDpsTooltip)], [0.01, 0.5, 0.05, 2]],
     ["SLIDER", [LLSTRING(AttrAcidTick), LLSTRING(AttrAcidTickTooltip)], [1, 60, 5, 0]],
-    ["SLIDER:PERCENT", [LLSTRING(AttrAcidIntensity), LLSTRING(AttrAcidIntensityTooltip)], [0.1, 1, 0.7, 0]]
+    ["SLIDER:PERCENT", [LLSTRING(AttrAcidIntensity), LLSTRING(AttrAcidIntensityTooltip)], [0.1, 1, 0.7, 0]],
+    ["CHECKBOX", [LLSTRING(AttrAcidWeather), LLSTRING(AttrAcidWeatherTooltip)], true],
+    ["SLIDER:PERCENT", [LLSTRING(AttrAcidVehicleRate), LLSTRING(AttrAcidVehicleRateTooltip)], [0, 0.2, 0.02, 1]],
+    ["SLIDER:PERCENT", [LLSTRING(AttrAcidBuildingRate), LLSTRING(AttrAcidBuildingRateTooltip)], [0, 0.1, 0.01, 1]],
+    ["SLIDER:PERCENT", [LLSTRING(AttrAcidBuildingCap), LLSTRING(AttrAcidBuildingCapTooltip)], [0, 1, 0.9, 0]],
+    ["EDIT", [LLSTRING(AttrAcidSafeGear), LLSTRING(AttrAcidSafeGearTooltip)], ""],
+    ["EDIT", [LLSTRING(AttrAcidSafeVehicles), LLSTRING(AttrAcidSafeVehiclesTooltip)], ""],
+    ["EDIT", [LLSTRING(AttrAcidSafeBuildings), LLSTRING(AttrAcidSafeBuildingsTooltip)], ""],
+    ["EDIT", [LLSTRING(AttrAcidSafeAreas), LLSTRING(AttrAcidSafeAreasTooltip)], ""]
 ], {
     params ["_results", "_pos"];
-    _results params ["_radius", "_tint", "_damage", "_damagePerTick", "_tick", "_intensity"];
+    _results params ["_radius", "_tint", "_damage", "_damagePerTick", "_tick", "_intensity", "_weatherRain", "_vehicleRate", "_buildingRate", "_buildingCap", "_safeGear", "_safeVehicles", "_safeBuildings", "_safeAreas"];
 
-    [QGVAR(startAcidRain), [_pos, _radius, _tint, _damage, _damagePerTick, _tick, _intensity]] call CBA_fnc_serverEvent;
+    [QGVAR(startAcidRain), [_pos, _radius, _tint, _damage, _damagePerTick, _tick, _intensity, _weatherRain, _vehicleRate, _buildingRate, _buildingCap, _safeGear, _safeVehicles, _safeBuildings, _safeAreas]] call EFUNC(main,serverEventLogged);
+    DBG(FORMAT_4("acid rain requested by %1 at %2 (radius %3, damage %4)",profileName,mapGridPosition _pos,_radius,_damage));
     [LLSTRING(AcidRainStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

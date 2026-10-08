@@ -33,17 +33,19 @@ if (!(["avalanche"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER", [LLSTRING(AttrAvalancheLength), LLSTRING(AttrAvalancheLengthTooltip)], [50, 800, 200, 0]],
     ["SLIDER", [LLSTRING(AttrAvalancheDuration), LLSTRING(AttrAvalancheDurationTooltip)], [10, 300, 25, 0]],
     ["TOOLBOX:YESNO", [LLSTRING(AttrAvalancheLethal), LLSTRING(AttrAvalancheLethalTooltip)], true],
-    ["EDIT", [LLSTRING(AttrAvalancheObjects), LLSTRING(AttrAvalancheObjectsTooltip)], ""]
+    ["EDIT", [LLSTRING(AttrAvalancheObjects), LLSTRING(AttrAvalancheObjectsTooltip)], ""],
+    ["SLIDER", [LLSTRING(AttrAvalancheRocks), LLSTRING(AttrAvalancheRocksTooltip)], [0, 80, 40, 0]]
 ], {
     params ["_results", "_pos"];
-    _results params ["_downhill", "_heading", "_length", "_duration", "_lethal", "_objects"];
+    _results params ["_downhill", "_heading", "_length", "_duration", "_lethal", "_objects", "_rocks"];
 
     // A negative heading tells the server to work the slope out for itself.
     if (_downhill) then {
         _heading = -1;
     };
 
-    [QGVAR(startAvalanche), [_pos, _heading, _length, _duration, _lethal, _objects]] call CBA_fnc_serverEvent;
+    [QGVAR(startAvalanche), [_pos, _heading, _length, _duration, _lethal, _objects, round _rocks]] call EFUNC(main,serverEventLogged);
+    DBG(FORMAT_4("avalanche requested by %1 at %2 (length %3, boulders %4)",profileName,mapGridPosition _pos,_length,round _rocks));
     [LLSTRING(AvalancheStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

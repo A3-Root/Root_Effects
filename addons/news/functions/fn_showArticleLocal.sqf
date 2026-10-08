@@ -26,6 +26,7 @@ params [["_articleId", "", [""]], ["_articleData", [], [[]]], ["_showNow", true,
 
 if (!hasInterface) exitWith {};
 if (_articleId isEqualTo "" || {_articleData isEqualTo []}) exitWith {};
+DBG(FORMAT_1("showArticleLocal running here with %1",_this));
 
 GVAR(articles) set [_articleId, _articleData];
 

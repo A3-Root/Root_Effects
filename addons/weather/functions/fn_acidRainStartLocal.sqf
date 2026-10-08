@@ -21,23 +21,34 @@
  * [_anchor, 500, 0.5, 0.7] call root_effects_weather_fnc_acidRainStartLocal
  */
 
-params [["_anchor", objNull, [objNull]], ["_radius", 500, [0]], ["_tint", 0.5, [0]], ["_intensity", 0.7, [0]]];
+params [["_anchor", objNull, [objNull]], ["_radius", 500, [0]], ["_tint", 0.5, [0]], ["_intensity", 0.7, [0]], ["_weatherRain", false, [false]]];
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 
 _intensity = (_intensity max 0.1) min 1;
 
-// Rain drops: heavy and fast so they streak straight down. Weight must stay
-// well above volume or the drops float and drift upwards.
+DBG(FORMAT_4("acid rain local start, radius %1, tint %2, intensity %3, weather rain %4",_radius,_tint,_intensity,_weatherRain));
+
+// Rain streaks: the engine's own rain texture on camera-facing billboards, tinted
+// sickly green and large enough to read as a real downpour. Weight must stay well
+// above volume or the drops float and drift upwards.
 private _fnc_rainParams = {
     params ["_emitter", "_intensity"];
-    private _alpha = 0.55 + 0.4 * _intensity;
+    private _alpha = 0.45 + 0.4 * _intensity;
+    private _spread = 16 + 14 * _intensity;
     _emitter setParticleCircle [0, [0, 0, 0]];
-    _emitter setParticleRandom [0.3, [14 + 14 * _intensity, 14 + 14 * _intensity, 2], [0.4, 0.4, 3], 0, 0.02, [0.05, 0.1, 0.05, 0.1], 0, 0];
-    _emitter setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 7, 1], "", "SpaceObject", 1, 1.4, [0, 0, 0], [0, 0, -26], 0, 20, 1, 0, [0.06 + 0.06 * _intensity, 0.06 + 0.06 * _intensity], [[0.55, 0.85, 0.2, _alpha], [0.5, 0.8, 0.15, _alpha * 0.8]], [1], 1, 0, "", "", _emitter, 0, true, 0, [[0.6, 1, 0.2, _alpha * 0.4]]];
-    _emitter setDropInterval ((0.0025 / _intensity) / ((EGVAR(main,particleBudget)) max 0.1));
+    _emitter setParticleRandom [0.3, [_spread, _spread, 3], [0.3, 0.3, 2], 0, 0.25, [0.05, 0.1, 0.05, 0.1], 0, 0];
+    _emitter setParticleParams [["\A3\data_f\rain_CA.paa", 1, 0, 1], "", "Billboard", 1, 2.2, [0, 0, 0], [0, 0, -14], 0, 20, 1, 0, [0.9 + 0.5 * _intensity], [[0.55, 0.9, 0.2, _alpha], [0.5, 0.85, 0.15, _alpha * 0.85]], [1], 0, 0, "", "", _emitter, 0, true, 0, [[0.5, 0.9, 0.15, _alpha * 0.3]]];
+    _emitter setDropInterval ((0.0008 / _intensity) / ((EGVAR(main,particleBudget)) max 0.1));
 };
+
+// Engine rain tint for this zone only: rain params are local to each client, so the
+// real rain (driven by the server) turns green just for players inside the zone.
+private _acidRainParams = [
+    "a3\data_f\rain_CA.paa", 1, 0.01, 25, 0.1, 1.2, 0.5, 0.4, 0.025, 0.9,
+    [0.45, 0.9, 0.15, 0.55 + 0.35 * _intensity], 0.2, 0.5, 0.5, 0.6, false, true
+];
 
 // Low acidic haze hanging over the ground.
 private _fnc_mistParams = {
@@ -48,14 +59,18 @@ private _fnc_mistParams = {
     _emitter setDropInterval ((0.15 / _intensity) / ((EGVAR(main,particleBudget)) max 0.1));
 };
 
-// [anchor, radius, tint, ppHandle, currentBlend, rainEmitter, mistEmitter, covered, intensity, rainFn, mistFn, grainHandle]
-private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _intensity, _fnc_rainParams, _fnc_mistParams, -1];
+// [anchor, radius, tint, ppHandle, currentBlend, rainEmitter, mistEmitter, covered, intensity, rainFn, mistFn, grainHandle, weatherRain, rainParams, tinted]
+private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _intensity, _fnc_rainParams, _fnc_mistParams, -1, _weatherRain, _acidRainParams, false];
 
 [{
     params ["_args", "_handle"];
-    _args params ["_anchor", "_radius", "_tint", "_ppHandle", "_blend", "_rain", "_mist", "_covered", "_intensity", "_fnc_rainParams", "_fnc_mistParams", "_grain"];
+    _args params ["_anchor", "_radius", "_tint", "_ppHandle", "_blend", "_rain", "_mist", "_covered", "_intensity", "_fnc_rainParams", "_fnc_mistParams", "_grain", "_weatherRain", "_acidRainParams", "_tinted"];
 
     if (isNull _anchor) exitWith {
+        if (_tinted) then {
+            setRain [];
+        };
+        DBG("acid rain local teardown");
         if (_ppHandle != -1) then {
             ppEffectDestroy _ppHandle;
         };
@@ -68,6 +83,12 @@ private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _inte
     };
 
     private _inside = (player distance2D _anchor) < _radius;
+
+    // Green engine rain only while inside the zone.
+    if (_weatherRain && _inside isNotEqualTo _tinted) then {
+        if (_inside) then {setRain _acidRainParams} else {setRain []};
+        _args set [14, _inside];
+    };
 
     // Rain box that rides above the player's head while inside the zone so the
     // downpour is confined to the area instead of the whole map. Created on
@@ -96,7 +117,7 @@ private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _inte
         };
 
         private _camPos = AGLToASL positionCameraToWorld [0, 0, 0];
-        _rain setPosASL (_camPos vectorAdd [0, 0, 18]);
+        _rain setPosASL (_camPos vectorAdd [0, 0, 22]);
         _mist setPosATL [_camPos select 0, _camPos select 1, 0];
     } else {
         if (!isNull _rain) then {

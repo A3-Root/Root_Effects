@@ -44,7 +44,7 @@ if (!(["volcano"] call EFUNC(main,isEffectEnabled))) exitWith {
         _eruptionDelay = 0;
     };
 
-    [QGVAR(start), [_pos, _radius, _eruptionDelay, _craterLava, _lightning, _lavaFlow, _lethal, _gearText]] call CBA_fnc_serverEvent;
+    [QGVAR(start), [_pos, _radius, _eruptionDelay, _craterLava, _lightning, _lavaFlow, _lethal, _gearText]] call EFUNC(main,serverEventLogged);
     [LLSTRING(Configured)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

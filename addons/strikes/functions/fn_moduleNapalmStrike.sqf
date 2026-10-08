@@ -38,7 +38,7 @@ if (!(["napalmstrike"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_planeClass", "_heading", "_length", "_duration", "_damage", "_dropDelay"];
 
-    [QGVAR(startNapalm), [_pos, _planeClass, _heading, _length, _duration, _damage, _dropDelay]] call CBA_fnc_serverEvent;
+    [QGVAR(startNapalm), [_pos, _planeClass, _heading, _length, _duration, _damage, _dropDelay]] call EFUNC(main,serverEventLogged);
     [LLSTRING(NapalmStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

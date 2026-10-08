@@ -3,11 +3,11 @@
 /*
  * Author: Root
  * Resolves the world camera position and aim direction for a drone feed. The
- * gunner view follows the turret gimbal by reading the live weapon direction,
- * with animated gun memory points and finally the static camera memory points
- * as fallbacks, so the picture tracks where the operator actually slews rather
- * than freezing on a fixed hull point. The driver view uses the fixed nose
- * camera memory points.
+ * gunner view follows the turret gimbal through the gunner camera memory points,
+ * which are skinned to the turret bones, with the turret gun memory points and
+ * the gunner's eye direction as fallbacks, so the picture tracks where the
+ * operator actually slews. The driver view uses the fixed nose camera memory
+ * points.
  *
  * Arguments:
  * 0: Drone <OBJECT>
@@ -42,30 +42,34 @@ if (_view isEqualTo VIEW_DRIVER) exitWith {
 
 // Gunner camera origin from the configured memory point.
 private _posSel = getText (_cfg >> "uavCameraGunnerPos");
+private _dirSel = getText (_cfg >> "uavCameraGunnerDir");
 if (_posSel isEqualTo "") then {_posSel = "PiP1_pos"};
-private _camPos = _drone modelToWorldVisualWorld (_drone selectionPosition [_posSel, "Memory"]);
+if (_dirSel isEqualTo "") then {_dirSel = "PiP1_dir"};
 
-// Primary: the turret weapon direction, which rotates with the gimbal.
+private _camModel = _drone selectionPosition [_posSel, "Memory"];
+private _camPos = _drone modelToWorldVisualWorld _camModel;
+
+// Primary: the gunner camera memory points. They are skinned to the turret bones, so
+// they swing with the gimbal wherever the operator (or the AI gunner) points it.
 private _dir = [0, 0, 0];
-private _weapons = _drone weaponsTurret [0];
-if (_weapons isNotEqualTo []) then {
-    _dir = _drone weaponDirection (_weapons select 0);
+private _dirModel = _drone selectionPosition [_dirSel, "Memory"];
+if (_dirModel isNotEqualTo _camModel) then {
+    _dir = _camPos vectorFromTo (_drone modelToWorldVisualWorld _dirModel);
 };
 
-// Fallback: animated gun memory points, skinned to the turret bones.
+// Fallback: the turret's gun memory points, same as CBA_fnc_turretDir.
 if (_dir isEqualTo [0, 0, 0]) then {
-    private _gunBeg = _drone selectionPosition ["gunBeg", "Memory"];
-    private _gunEnd = _drone selectionPosition ["gunEnd", "Memory"];
+    private _turretCfg = [_drone, [0]] call CBA_fnc_getTurret;
+    private _gunBeg = _drone selectionPosition [getText (_turretCfg >> "gunBeg"), "Memory"];
+    private _gunEnd = _drone selectionPosition [getText (_turretCfg >> "gunEnd"), "Memory"];
     if (_gunBeg isNotEqualTo _gunEnd) then {
-        _dir = (_drone modelToWorldVisualWorld _gunBeg) vectorFromTo (_drone modelToWorldVisualWorld _gunEnd);
+        _dir = (_drone modelToWorldVisualWorld _gunEnd) vectorFromTo (_drone modelToWorldVisualWorld _gunBeg);
     };
 };
 
-// Last resort: the static direction memory point (the old fixed behaviour).
-if (_dir isEqualTo [0, 0, 0]) then {
-    private _dirSel = getText (_cfg >> "uavCameraGunnerDir");
-    if (_dirSel isEqualTo "") then {_dirSel = "PiP1_dir"};
-    _dir = _camPos vectorFromTo (_drone modelToWorldVisualWorld (_drone selectionPosition [_dirSel, "Memory"]));
+// Last resort: where the gunner is looking.
+if (_dir isEqualTo [0, 0, 0] && {!isNull gunner _drone}) then {
+    _dir = eyeDirection (gunner _drone);
 };
 
 if (_dir isEqualTo [0, 0, 0]) then {_dir = vectorDir _drone};

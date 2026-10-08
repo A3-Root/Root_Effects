@@ -13,6 +13,10 @@ if (isServer) then {
         _this call FUNC(ruptureStart);
     }] call CBA_fnc_addEventHandler;
 
+    [QGVAR(modifySky), {
+        _this call FUNC(skyModify);
+    }] call CBA_fnc_addEventHandler;
+
     [QGVAR(startSparks), {
         _this call FUNC(sparksStart);
     }] call CBA_fnc_addEventHandler;

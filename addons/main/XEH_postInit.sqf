@@ -21,6 +21,12 @@
     GVAR(localObjects) deleteAt _key;
 }] call CBA_fnc_addEventHandler;
 
+// Debug lines relayed from the server and headless clients to Zeus users.
+[QGVAR(logRelay), {
+    params ["_line"];
+    systemChat _line;
+}] call CBA_fnc_addEventHandler;
+
 if (isServer) then {
     // Curator asked for the list of running effect instances; answer with a
     // snapshot so their machine can open the termination dialog.

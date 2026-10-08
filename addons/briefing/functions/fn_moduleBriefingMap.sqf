@@ -55,11 +55,11 @@ private _classNames = ["Map Board", "PC Screen", "Tripod Screen", "Briefing Room
             params ["_success", "", "_posASL", "_cbArgs"];
             _cbArgs params ["_pos", "_dir", "_centerMarker", "_class", "_zoom", "_activationDistance"];
             private _center = if (_success) then {ASLToAGL _posASL} else {[]};
-            [QGVAR(startMap), [_pos, _dir, _center, _centerMarker, _class, _zoom, _activationDistance]] call CBA_fnc_serverEvent;
+            [QGVAR(startMap), [_pos, _dir, _center, _centerMarker, _class, _zoom, _activationDistance]] call EFUNC(main,serverEventLogged);
             [LLSTRING(MapStarted)] call zen_common_fnc_showMessage;
         }, [_pos, _dir, _centerMarker, _class, _zoom, _activationDistance], LLSTRING(SelectMapCenter)] call zen_common_fnc_selectPosition;
     } else {
-        [QGVAR(startMap), [_pos, _dir, [], _centerMarker, _class, _zoom, _activationDistance]] call CBA_fnc_serverEvent;
+        [QGVAR(startMap), [_pos, _dir, [], _centerMarker, _class, _zoom, _activationDistance]] call EFUNC(main,serverEventLogged);
         [LLSTRING(MapStarted)] call zen_common_fnc_showMessage;
     };
 }, {

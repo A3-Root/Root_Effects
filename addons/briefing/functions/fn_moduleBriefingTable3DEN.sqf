@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","BriefingTable",mapGridPosition _logic,allVariables _logic));
+
 private _marker = _logic getVariable ["ROOT_BTABLE_MARKER", ""];
 private _resolution = _logic getVariable ["ROOT_BTABLE_RESOLUTION", 20];
 private _scale = _logic getVariable ["ROOT_BTABLE_SCALE", 1];

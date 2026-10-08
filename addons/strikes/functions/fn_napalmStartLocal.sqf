@@ -23,6 +23,7 @@ params [["_anchor", objNull, [objNull]], ["_heading", 0, [0]], ["_length", 150, 
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("napalmStartLocal running here with %1",_this));
 
 // [anchor, heading, length, visuals]
 private _state = [_anchor, _heading, _length, []];

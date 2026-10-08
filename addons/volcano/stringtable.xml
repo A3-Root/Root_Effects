@@ -37,6 +37,12 @@
         <Key ID="STR_root_effects_volcano_AttrAvalancheObjectsTooltip">
             <Original>Optional comma separated vehicle class names to roll physical props down the slope alongside the rocks, e.g. Land_TimberLog_04_F, Land_MetalBarrel_F, MetalBarrel_burning_F. Leave blank for rock particles only.</Original>
         </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheRocks">
+            <Original>Boulders</Original>
+        </Key>
+        <Key ID="STR_root_effects_volcano_AttrAvalancheRocksTooltip">
+            <Original>Number of real, physically simulated boulders released down the slope (0 - 80). They bounce, roll and hit people and vehicles; with Lethal on they deal damage scaled by their speed and size. More boulders cost more performance.</Original>
+        </Key>
         <Key ID="STR_root_effects_volcano_AttrCraterLava">
             <Original>Enable Crater Lava</Original>
         </Key>

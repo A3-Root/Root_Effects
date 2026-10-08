@@ -38,7 +38,7 @@ if (!(["laserstrike"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_chargeTime", "_beamTime", "_thickness", "_color", "_damage", "_damageRadius"];
 
-    [QGVAR(startLaser), [_pos, _chargeTime, _beamTime, _color select [0, 3], _damage, _damageRadius, _thickness]] call CBA_fnc_serverEvent;
+    [QGVAR(startLaser), [_pos, _chargeTime, _beamTime, _color select [0, 3], _damage, _damageRadius, _thickness]] call EFUNC(main,serverEventLogged);
     [LLSTRING(LaserStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

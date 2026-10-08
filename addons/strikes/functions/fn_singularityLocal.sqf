@@ -23,6 +23,7 @@ params [["_anchor", objNull, [objNull]], ["_radius", 120, [0]], ["_chargeTime", 
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("singularityLocal running here with %1",_this));
 if ((player distance2D _anchor) > EGVAR(main,maxViewDistance)) exitWith {};
 
 private _budget = (EGVAR(main,particleBudget)) max 0.1;
@@ -43,7 +44,17 @@ _ripple setParticleRandom [1, [3, 3, 1], [0, 0, 0.5], 0, 0.3, [0, 0, 0, 0], 0, 0
 _ripple setParticleParams [["\A3\data_f\ParticleEffects\Universal\Refract.p3d", 1, 0, 1], "", "Billboard", 1, 2, [0, 0, 2], [0, 0, 1], 0, 9, 7, 0, [3, 10], [[1, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 0]], [1], 0, 0, "", "", _anchor];
 _ripple setDropInterval (0.05 / _budget);
 
-playSound3D ["A3\Sounds_F\sfx\alarm_independent.wss", objNull, false, ATLToASL _pos, 3, 0.4, 2000];
+// Warning alarms back to back, timed so the last one ends just before the collapse.
+private _alarms = floor (_chargeTime / SINGULARITY_ALARM_LEN) max 1;
+private _alarmStart = (_chargeTime - _alarms * SINGULARITY_ALARM_LEN - 0.2) max 0;
+for "_i" from 0 to (_alarms - 1) do {
+    [{
+        params ["_anchor", "_pos"];
+        if (isNull _anchor) exitWith {};
+        playSound3D ["A3\Sounds_F\sfx\alarm_independent.wss", objNull, false, ATLToASL _pos, 3, 1, 2000];
+    }, [_anchor, _pos], _alarmStart + _i * SINGULARITY_ALARM_LEN] call CBA_fnc_waitAndExecute;
+};
+DBG(FORMAT_3("singularity local: %1 alarms, charge %2, %3 m away",_alarms,_chargeTime,round (player distance2D _anchor)));
 
 // Pulse the core over the charge window, then hand over to the collapse.
 [{

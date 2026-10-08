@@ -62,10 +62,16 @@
             <Original>Seconds each light takes to fade out.</Original>
         </Key>
         <Key ID="STR_root_effects_ambientsfx_AttrSkyFixed">
-            <Original>Fixed in Place</Original>
+            <Original>Start Held in Place</Original>
         </Key>
         <Key ID="STR_root_effects_ambientsfx_AttrSkyFixedTooltip">
-            <Original>Keep the band static: no lights despawn or spawn elsewhere and the shape never changes.</Original>
+            <Original>The band fills up once and is then held exactly as it is: no light fades out and no new one appears. Use the Modify Sky Effect module to change this while the mission runs.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyLength">
+            <Original>Length Scale</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyLengthTooltip">
+            <Original>Multiplier for how long and wide the band stretches across the sky (1 = normal).</Original>
         </Key>
         <Key ID="STR_root_effects_ambientsfx_AttrSkyLifetime">
             <Original>Light Lifetime (s)</Original>
@@ -73,11 +79,68 @@
         <Key ID="STR_root_effects_ambientsfx_AttrSkyLifetimeTooltip">
             <Original>Seconds each light stays in the sky, including fades.</Original>
         </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModDespawn">
+            <Original>Allow Particles To Fade Out</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModDespawnTooltip">
+            <Original>Lights fade out at the end of their life. Off = every light currently visible (and any new one) stays for good.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModFreeze">
+            <Original>Keep As Is</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModFreezeTooltip">
+            <Original>Hold every light exactly where it is: none fade out and no new ones appear. Overrides the two options below.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModRange">
+            <Original>Search Range (m)</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModRangeTooltip">
+            <Original>The nearest aurora or rupture within this distance of the module is changed.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModShape">
+            <Original>Shape</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModShapeTooltip">
+            <Original>0 band, 1 arc, 2 wave, 3 ring, 4 spiral, 5 random, 6 keeps the current shape.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModSpawn">
+            <Original>Allow New Particles</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModSpawnTooltip">
+            <Original>New lights keep appearing along the band.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyMoveMode">
+            <Original>Movement</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyMoveModeTooltip">
+            <Original>Drift: travels on one heading. Wander: meanders around where it started.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyMoveModeTooltip3DEN">
+            <Original>0 = drift on one heading, 1 = wander around where it started.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyMoveSpeed">
+            <Original>Movement Speed (m/s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyMoveSpeedTooltip">
+            <Original>How fast the effect travels across the sky. 0 = it stays in place.</Original>
+        </Key>
         <Key ID="STR_root_effects_ambientsfx_AttrSkyShape">
             <Original>Shape</Original>
         </Key>
         <Key ID="STR_root_effects_ambientsfx_AttrSkyShapeTooltip">
             <Original>Path the band follows across the sky. Random picks a shape, length and rotation per instance.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkySize">
+            <Original>Size Scale</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkySizeTooltip">
+            <Original>Multiplier for the size of every light in the band (1 = normal).</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkySwitch">
+            <Original>Shape Switch Interval (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkySwitchTooltip">
+            <Original>Every this many seconds the band takes on a new form (a new random shape when the shape is Random). 0 = never.</Original>
         </Key>
         <Key ID="STR_root_effects_ambientsfx_AttrSparksAltitude">
             <Original>Sparks Altitude</Original>
@@ -118,6 +181,15 @@
         <Key ID="STR_root_effects_ambientsfx_ModuleFirefliesDesc">
             <Original>A swarm of fireflies glittering at night around the module position, with optional frog croaks.</Original>
         </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleModifySky">
+            <Original>Modify Sky Effect</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleModifySkyDesc">
+            <Original>Changes the aurora or spacetime rupture nearest to it while it runs: hold it exactly as it is, stop or allow new lights, stop or allow lights fading out, resize, lengthen, reshape, switch shapes on a timer or set it moving. In the editor it applies when its trigger fires, or at mission start without one.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_ModuleModifySkyTitle">
+            <Original>Modify %1 at %2</Original>
+        </Key>
         <Key ID="STR_root_effects_ambientsfx_ModuleRupture">
             <Original>Spacetime Rupture</Original>
         </Key>
@@ -129,6 +201,15 @@
         </Key>
         <Key ID="STR_root_effects_ambientsfx_ModuleSparksDesc">
             <Original>Electrical spark showers with crackle sounds at the module position, for example on damaged power lines.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_MoveDrift">
+            <Original>Drift</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_MoveWander">
+            <Original>Wander</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_NoSkyEffect">
+            <Original>No aurora or spacetime rupture running near here.</Original>
         </Key>
         <Key ID="STR_root_effects_ambientsfx_RuptureStarted">
             <Original>Spacetime rupture active!</Original>
@@ -189,6 +270,9 @@
         </Key>
         <Key ID="STR_root_effects_ambientsfx_ShapeWave">
             <Original>Wave</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_SkyModified">
+            <Original>Sky effect updated.</Original>
         </Key>
         <Key ID="STR_root_effects_ambientsfx_SparksStarted">
             <Original>Sparks active!</Original>

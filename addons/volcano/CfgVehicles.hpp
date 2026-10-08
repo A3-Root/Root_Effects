@@ -62,6 +62,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_AVALANCHE_DURATION,CSTRING(AttrAvalancheDuration),CSTRING(AttrAvalancheDurationTooltip),25);
             ROOT_ATTR_BOOL(ROOT_AVALANCHE_LETHAL,CSTRING(AttrAvalancheLethal),CSTRING(AttrAvalancheLethalTooltip),true);
             ROOT_ATTR_STRING(ROOT_AVALANCHE_OBJECTS,CSTRING(AttrAvalancheObjects),CSTRING(AttrAvalancheObjectsTooltip),"''");
+            ROOT_ATTR_NUMBER(ROOT_AVALANCHE_ROCKS,CSTRING(AttrAvalancheRocks),CSTRING(AttrAvalancheRocksTooltip),40);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

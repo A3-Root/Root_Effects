@@ -25,6 +25,7 @@ if (!hasInterface) exitWith {};
 
 private _distance = player distance2D _pos;
 if (_distance > ((EGVAR(main,maxViewDistance)) max 1000)) exitWith {};
+DBG(FORMAT_1("cryoBlastLocal running here with %1",_this));
 
 private _budget = (EGVAR(main,particleBudget)) max 0.1;
 

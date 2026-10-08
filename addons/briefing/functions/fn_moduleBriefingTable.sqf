@@ -45,7 +45,7 @@ if (isNull _table) exitWith {
         [LLSTRING(NoMarker)] call zen_common_fnc_showMessage;
     };
 
-    [QGVAR(startTable), [_table, _marker, _resolution, _scale, _useTerrain]] call CBA_fnc_serverEvent;
+    [QGVAR(startTable), [_table, _marker, _resolution, _scale, _useTerrain]] call EFUNC(main,serverEventLogged);
     [LLSTRING(TableStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

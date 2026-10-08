@@ -26,6 +26,7 @@ params [["_anchor", objNull, [objNull]], ["_radius", 120, [0]], ["_craterLava", 
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("volcanoStartLocal running here with %1",_this));
 
 // [anchor, radius, craterLava, lavaFlow, lightning, visuals, flickerId, nextMurmurTime]
 private _state = [_anchor, _radius, _craterLava, _lavaFlow, _lightning, [], -1, 0];

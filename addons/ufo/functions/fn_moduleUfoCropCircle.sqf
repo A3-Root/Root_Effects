@@ -34,7 +34,7 @@ if (!(["cropcircle"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_radius", "_cropType"];
 
-    [QGVAR(startCropCircle), [_pos, _radius, _cropType]] call CBA_fnc_serverEvent;
+    [QGVAR(startCropCircle), [_pos, _radius, _cropType]] call EFUNC(main,serverEventLogged);
     [LLSTRING(CropCircleStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

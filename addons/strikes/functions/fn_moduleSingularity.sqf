@@ -29,13 +29,14 @@ if (!(["singularity"] call EFUNC(main,isEffectEnabled))) exitWith {
 
 [LLSTRING(ModuleSingularity), [
     ["SLIDER:RADIUS", [LLSTRING(AttrSingularityRadius), LLSTRING(AttrSingularityRadiusTooltip)], [50, 300, 120, 0, _pos, [7, 120, 32, 1]]],
-    ["SLIDER", [LLSTRING(AttrSingularityCharge), LLSTRING(AttrSingularityChargeTooltip)], [2, 30, 6, 0]],
+    ["SLIDER", [LLSTRING(AttrSingularityCharge), LLSTRING(AttrSingularityChargeTooltip)], [SINGULARITY_MIN_CHARGE, 40, 8, 1]],
     ["SLIDER:PERCENT", [LLSTRING(AttrSingularityLethal), LLSTRING(AttrSingularityLethalTooltip)], [0, 1, 1, 0]]
 ], {
     params ["_results", "_pos"];
     _results params ["_radius", "_chargeTime", "_lethal"];
 
-    [QGVAR(startSingularity), [_pos, _radius, _chargeTime, _lethal]] call CBA_fnc_serverEvent;
+    [QGVAR(startSingularity), [_pos, _radius, _chargeTime, _lethal]] call EFUNC(main,serverEventLogged);
+    DBG(FORMAT_4("singularity requested by %1 at %2 (radius %3, damage %4)",profileName,mapGridPosition _pos,_radius,_lethal));
     [LLSTRING(SingularityStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

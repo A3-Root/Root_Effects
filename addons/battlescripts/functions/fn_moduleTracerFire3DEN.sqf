@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","TracerFire",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _activationDistance = _logic getVariable ["ROOT_TRACERS_ACTDIST", 150];
 private _red = _logic getVariable ["ROOT_TRACERS_RED", 1];

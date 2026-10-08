@@ -46,7 +46,7 @@ if (!(["freeze"] call EFUNC(main,isEffectEnabled))) exitWith {
         && {(side _x) in _sides || {(group _x) in _groups} || {_x in _players}}
     };
 
-    [QGVAR(apply), [_targets, _freeze, _useAnim, _animation]] call CBA_fnc_serverEvent;
+    [QGVAR(apply), [_targets, _freeze, _useAnim, _animation]] call EFUNC(main,serverEventLogged);
     [format [[LLSTRING(UnfrozeCount), LLSTRING(FrozeCount)] select _freeze, count _targets]] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

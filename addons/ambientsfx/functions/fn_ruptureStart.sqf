@@ -31,7 +31,12 @@ params [
     ["_fadeOut", 20, [0]],
     ["_lifetime", 180, [0]],
     ["_density", 0.5, [0]],
-    ["_fixed", false, [false]]
+    ["_fixed", false, [false]],
+    ["_sizeScale", 1, [0]],
+    ["_lengthScale", 1, [0]],
+    ["_switchInterval", 0, [0]],
+    ["_moveSpeed", 0, [0]],
+    ["_moveMode", 0, [0]]
 ];
 
 if (!isServer) exitWith {};
@@ -40,7 +45,15 @@ if (!(["rupture"] call EFUNC(main,isEffectEnabled))) exitWith {};
 private _anchorPos = +_pos;
 _anchorPos set [2, _altitude];
 
-private _anchor = ["rupture", QGVAR(ruptureLocal), [_shape, _fadeIn, _fadeOut, _lifetime, _density, _fixed, floor random 1e6], _anchorPos] call EFUNC(main,startEffect);
+private _anchor = ["rupture", QGVAR(ruptureLocal), [_fadeIn, _fadeOut, _lifetime, _density], _anchorPos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
-DBG(FORMAT_1("rupture started at altitude %1",_altitude));
+// Live settings the renderers follow, and the switch/move control. Fixed in place
+// starts the band held: it fills up once and then never changes.
+[
+    _anchor,
+    [true, !_fixed, (_sizeScale max 0.2) min 5, (_lengthScale max 0.2) min 5, _shape, floor random 1e6],
+    [_switchInterval max 0, _shape, (_moveSpeed max 0) min 100, _moveMode]
+] call FUNC(skyServer);
+
+DBG(FORMAT_4("rupture started at %1, altitude %2, shape %3, fixed %4",mapGridPosition _anchorPos,_altitude,_shape,_fixed));

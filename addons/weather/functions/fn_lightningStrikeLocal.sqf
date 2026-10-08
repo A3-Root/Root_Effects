@@ -24,6 +24,7 @@ if (!hasInterface) exitWith {};
 
 private _distance = player distance2D _pos;
 if (_distance > ((EGVAR(main,maxViewDistance)) max 3000)) exitWith {};
+DBG(FORMAT_1("lightningStrikeLocal running here with %1",_this));
 
 private _bolt = (selectRandom ["Lightning1_F", "Lightning2_F"]) createVehicleLocal _pos;
 _bolt setDir random 360;

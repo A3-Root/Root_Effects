@@ -35,7 +35,7 @@ if (!(["cryoblast"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_radius", "_duration", "_lethalCore"];
 
-    [QGVAR(startCryo), [_pos, _radius, _duration, _lethalCore]] call CBA_fnc_serverEvent;
+    [QGVAR(startCryo), [_pos, _radius, _duration, _lethalCore]] call EFUNC(main,serverEventLogged);
     [LLSTRING(CryoStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

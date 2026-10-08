@@ -23,6 +23,7 @@ params [["_anchor", objNull, [objNull]], ["_count", 15, [0]], ["_radius", 150, [
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("birdSwarmStartLocal running here with %1",_this));
 
 // [anchor, count, radius, birds]
 private _state = [_anchor, _count, _radius, []];

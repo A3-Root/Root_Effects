@@ -28,18 +28,32 @@ _strength = (_strength max 0) min 1;
 if (_strength <= 0) exitWith {};
 _radius = _radius max 1;
 
+DBG(FORMAT_3("strike damage at %1, radius %2, strength %3",mapGridPosition _pos,_radius,_strength));
+
 // The bomb carries the engine blast, crater and sound for everyone.
 private _bomb = createVehicle ["Bo_GBU12_LGB", _pos, [], 0, "CAN_COLLIDE"];
 _bomb setPosATL (_pos vectorAdd [0, 0, 0.5]);
 triggerAmmo _bomb;
 
+private _killed = 0;
+private _hit = 0;
 {
     private _target = _x;
+    _hit = _hit + 1;
     if (!(_target isKindOf "VirtualMan_F")) then {
         private _damage = _strength * linearConversion [0, _radius, _target distance2D _pos, 1, 0.25, true];
 
+        if (_damage >= 0.9 && EGVAR(main,damageAllowed)) exitWith {
+            // Core of a full-strength strike: nothing survives, ACE or not.
+            {_x setDamage 1} forEach (crew _target);
+            _target setDamage 1;
+            _killed = _killed + 1;
+        };
+
         if (_target isKindOf "CAManBase") then {
-            [_target, _damage, selectRandom ["Body", "Head", "LeftLeg", "RightLeg", "LeftArm", "RightArm"], "explosive", _source] call EFUNC(main,doDamage);
+            // ACE wounds need far more than vanilla's 0..1 to matter.
+            private _scaled = [_damage, _damage * 4] select EGVAR(main,aceMedicalLoaded);
+            [_target, _scaled, selectRandom ["Body", "Head", "LeftLeg", "RightLeg", "LeftArm", "RightArm"], "explosive", _source] call EFUNC(main,doDamage);
         } else {
             [_target, _damage, true] call EFUNC(main,doHitPointDamage);
             [_target, _damage, "Body", "explosive", _source] call EFUNC(main,doDamage);
@@ -49,6 +63,7 @@ triggerAmmo _bomb;
         };
     };
 } forEach (_pos nearEntities [["Man", "LandVehicle", "Air", "Ship", "StaticWeapon"], _radius]);
+DBG(FORMAT_2("strike damage hit %1 entities, %2 destroyed outright",_hit,_killed));
 
 if (!(EGVAR(main,damageAllowed))) exitWith {};
 
@@ -75,3 +90,4 @@ private _batch = 0;
         _batch = _batch + 1;
     };
 } forEach _structures;
+DBG(FORMAT_1("strike damage queued %1 structures",_batch));

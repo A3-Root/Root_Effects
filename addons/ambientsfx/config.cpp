@@ -12,6 +12,7 @@ class CfgPatches {
             "ROOT_Fireflies_ModuleZeus", "ROOT_Fireflies_Module3DEN",
             "ROOT_Aurora_ModuleZeus", "ROOT_Aurora_Module3DEN",
             "ROOT_Rupture_ModuleZeus", "ROOT_Rupture_Module3DEN",
+            "ROOT_ModifySky_ModuleZeus", "ROOT_ModifySky_Module3DEN",
             "ROOT_Sparks_ModuleZeus", "ROOT_Sparks_Module3DEN",
             "ROOT_BirdSwarm_ModuleZeus", "ROOT_BirdSwarm_Module3DEN"
         };

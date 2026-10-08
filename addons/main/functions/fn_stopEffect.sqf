@@ -44,4 +44,4 @@ private _toStop = if (_target isEqualType objNull) then {[_target]} else {+_anch
 _anchors = _anchors select {!isNull _x};
 GVAR(instances) set [_effectKey, _anchors];
 
-DBG(FORMAT_2("stopped effect %1 (%2 instances remain)",_effectKey,count _anchors));
+DBG(FORMAT_3("stopped effect %1 (%2 stopped, %3 instances remain)",_effectKey,count _toStop,count _anchors));

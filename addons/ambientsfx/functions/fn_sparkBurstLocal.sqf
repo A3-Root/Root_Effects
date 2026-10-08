@@ -22,6 +22,7 @@ params [["_anchor", objNull, [objNull]], ["_burstCount", 3, [0]]];
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("sparkBurstLocal running here with %1",_this));
 if ((player distance _anchor) > 200) exitWith {};
 
 private _delay = 0;

@@ -20,6 +20,7 @@ params [["_ufo", objNull, [objNull]]];
 
 if (!hasInterface) exitWith {};
 if (isNull _ufo) exitWith {};
+DBG(FORMAT_1("crossLocal running here with %1",_this));
 
 private _cloud = "#particlesource" createVehicleLocal getPos _ufo;
 _cloud setParticleCircle [0, [0, 0, 0]];

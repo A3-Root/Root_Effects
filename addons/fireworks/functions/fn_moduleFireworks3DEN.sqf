@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","Fireworks",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _duration = _logic getVariable ["ROOT_FIREWORKS_DURATION", 120];
 private _rate = _logic getVariable ["ROOT_FIREWORKS_RATE", 12];

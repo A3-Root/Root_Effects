@@ -31,7 +31,8 @@ if (!isServer) exitWith {};
 if (!(["singularity"] call EFUNC(main,isEffectEnabled))) exitWith {};
 
 _radius = (_radius max 50) min 300;
-_chargeTime = _chargeTime max 2;
+// The alarm must finish before the collapse, so the charge covers at least one.
+_chargeTime = _chargeTime max SINGULARITY_MIN_CHARGE;
 if (_lethal isEqualType false) then {_lethal = [0, 1] select _lethal};
 if (!GVAR(allowDamage)) then {_lethal = 0};
 
@@ -44,16 +45,20 @@ if (isNull _anchor) exitWith {};
 
     private _center = getPosATL _anchor;
 
+    // Everything loose is thrown: people, vehicles, boats, statics, crates and physics
+    // props. Heavier things go less far. setVelocity only takes on the owning machine,
+    // so each object is routed to its owner.
+    private _thrown = 0;
     {
         private _target = _x;
-        if (!(_target isKindOf "VirtualMan_F")) then {
+        if (!(_target isKindOf "VirtualMan_F") && _target != _anchor && {alive _target || {_target isKindOf "ThingX"}} && {isNull attachedTo _target}) then {
             private _falloff = linearConversion [0, _radius, _target distance2D _center, 1, 0.25, true];
-
-            // setVelocity only takes on the owning machine, same reason the
-            // damage helpers route: anything a player owns is remote here.
-            [QGVAR(singularityFlingLocal), [_target, _falloff], _target] call CBA_fnc_targetEvent;
+            private _massScale = linearConversion [500, 40000, getMass _target, 1, 0.35, true];
+            [QGVAR(singularityFlingLocal), [_target, _falloff * _massScale], _target] call CBA_fnc_targetEvent;
+            _thrown = _thrown + 1;
         };
-    } forEach (_center nearEntities [["Man", "LandVehicle", "Ship", "StaticWeapon"], _radius]);
+    } forEach (nearestObjects [_center, ["CAManBase", "LandVehicle", "Ship", "StaticWeapon", "Air", "ThingX", "ReammoBox_F"], _radius]);
+    DBG(FORMAT_3("singularity collapsed at %1, threw %2 objects, damage %3",mapGridPosition _center,_thrown,_lethal));
 
     // The collapse goes off like a heavy bomb: real GBU-12 blast at the core
     // plus scaled damage over the whole radius, buildings included.
@@ -68,4 +73,4 @@ if (isNull _anchor) exitWith {};
     }, [_anchor], 8] call CBA_fnc_waitAndExecute;
 }, [_anchor, _radius, _lethal], _chargeTime] call CBA_fnc_waitAndExecute;
 
-DBG(FORMAT_2("singularity charging, radius %1, charge %2",_radius,_chargeTime));
+DBG(FORMAT_4("singularity charging at %1, radius %2, charge %3, damage %4",mapGridPosition _anchor,_radius,_chargeTime,_lethal));

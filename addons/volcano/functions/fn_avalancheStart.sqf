@@ -3,9 +3,9 @@
 /*
  * Author: Root
  * Runs a scree avalanche on the server: creates the anchor, broadcasts the
- * cascade to all clients (JIP safe) and, when lethal, crushes units caught in
- * the corridor as the rock front travels down it. The instance removes itself
- * once the slide has run out.
+ * dust and scree cascade to all clients (JIP safe) and releases real physics
+ * boulders down the corridor that crush and shove whatever they hit when the
+ * slide is lethal. The instance removes itself once the slide has run out.
  *
  * Arguments:
  * 0: Head position ATL of the slide <ARRAY>
@@ -14,12 +14,13 @@
  * 3: Slide duration in seconds <NUMBER>
  * 4: Crush units caught in the corridor <BOOL>
  * 5: Comma separated vehicle classes to roll down the slope, "" for none <STRING>
+ * 6: Number of physical boulders released down the slope <NUMBER>
  *
  * Return Value:
  * None
  *
  * Example:
- * [[1000, 2000, 0], -1, 200, 25, true, "Land_MetalBarrel_F"] call root_effects_volcano_fnc_avalancheStart
+ * [[1000, 2000, 0], -1, 200, 25, true, "Land_MetalBarrel_F", 40] call root_effects_volcano_fnc_avalancheStart
  */
 
 params [
@@ -28,7 +29,8 @@ params [
     ["_length", 200, [0]],
     ["_duration", 25, [0]],
     ["_lethal", true, [false]],
-    ["_objects", "", [""]]
+    ["_objects", "", [""]],
+    ["_rockCount", 40, [0]]
 ];
 
 if (!isServer) exitWith {};
@@ -91,66 +93,12 @@ if (_classes isNotEqualTo []) then {
     }, 0.5, [_anchor, _classes, _heading, _speed, _spawned, CBA_missionTime + _duration]] call CBA_fnc_addPerFrameHandler;
 };
 
-if (_lethal) then {
-    // The kill zone is the rock mass itself: a band trailing the front and as
-    // wide as the particle spread, so anything the stones visibly roll over is
-    // hit, not only what sits on the centreline.
-    [{
-        params ["_args", "_handle"];
-        _args params ["_anchor", "_heading", "_length", "_duration", "_startTime", "_lastHit"];
-
-        if (isNull _anchor) exitWith {
-            _handle call CBA_fnc_removePerFrameHandler;
-        };
-
-        private _progress = (CBA_missionTime - _startTime) / _duration;
-        if (_progress > 1) exitWith {
-            _handle call CBA_fnc_removePerFrameHandler;
-        };
-
-        private _head = getPosATL _anchor;
-        private _frontDist = _length * _progress;
-        private _midPos = _head getPos [(_frontDist - 20) max 0, _heading];
-        private _speed = _length / _duration;
-
-        {
-            private _target = _x;
-            // Position along and across the slide, relative to its head.
-            private _rel = (getPosATL _target) vectorDiff _head;
-            private _along = (_rel select 0) * sin _heading + (_rel select 1) * cos _heading;
-            private _across = abs ((_rel select 0) * cos _heading - (_rel select 1) * sin _heading);
-            private _netId = netId _target;
-
-            if (
-                !(_target isKindOf "VirtualMan_F")
-                && {_along > _frontDist - 45 && _along < _frontDist + 5 && _across < 25}
-                && {CBA_missionTime > (_lastHit getOrDefault [_netId, -10]) + 1.5}
-            ) then {
-                _lastHit set [_netId, CBA_missionTime];
-
-                if (_target isKindOf "CAManBase") then {
-                    if (isNull objectParent _target) then {
-                        [_target, 0.6 + random 0.4, selectRandom ["Body", "LeftLeg", "RightLeg", "Head"], "explosive", _anchor] call EFUNC(main,doDamage);
-                    };
-                } else {
-                    // Hulls take spread hitpoint wear plus overall structural
-                    // damage, and get shoved downhill by the rock.
-                    [_target, 0.15 + random 0.25, true] call EFUNC(main,doHitPointDamage);
-                    [_target, 0.1 + random 0.15, "Body", "explosive", _anchor] call EFUNC(main,doDamage);
-                    private _push = [sin _heading * _speed * 0.6, cos _heading * _speed * 0.6, 1 + random 2];
-                    [QGVAR(avalanchePush), [_target, _push], _target] call CBA_fnc_targetEvent;
-                    {
-                        [_x, 0.1 + random 0.2, selectRandom ["Body", "LeftLeg", "RightLeg"], "explosive", _anchor] call EFUNC(main,doDamage);
-                    } forEach (crew _target);
-                };
-            };
-        } forEach (_midPos nearEntities [["Man", "LandVehicle", "Ship", "StaticWeapon"], 50]);
-    }, 0.5, [_anchor, _heading, _length, _duration, CBA_missionTime, createHashMap]] call CBA_fnc_addPerFrameHandler;
-};
+// Real boulders with physics roll down the corridor and do the damage on contact.
+[_anchor, _heading, _length, _duration, _rockCount, _lethal] call FUNC(avalancheRocks);
 
 [{
     params ["_anchor"];
     ["avalanche", _anchor] call EFUNC(main,stopEffect);
 }, [_anchor], _duration + 12] call CBA_fnc_waitAndExecute;
 
-DBG(FORMAT_2("avalanche started, heading %1, length %2",_heading,_length));
+DBG(FORMAT_4("avalanche started at %1, heading %2, length %3, boulders %4",mapGridPosition _pos,round _heading,_length,_rockCount));

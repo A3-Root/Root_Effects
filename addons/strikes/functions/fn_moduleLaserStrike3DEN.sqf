@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","LaserStrike",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _chargeTime = _logic getVariable ["ROOT_LASER_CHARGE", 5];
 private _beamTime = _logic getVariable ["ROOT_LASER_BEAM", 3];

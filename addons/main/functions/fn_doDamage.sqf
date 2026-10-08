@@ -27,6 +27,8 @@ if (!isServer) exitWith {};
 if (!GVAR(damageAllowed)) exitWith {};
 if (isNull _unit || {!alive _unit} || _damage <= 0) exitWith {};
 
+DBG(FORMAT_4("damage %1 (%2) to %3 from %4",_damage,_damageType,typeOf _unit,typeOf _source));
+
 if (local _unit) exitWith {
     [_unit, _damage, _bodyPart, _damageType, _source] call FUNC(doDamageLocal);
 };

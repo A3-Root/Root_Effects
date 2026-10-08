@@ -23,8 +23,28 @@ if (isNull _target) exitWith {};
 
 // Mostly upward with a lateral kick, so the pile comes apart as it rises.
 private _lift = 12 + random 14;
-_target setVelocity [
+private _velocity = [
     (random 16 - 8) * _strength,
     (random 16 - 8) * _strength,
     _lift * _strength
 ];
+
+// A soldier on foot ignores setVelocity while his animation holds him to the ground,
+// so a heavy throwaway prop is hooked to him for an instant to knock him into ragdoll.
+if (_target isKindOf "CAManBase" && {isNull objectParent _target}) exitWith {
+    private _hook = "Land_PenBlack_F" createVehicleLocal [0, 0, 0];
+    _hook attachTo [_target, [0, 0, 0], "Spine3"];
+    _target setVelocity _velocity;
+    [{
+        params ["_hook", "_target", "_velocity"];
+        _hook setMass 1e10;
+        _hook setVelocity _velocity;
+        [{
+            params ["_hook"];
+            detach _hook;
+            deleteVehicle _hook;
+        }, [_hook], 0.05] call CBA_fnc_waitAndExecute;
+    }, [_hook, _target, _velocity], 0.1] call CBA_fnc_waitAndExecute;
+};
+
+_target setVelocity _velocity;

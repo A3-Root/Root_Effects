@@ -16,6 +16,10 @@
  * 5: Strikes damage nearby units <BOOL>
  * 6: Pull a storm sky over the mission for the duration <BOOL>
  * 7: Storm strength 0..1, scales weather, strike rate and bolt light <NUMBER>
+ * 8: Spawn a tornado <BOOL>
+ * 9: Tornado width in meters <NUMBER>
+ * 10: Tornado travel speed in m/s <NUMBER>
+ * 11: Tornado throws and damages what it passes <BOOL>
  *
  * Return Value:
  * None
@@ -32,7 +36,11 @@ params [
     ["_maxInterval", 20, [0]],
     ["_damage", false, [false]],
     ["_ambience", true, [false]],
-    ["_strength", 0.7, [0]]
+    ["_strength", 0.7, [0]],
+    ["_tornado", false, [false]],
+    ["_tornadoSize", 120, [0]],
+    ["_tornadoSpeed", 8, [0]],
+    ["_tornadoFling", false, [false]]
 ];
 
 if (!isServer) exitWith {};
@@ -64,6 +72,51 @@ if (_ambience) then {
         30 setRain (0.3 + 0.7 * _strength);
         30 setFog [0.08 + 0.3 * _strength, 0.015, 0];
     }, [_strength], 1] call CBA_fnc_waitAndExecute;
+};
+
+// Optional tornado wandering through the storm. Its path is seeded and computed
+// from mission time on every machine, so only the seed is broadcast.
+if (_tornado) then {
+    _tornadoSize = (_tornadoSize max 50) min 300;
+    _tornadoSpeed = (_tornadoSpeed max 1) min 40;
+    private _seed = floor random 1e6;
+    private _center = getPosATL _anchor;
+    [QGVAR(tornadoLocal), [_anchor, _radius, _tornadoSize, _tornadoSpeed, _seed], _anchor] call CBA_fnc_globalEventJIP;
+    DBG(FORMAT_4("tornado spawned, width %1, speed %2, throws %3, seed %4",_tornadoSize,_tornadoSpeed,_tornadoFling,_seed));
+
+    if (_tornadoFling) then {
+        [{
+            params ["_args", "_handle"];
+            _args params ["_anchor", "_center", "_radius", "_size", "_speed", "_seed", "_lastHit"];
+            if (isNull _anchor) exitWith {_handle call CBA_fnc_removePerFrameHandler};
+
+            private _pos = [_center, _radius, _speed, _seed] call FUNC(tornadoPos);
+            private _reach = _size * 0.45;
+            {
+                private _target = _x;
+                private _netId = netId _target;
+                if (
+                    !(_target isKindOf "VirtualMan_F")
+                    && {isNull attachedTo _target}
+                    && {CBA_missionTime > (_lastHit getOrDefault [_netId, -10]) + 1}
+                ) then {
+                    _lastHit set [_netId, CBA_missionTime];
+                    private _offset = (getPosATL _target) vectorDiff _pos;
+                    private _distance = vectorMagnitude [_offset select 0, _offset select 1, 0];
+                    private _pull = linearConversion [0, _reach, _distance, 1, 0.2, true];
+                    private _massScale = linearConversion [500, 40000, getMass _target, 1, 0.25, true];
+                    // Spin around the core, drawn inwards and lifted.
+                    private _tangent = vectorNormalized [-(_offset select 1), _offset select 0, 0];
+                    private _inward = vectorNormalized [-(_offset select 0), -(_offset select 1), 0];
+                    private _velocity = (_tangent vectorMultiply (14 * _pull)) vectorAdd (_inward vectorMultiply (5 * _pull)) vectorAdd [0, 0, 10 * _pull];
+                    [QGVAR(tornadoFling), [_target, _velocity vectorMultiply _massScale], _target] call CBA_fnc_targetEvent;
+                    if (_pull > 0.5) then {
+                        [_target, 0.05 * _pull, "Body", "falling", _anchor] call EFUNC(main,doDamage);
+                    };
+                };
+            } forEach (nearestObjects [_pos, ["CAManBase", "LandVehicle", "Ship", "StaticWeapon", "Air", "ThingX", "ReammoBox_F"], _reach]);
+        }, 0.5, [_anchor, _center, _radius, _tornadoSize, _tornadoSpeed, _seed, createHashMap]] call CBA_fnc_addPerFrameHandler;
+    };
 };
 
 if (_duration > 0) then {
@@ -111,4 +164,4 @@ if (_duration > 0) then {
     };
 }, 0.5, [_anchor, _radius, _minInterval, _maxInterval, _damage, 0, _ambience, _prevWeather, _strength]] call CBA_fnc_addPerFrameHandler;
 
-DBG(FORMAT_2("lightning storm started, radius %1, duration %2",_radius,_duration));
+DBG(FORMAT_4("lightning storm started at %1, radius %2, duration %3, tornado %4",mapGridPosition _pos,_radius,_duration,_tornado));

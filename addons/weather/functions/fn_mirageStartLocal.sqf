@@ -23,6 +23,7 @@ params [["_anchor", objNull, [objNull]], ["_radius", 200, [0]], ["_intensity", 0
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
+DBG(FORMAT_1("mirageStartLocal running here with %1",_this));
 
 // [anchor, radius, intensity, ppHandle, shimmerEmitter, phase]
 private _state = [_anchor, _radius, _intensity, -1, objNull, 0];

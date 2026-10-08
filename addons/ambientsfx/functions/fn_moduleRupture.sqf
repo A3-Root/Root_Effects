@@ -34,12 +34,17 @@ if (!(["rupture"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER", [LLSTRING(AttrSkyFadeOut), LLSTRING(AttrSkyFadeOutTooltip)], [0.5, 120, 20, 1]],
     ["SLIDER", [LLSTRING(AttrSkyLifetime), LLSTRING(AttrSkyLifetimeTooltip)], [5, 600, 180, 0]],
     ["SLIDER:PERCENT", [LLSTRING(AttrSkyDensity), LLSTRING(AttrSkyDensityTooltip)], [0.1, 1, 0.5, 0]],
-    ["CHECKBOX", [LLSTRING(AttrSkyFixed), LLSTRING(AttrSkyFixedTooltip)], false]
+    ["SLIDER", [LLSTRING(AttrSkySize), LLSTRING(AttrSkySizeTooltip)], [0.3, 3, 1, 1]],
+    ["SLIDER", [LLSTRING(AttrSkyLength), LLSTRING(AttrSkyLengthTooltip)], [0.3, 3, 1, 1]],
+    ["SLIDER", [LLSTRING(AttrSkySwitch), LLSTRING(AttrSkySwitchTooltip)], [0, 900, 0, 0]],
+    ["SLIDER", [LLSTRING(AttrSkyMoveSpeed), LLSTRING(AttrSkyMoveSpeedTooltip)], [0, 50, 0, 1]],
+    ["COMBO", [LLSTRING(AttrSkyMoveMode), LLSTRING(AttrSkyMoveModeTooltip)], [[0, 1], [LLSTRING(MoveDrift), LLSTRING(MoveWander)], 0]]
 ], {
     params ["_results", "_pos"];
-    _results params ["_altitude", "_shape", "_fadeIn", "_fadeOut", "_lifetime", "_density", "_fixed"];
+    _results params ["_altitude", "_shape", "_fadeIn", "_fadeOut", "_lifetime", "_density", "_sizeScale", "_lengthScale", "_switchInterval", "_moveSpeed", "_moveMode"];
 
-    [QGVAR(startRupture), [_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, _fixed]] call CBA_fnc_serverEvent;
+    [QGVAR(startRupture), [_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, false, _sizeScale, _lengthScale, _switchInterval, _moveSpeed, _moveMode]] call EFUNC(main,serverEventLogged);
+    DBG(FORMAT_3("rupture requested by %1 at %2, shape %3",profileName,mapGridPosition _pos,_shape));
     [LLSTRING(RuptureStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

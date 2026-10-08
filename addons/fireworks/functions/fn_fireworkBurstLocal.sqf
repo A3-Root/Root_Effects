@@ -25,6 +25,7 @@
 params [["_burstPos", [0, 0, 0], [[]], 3], ["_colors", [[1, 1, 1], [1, 1, 1]], [[]], 2], ["_sounds", true, [false]], ["_scale", 1, [0]], ["_allowSub", true, [false]]];
 
 if (!hasInterface) exitWith {};
+DBG(FORMAT_1("fireworkBurstLocal running here with %1",_this));
 
 _colors params [["_primary", [1, 1, 1], [[]], 3], ["_secondary", [1, 1, 1], [[]], 3]];
 

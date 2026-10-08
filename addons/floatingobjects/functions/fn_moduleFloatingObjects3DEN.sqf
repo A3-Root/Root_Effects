@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","FloatingObjects",mapGridPosition _logic,allVariables _logic));
+
 private _elevation = _logic getVariable ["ROOT_FLOAT_ELEVATION", 5];
 private _allowDamage = _logic getVariable ["ROOT_FLOAT_DAMAGE", true];
 private _allowSimulation = _logic getVariable ["ROOT_FLOAT_SIMULATION", false];

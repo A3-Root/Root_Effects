@@ -42,10 +42,10 @@ if (!(["meteors"] call EFUNC(main,isEffectEnabled))) exitWith {
     _results params ["_meteors", "_meteorFreq", "_comets", "_cometFreq", "_lethal", "_structureDamage", "_targetMode", "_targetRadius", "_owners"];
 
     if (_meteors) then {
-        [QGVAR(startMeteors), [_pos, _meteorFreq, _lethal, _targetMode, _targetRadius, _owners, _structureDamage]] call CBA_fnc_serverEvent;
+        [QGVAR(startMeteors), [_pos, _meteorFreq, _lethal, _targetMode, _targetRadius, _owners, _structureDamage]] call EFUNC(main,serverEventLogged);
     };
     if (_comets) then {
-        [QGVAR(startComets), [_pos, _cometFreq, _targetMode, _targetRadius, _owners]] call CBA_fnc_serverEvent;
+        [QGVAR(startComets), [_pos, _cometFreq, _targetMode, _targetRadius, _owners]] call EFUNC(main,serverEventLogged);
     };
 
     [LLSTRING(Configured)] call zen_common_fnc_showMessage;

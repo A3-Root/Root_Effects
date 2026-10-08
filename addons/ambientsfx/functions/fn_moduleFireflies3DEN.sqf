@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","Fireflies",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _altitude = _logic getVariable ["ROOT_FIREFLIES_ALTITUDE", 1];
 private _activationDistance = _logic getVariable ["ROOT_FIREFLIES_ACTDIST", 100];

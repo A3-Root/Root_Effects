@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","CarpetStrike",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _planeClass = _logic getVariable ["ROOT_CARPET_PLANE", "B_Plane_CAS_01_dynamicLoadout_F"];
 private _planeCount = _logic getVariable ["ROOT_CARPET_PLANES", 1];

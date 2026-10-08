@@ -39,7 +39,7 @@ if (!(["emp"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_radius", "_duration", "_killEngines", "_fuelDrain", "_hud", "_electronics", "_permanent"];
 
-    [QGVAR(start), [_pos, _radius, _duration, _killEngines, _fuelDrain, _hud, _electronics, _permanent]] call CBA_fnc_serverEvent;
+    [QGVAR(start), [_pos, _radius, _duration, _killEngines, _fuelDrain, _hud, _electronics, _permanent]] call EFUNC(main,serverEventLogged);
     [LLSTRING(Started)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

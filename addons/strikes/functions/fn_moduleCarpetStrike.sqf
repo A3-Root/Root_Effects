@@ -39,7 +39,7 @@ if (!(["carpetstrike"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_planeClass", "_planeCount", "_bombClass", "_heading", "_bombCount", "_length", "_dropDelay"];
 
-    [QGVAR(startCarpet), [_pos, _planeClass, _planeCount, _bombClass, _heading, _bombCount, _length, _dropDelay]] call CBA_fnc_serverEvent;
+    [QGVAR(startCarpet), [_pos, _planeClass, _planeCount, _bombClass, _heading, _bombCount, _length, _dropDelay]] call EFUNC(main,serverEventLogged);
     [LLSTRING(CarpetStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

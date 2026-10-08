@@ -34,7 +34,7 @@ if (!(["birdswarm"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_count", "_radius"];
 
-    [QGVAR(startBirdSwarm), [_pos, _count, _radius]] call CBA_fnc_serverEvent;
+    [QGVAR(startBirdSwarm), [_pos, _count, _radius]] call EFUNC(main,serverEventLogged);
     [LLSTRING(BirdSwarmStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

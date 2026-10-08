@@ -41,7 +41,7 @@ if (!(["aaa"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_radius", "_altitude", "_lethal", "_damageAir", "_damageInf", "_burstDelay", "_smokeOnly", "_spread", "_fireRate"];
 
-    [QGVAR(startAAA), [_pos, _radius, _altitude, _lethal, _damageAir, _damageInf, _burstDelay, _smokeOnly, _spread, _fireRate]] call CBA_fnc_serverEvent;
+    [QGVAR(startAAA), [_pos, _radius, _altitude, _lethal, _damageAir, _damageInf, _burstDelay, _smokeOnly, _spread, _fireRate]] call EFUNC(main,serverEventLogged);
     [LLSTRING(AaaStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

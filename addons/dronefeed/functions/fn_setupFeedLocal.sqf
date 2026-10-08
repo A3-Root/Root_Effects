@@ -30,6 +30,7 @@
  */
 
 if (!hasInterface) exitWith {};
+DBG(FORMAT_1("setupFeedLocal running here with %1",_this));
 
 params [
     ["_anchor", objNull, [objNull]],

@@ -24,6 +24,7 @@ params [["_impactPos", [0, 0, 0], [[]], 3], ["_velocityX", 0, [0]], ["_velocityY
 
 if (!hasInterface) exitWith {};
 if ((player distance2D _impactPos) > ((EGVAR(main,maxViewDistance)) max 2000)) exitWith {};
+DBG(FORMAT_1("meteorImpactLocal running here with %1",_this));
 
 private _budget = (EGVAR(main,particleBudget)) max 0.1;
 

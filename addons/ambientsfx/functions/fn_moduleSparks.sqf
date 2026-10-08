@@ -34,7 +34,7 @@ if (!(["sparks"] call EFUNC(main,isEffectEnabled))) exitWith {
     params ["_results", "_pos"];
     _results params ["_altitude", "_sparkDelay"];
 
-    [QGVAR(startSparks), [_pos, _altitude, _sparkDelay]] call CBA_fnc_serverEvent;
+    [QGVAR(startSparks), [_pos, _altitude, _sparkDelay]] call EFUNC(main,serverEventLogged);
     [LLSTRING(SparksStarted)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;

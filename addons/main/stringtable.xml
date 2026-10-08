@@ -31,6 +31,15 @@
         <Key ID="STR_root_effects_main_CategoryWeather">
             <Original>Root's Effects - Weather</Original>
         </Key>
+        <Key ID="STR_root_effects_main_DebugChat">
+            <Original>RPT log + chat for Zeus/admins</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_DebugOff">
+            <Original>Off</Original>
+        </Key>
+        <Key ID="STR_root_effects_main_DebugRpt">
+            <Original>RPT log</Original>
+        </Key>
         <Key ID="STR_root_effects_main_EffectDisabled">
             <Original>This effect is disabled by the server's CBA settings.</Original>
         </Key>
@@ -53,10 +62,10 @@
             <Original>Global kill-switch for all damage dealt by effect modules (volcano lethality, strikes, acid rain and so on).</Original>
         </Key>
         <Key ID="STR_root_effects_main_SettingDebug">
-            <Original>Verbose Debug Logging</Original>
+            <Original>Debug Output</Original>
         </Key>
         <Key ID="STR_root_effects_main_SettingDebugTooltip">
-            <Original>Writes detailed effect lifecycle information to the RPT log for troubleshooting.</Original>
+            <Original>Logs what every module does, where, when and for whom: Zeus requests, effect starts and stops, client side rendering, damage dealt and rejected requests. RPT writes it to the log of each machine; RPT + Chat also shows it in system chat to Zeus users and admins, including lines from the server and headless clients.</Original>
         </Key>
         <Key ID="STR_root_effects_main_SettingEnabled">
             <Original>Enable Root's Effects</Original>

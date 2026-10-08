@@ -18,9 +18,19 @@
 
 params [["_effectKey", "", [""]]];
 
-if (!GVAR(enabled)) exitWith {false};
+if (!GVAR(enabled)) exitWith {
+    DBG(FORMAT_1("effect %1 rejected: Root's Effects is disabled in the CBA settings",_effectKey));
+    false
+};
 
 private _entry = GVAR(effectRegistry) getOrDefault [_effectKey, []];
-if (_entry isEqualTo []) exitWith {false};
+if (_entry isEqualTo []) exitWith {
+    DBG(FORMAT_1("effect %1 rejected: not registered",_effectKey));
+    false
+};
 
-missionNamespace getVariable [_entry select 1, true]
+private _enabled = missionNamespace getVariable [_entry select 1, true];
+if (!_enabled) then {
+    DBG(FORMAT_2("effect %1 rejected: disabled by setting %2",_effectKey,_entry select 1));
+};
+_enabled

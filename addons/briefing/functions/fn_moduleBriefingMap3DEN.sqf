@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","BriefingMap",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _dir = getDir _logic;
 private _zoom = _logic getVariable ["ROOT_BMAP_ZOOM", 0.1];

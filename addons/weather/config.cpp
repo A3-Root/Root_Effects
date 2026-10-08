@@ -38,3 +38,11 @@ class Extended_PostInit_EventHandlers {
 };
 
 #include "CfgVehicles.hpp"
+
+class CfgSounds {
+    class GVAR(tornadoWind) {
+        name = QGVAR(tornadoWind);
+        sound[] = {"A3\Sounds_F\ambient\winds\wind-synth-fast.wss", "db+25", 0.6};
+        titles[] = {};
+    };
+};

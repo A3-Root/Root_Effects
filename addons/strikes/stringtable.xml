@@ -137,7 +137,7 @@
             <Original>Charge Time</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrSingularityChargeTooltip">
-            <Original>Seconds the anomaly builds up before it collapses.</Original>
+            <Original>Seconds the anomaly builds up before it collapses. Never shorter than one full warning alarm (about 7 seconds); longer charges repeat the alarm, and the collapse only comes after the last one ends.</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrSingularityLethal">
             <Original>Damage</Original>

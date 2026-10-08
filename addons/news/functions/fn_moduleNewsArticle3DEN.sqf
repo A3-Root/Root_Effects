@@ -24,6 +24,8 @@ if (!_activated) exitWith {};
 if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
+
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","NewsArticle",mapGridPosition _logic,allVariables _logic));
 if (!(["news"] call EFUNC(main,isEffectEnabled))) exitWith {};
 
 private _title = _logic getVariable ["ROOT_NEWS_TITLE", ""];

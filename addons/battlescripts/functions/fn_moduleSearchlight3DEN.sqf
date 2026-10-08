@@ -25,6 +25,8 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","Searchlight",mapGridPosition _logic,allVariables _logic));
+
 private _pos = getPosATL _logic;
 private _alarm = _logic getVariable ["ROOT_SEARCHLIGHT_ALARM", false];
 private _attach = _logic getVariable ["ROOT_SEARCHLIGHT_ATTACH", false];
