@@ -33,6 +33,7 @@ private _marker = _logic getVariable ["ROOT_BTABLE_MARKER", ""];
 private _resolution = _logic getVariable ["ROOT_BTABLE_RESOLUTION", 20];
 private _scale = _logic getVariable ["ROOT_BTABLE_SCALE", 1];
 private _useTerrain = _logic getVariable ["ROOT_BTABLE_TERRAIN", true];
+private _heightOffset = _logic getVariable ["ROOT_BTABLE_HEIGHT", 0.4];
 
 // Use a synchronized table, or the nearest static object to the module.
 private _table = objNull;
@@ -52,4 +53,4 @@ if (isNull _table) exitWith {
     DBG("briefing table start rejected, no table object found near the module");
 };
 
-[_table, _marker, _resolution, _scale, _useTerrain] call FUNC(briefingTableStart);
+[_table, _marker, _resolution, _scale, _useTerrain, _heightOffset] call FUNC(briefingTableStart);

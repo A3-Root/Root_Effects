@@ -32,18 +32,17 @@ _intensity = (_intensity max 0.1) min 1;
 
 DBG(FORMAT_4("acid rain local start, radius %1, tint %2, intensity %3, weather rain %4",_radius,_tint,_intensity,_weatherRain));
 
-// Rain streaks: the engine's own rain texture on camera-facing billboards, tinted
-// sickly green and large enough to read as a real downpour. Weight must stay well
-// above volume or the drops float and drift upwards.
+// Rain drops: the original acid rain particle (a green Universal sprite), made
+// heavy so it falls instead of floating up. Drops start 30-40 m above the camera
+// and fall the whole way down, so the rain comes out of the sky rather than
+// appearing just over the player's head.
 private _fnc_rainParams = {
     params ["_emitter", "_intensity"];
-    private _alpha = 0.45 + 0.4 * _intensity;
-    private _spread = 16 + 14 * _intensity;
+    private _spread = 18 + 12 * _intensity;
     _emitter setParticleCircle [0, [0, 0, 0]];
-    _emitter setParticleRandom [0.3, [_spread, _spread, 3], [0.3, 0.3, 2], 0, 0.25, [0.05, 0.1, 0.05, 0.1], 0, 0];
-    // Particle shapes must be models (.p3d); a texture here crashes the game.
-    _emitter setParticleParams [["\A3\data_f\RainDrop.p3d", 1, 0, 1], "", "SpaceObject", 1, 2.2, [0, 0, 0], [0, 0, -14], 0, 20, 1, 0, [0.6 + 0.6 * _intensity], [[0.55, 0.9, 0.2, _alpha], [0.5, 0.85, 0.15, _alpha * 0.85]], [1], 0, 0, "", "", _emitter, 0, true, 0, [[0.5, 0.9, 0.15, _alpha * 0.3]]];
-    _emitter setDropInterval ((0.0008 / _intensity) / ((EGVAR(main,particleBudget)) max 0.1));
+    _emitter setParticleRandom [0.2, [_spread, _spread, 5], [0.5, 0.5, 1], 0, 0, [0, 0, 0, 0], 0, 0];
+    _emitter setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 7, 1], "", "SpaceObject", 1, 2.2, [0, 0, 0], [0, 0, -22], 1, 20, 1, 0, [0.12 + 0.06 * _intensity, 0.06 + 0.04 * _intensity], [[0.5, 0.75, 0.25, 0.85], [0.45, 0.65, 0.2, 0.6]], [1], 1, 0, "", "", _emitter];
+    _emitter setDropInterval ((0.0007 / _intensity) / ((EGVAR(main,particleBudget)) max 0.1));
 };
 
 // Engine rain tint for this zone only: rain params are local to each client, so the
@@ -120,7 +119,7 @@ private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _inte
         };
 
         private _camPos = AGLToASL positionCameraToWorld [0, 0, 0];
-        _rain setPosASL (_camPos vectorAdd [0, 0, 22]);
+        _rain setPosASL (_camPos vectorAdd [0, 0, 35]);
         _mist setPosATL [_camPos select 0, _camPos select 1, 0];
     } else {
         if (!isNull _rain) then {

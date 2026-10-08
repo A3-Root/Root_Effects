@@ -39,7 +39,7 @@ if (!(["lightningstorm"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER:PERCENT", [LLSTRING(AttrLightningStrength), LLSTRING(AttrLightningStrengthTooltip)], [0, 1, 0.7, 0]],
     ["CHECKBOX", [LLSTRING(AttrTornado), LLSTRING(AttrTornadoTooltip)], false],
     ["SLIDER", [LLSTRING(AttrTornadoSize), LLSTRING(AttrTornadoSizeTooltip)], [50, 300, 120, 0]],
-    ["SLIDER", [LLSTRING(AttrTornadoSpeed), LLSTRING(AttrTornadoSpeedTooltip)], [1, 40, 8, 0]],
+    ["SLIDER", [LLSTRING(AttrTornadoSpeed), LLSTRING(AttrTornadoSpeedTooltip)], [1, 40, 15, 0]],
     ["CHECKBOX", [LLSTRING(AttrTornadoFling), LLSTRING(AttrTornadoFlingTooltip)], false]
 ], {
     params ["_results", "_pos"];

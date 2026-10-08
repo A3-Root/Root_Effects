@@ -56,56 +56,25 @@ if (_heading < 0) then {
     };
 };
 
-// Boulder paths are simulated from this seed on every machine.
 _rockCount = round ((_rockCount max 0) min 80);
-private _seed = floor random 1e6;
-private _startTime = CBA_missionTime;
 
-private _anchor = ["avalanche", QGVAR(avalancheLocal), [_heading, _length, _duration, _rockCount, _seed, _startTime], _pos] call EFUNC(main,startEffect);
+private _anchor = ["avalanche", QGVAR(avalancheLocal), [_heading, _length, _duration], _pos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
-// Optional real props tumbling down the corridor alongside the particle rocks.
-// The curator names one or more vehicle classes; each spawned prop is tracked on
-// the anchor so the termination module and the slide cleanup remove any that
-// linger.
+// Real physics boulders, plus any custom classes the curator named, roll down the
+// corridor and do the damage on contact; the moving front crushes what it covers.
 private _classes = (_objects splitString ",") apply {trim _x};
-_classes = _classes select {_x isNotEqualTo "" && {isClass (configFile >> "CfgVehicles" >> _x)}};
-if (_classes isNotEqualTo []) then {
-    private _spawned = [];
-    _anchor setVariable [QEGVAR(main,attachedObjects), _spawned];
-    private _speed = _length / _duration;
-
-    [{
-        params ["_args", "_handle"];
-        _args params ["_anchor", "_classes", "_heading", "_speed", "_spawned", "_endTime"];
-
-        if (isNull _anchor || CBA_missionTime > _endTime) exitWith {
-            _handle call CBA_fnc_removePerFrameHandler;
-        };
-
-        // Drop the prop just above the head of the slide, scattered across the
-        // corridor width, and shove it down the slope.
-        private _spawnPos = (getPosATL _anchor) getPos [3 + random 8, _heading + (random 50 - 25)];
-        private _object = createVehicle [selectRandom _classes, _spawnPos, [], 0, "CAN_COLLIDE"];
-        _object setPosATL (_spawnPos vectorAdd [0, 0, 2]);
-        _object setVelocity [sin _heading * _speed, cos _heading * _speed, 1];
-        _spawned pushBack _object;
-
-        // Clear each prop a few seconds after it has tumbled so they do not pile
-        // up at the foot of the slope for the whole slide.
-        [{
-            params ["_object"];
-            deleteVehicle _object;
-        }, [_object], 8] call CBA_fnc_waitAndExecute;
-    }, 0.5, [_anchor, _classes, _heading, _speed, _spawned, CBA_missionTime + _duration]] call CBA_fnc_addPerFrameHandler;
+private _unknown = _classes select {_x isNotEqualTo "" && {!isClass (configFile >> "CfgVehicles" >> _x)}};
+if (_unknown isNotEqualTo []) then {
+    DBG(FORMAT_1("avalanche ignoring unknown classes %1",_unknown));
 };
+_classes = _classes select {_x isNotEqualTo "" && {isClass (configFile >> "CfgVehicles" >> _x)}};
+[_anchor, _heading, _length, _duration, _rockCount, _classes, _lethal] call FUNC(avalancheRocks);
 
-// Real boulders with physics roll down the corridor and do the damage on contact.
-[_anchor, _heading, _length, _duration, _rockCount, _seed, _startTime, _lethal] call FUNC(avalancheRocks);
-
+// Debris lingers a little after the dust settles before the instance ends.
 [{
     params ["_anchor"];
     ["avalanche", _anchor] call EFUNC(main,stopEffect);
-}, [_anchor], _duration + 12] call CBA_fnc_waitAndExecute;
+}, [_anchor], _duration + 25] call CBA_fnc_waitAndExecute;
 
 DBG(FORMAT_4("avalanche started at %1, heading %2, length %3, boulders %4",mapGridPosition _pos,round _heading,_length,_rockCount));

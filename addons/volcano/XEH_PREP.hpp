@@ -11,5 +11,4 @@ PREP(moduleAvalanche);
 PREP(moduleAvalanche3DEN);
 PREP(avalancheStart);
 PREP(avalancheRocks);
-PREP(avalancheRockPaths);
 PREP(avalancheLocal);

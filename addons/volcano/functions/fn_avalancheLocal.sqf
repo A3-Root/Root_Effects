@@ -12,18 +12,15 @@
  * 1: Travel heading in degrees <NUMBER>
  * 2: Slide length in meters <NUMBER>
  * 3: Slide duration in seconds <NUMBER>
- * 4: Boulder count <NUMBER>
- * 5: Boulder path seed <NUMBER>
- * 6: Mission time the slide started <NUMBER>
  *
  * Return Value:
  * None
  *
  * Example:
- * [_anchor, 90, 200, 25, 40, 1234, CBA_missionTime] call root_effects_volcano_fnc_avalancheLocal
+ * [_anchor, 90, 200, 25] call root_effects_volcano_fnc_avalancheLocal
  */
 
-params [["_anchor", objNull, [objNull]], ["_heading", 0, [0]], ["_length", 200, [0]], ["_duration", 25, [0]], ["_rockCount", 0, [0]], ["_seed", 0, [0]], ["_startTime", 0, [0]]];
+params [["_anchor", objNull, [objNull]], ["_heading", 0, [0]], ["_length", 200, [0]], ["_duration", 25, [0]]];
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
@@ -94,59 +91,47 @@ playSound (selectRandom [QGVAR(earthquake_1), QGVAR(earthquake_2)]);
     _soundSource say3D [selectRandom [QGVAR(murmur), QGVAR(earthquake_2)], 1500];
 }, 2, [_anchor, _soundSource, _heading, _length, _duration, CBA_missionTime]] call CBA_fnc_addPerFrameHandler;
 
-// Big boulders following the same seeded paths the server uses for damage. Each
-// is a local simple object moved along its path and rolled by the distance it
-// covered, so it tumbles the way it travels.
-if (_rockCount > 0) then {
-    private _rocks = [_pos, _heading, _length, _duration, _rockCount, _seed] call FUNC(avalancheRockPaths);
-    private _objects = _rocks apply {
-        _x params ["", "_model", "_scale", "", "_path"];
-        private _rock = createSimpleObject [_model, _path select 0, true];
-        _rock setObjectScale _scale;
-        _rock hideObject true;
-        _rock
+// Rocks (and carried custom models) drawn on the server's physics carriers. A
+// simple object cannot be attached to a physics prop, so each one is moved onto
+// its carrier every frame from the carrier's rendered position and orientation.
+[{
+    params ["_args", "_handle"];
+    _args params ["_anchor", "_drawn"];
+
+    if (isNull _anchor) exitWith {
+        {deleteVehicle _y} forEach _drawn;
+        DBG(FORMAT_1("avalanche local: %1 drawn rocks removed",count _drawn));
+        _handle call CBA_fnc_removePerFrameHandler;
     };
-    DBG(FORMAT_2("avalanche drawing %1 boulders here (seed %2)",count _objects,_seed));
 
-    [{
-        params ["_args", "_handle"];
-        _args params ["_anchor", "_rocks", "_objects", "_startTime"];
-
-        if (isNull _anchor) exitWith {
-            {deleteVehicle _x} forEach _objects;
-            _handle call CBA_fnc_removePerFrameHandler;
-        };
-
-        private _elapsed = CBA_missionTime - _startTime;
-        {
-            _x params ["_release", "", "", "_radius", "_path", "_rolled"];
-            private _rock = _objects select _forEachIndex;
-            private _t = _elapsed - _release;
-            if (_t < 0) then {continue};
-            if (isObjectHidden _rock) then {_rock hideObject false};
-
-            private _last = (count _path) - 1;
-            private _f = (_t / 0.1) min _last;
-            private _i = floor _f;
-            private _j = (_i + 1) min _last;
-            private _frac = _f - _i;
-            private _a = _path select _i;
-            private _b = _path select _j;
-            private _p = _a vectorAdd ((_b vectorDiff _a) vectorMultiply _frac);
-
-            // Roll about the axis square to the travel direction.
-            private _travel = [(_b select 0) - (_a select 0), (_b select 1) - (_a select 1), 0];
-            if (vectorMagnitude _travel > 0.001) then {
-                private _fwd = vectorNormalized _travel;
-                private _angle = ((_rolled select _i) + ((_rolled select _j) - (_rolled select _i)) * _frac) / (_radius max 0.1) * 57.2958;
-                private _up = ([0, 0, 1] vectorMultiply cos _angle) vectorAdd (_fwd vectorMultiply sin _angle);
-                private _dir = (_fwd vectorMultiply cos _angle) vectorDiff ([0, 0, 1] vectorMultiply sin _angle);
-                _rock setVectorDirAndUp [_dir, _up];
+    {
+        private _carrier = _x;
+        if (!isNull _carrier) then {
+            private _key = netId _carrier;
+            private _rock = _drawn getOrDefault [_key, objNull];
+            if (isNull _rock) then {
+                private _model = _carrier getVariable [QGVAR(rockModel), ""];
+                if (_model isNotEqualTo "") then {
+                    _rock = createSimpleObject [_model, getPosASLVisual _carrier, true];
+                    _rock setObjectScale (_carrier getVariable [QGVAR(rockScale), 1]);
+                    _drawn set [_key, _rock];
+                };
             };
-            _rock setPosASL _p;
-        } forEach _rocks;
-    }, 0, [_anchor, _rocks, _objects, _startTime]] call CBA_fnc_addPerFrameHandler;
-};
+            if (!isNull _rock) then {
+                _rock setVectorDirAndUp [vectorDirVisual _carrier, vectorUpVisual _carrier];
+                _rock setPosWorld (getPosWorldVisual _carrier);
+            };
+        };
+    } forEach (_anchor getVariable [QGVAR(avalancheCarriers), []]);
+
+    // Carriers cleared by the server take their rock with them.
+    {
+        if (isNull (objectFromNetId _x)) then {
+            deleteVehicle _y;
+            _drawn deleteAt _x;
+        };
+    } forEach +_drawn;
+}, 0, [_anchor, createHashMap]] call CBA_fnc_addPerFrameHandler;
 
 // The rock settles before the dust does.
 [{

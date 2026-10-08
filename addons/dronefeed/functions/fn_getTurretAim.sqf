@@ -82,10 +82,17 @@ if (_weapons isNotEqualTo []) then {
 
 _candidates = _candidates select {(_x select 1) isNotEqualTo [0, 0, 0]};
 
-// A drone camera looks down at the ground; a candidate pointing at the sky is a
-// model whose points or weapon do not follow the gimbal.
-private _pick = _candidates findIf {((vectorNormalized (_x select 1)) select 2) < 0.15};
-if (_pick == -1) then {_pick = [-1, 0] select (_candidates isNotEqualTo [])};
+// The camera and gun memory points ride on the turret bones and are what the
+// gunner's optic actually sees; the AI gunner's own view and the weapon direction
+// stay level with the hull (seen in testing on the Greyhawk), so they only count
+// when the model has no usable turret points.
+private _order = ["cameraPoints", "gunPoints", "weapon", "gunnerView"];
+private _pick = -1;
+{
+    private _name = _x;
+    _pick = _candidates findIf {(_x select 0) == _name};
+    if (_pick != -1) exitWith {};
+} forEach _order;
 private _dir = [vectorDir _drone, (_candidates select _pick) select 1] select (_pick != -1);
 private _source = ["hull", (_candidates select _pick) select 0] select (_pick != -1);
 

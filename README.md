@@ -1,6 +1,6 @@
 # Root's Effects — Reworked Effects for Zeus and 3DEN
 
-![version](https://img.shields.io/badge/version-3.0.0.7-blue)
+![version](https://img.shields.io/badge/version-3.0.0.8-blue)
 [![build](https://github.com/A3-Root/Root_Effects/actions/workflows/auto-release.yml/badge.svg?branch=master)](https://github.com/A3-Root/Root_Effects/actions/workflows/auto-release.yml)
 
 Effects suite based on Aliascartoons' Effects showcase, rebuilt on CBA. Every effect is available both as a Zeus module (with a full ZEN dialog) and as a 3DEN editor module (with attributes), found under the "Root's Effects" category in the Modules list.
@@ -79,7 +79,7 @@ All effects appear in the "Root's Effects" category of the Zeus Modules tab and 
 
 ### **Volcanic Eruption, Scree Avalanche** (volcano)
 - Ash column, crater glow, recurring eruptions, crater lava, lava flows, cloud lightning and position-based lethality with configurable protective gear.
-- Scree avalanche: a dust and scree cascade plus real, physically simulated boulders that bounce down the slope and crush and shove the people and vehicles they hit.
+- Scree avalanche: a dust and scree cascade plus real physics boulders (and optional custom objects) that roll down the slope and crush and shove the people and vehicles they hit.
 
 ### **Floating Objects** (floatingobjects)
 - Levitates an object and animates it with slide, bounce, rotation, rollover and orbit movements.
@@ -110,7 +110,7 @@ All effects appear in the "Root's Effects" category of the Zeus Modules tab and 
 
 ### **Live Briefing Map, Briefing Table** (briefing)
 - A map board with a live topographic feed, optionally following a marker.
-- A miniature diorama of a marker area built on top of any table: terrain relief tiles following the marker shape, with the area's buildings and objects standing on them.
+- A miniature diorama of a marker area built on top of any table (or a table Zeus spawns): terrain relief tiles with the area's buildings and objects standing on them.
 
 ---
 

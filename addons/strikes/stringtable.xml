@@ -143,7 +143,7 @@
             <Original>Damage</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrSingularityLethalTooltip">
-            <Original>Collapse damage, 0% for a harmless collapse. Any damage detonates a real GBU-12 at the core, adds scaled damage over the radius, and kills every unit inside the zone a few seconds after the collapse has thrown them. 100% destroys everything at the core and flattens buildings, walls and trees in roughly the inner half. Respects the global damage setting.</Original>
+            <Original>Collapse damage, 0% for a harmless collapse. Any damage detonates a real GBU-12 at the core, adds scaled damage over the radius, and kills every unit in the zone about a second after the collapse has thrown them, while they are still in the air. 100% destroys everything at the core and flattens buildings, walls and trees in roughly the inner half. Respects the global damage setting.</Original>
         </Key>
         <Key ID="STR_root_effects_strikes_AttrSingularityRadius">
             <Original>Anomaly Radius</Original>

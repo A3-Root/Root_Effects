@@ -62,23 +62,22 @@ if (isNull _anchor) exitWith {};
     } forEach (nearestObjects [_center, ["CAManBase", "LandVehicle", "Ship", "StaticWeapon", "Air", "ThingX", "ReammoBox_F"], _radius]);
     DBG(FORMAT_3("singularity collapsed at %1, threw %2 objects, damage %3",mapGridPosition _center,_thrown,_lethal));
 
-    // The collapse goes off like a heavy bomb: real GBU-12 blast at the core
-    // plus scaled damage over the whole radius, buildings included.
+    // Throw first, kill after: about a second into the throw, while everyone is
+    // still in the air, every unit inside the zone (on foot or in a vehicle) dies
+    // and the collapse goes off like a heavy bomb (real GBU-12 at the core plus
+    // scaled damage over the whole radius, buildings included).
     if (_lethal > 0) then {
-        [_center, _radius, _lethal, _anchor] call FUNC(strikeDamage);
-
-        // Nobody survives the zone: once the thrown have come down, every unit
-        // still inside, on foot or in a vehicle, is killed.
         [{
-            params ["_center", "_radius"];
+            params ["_center", "_radius", "_lethal", "_anchor", "_damageRadius"];
             private _victims = (_center nearEntities [["CAManBase"], _radius]) select {alive _x && {!(_x isKindOf "VirtualMan_F")}};
             {
                 _victims append ((crew _x) select {alive _x});
             } forEach (_center nearEntities [["LandVehicle", "Air", "Ship", "StaticWeapon"], _radius]);
             _victims = _victims arrayIntersect _victims;
             {_x setDamage 1} forEach _victims;
-            DBG(FORMAT_3("singularity aftermath at %1: %2 units killed within %3 m",mapGridPosition _center,count _victims,_radius));
-        }, [_center, _radius], 3.5] call CBA_fnc_waitAndExecute;
+            DBG(FORMAT_3("singularity aftermath at %1: %2 units killed in mid air within %3 m",mapGridPosition _center,count _victims,_radius));
+            [_center, _damageRadius, _lethal, _anchor] call FUNC(strikeDamage);
+        }, [_center, _radius * 1.5, _lethal, _anchor, _radius], 1.1] call CBA_fnc_waitAndExecute;
     };
 
     // The anomaly collapses with the pulse; the visuals fade on their own.

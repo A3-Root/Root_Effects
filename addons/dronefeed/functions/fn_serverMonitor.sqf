@@ -16,7 +16,6 @@
  * [FUNC(serverMonitor), 5, []] call CBA_fnc_addPerFrameHandler
  */
 
-DBG(FORMAT_1("serverMonitor called with %1",_this));
 
 if (!isServer) exitWith {};
 

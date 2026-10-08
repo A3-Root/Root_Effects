@@ -35,20 +35,28 @@ private _pos = [_center, _radius, _speed, _seed] call FUNC(tornadoPos);
 
 DBG(FORMAT_3("tornado local start, width %1, speed %2, at %3",_size,_speed,mapGridPosition _pos));
 
-// Funnel: stacked rings, narrow at the ground and opening up into the cloud. The
-// tangential circle velocity spins each ring; slow updraft lifts the cloud.
+// Funnel: many thin layers stacked tight enough to overlap into one solid
+// column, narrow at the ground and opening up into the cloud. Particles are as
+// heavy as the air (they neither sink nor shoot off), each layer spins through its
+// circle velocity, and every layer drops enough puffs to close its ring.
 private _rings = [];
-private _layers = 9;
+private _layers = 26;
+private _topHeight = 400;
+private _spacing = _topHeight / (_layers - 1);
 for "_i" from 0 to (_layers - 1) do {
     private _t = _i / (_layers - 1);
-    private _height = 6 + _t * 380;
-    private _ringRadius = (_size * 0.06) + (_size * 0.5) * (_t ^ 1.4);
-    private _spin = 18 + 10 * _t;
+    private _height = 2 + _t * _topHeight;
+    private _ringRadius = (_size * 0.05) + (_size * 0.5) * (_t ^ 1.6);
+    private _puff = (_spacing * 1.8) max (_ringRadius * 0.7);
+    private _spin = 9 + 9 * _t;
+    private _life = 5;
+    private _puffs = 8 max ((2 * pi * _ringRadius) / (_puff * 0.45));
+    private _shade = 0.13 + 0.08 * _t;
     private _ring = "#particlesource" createVehicleLocal _pos;
     _ring setParticleCircle [_ringRadius, [_spin, _spin, 0]];
-    _ring setParticleRandom [1.5, [_ringRadius * 0.15, _ringRadius * 0.15, 10], [2, 2, 2], 4, 0.4, [0, 0, 0, 0.08], 0, 0];
-    _ring setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 4 + _t * 3, [0, 0, _height], [0, 0, 3 + 4 * _t], 3, 10, 7.85, 0.02, [8 + 30 * _t, 14 + 45 * _t], [[0.16, 0.16, 0.17, 0], [0.2, 0.2, 0.21, 0.55], [0.24, 0.24, 0.25, 0]], [0.5], 1, 0, "", "", _ring];
-    _ring setDropInterval ((0.035 + 0.02 * _t) / _budget);
+    _ring setParticleRandom [1, [_ringRadius * 0.12, _ringRadius * 0.12, _spacing * 0.6], [1.5, 1.5, 1], 3, _puff * 0.15, [0, 0, 0, 0.06], 0, 0];
+    _ring setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, _life, [0, 0, _height], [0, 0, 1.5], 3, 7.9, 7.9, 0.12, [_puff * 0.8, _puff, _puff * 1.1], [[_shade, _shade, _shade + 0.01, 0], [_shade, _shade, _shade + 0.01, 0.7], [_shade + 0.04, _shade + 0.04, _shade + 0.05, 0]], [0.4], 1, 0, "", "", _ring];
+    _ring setDropInterval ((_life / _puffs) / _budget);
     _rings pushBack _ring;
 };
 
@@ -92,6 +100,10 @@ private _emitters = _rings + [_cap, _skirt, _debris];
 
     private _pos = [_center, _radius, _speed, _seed] call FUNC(tornadoPos);
     {_x setPosATL _pos} forEach _emitters;
+    if (diag_tickTime > (_voice getVariable [QGVAR(logAt), 0])) then {
+        _voice setVariable [QGVAR(logAt), diag_tickTime + 10];
+        DBG(FORMAT_3("tornado at %1 (%2 m from the storm centre, speed %3 m/s)",mapGridPosition _pos,round (_pos distance2D _center),_speed));
+    };
     _voice setPosATL (_pos vectorAdd [0, 0, 5]);
 
     if (CBA_missionTime >= _nextSound) then {

@@ -1,7 +1,7 @@
 # Acid Rain
 
 ## Look
-- A heavy, green-tinted downpour around each player inside the zone, with a low acidic mist, colour grading and film grain. *Intensity* scales all of it.
+- A heavy, green-tinted downpour falling from 30-40 m above each player inside the zone (the original acid rain particle, now falling), with a low acidic mist, colour grading and film grain. *Intensity* scales all of it.
 - **Weather Rain**: the server also brings in heavy cloud and real engine rain for the storm (restored afterwards); players inside the zone see that rain tinted green.
 - No rain falls on players who are indoors.
 

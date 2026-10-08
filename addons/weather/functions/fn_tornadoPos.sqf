@@ -22,7 +22,7 @@
 
 params [["_center", [0, 0, 0], [[]], 3], ["_radius", 300, [0]], ["_speed", 8, [0]], ["_seed", 0, [0]], ["_time", CBA_missionTime, [0]]];
 
-private _reach = (_radius * 0.65) max 20;
+private _reach = (_radius * 0.8) max 30;
 // Angular rate (deg/s) that moves the funnel at roughly the requested speed.
 private _rate = (_speed / _reach) * 57.2958;
 private _phaseA = (_seed random 1) * 360;

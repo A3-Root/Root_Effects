@@ -58,7 +58,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_LIGHTNING_STRENGTH,CSTRING(AttrLightningStrength),CSTRING(AttrLightningStrengthTooltip),0.7);
             ROOT_ATTR_BOOL(ROOT_LIGHTNING_TORNADO,CSTRING(AttrTornado),CSTRING(AttrTornadoTooltip),false);
             ROOT_ATTR_NUMBER(ROOT_LIGHTNING_TORNADOSIZE,CSTRING(AttrTornadoSize),CSTRING(AttrTornadoSizeTooltip),120);
-            ROOT_ATTR_NUMBER(ROOT_LIGHTNING_TORNADOSPEED,CSTRING(AttrTornadoSpeed),CSTRING(AttrTornadoSpeedTooltip),8);
+            ROOT_ATTR_NUMBER(ROOT_LIGHTNING_TORNADOSPEED,CSTRING(AttrTornadoSpeed),CSTRING(AttrTornadoSpeedTooltip),15);
             ROOT_ATTR_BOOL(ROOT_LIGHTNING_TORNADOFLING,CSTRING(AttrTornadoFling),CSTRING(AttrTornadoFlingTooltip),false);
             class ModuleDescription: ModuleDescription {};
         };

@@ -43,11 +43,17 @@
         <Key ID="STR_root_effects_briefing_AttrMapZoomTooltip">
             <Original>Zoom of the map feed. Smaller values are closer.</Original>
         </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableHeight">
+            <Original>Height Offset (m)</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableHeightTooltip">
+            <Original>Lifts the whole miniature on the table. Raise it if pieces sink into the table top, lower it if they float above it. 0.4 suits most tables.</Original>
+        </Key>
         <Key ID="STR_root_effects_briefing_AttrTableMarker">
             <Original>Source Area Marker</Original>
         </Key>
         <Key ID="STR_root_effects_briefing_AttrTableMarkerTooltip">
-            <Original>Name of the rectangle or ellipse marker whose area is rebuilt on the table.</Original>
+            <Original>Name of the rectangle or ellipse marker whose area is rebuilt on the table. Use an area marker (rectangle or ellipse) covering the area to model; an icon marker shows 250 m around it.</Original>
         </Key>
         <Key ID="STR_root_effects_briefing_AttrTableResolution">
             <Original>Terrain Resolution</Original>
@@ -60,6 +66,12 @@
         </Key>
         <Key ID="STR_root_effects_briefing_AttrTableScaleTooltip">
             <Original>Scale multiplier of the miniature on the table.</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableSpawn">
+            <Original>Table To Spawn</Original>
+        </Key>
+        <Key ID="STR_root_effects_briefing_AttrTableSpawnTooltip">
+            <Original>The module was placed on the ground, so this table is spawned there and the miniature is built on it. It is removed with the miniature.</Original>
         </Key>
         <Key ID="STR_root_effects_briefing_AttrTableTerrain">
             <Original>Model Terrain Relief</Original>
@@ -90,9 +102,6 @@
         </Key>
         <Key ID="STR_root_effects_briefing_NoMarker">
             <Original>ERROR - Enter the name of an existing area marker.</Original>
-        </Key>
-        <Key ID="STR_root_effects_briefing_PlaceOnTable">
-            <Original>Place the module on a table object!</Original>
         </Key>
         <Key ID="STR_root_effects_briefing_SelectMapCenter">
             <Original>Select the area the map should show</Original>

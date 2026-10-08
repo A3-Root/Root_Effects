@@ -11,4 +11,4 @@
 ## Singularity
 - Charges for the set time while a pulsing core and warning alarm play. The charge is never shorter than one full alarm (about 7 s); longer charges repeat it, and the collapse always comes after the last alarm ends.
 - On collapse, people are torn into ragdoll and thrown (same technique as the Steamer and Worm anomalies), and vehicles, boats, statics, crates and physics props within the radius are thrown up and outwards. Heavier objects go less far.
-- With damage above 0%, every unit still inside the zone (on foot or in a vehicle) is killed 3.5 s after the collapse.
+- With damage above 0%, about a second after the throw, while they are still in the air, every unit in the zone (on foot or in a vehicle) is killed and the GBU-12 blast and structure damage go off.

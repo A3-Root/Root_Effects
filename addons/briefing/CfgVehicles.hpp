@@ -57,6 +57,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_BTABLE_RESOLUTION,CSTRING(AttrTableResolution),CSTRING(AttrTableResolutionTooltip),20);
             ROOT_ATTR_NUMBER(ROOT_BTABLE_SCALE,CSTRING(AttrTableScale),CSTRING(AttrTableScaleTooltip),1);
             ROOT_ATTR_BOOL(ROOT_BTABLE_TERRAIN,CSTRING(AttrTableTerrain),CSTRING(AttrTableTerrainTooltip),true);
+            ROOT_ATTR_NUMBER(ROOT_BTABLE_HEIGHT,CSTRING(AttrTableHeight),CSTRING(AttrTableHeightTooltip),0.4);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

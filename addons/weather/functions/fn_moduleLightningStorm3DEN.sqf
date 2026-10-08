@@ -39,7 +39,7 @@ private _ambience = _logic getVariable ["ROOT_LIGHTNING_AMBIENCE", true];
 private _strength = _logic getVariable ["ROOT_LIGHTNING_STRENGTH", 0.7];
 private _tornado = _logic getVariable ["ROOT_LIGHTNING_TORNADO", false];
 private _tornadoSize = _logic getVariable ["ROOT_LIGHTNING_TORNADOSIZE", 120];
-private _tornadoSpeed = _logic getVariable ["ROOT_LIGHTNING_TORNADOSPEED", 8];
+private _tornadoSpeed = _logic getVariable ["ROOT_LIGHTNING_TORNADOSPEED", 15];
 private _tornadoFling = _logic getVariable ["ROOT_LIGHTNING_TORNADOFLING", false];
 
 deleteVehicle _logic;

@@ -43,3 +43,9 @@
 - Live Briefing Map: map clicks apply instantly, double clicks no longer open the marker dialog.
 - Briefing Table: table top measured by ray, solid ground colours, placement logged.
 - Debug Output defaults to RPT; every function logs its call and arguments.
+- Briefing Table: back to the original JSOC table logic (tilted, overlapping terrain tiles), Height Offset option, icon markers show 250 m; Zeus can spawn the table on the ground.
+- Drone Feed: gunner view follows the turret camera.
+- Singularity: throws first, kills mid-air a second later.
+- Scree Avalanche: real physics boulders again (rock drawn on each), custom static classes roll too, the slide front damages again.
+- Acid Rain: original rain particle, falling from the sky.
+- Tornado: solid funnel, faster default path.
