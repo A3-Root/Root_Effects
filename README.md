@@ -1,6 +1,6 @@
 # Root's Effects — Reworked Effects for Zeus and 3DEN
 
-![version](https://img.shields.io/badge/version-3.0.0.8-blue)
+![version](https://img.shields.io/badge/version-3.0.0.9-blue)
 [![build](https://github.com/A3-Root/Root_Effects/actions/workflows/auto-release.yml/badge.svg?branch=master)](https://github.com/A3-Root/Root_Effects/actions/workflows/auto-release.yml)
 
 Effects suite based on Aliascartoons' Effects showcase, rebuilt on CBA. Every effect is available both as a Zeus module (with a full ZEN dialog) and as a 3DEN editor module (with attributes), found under the "Root's Effects" category in the Modules list.

@@ -19,6 +19,13 @@ if (isServer) then {
 };
 
 // The tornado throws an object on the machine that owns it.
+// Tornado wind on an object, on the machine that owns it: slowed down, then shoved.
+[QGVAR(tornadoWind), {
+    params ["_object", "_push", ["_damping", 1]];
+    if (isNull _object) exitWith {};
+    _object setVelocity (((velocity _object) vectorMultiply _damping) vectorAdd _push);
+}] call CBA_fnc_addEventHandler;
+
 [QGVAR(tornadoFling), {
     params ["_object", "_velocity"];
     if (isNull _object) exitWith {};

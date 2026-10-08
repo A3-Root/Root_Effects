@@ -15,7 +15,7 @@ Within 6 m of the screen:
 
 Controller, zoom, vision, view and satellite position are shared, so every viewer sees the same picture. Satellite feeds label their actions "Satellite Feed".
 
-The gunner view follows the gunner camera memory points on the turret (falling back to the turret gun points, the weapon and the gunner's view when a model has none). Opening Zeus next to a screen is safe; the feed leaves the camera alone while Zeus is open.
+The gunner view follows the gunner camera memory points on the turret, read at render time and smoothed so the picture stays steady (falling back to the turret gun points, the weapon and the gunner's view when a model has none). Opening Zeus next to a screen is safe; the feed leaves the camera alone while Zeus is open.
 
 ## Notes
 - Render mode *Proxy* shows the ground point the gunner camera aims at from straight above.

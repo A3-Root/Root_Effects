@@ -49,3 +49,7 @@
 - Scree Avalanche: real physics boulders again (rock drawn on each), custom static classes roll too, the slide front damages again.
 - Acid Rain: original rain particle, falling from the sky.
 - Tornado: solid funnel, faster default path.
+- Briefing Table: tiles with missing or unusable terrain textures use a ground colour.
+- Drone Feed: gunner camera steadied (render-time turret points, smoothed aim).
+- Singularity: destroys every building, wall and tree in the radius; stronger throw.
+- Tornado: tapered funnel with a dark core; wind pushes away and slows everything in its wall, which keeps taking damage up to destruction.

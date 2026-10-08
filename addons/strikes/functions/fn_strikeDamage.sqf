@@ -13,6 +13,7 @@
  * 1: Damage radius in meters <NUMBER>
  * 2: Damage strength 0..1 <NUMBER>
  * 3: Damage source <OBJECT> (default: objNull)
+ * 4: Destroy every structure, tree and wall in the radius regardless of distance <BOOL> (default: false)
  *
  * Return Value:
  * None
@@ -21,7 +22,7 @@
  * [getPosATL player, 30, 0.5] call root_effects_strikes_fnc_strikeDamage
  */
 
-params [["_pos", [0, 0, 0], [[]], 3], ["_radius", 30, [0]], ["_strength", 1, [0]], ["_source", objNull, [objNull]]];
+params [["_pos", [0, 0, 0], [[]], 3], ["_radius", 30, [0]], ["_strength", 1, [0]], ["_source", objNull, [objNull]], ["_flattenAll", false, [false]]];
 
 DBG(FORMAT_1("strikeDamage called with %1",_this));
 
@@ -95,7 +96,7 @@ private _batch = 0;
     private _object = _x;
     if (alive _object) then {
         private _damage = _strength * linearConversion [0, _radius, _object distance2D _pos, 1.3, 0.5, true];
-        private _final = [((damage _object) + _damage) min 0.85, 1] select (_damage >= 0.9);
+        private _final = [((damage _object) + _damage) min 0.85, 1] select (_damage >= 0.9 || _flattenAll);
         // Spread the collapses over a moment so a dense town does not drop
         // every building in the same frame.
         [{

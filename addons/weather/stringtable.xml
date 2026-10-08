@@ -167,7 +167,7 @@
             <Original>Tornado Throws Objects</Original>
         </Key>
         <Key ID="STR_root_effects_weather_AttrTornadoFlingTooltip">
-            <Original>The tornado lifts, spins and throws people, vehicles and props near its foot and damages them. Off = purely visual.</Original>
+            <Original>Whatever gets near the core of the tornado is sucked in, spun and lifted. Independent of this, anything inside the tornado's wall is always blown away from it and slowed down, and people, vehicles, buildings, walls and trees there keep taking damage until destroyed (respects the damage settings).</Original>
         </Key>
         <Key ID="STR_root_effects_weather_AttrTornadoSize">
             <Original>Tornado Width (m)</Original>

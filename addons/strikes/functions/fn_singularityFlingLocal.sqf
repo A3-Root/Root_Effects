@@ -24,11 +24,12 @@ DBG(FORMAT_1("singularityFlingLocal called with %1",_this));
 if (isNull _target) exitWith {};
 
 // Mostly upward with a lateral kick, so the pile comes apart as it rises.
-private _lift = 12 + random 14;
+// Strong enough to send people and vehicles well up into the air.
+private _lift = 22 + random 16;
 private _velocity = [
-    (random 16 - 8) * _strength,
-    (random 16 - 8) * _strength,
-    _lift * _strength
+    (random 24 - 12) * _strength,
+    (random 24 - 12) * _strength,
+    _lift * (0.5 + 0.5 * _strength)
 ];
 
 // A soldier on foot ignores setVelocity while his animation holds him to the

@@ -55,7 +55,7 @@ if (isNull _anchor) exitWith {};
         private _target = _x;
         if (!(_target isKindOf "VirtualMan_F") && _target != _anchor && {alive _target || {_target isKindOf "ThingX"}} && {isNull attachedTo _target}) then {
             private _falloff = linearConversion [0, _radius, _target distance2D _center, 1, 0.25, true];
-            private _massScale = linearConversion [500, 40000, getMass _target, 1, 0.35, true];
+            private _massScale = linearConversion [500, 40000, getMass _target, 1, 0.55, true];
             [QGVAR(singularityFlingLocal), [_target, _falloff * _massScale], _target] call CBA_fnc_targetEvent;
             _thrown = _thrown + 1;
         };
@@ -76,7 +76,8 @@ if (isNull _anchor) exitWith {};
             _victims = _victims arrayIntersect _victims;
             {_x setDamage 1} forEach _victims;
             DBG(FORMAT_3("singularity aftermath at %1: %2 units killed in mid air within %3 m",mapGridPosition _center,count _victims,_radius));
-            [_center, _damageRadius, _lethal, _anchor] call FUNC(strikeDamage);
+            // Everything built or grown inside the radius is destroyed outright.
+            [_center, _damageRadius, _lethal, _anchor, true] call FUNC(strikeDamage);
         }, [_center, _radius * 1.5, _lethal, _anchor, _radius], 1.1] call CBA_fnc_waitAndExecute;
     };
 

@@ -177,7 +177,28 @@ private _state = [_anchor, _table, _frame, _modelScale, _liftVector, _sized, _te
             private _cellPos = [_cellX * _tableSize, _cellY * _tableSize, 0];
             private _worldPos = _frame modelToWorld (_cellPos vectorMultiply (1 / _modelScale));
             private _road = roadAt (_worldPos select [0, 2]);
-            private _texture = [(getRoadInfo _road) select 3, surfaceTexture _worldPos] select (isNull _road);
+            private _texture = [(getRoadInfo _road) param [3, ""], surfaceTexture _worldPos] select (isNull _road);
+            // Some terrain and road textures do not exist as files or do not load on
+            // a cube (procedural or missing paths); those tiles get a solid colour
+            // from the ground type instead of rendering blank or broken.
+            private _file = _texture;
+            if ((_file select [0, 1]) == "\") then {_file = _file select [1]};
+            if (_texture isEqualTo "" || {(_texture select [0, 1]) == "#"} || {!fileExists _file}) then {
+                private _surface = toLowerANSI surfaceType _worldPos;
+                private _rgb = switch (true) do {
+                    case (!isNull _road): {"0.25,0.25,0.25"};
+                    case ("grass" in _surface || {"forest" in _surface}): {"0.3,0.4,0.18"};
+                    case ("sand" in _surface || {"beach" in _surface}): {"0.7,0.62,0.45"};
+                    case ("rock" in _surface || {"stone" in _surface}): {"0.45,0.43,0.4"};
+                    case ("concrete" in _surface || {"asphalt" in _surface}): {"0.35,0.35,0.35"};
+                    default {"0.42,0.36,0.25"};
+                };
+                if ((count _clones) mod 50 == 0) then {
+                    DBG(FORMAT_3("briefing tile texture '%1' unusable (surface %2), using colour %3",_texture,_surface,_rgb));
+                };
+                _texture = format ["#(rgb,8,8,3)color(%1,1)", _rgb];
+                _args set [13, (_args param [13, 0]) + 1];
+            };
             private _normal = vectorUp _table;
             private _cubeSize = _step * _tableSize;
 
@@ -215,7 +236,7 @@ private _state = [_anchor, _table, _frame, _modelScale, _liftVector, _sized, _te
             _clones pushBack _cube;
         } forEach _batch;
         if (_terrainQueue isEqualTo []) then {
-            DBG(FORMAT_1("briefing table terrain laid (%1 pieces in total)",count _clones));
+            DBG(FORMAT_2("briefing table terrain laid (%1 pieces in total, %2 tiles with a fallback colour)",count _clones,_args param [ARR_2(13,0)]));
         };
     };
 

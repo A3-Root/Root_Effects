@@ -86,39 +86,78 @@ if (_tornado) then {
     [QGVAR(tornadoLocal), [_anchor, _radius, _tornadoSize, _tornadoSpeed, _seed], _anchor] call CBA_fnc_globalEventJIP;
     DBG(FORMAT_4("tornado spawned, width %1, speed %2, throws %3, seed %4",_tornadoSize,_tornadoSpeed,_tornadoFling,_seed));
 
-    if (_tornadoFling) then {
-        [{
-            params ["_args", "_handle"];
-            _args params ["_anchor", "_center", "_radius", "_size", "_speed", "_seed", "_lastHit"];
-            if (isNull _anchor) exitWith {_handle call CBA_fnc_removePerFrameHandler};
+    // The tornado's wind runs for as long as it exists. Inside its wall everything
+    // is shoved away from the funnel and slowed down, and keeps taking damage
+    // that builds up to destruction: people, vehicles, buildings, walls, trees.
+    // With "throws objects" on, whatever gets near the core is also sucked in,
+    // spun and lifted.
+    [{
+        params ["_args", "_handle"];
+        _args params ["_anchor", "_center", "_radius", "_size", "_speed", "_seed", "_fling", "_tick"];
+        if (isNull _anchor) exitWith {_handle call CBA_fnc_removePerFrameHandler};
 
-            private _pos = [_center, _radius, _speed, _seed] call FUNC(tornadoPos);
-            private _reach = _size * 0.45;
-            {
-                private _target = _x;
-                private _netId = netId _target;
-                if (
-                    !(_target isKindOf "VirtualMan_F")
-                    && {isNull attachedTo _target}
-                    && {CBA_missionTime > (_lastHit getOrDefault [_netId, -10]) + 1}
-                ) then {
-                    _lastHit set [_netId, CBA_missionTime];
-                    private _offset = (getPosATL _target) vectorDiff _pos;
-                    private _distance = vectorMagnitude [_offset select 0, _offset select 1, 0];
-                    private _pull = linearConversion [0, _reach, _distance, 1, 0.2, true];
-                    private _massScale = linearConversion [500, 40000, getMass _target, 1, 0.25, true];
-                    // Spin around the core, drawn inwards and lifted.
-                    private _tangent = vectorNormalized [-(_offset select 1), _offset select 0, 0];
-                    private _inward = vectorNormalized [-(_offset select 0), -(_offset select 1), 0];
-                    private _velocity = (_tangent vectorMultiply (14 * _pull)) vectorAdd (_inward vectorMultiply (5 * _pull)) vectorAdd [0, 0, 10 * _pull];
-                    [QGVAR(tornadoFling), [_target, _velocity vectorMultiply _massScale], _target] call CBA_fnc_targetEvent;
-                    if (_pull > 0.5) then {
-                        [_target, 0.05 * _pull, "Body", "falling", _anchor] call EFUNC(main,doDamage);
-                    };
+        _args set [7, _tick + 1];
+        private _pos = [_center, _radius, _speed, _seed] call FUNC(tornadoPos);
+        private _wall = _size * 0.5;
+        private _core = _size * 0.15;
+        private _damage = EGVAR(main,damageAllowed) && GVAR(allowDamage);
+        private _ace = EGVAR(main,aceMedicalLoaded);
+        private _hitUnits = 0;
+
+        {
+            private _target = _x;
+            if (!(_target isKindOf "VirtualMan_F") && {isNull attachedTo _target}) then {
+                private _offset = (getPosATL _target) vectorDiff _pos;
+                private _distance = vectorMagnitude [_offset select 0, _offset select 1, 0];
+                private _power = linearConversion [0, _wall, _distance, 1, 0.2, true];
+                private _outward = vectorNormalized [_offset select 0, _offset select 1, 0];
+                private _tangent = [-(_outward select 1), _outward select 0, 0];
+                private _massScale = linearConversion [500, 40000, getMass _target, 1, 0.3, true];
+
+                private _push = [];
+                private _damping = 1;
+                if (_fling && _distance < _core) then {
+                    // Core: drawn in, spun hard and lifted.
+                    _push = (_tangent vectorMultiply 16) vectorDiff (_outward vectorMultiply 4) vectorAdd [0, 0, 12];
+                } else {
+                    // Wall: blown away from the funnel and around it, and held back.
+                    _push = (_outward vectorMultiply (9 * _power)) vectorAdd (_tangent vectorMultiply (6 * _power)) vectorAdd [0, 0, 1.5 * _power];
+                    _damping = 1 - 0.5 * _power;
                 };
-            } forEach (nearestObjects [_pos, ["CAManBase", "LandVehicle", "Ship", "StaticWeapon", "Air", "ThingX", "ReammoBox_F"], _reach]);
-        }, 0.5, [_anchor, _center, _radius, _tornadoSize, _tornadoSpeed, _seed, createHashMap]] call CBA_fnc_addPerFrameHandler;
-    };
+                [QGVAR(tornadoWind), [_target, _push vectorMultiply _massScale, _damping], _target] call CBA_fnc_targetEvent;
+
+                if (_damage) then {
+                    private _amount = 0.02 + 0.06 * _power;
+                    if (_target isKindOf "CAManBase") then {
+                        [_target, [_amount, _amount * 4] select _ace, selectRandom ["Body", "Head", "LeftLeg", "RightLeg", "LeftArm", "RightArm"], "falling", _anchor] call EFUNC(main,doDamage);
+                    } else {
+                        if (_target isKindOf "AllVehicles") then {
+                            [_target, _amount, true] call EFUNC(main,doHitPointDamage);
+                            [_target, _amount * 0.5, "Body", "falling", _anchor] call EFUNC(main,doDamage);
+                        };
+                    };
+                    _hitUnits = _hitUnits + 1;
+                };
+            };
+        } forEach (nearestObjects [_pos, ["CAManBase", "LandVehicle", "Ship", "StaticWeapon", "Air", "ThingX", "ReammoBox_F"], _wall]);
+
+        // Structures, walls and vegetation weather towards collapse, once a second.
+        private _structures = 0;
+        if (_damage && {_tick mod 2 == 0}) then {
+            private _objects = nearestTerrainObjects [_pos, ["BUILDING", "HOUSE", "CHURCH", "CHAPEL", "FUELSTATION", "HOSPITAL", "TRANSMITTER", "LIGHTHOUSE", "WATERTOWER", "POWER LINES", "TREE", "SMALL TREE", "BUSH", "WALL", "FENCE", "HIDE"], _wall, false, true];
+            _objects append (nearestObjects [_pos, ["Building", "House", "Wall"], _wall, true]);
+            _objects = (_objects arrayIntersect _objects) select {alive _x && {damage _x < 1}};
+            {
+                private _power = linearConversion [0, _wall, _x distance2D _pos, 1, 0.3, true];
+                _x setDamage (((damage _x) + 0.06 * _power + 0.02) min 1);
+            } forEach (_objects select [0, 250]);
+            _structures = count _objects;
+        };
+
+        if (_tick mod 20 == 0) then {
+            DBG(FORMAT_4("tornado at %1: %2 objects in its wind, %3 structures weathering, damage %4",mapGridPosition _pos,_hitUnits,_structures,_damage));
+        };
+    }, 0.5, [_anchor, _center, _radius, _tornadoSize, _tornadoSpeed, _seed, _tornadoFling, 0]] call CBA_fnc_addPerFrameHandler;
 };
 
 if (_duration > 0) then {

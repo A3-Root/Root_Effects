@@ -141,6 +141,13 @@ private _trackPFH = [{
         _cam setPosASL [_ground select 0, _ground select 1, (_ground select 2) + _proxyAlt];
         _cam setVectorDirAndUp [[0, 0, -1], vectorDir _drone];
     } else {
+        // Smooth the aim so engine vibration of the turret bones and frame to frame
+        // noise do not shake the picture; a time based blend keeps it frame rate
+        // independent while still following the gimbal closely.
+        private _prevDir = _state getOrDefault ["smoothDir", _dir];
+        private _blend = 1 - exp (-diag_deltaTime * 10);
+        _dir = vectorNormalized (_prevDir vectorAdd ((_dir vectorDiff _prevDir) vectorMultiply _blend));
+        _state set ["smoothDir", _dir];
         // getTurretAim works in ASL; build an up vector square to the view so the
         // picture stays level whichever way the gimbal points.
         private _side = _dir vectorCrossProduct [0, 0, 1];

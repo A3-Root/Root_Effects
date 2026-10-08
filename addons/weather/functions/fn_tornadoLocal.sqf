@@ -35,30 +35,44 @@ private _pos = [_center, _radius, _speed, _seed] call FUNC(tornadoPos);
 
 DBG(FORMAT_3("tornado local start, width %1, speed %2, at %3",_size,_speed,mapGridPosition _pos));
 
-// Funnel: many thin layers stacked tight enough to overlap into one solid
-// column, narrow at the ground and opening up into the cloud. Particles are as
-// heavy as the air (they neither sink nor shoot off), each layer spins through its
-// circle velocity, and every layer drops enough puffs to close its ring.
+// Funnel: a tight, tapering rope at the ground that flares into a wide cone
+// under the cloud. Forty thin layers, each puff no wider than its ring, so the
+// outline reads as a funnel instead of a blob. Animated smoke frames give it a
+// churning texture; dusty brown at the foot shading into storm grey above. Puffs
+// are as heavy as the air and each layer spins through its circle velocity.
 private _rings = [];
-private _layers = 26;
-private _topHeight = 400;
+private _layers = 40;
+private _topHeight = 420;
 private _spacing = _topHeight / (_layers - 1);
 for "_i" from 0 to (_layers - 1) do {
     private _t = _i / (_layers - 1);
-    private _height = 2 + _t * _topHeight;
-    private _ringRadius = (_size * 0.05) + (_size * 0.5) * (_t ^ 1.6);
-    private _puff = (_spacing * 1.8) max (_ringRadius * 0.7);
-    private _spin = 9 + 9 * _t;
-    private _life = 5;
-    private _puffs = 8 max ((2 * pi * _ringRadius) / (_puff * 0.45));
-    private _shade = 0.13 + 0.08 * _t;
+    private _height = 1 + _t * _topHeight;
+    private _ringRadius = (_size * 0.04) + (_size * 0.55) * (_t ^ 2.2);
+    private _puff = (_spacing * 1.4) max (_ringRadius * 0.85);
+    private _spin = 6 + 10 * _t;
+    private _life = 4 + 2 * _t;
+    private _puffs = 6 max ((2 * pi * _ringRadius) / (_puff * 0.5));
+    private _rgb = [
+        0.3 - 0.14 * _t,
+        0.27 - 0.12 * _t,
+        0.23 - 0.08 * _t
+    ];
+    private _alpha = 0.55 + 0.25 * _t;
     private _ring = "#particlesource" createVehicleLocal _pos;
     _ring setParticleCircle [_ringRadius, [_spin, _spin, 0]];
-    _ring setParticleRandom [1, [_ringRadius * 0.12, _ringRadius * 0.12, _spacing * 0.6], [1.5, 1.5, 1], 3, _puff * 0.15, [0, 0, 0, 0.06], 0, 0];
-    _ring setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, _life, [0, 0, _height], [0, 0, 1.5], 3, 7.9, 7.9, 0.12, [_puff * 0.8, _puff, _puff * 1.1], [[_shade, _shade, _shade + 0.01, 0], [_shade, _shade, _shade + 0.01, 0.7], [_shade + 0.04, _shade + 0.04, _shade + 0.05, 0]], [0.4], 1, 0, "", "", _ring];
+    _ring setParticleRandom [1, [_ringRadius * 0.08, _ringRadius * 0.08, _spacing * 0.5], [0.8, 0.8, 0.6], 2, _puff * 0.12, [0.02, 0.02, 0.02, 0.05], 0, 0];
+    _ring setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 7, 48, 1], "", "Billboard", 1, _life, [0, 0, _height], [0, 0, 2], 2, 7.9, 7.9, 0.25, [_puff * 0.7, _puff, _puff * 1.15], [_rgb + [0], _rgb + [_alpha], _rgb + [_alpha * 0.8], _rgb + [0]], [0.6, 0.3], 1, 0, "", "", _ring];
     _ring setDropInterval ((_life / _puffs) / _budget);
     _rings pushBack _ring;
 };
+
+// Dark condensation core down the middle of the rope.
+private _core = "#particlesource" createVehicleLocal _pos;
+_core setParticleCircle [0, [0, 0, 0]];
+_core setParticleRandom [1, [_size * 0.02, _size * 0.02, 60], [0.5, 0.5, 4], 2, 2, [0, 0, 0, 0.05], 0, 0];
+_core setParticleParams [["\A3\data_f\ParticleEffects\Universal\Universal.p3d", 16, 7, 48, 1], "", "Billboard", 1, 6, [0, 0, 60], [0, 0, 14], 2, 7.9, 7.9, 0.1, [_size * 0.08, _size * 0.12], [[0.08, 0.08, 0.09, 0], [0.1, 0.1, 0.11, 0.7], [0.12, 0.12, 0.13, 0]], [0.5], 1, 0, "", "", _core];
+_core setDropInterval (0.08 / _budget);
+_rings pushBack _core;
 
 // Wall cloud spreading out at the top of the funnel.
 private _cap = "#particlesource" createVehicleLocal _pos;
