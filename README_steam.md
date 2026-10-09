@@ -1,179 +1,104 @@
-Alias's Effects rebuilt on CBA: every effect is available as a Zeus module and as a 3DEN editor module.
+[h1]Root's Effects - Zeus and 3DEN Module[/h1]
+Alias's Effects rebuilt on CBA. Every effect is available as a Zeus module and a 3DEN editor module.
 
-Found under tabs "Root's Effects" in the "Modules" section. [b][See Below for Detailed Info][/b]
+Find them under Modules > Root's Effects. [b]See below for details.[/b]
 
-[b]Current version - 4.0.0[/b]
+[b]Version: 4.0.0[/b]
 
-[b]REQUIRED ADDITIONAL ADDONS/DEPENDENCIES:[/b]
-[list]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=450814997]CBA_A3[/url]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631]Zeus Enhanced (ZEN)[/url]
-[/list]
+[b]REQUIRED DEPENDENCIES:[/b] [list] [][url=https://steamcommunity.com/sharedfiles/filedetails/?id=450814997]CBAA3[/url] [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631]Zeus Enhanced (ZEN)[/url] [/list]
 
-[b]OPTIONAL/SUPPLEMENTAL ADDON:[/b]
-[list]
-[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2882374586]Root's Anomalies - Zeus Module[/url]
-[/list]
+[b]OPTIONAL ADDON:[/b] [list] [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2882374586]Root's Anomalies - Zeus Module[/url] [/list]
 
-Works in Single Player, hosted Multiplayer and on Dedicated Servers, with or without headless clients. ACE is optional: damage routes through ACE medical when it is loaded.
+Supports Single Player, hosted Multiplayer and Dedicated Servers, with or without headless clients. ACE is optional; damage uses ACE Medical when loaded.
 
-Debugging: set Debug Output in the CBA settings to log every module request, start, stop, render and damage, optionally in chat for Zeus users.
-Though this mod could be used as client-side, not all modules would work as intended. It is recommended to have all players have this mod loaded to prevent issues. No support is provided for experiencing problems when using as client side.
+Enable Debug Output in CBA settings to log module requests, starts, stops, rendering and damage, optionally in Zeus chat.
+
+Client-side use is possible, but some modules may not work correctly. All players should load the mod to avoid issues. Client-side-only problems are not supported.
 
 [img]https://i.imgur.com/EWy3dQc.gif[/img]
 
-[b]Feedback/Suggestions/Bugfixes/Review welcome.[/b]
+[b]Feedback, suggestions, bug reports and reviews are welcome![/b]
 
-Useful for Stalker, SCP, Halloween, F.E.A.R, Horror, Sci-Fi, World War 2 (WW2) or any Themed Missions.
+Ideal for Stalker, SCP, Halloween, F.E.A.R., horror, sci-fi, WW2 and themed missions.
 
-[hr]
+[h1]Terminate Effects[/h1] Lists running instances with grid positions and runtimes. Stop one instance, all instances of an effect, or everything.
 
-[h1][b]++++ EFFECTS ++++[/b][/h1]
+[h1]AAN News Article[/h1] [img]https://i.imgur.com/6JG2r9Z.gif[/img] Create customizable news articles for selected sides, groups or players. Optional fade-in title card and persistent diary entry for reopening the article.
 
-All Effects can be found in the "Root's Effects" section of the Zeus Menu under 'Modules' tab. All parameters are customizable and tooltips provided for easier understanding.
-These effects can be terminated using the 'Terminate Effects' module.
+[h1]Ambient Fireflies, Sparks, Bird Swarm[/h1] [img]https://i.imgur.com/eFjyqKp.gif[/img]
 
-[b]Available Effects:[/b]
+Glowing, randomly blinking fireflies with optional frog croaks.
+Nighttime electrical spark showers with flashes and crackling sounds.
+Eagles circling an area.
 
-[h2] [b]Terminate Effects[/b] [/h2]
-[list]
-[*] Lists every running effect instance with its grid and runtime.
-[*] Stop a single instance, all instances of one effect, or everything.
-[/list]
+[h1]Aurora Borealis, Spacetime Rupture, Modify Sky Effect[/h1] [img]https://i.imgur.com/JepgAJK.gif[/img] [img]https://i.imgur.com/YqxQnQK.gif[/img]
 
-[h2] [b]AAN News Article[/b] [/h2]
-[img]https://i.imgur.com/6JG2r9Z.gif[/img]
-[list]
-[*] Fully customizable AAN news article shown to the selected sides, groups or players.
-[*] Optional fade-in title card and a diary entry that reopens the article any time.
-[/list]
+Dynamic glowing sky effects: bands, arcs, waves, rings, spirals or random shapes.
+Customize fade speeds, lifetime, density, size, length and timed shape changes.
+Ruptures can drift in one direction or wander around their starting point.
+Modify Sky Effect (Zeus/3DEN trigger module) changes running auroras or ruptures live: preserve existing light positions, toggle new lights and fade-outs, and adjust size, length, shape, shape switching and movement.
 
-[h2] [b]Ambient Fireflies, Sparks, Bird Swarm[/b] [/h2]
-[list]
-[img]https://i.imgur.com/eFjyqKp.gif[/img]
-[*] Fireflies that glow in the dark and blink on and off at random, with optional frog croaks.
-[*] Electrical spark showers that glow and flash at night, with crackle sounds.
-[*] A flock of eagles circling an area.
-[/list]
+[h1]Anti Air Barrage, Artillery Barrage, Missile Launcher, Searchlight, Tracer Fire[/h1] [img]http://i.imgur.com/YWmlnQL.gif[/img] [img]https://i.imgur.com/tHRChtC.gif[/img] [img]https://i.imgur.com/tSFHysp.gif[/img] [img]https://i.imgur.com/fKxoQrb.gif[/img] [img]https://i.imgur.com/xH1QXnK.gif[/img]
 
-[h2] [b]Aurora Borealis, Spacetime Rupture, Modify Sky Effect[/b] [/h2]
-[list]
-[img]https://i.imgur.com/JepgAJK.gif[/img]
-[img]https://i.imgur.com/YqxQnQK.gif[/img]
-[*] Glowing bands in the night sky: band, arc, wave, ring, spiral or random shape.
-[*] Fade in / fade out speed, lifetime, density, size scale and length scale.
-[*] Optional shape switch timer: the band takes on a new form every X seconds.
-[*] The rupture can move: drift on one heading or wander around where it started.
-[*] Modify Sky Effect (Zeus and 3DEN, trigger activated) changes a running aurora or rupture live: Keep As Is (holds every light exactly where it is), allow or stop new lights, allow or stop lights fading out, size, length, shape, shape switching and movement.
-[/list]
+Flak barrages with optional aircraft and infantry damage.
+Artillery: lethal real shells, non-lethal visual impacts or sound-only mode. Visual impacts feature flashes/lens flare, fireballs, sparks, flying earth, dust rings, dark smoke and smouldering craters. Each impact has independent sound.
+Ambient rocket launches, sweeping searchlights with optional air raid alarms, and ambient tracer volleys.
 
-[h2] [b]Anti Air Barrage, Artillery Barrage, Missile Launcher, Searchlight, Tracer Fire[/b] [/h2]
-[list]
-[img]http://i.imgur.com/YWmlnQL.gif[/img]
-[*] Flak barrage with optional aircraft and infantry damage.
-[img]https://i.imgur.com/tHRChtC.gif[/img]
-[*] Artillery with lethal (real shells), non-lethal (visuals) and sound-only modes. Visual impacts have a flak-style flash with lens flare, a fireball, sparks, flying earth, a dust ring, a dark smoke column and smouldering craters. Every impact keeps its own sound, so shells no longer cut each other off.
-[*] Ambient rocket launches, a sweeping searchlight with optional air raid alarm, and ambient tracer volleys.
-[img]https://i.imgur.com/tSFHysp.gif[/img]
-[img]https://i.imgur.com/fKxoQrb.gif[/img]
-[img]https://i.imgur.com/xH1QXnK.gif[/img]
-[/list]
+[h1]Drone Feed[/h1] Streams drone or satellite views to any screen object.
 
-[h2] [b]Drone Feed[/b] [/h2]
-[list]
-[*] Streams a drone camera or a satellite view onto any screen object.
-[*] Drone: gunner, driver or alternating view. The gunner view follows the turret wherever the operator points it.
-[*] Satellite: looks straight down from orbit. The controller retargets it by clicking the map.
-[*] Anyone at the screen can Take Control / Release Control. The controller gets zoom, vision mode, view cycling (drone) or map retargeting (satellite).
-[/list]
+Drone views: gunner, driver or alternating. Gunner view follows turret aiming.
+Satellite view looks down from orbit and can be retargeted by clicking the map.
+Viewers can take/release control. Controllers get zoom, vision modes, drone view cycling or satellite map retargeting.
 
-[h2] [b]Meteors, Comets[/b][/h2]
-[img]https://i.imgur.com/gVgALft.gif[/img]
-[list]
-[*] Meteors crashing near random players with optional lethal impacts.
-[*] Comets streaking across the sky.
-[/list]
+[h1]Meteors, Comets[/h1] [img]https://i.imgur.com/gVgALft.gif[/img] Meteors strike near random players with optional lethal impacts; comets streak across the sky.
 
-[h2] [b]UFO Encounter, Seeker, Crop Circle[/b] [/h2]
-[img]https://i.imgur.com/c6YkvJ6.gif[/img]
-[list]
-[*] Random UFO sightings: fast crossings and hovering light charges.
-[*] A seeker orb landing and sweeping the area near players.
-[*] Crop circles burned into the ground in circle, spiral or flower patterns.
-[/list]
+[h1]UFO Encounter, Seeker, Crop Circle[/h1] [img]https://i.imgur.com/c6YkvJ6.gif[/img] Random UFO sightings, fast flybys and hovering light charges; a seeker orb that lands and sweeps near players; crop circles burned into the ground in circle, spiral or flower patterns.
 
-[h2] [b]Volcanic Eruption, Scree Avalanche[/b] [/h2]
-[list]
-[*] Ash column, crater glow, recurring eruptions, crater lava, lava flows, cloud lightning and position-based lethality with configurable protective gear.
-[*] Scree avalanche: a dust and scree cascade plus real, physically simulated boulders that bounce down the slope and crush and shove the people and vehicles they hit.
-[/list]
+[h1]Volcanic Eruption, Scree Avalanche[/h1] Volcano features include ash columns, glowing craters, recurring eruptions, crater lava, lava flows, cloud lightning and configurable position-based lethality/protective gear. Scree avalanches produce dust, cascading scree and physically simulated boulders that bounce downhill, crushing and shoving people and vehicles.
 
-[h2] [b]Floating Objects[/b] [/h2]
-[img]https://i.imgur.com/jGnLk7n.gif[/img]
-[list]
-[*] Levitates an object and animates it with slide, bounce, rotation, rollover and orbit movements.
-[/list]
+[h1]Floating Objects[/h1] [img]https://i.imgur.com/jGnLk7n.gif[/img] Levitate objects with sliding, bouncing, rotating, rolling or orbiting animations.
 
-[h2] [b]Freeze Players[/b] [/h2]
-[img]https://i.imgur.com/XqoUAX1.gif[/img]
+[h1]Freeze Players[/h1] [img]https://i.imgur.com/XqoUAX1.gif[/img] Freeze/unfreeze players by stopping simulation or playing a looping animation.
 
-[list]
-[*] Freezes or unfreezes players, either by stopping their simulation or with a looping animation.
-[/list]
+[h1]Fireworks Display[/h1] Colorful rockets and bursts with configurable rate, duration, radius and height. Fully client-side.
 
-[h2] [b]Fireworks Display[/b] [/h2]
-[list]
-[*] Colorful rockets and bursts at a configurable rate, duration, radius and height. Fully client side.
-[/list]
+[h1]Orbital Laser, Singularity, Napalm Strike, Carpet Bombing, Cryogenic Blast[/h1]
 
-[h2] [b]Orbital Laser, Singularity, Napalm Strike, Carpet Bombing, Cryogenic Blast[/b] [/h2]
-[list]
-[*] Orbital Laser: a charging beam from the sky with a devastating detonation.
-[*] Singularity: a pulsing anomaly that charges up behind a warning alarm (the collapse always waits for the alarm to finish), then collapses and throws people, vehicles, crates and props into the air.
-[*] Both have a 0-100% damage slider. Any damage sets off a real GBU-12 and adds scaled damage on top. 100% destroys everything at the core and flattens buildings, walls and trees in roughly the inner half of the radius.
-[*] Napalm: an attack run igniting a burning corridor with periodic burn damage.
-[*] Carpet Bombing: bombers walking a stick of real bombs along a line.
-[*] Cryogenic Blast: A high chilled blast that freezes all units in the radius for some time.
-[/list]
+Orbital Laser: Charging sky beam followed by a devastating detonation.
+Singularity: Pulsing anomaly with a warning alarm; collapse waits for the alarm to finish, then launches people, vehicles, crates and props into the air.
+Laser/Singularity damage: Adjustable 0–100%. Any damage triggers a real GBU-12 plus scaled damage. At 100%, the core is destroyed and buildings, walls and trees are flattened across roughly the inner half of the radius.
+Napalm: Attack run ignites a corridor with periodic burn damage.
+Carpet Bombing: Bombers drop a line of real bombs.
+Cryogenic Blast: Powerful cold blast that freezes all units within its radius for a configurable period.
 
-[h2] [b]Lightning Storm, Acid Rain, Heat Mirage, Water Contamination[/b] [/h2]
-[list]
-[*] Lightning Storm: visible bolts with a blinding flash and distance-delayed thunder with optional tornado. Strength sets cloud, rain, fog and strike rate. The previous weather comes back when the storm ends.
-[*] Optional tornado: a towering, spinning funnel with a dust and debris skirt that wanders through the storm. Optionally it lifts, throws and damages what it passes.
-[*] Acid Rain: a heavy green downpour (optionally real engine rain as well) that slowly burns people in the open, corrodes vehicles and weathers buildings, walls and props up to a damage cap.
-[*] Acid Rain safe zones: protective gear, protected vehicle and building classes, area markers or triggers, and any object flagged with root_effects_acidSafe. Anyone under a roof is safe too.
-[*] Heat Mirage: a shimmering heat haze zone.
-[*] Water Contamination: a contaminated-water zone that tints the view, far stronger while diving (EXPERIMENTAL).
-[/list]
+[h1]Lightning Storm, Acid Rain, Heat Mirage, Water Contamination[/h1]
 
-[h2] [b]EMP Pulse[/b] [/h2]
-[list]
-[*] Cuts vehicle engines, optionally drains fuel and distorts the vision of players inside the radius.
-[/list]
+Lightning Storm: Visible bolts, blinding flashes and distance-delayed thunder; optional tornado. Strength controls clouds, rain, fog and strike rate. Previous weather is restored afterward.
+Tornado: Wandering spinning funnel with dust/debris skirt; optionally lifts, throws and damages objects.
+Acid Rain: Heavy green downpour (optional engine rain) that burns exposed people, corrodes vehicles and damages buildings, walls and props up to a cap.
+Acid Rain protection: Gear, protected vehicle/building classes, markers, triggers and objects flagged root_effects_acidSafe. Roofs also provide shelter.
+Heat Mirage: Shimmering heat-haze zone.
+Water Contamination (EXPERIMENTAL): Contaminated-water zone with a tinted view, especially intense underwater.
 
-[h2] [b]Live Briefing Map, Briefing Table[/b] [/h2]
-[list]
-[*] A map board with a live topographic feed, optionally following a marker.
-[*] A miniature diorama of a marker area built on top of any table: terrain relief tiles following the marker shape, with the area's buildings and objects standing on them.
-[/list]
+[h1]EMP Pulse[/h1] Disables vehicle engines, optionally drains fuel and distorts the vision of players within the radius.
 
-[hr] 
+[h1]Live Briefing Map, Briefing Table[/h1]
 
-[h2]Credits[/h2]
-[b]Author:[/b] Root (xMidnightSnowx)
-[b]ALIASCARTOONS[/b] - author of the original idea and work. [url=https://steamcommunity.com/id/aliascartoons/myworkshopfiles/]Check out more of his stuff here[/url].
-[b]Johnb43[/b] - for bug fixes. Profile: [url=https://steamcommunity.com/id/johnb43]Johnb43[/url]
-[b]Sparrow[/b] - Dedicated Environment Testing. Profile: [url=https://steamcommunity.com/id/sirsparroww/]Sparrow[/url].
-[hr]
-[h2]License[/h2]
-[b]APL-SA:[/b] Arma Public License Share Alike
-[url=https://www.bohemia.net/community/licenses/arma-public-license-share-alike]Read Full License here[/url]
-[img]https://i.postimg.cc/pTxntLMW/APL-SA.png[/img]
-You may redistribute the mod publicly only with clear author credit and a link to this Workshop page. Do not redistribute it privately without credit or port it to games other than Arma without explicit permission from me.
-[hr]
-[h2]Links[/h2]
-[url=https://github.com/A3-Root/Root_Effects][img]https://i.imgur.com/lPLHihO.gif[/img][/url]
-[url=https://discord.gg/77th-jsoc-official][img]https://i.imgur.com/8B7UcQ2.gif[/img][/url]
-[hr]
-Tags: #Arma 3 #Steam #Workshop #Mod #Root #Script #Zeus #Editor #Eden #Effects #WW2 #Event #Themed
-Arma 3,Effects,Zeus,3DEN,Modules,CBA,ZEN,ACE3,Particle Effects,Ambient Effects,Weather Effects,Environmental Effects,Battle Effects,Artillery,Explosions,Orbital Laser,Napalm,Carpet Bombing,EMP,UFO,Anomalies,Meteors,Aurora Borealis,Tornado,Acid Rain,Lightning Storm,Fireworks,Drone Feed,Sci-Fi,Horror,Stalker,SCP,Halloween,F.E.A.R.,WW2,Mission Making,Multiplayer,Dedicated Server,Singleplayer,Eden Editor,Zeus Enhanced
+Live Briefing Map: Topographic map feed that can follow a marker.
+Briefing Table: Miniature terrain diorama on any table, with relief tiles following the marker shape and buildings/objects represented on the terrain.
+
+[hr] [h1]Credits[/h1] [b]Author:[/b] Root (xMidnightSnowx)
+
+[b]ALIASCARTOONS[/b] - Original idea and work. [url=https://steamcommunity.com/id/aliascartoons/myworkshopfiles/]More creations[/url]
+
+[b]Johnb43[/b] - Bug fixes. [url=https://steamcommunity.com/id/johnb43]Profile[/url]
+
+[b]Sparrow[/b] - Dedicated environment testing. [url=https://steamcommunity.com/id/sirsparroww/]Profile[/url]
+
+[hr] [h1]License[/h1] [b]APL-SA (Arma Public License Share Alike)[/b] [url=https://www.bohemia.net/community/licenses/arma-public-license-share-alike]Full license[/url] [img]https://i.postimg.cc/pTxntLMW/APL-SA.png[/img]
+
+Public redistribution requires clear author credit and a link to this Workshop page. Private redistribution without credit and ports to non-Arma games are prohibited without my explicit permission.
+
+[hr] [h1]Links[/h1] [url=https://github.com/A3-Root/Root_Effects][img]https://i.imgur.com/lPLHihO.gif[/img][/url] [url=https://discord.gg/77th-jsoc-official][img]https://i.imgur.com/8B7UcQ2.gif[/img][/url]
+
+[hr] [b]Tags:[/b]#Arma 3 #Steam #Workshop #Mod #Root #Script #Zeus #Editor #Eden #Effects #WW2 #Event #Themed
