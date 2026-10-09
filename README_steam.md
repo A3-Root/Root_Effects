@@ -2,13 +2,17 @@ Alias's Effects rebuilt on CBA: every effect is available as a Zeus module and a
 
 Found under tabs "Root's Effects" in the "Modules" section. [b][See Below for Detailed Info][/b]
 
-[b]Current version - 3.0.0[/b]
+[b]Current version - 4.0.0[/b]
 
 [b]REQUIRED ADDITIONAL ADDONS/DEPENDENCIES:[/b]
-[list] [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=450814997]CBA_A3[/url] [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631]Zeus Enhanced (ZEN)[/url] [/list]
+[list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=450814997]CBA_A3[/url]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631]Zeus Enhanced (ZEN)[/url]
+[/list]
 
 [b]OPTIONAL/SUPPLEMENTAL ADDON:[/b]
-[list] [*] [url=https://steamcommunity.com/sharedfiles/filedetails/?id=2882374586]Root's Anomalies - Zeus Module[/url]
+[list]
+[*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=2882374586]Root's Anomalies - Zeus Module[/url]
 [/list]
 
 Works in Single Player, hosted Multiplayer and on Dedicated Servers, with or without headless clients. ACE is optional: damage routes through ACE medical when it is loaded.
@@ -16,24 +20,13 @@ Works in Single Player, hosted Multiplayer and on Dedicated Servers, with or wit
 Debugging: set Debug Output in the CBA settings to log every module request, start, stop, render and damage, optionally in chat for Zeus users.
 Though this mod could be used as client-side, not all modules would work as intended. It is recommended to have all players have this mod loaded to prevent issues. No support is provided for experiencing problems when using as client side.
 
-[img]https://i.imgur.com/EWy3dQc.gif][/img]
+[img]https://i.imgur.com/EWy3dQc.gif[/img]
 
 [b]Feedback/Suggestions/Bugfixes/Review welcome.[/b]
 
 Useful for Stalker, SCP, Halloween, F.E.A.R, Horror, Sci-Fi, World War 2 (WW2) or any Themed Missions.
 
-[hr] [/hr]
-
-[h1][b]++++ CREDITS ++++[/b][/h1]
-
-ALL CREDITS TO ALIASCARTOONS FOR HIS ORIGINAL WORK
-Check out more of his cool stuff [url=https://steamcommunity.com/id/aliascartoons/myworkshopfiles/]here.[/url]
-
-[b]Huge thanks[/b] to [url=https://steamcommunity.com/id/johnb43]Johnb43[/url] for his contributions in fixing most of the issues.
-
-Thanks to [url=https://steamcommunity.com/id/sirsparroww/]Sparrow[/url] for helping me test this in a dedicated environment.
-
-[hr][/hr]
+[hr]
 
 [h1][b]++++ EFFECTS ++++[/b][/h1]
 
@@ -119,23 +112,24 @@ These effects can be terminated using the 'Terminate Effects' module.
 [*] Colorful rockets and bursts at a configurable rate, duration, radius and height. Fully client side.
 [/list]
 
-[h2] [b]Orbital Laser, Singularity, Napalm Strike, Carpet Bombing[/b] [/h2]
+[h2] [b]Orbital Laser, Singularity, Napalm Strike, Carpet Bombing, Cryogenic Blast[/b] [/h2]
 [list]
 [*] Orbital Laser: a charging beam from the sky with a devastating detonation.
 [*] Singularity: a pulsing anomaly that charges up behind a warning alarm (the collapse always waits for the alarm to finish), then collapses and throws people, vehicles, crates and props into the air.
 [*] Both have a 0-100% damage slider. Any damage sets off a real GBU-12 and adds scaled damage on top. 100% destroys everything at the core and flattens buildings, walls and trees in roughly the inner half of the radius.
 [*] Napalm: an attack run igniting a burning corridor with periodic burn damage.
 [*] Carpet Bombing: bombers walking a stick of real bombs along a line.
+[*] Cryogenic Blast: A high chilled blast that freezes all units in the radius for some time.
 [/list]
 
 [h2] [b]Lightning Storm, Acid Rain, Heat Mirage, Water Contamination[/b] [/h2]
 [list]
-[*] Lightning Storm: visible bolts with a blinding flash and distance-delayed thunder. Strength sets cloud, rain, fog and strike rate. The previous weather comes back when the storm ends.
+[*] Lightning Storm: visible bolts with a blinding flash and distance-delayed thunder with optional tornado. Strength sets cloud, rain, fog and strike rate. The previous weather comes back when the storm ends.
 [*] Optional tornado: a towering, spinning funnel with a dust and debris skirt that wanders through the storm. Optionally it lifts, throws and damages what it passes.
 [*] Acid Rain: a heavy green downpour (optionally real engine rain as well) that slowly burns people in the open, corrodes vehicles and weathers buildings, walls and props up to a damage cap.
 [*] Acid Rain safe zones: protective gear, protected vehicle and building classes, area markers or triggers, and any object flagged with root_effects_acidSafe. Anyone under a roof is safe too.
 [*] Heat Mirage: a shimmering heat haze zone.
-[*] Water Contamination: a contaminated-water zone that tints the view, far stronger while diving.
+[*] Water Contamination: a contaminated-water zone that tints the view, far stronger while diving (EXPERIMENTAL).
 [/list]
 
 [h2] [b]EMP Pulse[/b] [/h2]
@@ -149,8 +143,23 @@ These effects can be terminated using the 'Terminate Effects' module.
 [*] A miniature diorama of a marker area built on top of any table: terrain relief tiles following the marker shape, with the area's buildings and objects standing on them.
 [/list]
 
-[hr] [/hr]
+[hr] 
 
-[h1][b]++++ REUPLOAD/REDISTRIBUTION NOTICE ++++[/b][/h1]
-
-You can add this mod to your modpack as long as you give me proper credit. Please do not modify, redistribute, reupload anywhere and/or use this mod in a monetized server without my explicit permission.
+[h2]Credits[/h2]
+[b]Author:[/b] Root (xMidnightSnowx)
+[b]ALIASCARTOONS[/b] - author of the original idea and work. [url=https://steamcommunity.com/id/aliascartoons/myworkshopfiles/]Check out more of his stuff here[/url].
+[b]Johnb43[/b] - for bug fixes. Profile: [url=https://steamcommunity.com/id/johnb43]Johnb43[/url]
+[b]Sparrow[/b] - Dedicated Environment Testing. Profile: [url=https://steamcommunity.com/id/sirsparroww/]Sparrow[/url].
+[hr]
+[h2]License[/h2]
+[b]APL-SA:[/b] Arma Public License Share Alike
+[url=https://www.bohemia.net/community/licenses/arma-public-license-share-alike]Read Full License here[/url]
+[img]https://i.postimg.cc/pTxntLMW/APL-SA.png[/img]
+You may redistribute the mod publicly only with clear author credit and a link to this Workshop page. Do not redistribute it privately without credit or port it to games other than Arma without explicit permission from me.
+[hr]
+[h2]Links[/h2]
+[url=https://github.com/A3-Root/Root_Effects][img]https://i.imgur.com/lPLHihO.gif[/img][/url]
+[url=https://discord.gg/77th-jsoc-official][img]https://i.imgur.com/8B7UcQ2.gif[/img][/url]
+[hr]
+Tags: #Arma 3 #Steam #Workshop #Mod #Root #Script #Zeus #Editor #Eden #Effects #WW2 #Event #Themed
+Arma 3,Effects,Zeus,3DEN,Modules,CBA,ZEN,ACE3,Particle Effects,Ambient Effects,Weather Effects,Environmental Effects,Battle Effects,Artillery,Explosions,Orbital Laser,Napalm,Carpet Bombing,EMP,UFO,Anomalies,Meteors,Aurora Borealis,Tornado,Acid Rain,Lightning Storm,Fireworks,Drone Feed,Sci-Fi,Horror,Stalker,SCP,Halloween,F.E.A.R.,WW2,Mission Making,Multiplayer,Dedicated Server,Singleplayer,Eden Editor,Zeus Enhanced

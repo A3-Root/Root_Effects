@@ -1,6 +1,6 @@
 # Changelog for Root's Effects
 
-## Version: 3.0.0 - Major Release
+## Version: 4.0.0 - Major Release
 - Complete refactor of every component onto a shared CBA framework: per-frame handlers instead of spawn/sleep loops, CBA events instead of publicVariable broadcasts, JIP-safe effect starts, and one invisible anchor object per running effect instance.
 - Every effect is now available in BOTH Zeus (ZEN dialog) and the 3DEN editor (module with attributes).
 - Effects are multi-instance: the same effect can run at several places at once, and the Terminate Effects module lists every running instance with per-instance stop, per-effect stop-all and a global stop.
