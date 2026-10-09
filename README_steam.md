@@ -42,6 +42,7 @@ These effects can be terminated using the 'Terminate Effects' module.
 [/list]
 
 [h2] [b]AAN News Article[/b] [/h2]
+[img]https://i.imgur.com/6JG2r9Z.gif[/img]
 [list]
 [*] Fully customizable AAN news article shown to the selected sides, groups or players.
 [*] Optional fade-in title card and a diary entry that reopens the article any time.
@@ -49,6 +50,7 @@ These effects can be terminated using the 'Terminate Effects' module.
 
 [h2] [b]Ambient Fireflies, Sparks, Bird Swarm[/b] [/h2]
 [list]
+[img]https://i.imgur.com/eFjyqKp.gif[/img]
 [*] Fireflies that glow in the dark and blink on and off at random, with optional frog croaks.
 [*] Electrical spark showers that glow and flash at night, with crackle sounds.
 [*] A flock of eagles circling an area.
@@ -56,6 +58,8 @@ These effects can be terminated using the 'Terminate Effects' module.
 
 [h2] [b]Aurora Borealis, Spacetime Rupture, Modify Sky Effect[/b] [/h2]
 [list]
+[img]https://i.imgur.com/JepgAJK.gif[/img]
+[img]https://i.imgur.com/YqxQnQK.gif[/img]
 [*] Glowing bands in the night sky: band, arc, wave, ring, spiral or random shape.
 [*] Fade in / fade out speed, lifetime, density, size scale and length scale.
 [*] Optional shape switch timer: the band takes on a new form every X seconds.
@@ -65,9 +69,14 @@ These effects can be terminated using the 'Terminate Effects' module.
 
 [h2] [b]Anti Air Barrage, Artillery Barrage, Missile Launcher, Searchlight, Tracer Fire[/b] [/h2]
 [list]
+[img]http://i.imgur.com/YWmlnQL.gif[/img]
 [*] Flak barrage with optional aircraft and infantry damage.
+[img]https://i.imgur.com/tHRChtC.gif[/img]
 [*] Artillery with lethal (real shells), non-lethal (visuals) and sound-only modes. Visual impacts have a flak-style flash with lens flare, a fireball, sparks, flying earth, a dust ring, a dark smoke column and smouldering craters. Every impact keeps its own sound, so shells no longer cut each other off.
 [*] Ambient rocket launches, a sweeping searchlight with optional air raid alarm, and ambient tracer volleys.
+[img]https://i.imgur.com/tSFHysp.gif[/img]
+[img]https://i.imgur.com/fKxoQrb.gif[/img]
+[img]https://i.imgur.com/xH1QXnK.gif[/img]
 [/list]
 
 [h2] [b]Drone Feed[/b] [/h2]
@@ -78,13 +87,15 @@ These effects can be terminated using the 'Terminate Effects' module.
 [*] Anyone at the screen can Take Control / Release Control. The controller gets zoom, vision mode, view cycling (drone) or map retargeting (satellite).
 [/list]
 
-[h2] [b]Meteors / Comets[/b] [/h2]
+[h2] [b]Meteors, Comets[/b][/h2]
+[img]https://i.imgur.com/gVgALft.gif[/img]
 [list]
 [*] Meteors crashing near random players with optional lethal impacts.
 [*] Comets streaking across the sky.
 [/list]
 
 [h2] [b]UFO Encounter, Seeker, Crop Circle[/b] [/h2]
+[img]https://i.imgur.com/c6YkvJ6.gif[/img]
 [list]
 [*] Random UFO sightings: fast crossings and hovering light charges.
 [*] A seeker orb landing and sweeping the area near players.
@@ -98,11 +109,14 @@ These effects can be terminated using the 'Terminate Effects' module.
 [/list]
 
 [h2] [b]Floating Objects[/b] [/h2]
+[img]https://i.imgur.com/jGnLk7n.gif[/img]
 [list]
 [*] Levitates an object and animates it with slide, bounce, rotation, rollover and orbit movements.
 [/list]
 
 [h2] [b]Freeze Players[/b] [/h2]
+[img]https://i.imgur.com/XqoUAX1.gif[/img]
+
 [list]
 [*] Freezes or unfreezes players, either by stopping their simulation or with a looping animation.
 [/list]
