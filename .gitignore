@@ -64,3 +64,5 @@ build/.env
 # =========================
 *.log
 *.rpt
+ignore
+ignore/
