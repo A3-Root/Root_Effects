@@ -24,7 +24,7 @@ if ((VIEWER_POS distance2D _visitPos) > EGVAR(main,maxViewDistance)) exitWith {}
 DBG(FORMAT_1("seekerLocal running here with %1",_this));
 
 enableCamShake true;
-playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [_visitPos select 0, _visitPos select 1, 200], 10, 1, 3000];
+playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [_visitPos select 0, _visitPos select 1, 200], 10, 1, 3000, 0, true];
 
 [{
     params ["_visitPos"];
@@ -51,7 +51,8 @@ playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [_visitPos select
             deleteVehicle _shockwaveEmitter;
         }, [_shockwaveEmitter], 0.2] call CBA_fnc_waitAndExecute;
 
-        "Crater" createVehicleLocal getPos _orbitCenter;
+        private _crater = "Crater" createVehicleLocal getPos _orbitCenter;
+        [{deleteVehicle _this}, _crater, 600] call CBA_fnc_waitAndExecute;
         drop [["\A3\data_f\ParticleEffects\Universal\Universal", 16, 12, 9, 0], "", "BillBoard", 1, 3, [0, 0, 1], [0, 0, 10], 0, 50, 0.01, 0, [10, 25], [[0.1, 0.1, 0.1, 1], [0.1, 0.1, 0.1, 1]], [1000], 1, 0, "", "", _orbitCenter];
 
         private _orbitLight = "#lightpoint" createVehicleLocal _visitPos;
@@ -82,7 +83,7 @@ playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [_visitPos select
                 if (_jumpsLeft <= 0) exitWith {
                     _handle call CBA_fnc_removePerFrameHandler;
 
-                    playSound3D [QPATHTOF(sounds\ufo_launch.ogg), objNull, false, [getPos _orbitLight select 0, getPos _orbitLight select 1, 200], 10, 1, 3000];
+                    playSound3D [QPATHTOF(sounds\ufo_launch.ogg), objNull, false, [getPos _orbitLight select 0, getPos _orbitLight select 1, 200], 10, 1, 3000, 0, true];
                     drop [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 2.5, [0, 0, 0], [0, 0, 200], 0, 9, 7, 0, [10, 1], [[1, 1, 1, 1], [0.9, 0.9, 1, 1]], [1], 0, 0, "", "", _orbitLight];
 
                     [{

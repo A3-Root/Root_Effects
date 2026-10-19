@@ -47,21 +47,20 @@ if (!(["floatingobjects"] call EFUNC(main,isEffectEnabled))) exitWith {};
 if (isNull _object) exitWith {};
 if (_object getVariable [QGVAR(active), false]) exitWith {};
 
-_object setVariable [QGVAR(active), true];
-
 // Remember the original state so stopping the effect can restore it.
 private _originalPos = getPosATL _object;
 private _originalDir = getDir _object;
 
-_object allowDamage _allowDamage;
-_object enableSimulationGlobal _allowSimulation;
-
 private _basePos = +_originalPos;
 _basePos set [2, _elevation];
-_object setPosATL _basePos;
 
-private _anchor = ["floatingobjects", "", [], getPosATL _object] call EFUNC(main,startEffect);
+private _anchor = ["floatingobjects", "", [], _basePos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
+
+_object setVariable [QGVAR(active), true];
+_object allowDamage _allowDamage;
+_object enableSimulationGlobal _allowSimulation;
+_object setPosATL _basePos;
 
 _slide params ["_slideStep", "_slideDist"];
 _bounce params ["_bounceStep", "_bounceAmp"];

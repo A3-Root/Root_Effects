@@ -46,7 +46,7 @@ _meteor setPosATL _startPos;
 private _velocity = (_targetGround vectorDiff _startPos) vectorMultiply (180 / (_targetGround vectorDistance _startPos));
 _velocity params ["_velocityX", "_velocityY"];
 
-[QGVAR(meteorLocal), [_meteor]] call CBA_fnc_globalEvent;
+[QGVAR(meteorLocal), [netId _meteor]] call CBA_fnc_globalEvent;
 
 _meteor setVelocity _velocity;
 
@@ -71,7 +71,7 @@ _meteor setVelocity _velocity;
         {
             if (!(_x isKindOf "VirtualMan_F")) then {
                 if (_x isKindOf "Man" || {_x isKindOf "LandVehicle"} || {_x isKindOf "Air"}) then {
-                    _x setVelocity [random 3, random 3, random 30];
+                    [QEGVAR(main,setVelocityLocal), [_x, [random 3, random 3, random 30]], _x] call CBA_fnc_targetEvent;
                 };
                 [_x, 1, "Body", "explosive", _anchor] call EFUNC(main,doDamage);
             };

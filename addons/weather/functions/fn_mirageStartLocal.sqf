@@ -44,7 +44,7 @@ private _state = [_anchor, _radius, _intensity, -1, objNull, 0];
 
     if (_inside) then {
         if (_ppHandle == -1) then {
-            _ppHandle = ppEffectCreate ["DynamicBlur", 460];
+            _ppHandle = ["DynamicBlur", 460] call EFUNC(main,ppCreate);
             _ppHandle ppEffectEnable true;
             _args set [3, _ppHandle];
         };

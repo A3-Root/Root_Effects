@@ -147,11 +147,11 @@ private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _inte
     _args set [4, _blend];
 
     if (_ppHandle == -1) then {
-        _ppHandle = ppEffectCreate ["ColorCorrections", 1550];
+        _ppHandle = ["ColorCorrections", 1550] call EFUNC(main,ppCreate);
         _ppHandle ppEffectEnable true;
         _args set [3, _ppHandle];
 
-        _grain = ppEffectCreate ["FilmGrain", 2005];
+        _grain = ["FilmGrain", 2005] call EFUNC(main,ppCreate);
         _grain ppEffectEnable true;
         _args set [11, _grain];
     };

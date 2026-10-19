@@ -89,11 +89,11 @@ private _shakePower = linearConversion [0, 2000, player distance _impactPos, 8, 
 
     // Detonation layers pitched down under the impact sample: the crack of the
     // strike first, then the sub-bass of the ground taking it.
-    playSound3D ["z\root_effects\addons\battlescripts\sounds\explosion_2.ogg", objNull, false, ATLToASL _impactPos, 6, 0.8, 3500];
+    playSound3D ["z\root_effects\addons\battlescripts\sounds\explosion_2.ogg", objNull, false, ATLToASL _impactPos, 6, 0.8, 3500, 0, true];
 
     [{
         params ["_impactPos"];
-        playSound3D ["z\root_effects\addons\battlescripts\sounds\explosion_4.ogg", objNull, false, ATLToASL _impactPos, 5, 0.5, 3500];
+        playSound3D ["z\root_effects\addons\battlescripts\sounds\explosion_4.ogg", objNull, false, ATLToASL _impactPos, 5, 0.5, 3500, 0, true];
     }, [_impactPos], 0.3] call CBA_fnc_waitAndExecute;
 }, [_soundSource, _shakePower, _impactPos], _soundDelay] call CBA_fnc_waitAndExecute;
 

@@ -2,8 +2,8 @@
 
 /*
  * Author: Root
- * Client spark burst on an object burning out: a shower of sparks with crackle.
- * Blowout adds a short flicker of light, a pop and a bigger shower.
+ * Client spark burst on an object burning out, using the ambient sparks shower and
+ * crackle. Blowout adds more bursts, a bright flash and a smoke puff.
  *
  * Arguments:
  * 0: Object <OBJECT>
@@ -20,23 +20,14 @@
 params [["_object", objNull, [objNull]], ["_blowout", false, [false]], ["_height", 0.9, [0]]];
 
 if (!hasInterface || {isNull _object}) exitWith {};
+if ((_object distance (positionCameraToWorld [0, 0, 0])) > 400) exitWith {};
 
-private _viewer = positionCameraToWorld [0, 0, 0];
-if ((_object distance _viewer) > 400) exitWith {};
-
-private _pos = _object modelToWorld [0, 0, ((boundingBoxReal _object) select 1 select 2) * _height];
-private _budget = (EGVAR(main,particleBudget)) max 0.1;
-private _count = ceil (([10, 30] select _blowout) * _budget);
-private _speed = [2, 6] select _blowout;
-
-for "_i" from 1 to _count do {
-    drop [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.5 + random 0.8, _pos, [random (2 * _speed) - _speed, random (2 * _speed) - _speed, random _speed], 0, 4, 1, 0.1, [0.12, 0.03],
-        [[1, 0.9, 0.6, 1], [1, 0.6, 0.2, 0]], [1], 0, 0, "", "", objNull];
-};
-playSound3D ["a3\sounds_f\weapons\mines\electron_trigger_1.wss", objNull, false, AGLToASL _pos, [1.5, 3] select _blowout, 0.9 + random 0.4, [80, 200] select _blowout];
+private _offset = [0, 0, ((boundingBoxReal _object) select 1 select 2) * _height];
+[_object, [1, 2 + floor random 2] select _blowout, _offset, [0.4, 0.8] select _blowout] call EFUNC(ambientsfx,sparkBurstLocal);
 
 if (!_blowout) exitWith {};
 
+private _pos = _object modelToWorld _offset;
 private _flash = "#lightpoint" createVehicleLocal _pos;
 _flash setLightColor [1, 0.8, 0.5];
 _flash setLightAmbient [1, 0.7, 0.4];

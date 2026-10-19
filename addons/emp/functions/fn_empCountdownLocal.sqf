@@ -7,7 +7,7 @@
  * and an optional blue glow charging up over the last 3 seconds.
  *
  * Arguments:
- * 0: Field entry [anchor, settings, version, detonation time, object] <ARRAY>
+ * 0: Field entry [anchor, settings, version, detonation time, object, interact] <ARRAY>
  *
  * Return Value:
  * None
@@ -58,7 +58,7 @@ if (GVAR(showCountdown3D)) then {
     private _pos = getPosASL _anchor;
 
     if ((_cfg get "beep") && _now >= _nextBeep) then {
-        playSound3D [BEEP_SOUND, objNull, false, _pos vectorAdd [0, 0, 1], 2, 1 + (linearConversion [10, 0, _left, 0, 0.5, true]), 120];
+        playSound3D [BEEP_SOUND, objNull, false, _pos vectorAdd [0, 0, 1], 2, 1 + (linearConversion [10, 0, _left, 0, 0.5, true]), 120, 0, true];
         _args set [1, _now + linearConversion [10, 0, _left, 1, 0.15, true]];
     };
 

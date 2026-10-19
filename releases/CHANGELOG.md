@@ -1,5 +1,38 @@
 # Changelog for Root's Effects
 
+## Version: 4.0.0.2
+### Added
+- EMP: Flicker Weapon Lights, Flicker Vehicle Lights and Flicker Lamps options.
+- EMP: Dome Lightning and Dome Heat Haze options.
+- EMP: Fog Inside and Fog Opacity options.
+- EMP: shutdown interaction on an invisible wall for fields on the ground.
+- EMP CBA settings: Allow Light Flicker, Dome Fog Quality.
+
+### Changed
+- EMP dome visible from inside.
+- EMP shockwave front: larger lightning bolts, sparks and light flicker.
+- EMP sparks use the Ambient Sparks look and sound.
+- EMP suppress mode takes electronic devices and gives them back on leaving.
+- Shared post process helper picks a free priority.
+
+### Fixed
+- EMP shielded items (e.g. weapon lights) were still turned off.
+- EMP extra electronics kept working in suppress mode.
+- EMP ACE interaction missing on objects without ACE main actions; shutdown range scales with object size.
+- Drone feed RPT error spam in the turret aim lookup.
+- Sounds from client side effects played once per player (EMP, fireworks, cryo blast, meteor, laser, singularity, UFO, lightning).
+- Briefing map take / release control actions.
+- Comet flight direction.
+- Napalm damage area rotated.
+- Meteor knock back on remote units.
+- Singularity fling hook created globally.
+- Meteor, comet, UFO flyby and drone feed setup when the object arrives after the event.
+- Floating object locked when the effect fails to start.
+- Laser and UFO seeker craters never removed.
+- Drone feed monitor removing feeds while iterating.
+- Searchlight loop kept running after its mount died.
+- Missile, tracer and volcano range checks used the player instead of the camera.
+
 ## Version: 4.0.0.1
 ### Added
 - Build-up time for Aurora, Spacetime Rupture, Lightning Storm and Acid Rain: instant, X seconds or default.

@@ -2,7 +2,7 @@
 
 /*
  * Author: Root
- * Checks whether a unit can shut down the EMP field on an object: close by,
+ * Checks whether a unit can shut down the EMP field on an object: within 3 m of its bounds,
  * field still running, countdown abort allowed (before detonation) and the
  * required item carried.
  *
@@ -21,7 +21,7 @@ params [["_object", objNull, [objNull]], ["_unit", objNull, [objNull]]];
 
 private _anchor = _object getVariable [QGVAR(anchor), objNull];
 if (isNull _anchor || {!alive _unit} || {_anchor getVariable [QGVAR(ending), false]}) exitWith {false};
-if ((_unit distance _object) > 5) exitWith {false};
+if ((_unit distance _object) > ((boundingBoxReal _object) select 2) + 3) exitWith {false};
 
 private _entry = GVAR(fields) select {(_x select 0) isEqualTo _anchor};
 if (_entry isEqualTo []) exitWith {false};

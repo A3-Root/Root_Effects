@@ -56,7 +56,7 @@ _glow setLightColor [0.5, 0.75, 1];
 _glow setLightAmbient [0.3, 0.5, 0.8];
 _glow setLightAttenuation [4, 0, _radius, 0, 20, _radius * 1.5];
 
-playSound3D ["A3\Sounds_F\ambient\thunder\thunder_01.wss", objNull, false, ATLToASL _pos, 4, 0.6, 2000];
+playSound3D ["A3\Sounds_F\ambient\thunder\thunder_01.wss", objNull, false, ATLToASL _pos, 4, 0.6, 2000, 0, true];
 
 if (_distance < _radius * 2) then {
     enableCamShake true;
@@ -65,7 +65,7 @@ if (_distance < _radius * 2) then {
 
 // Anyone standing in the blast gets the cold hitting them in the face.
 if (_distance <= _radius) then {
-    private _whiteout = ppEffectCreate ["ColorCorrections", 2410];
+    private _whiteout = ["ColorCorrections", 2410] call EFUNC(main,ppCreate);
     _whiteout ppEffectEnable true;
     _whiteout ppEffectAdjust [1, 1, 0, [0.75, 0.88, 1, 0.85], [1, 1, 1, 0], [1, 1, 1, 0]];
     _whiteout ppEffectCommit 0.15;

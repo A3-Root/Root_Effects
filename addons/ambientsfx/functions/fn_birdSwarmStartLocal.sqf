@@ -80,6 +80,7 @@ private _state = [_anchor, _count, _radius, []];
     if (isNull _anchor) exitWith {
         _handle call CBA_fnc_removePerFrameHandler;
     };
+    if (_birds isEqualTo []) exitWith {};
 
     private _center = getPosATL _anchor;
 

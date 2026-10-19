@@ -24,36 +24,43 @@ params [["_drone", objNull, [objNull]], ["_view", VIEW_GUNNER, [""]]];
 
 if (isNull _drone) exitWith {[[0, 0, 0], [0, 1, 0]]};
 
-private _cfg = configOf _drone;
+// Memory point names from config, read once per drone.
+private _names = _drone getVariable QGVAR(aimPoints);
+if (isNil "_names") then {
+    private _cfg = configOf _drone;
+    private _turretCfg = [_drone, [0]] call CBA_fnc_getTurret;
+    _names = [
+        getText (_cfg >> "uavCameraDriverPos"),
+        getText (_cfg >> "uavCameraDriverDir"),
+        getText (_cfg >> "uavCameraGunnerPos"),
+        getText (_cfg >> "uavCameraGunnerDir"),
+        getText (_turretCfg >> "gunBeg"),
+        getText (_turretCfg >> "gunEnd")
+    ];
+    {
+        if (_x isEqualTo "") then {_names set [_forEachIndex, ["PiP0_pos", "PiP0_dir", "PiP1_pos", "PiP1_dir", "", ""] select _forEachIndex]};
+    } forEach _names;
+    _drone setVariable [QGVAR(aimPoints), _names];
+};
+_names params ["_driverPos", "_driverDir", "_posSel", "_dirSel", "_gunBegSel", "_gunEndSel"];
+
+// Memory LOD points, render time scope.
+private _fnc_point = {
+    params ["_name"];
+    if (_name isEqualTo "") exitWith {[0, 0, 0]};
+    _drone selectionPosition [_name, "Memory"]
+};
 
 // Driver: fixed forward looking nose camera.
 if (_view isEqualTo VIEW_DRIVER) exitWith {
-    private _posSel = getText (_cfg >> "uavCameraDriverPos");
-    private _dirSel = getText (_cfg >> "uavCameraDriverDir");
-    if (_posSel isEqualTo "") then {_posSel = "PiP0_pos"};
-    if (_dirSel isEqualTo "") then {_dirSel = "PiP0_dir"};
-
-    private _camPos = _drone modelToWorldVisualWorld (_drone selectionPosition [_posSel, "Memory"]);
-    private _dirPos = _drone modelToWorldVisualWorld (_drone selectionPosition [_dirSel, "Memory"]);
+    private _camPos = _drone modelToWorldVisualWorld ([_driverPos] call _fnc_point);
+    private _dirPos = _drone modelToWorldVisualWorld ([_driverDir] call _fnc_point);
     private _dir = _camPos vectorFromTo _dirPos;
     if (_dir isEqualTo [0, 0, 0]) then {_dir = vectorDir _drone};
     [_camPos, vectorNormalized _dir]
 };
 
 // Gunner camera origin from the configured memory point.
-private _posSel = getText (_cfg >> "uavCameraGunnerPos");
-private _dirSel = getText (_cfg >> "uavCameraGunnerDir");
-if (_posSel isEqualTo "") then {_posSel = "PiP1_pos"};
-if (_dirSel isEqualTo "") then {_dirSel = "PiP1_dir"};
-
-// Render-time memory points (LOD index syntax, visual = true), so they match the
-// render-time transform used below; mixing simulation and render time jitters.
-private _memLod = (allLODs _drone) findIf {(toLowerANSI (_x select 1)) == "memory"};
-private _fnc_point = {
-    params ["_name"];
-    if (_memLod == -1) exitWith {_drone selectionPosition [_name, "Memory"]};
-    _drone selectionPosition [_name, (allLODs _drone) select _memLod select 2, true]
-};
 private _camModel = [_posSel] call _fnc_point;
 private _camPos = _drone modelToWorldVisualWorld _camModel;
 
@@ -75,9 +82,8 @@ if (_dirModel isNotEqualTo _camModel) then {
 };
 
 // 3: the turret gun memory points, as CBA_fnc_turretDir reads them.
-private _turretCfg = [_drone, [0]] call CBA_fnc_getTurret;
-private _gunBeg = [getText (_turretCfg >> "gunBeg")] call _fnc_point;
-private _gunEnd = [getText (_turretCfg >> "gunEnd")] call _fnc_point;
+private _gunBeg = [_gunBegSel] call _fnc_point;
+private _gunEnd = [_gunEndSel] call _fnc_point;
 if (_gunBeg isNotEqualTo _gunEnd) then {
     _candidates pushBack ["gunPoints", (_drone modelToWorldVisualWorld _gunEnd) vectorFromTo (_drone modelToWorldVisualWorld _gunBeg)];
 };

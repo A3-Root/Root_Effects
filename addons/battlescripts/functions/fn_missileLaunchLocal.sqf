@@ -25,7 +25,7 @@ if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 DBG(FORMAT_1("missileLaunchLocal running here with %1",_this));
 
-private _distance = player distance _anchor;
+private _distance = VIEWER_POS distance _anchor;
 if (_distance <= _safeDistance) exitWith {};
 if (_distance > EGVAR(main,maxViewDistance)) exitWith {};
 

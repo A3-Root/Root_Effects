@@ -4,8 +4,10 @@
  * Author: Root
  * Applies, keeps up or recovers the EMP effect on one local unit or vehicle.
  * - Player: gear suppression loop (and fry), voice channels, HUD interference.
- * - AI: goggles off, weapon lights and lasers off.
- * - Vehicle: engine and lights off, engine hitpoints wrecked until recovery,
+ * - AI: electronic goggles off, electronic weapon lights and lasers off
+ *   (lights flicker instead with flickerGear).
+ * - Vehicle: engine and lights off (headlights flicker instead with flickerVehicles),
+ *   engine hitpoints wrecked until recovery,
  *   thermal and night optics off, fuel drain;
  *   destroy mode also wrecks engine, avionics, electrics and light hitpoints.
  * Fried and destroyed items stay broken on recovery.
@@ -55,19 +57,33 @@ if (_entity isKindOf "CAManBase") exitWith {
     switch (_action) do {
         case "apply": {
             if !(_cfg get "ai") exitWith {};
-            private _saved = [hmd _entity, _entity isFlashlightOn (currentWeapon _entity), _entity isIRLaserOn (currentWeapon _entity), false];
-            if ((_cfg get "gear") > 0 && {(_saved select 0) isNotEqualTo ""} && {[_saved select 0, _cfg] call FUNC(empIsElectronic)}) then {
+            private _weapon = currentWeapon _entity;
+            private _saved = [hmd _entity, _entity isFlashlightOn _weapon, _entity isIRLaserOn _weapon, false];
+            private _gear = _cfg get "gear";
+            private _pointer = (_entity weaponAccessories _weapon) param [1, ""];
+            private _pointerHit = _gear > 0 && _pointer isNotEqualTo "" && {[_pointer, _cfg] call FUNC(empIsElectronic)};
+            if (_gear > 0 && {(_saved select 0) isNotEqualTo ""} && {[_saved select 0, _cfg] call FUNC(empIsElectronic)}) then {
                 _entity unassignItem (_saved select 0);
-                if ((_cfg get "gear") == 2) then {
-                    [QGVAR(sparks), [_entity, false, 0.9]] call CBA_fnc_globalEvent;
+                if (_gear == 2) then {
                     _entity removeItem (_saved select 0);
-                    private _pointer = (primaryWeaponItems _entity) param [1, ""];
-                    if (_pointer isNotEqualTo "") then {_entity removePrimaryWeaponItem _pointer};
                     _saved set [3, true];
                 };
             };
-            _entity enableGunLights "ForceOff";
-            _entity enableIRLasers false;
+            if (_gear == 2 && _pointerHit) then {
+                [_entity, _cfg] call FUNC(empFry);
+                _saved set [3, true];
+            };
+            if (_pointerHit) then {
+                if (_gear < 2 && {_cfg get "flickerGear"} && {_saved select 1}) then {
+                    [_entity, "gunAI", _entity getVariable [QGVAR(state), []] param [0, objNull]] call FUNC(empFlickerLocal);
+                } else {
+                    _entity enableGunLights "ForceOff";
+                };
+                _entity enableIRLasers false;
+            };
+            if (_gear == 2 && !_pointerHit && {_saved select 3}) then {
+                [QGVAR(sparks), [_entity, false, 0.9]] call CBA_fnc_globalEvent;
+            };
             _entity setVariable [QGVAR(saved), _saved];
         };
         case "enforce": {};
@@ -99,7 +115,11 @@ switch (_action) do {
         if (_mode == 0) exitWith {};
         DBG(FORMAT_3("EMP hit vehicle %1 at %2, mode %3",typeOf _entity,mapGridPosition _entity,_mode));
         _entity engineOn false;
-        _entity setPilotLight false;
+        if (_mode == 1 && {_cfg getOrDefault ["flickerVehicles", false]} && {isLightOn _entity}) then {
+            [_entity, "vehicle", _entity getVariable [QGVAR(state), []] param [0, objNull]] call FUNC(empFlickerLocal);
+        } else {
+            _entity setPilotLight false;
+        };
         _entity setCollisionLight false;
         _entity disableTIEquipment true;
         _entity disableNVGEquipment true;
@@ -131,7 +151,13 @@ switch (_action) do {
             _x params ["_hitPoint"];
             if ((_entity getHitPointDamage _hitPoint) < 1) then {_entity setHitPointDamage [_hitPoint, 1, false]};
         } forEach (_entity getVariable [QGVAR(savedEngine), []]);
-        if (isLightOn _entity) then {_entity setPilotLight false};
+        if (isLightOn _entity && {GVAR(flicker) findIf {(_x select 0) isEqualTo _entity} == -1}) then {
+            if (!(_entity getVariable [QGVAR(fried), false]) && {_cfg getOrDefault ["flickerVehicles", false]}) then {
+                [_entity, "vehicle", _entity getVariable [QGVAR(state), []] param [0, objNull]] call FUNC(empFlickerLocal);
+            } else {
+                _entity setPilotLight false;
+            };
+        };
         if (isCollisionLightOn _entity) then {_entity setCollisionLight false};
     };
     default {

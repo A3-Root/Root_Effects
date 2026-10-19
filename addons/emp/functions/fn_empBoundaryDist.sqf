@@ -7,7 +7,7 @@
  *
  * Arguments:
  * 0: Position ASL <ARRAY>
- * 1: Field entry [anchor, settings, version, detonation time, object] <ARRAY>
+ * 1: Field entry [anchor, settings, version, detonation time, object, interact] <ARRAY>
  *
  * Return Value:
  * Distance in meters <NUMBER>

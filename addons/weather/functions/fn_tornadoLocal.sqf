@@ -131,4 +131,4 @@ private _emitters = _rings + [_cap, _skirt, _debris];
         addCamShake [linearConversion [0, 400, _distance, 4, 0.3, true], 2.5, 15];
         _args set [8, CBA_missionTime + 2];
     };
-}, 0, [_anchor, _center, _radius, _speed, _seed, _emitters, _voice, 0, 0]] call CBA_fnc_addPerFrameHandler;
+}, 0.05, [_anchor, _center, _radius, _speed, _seed, _emitters, _voice, 0, 0]] call CBA_fnc_addPerFrameHandler;

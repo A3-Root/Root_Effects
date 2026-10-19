@@ -35,7 +35,7 @@ private _cached = GVAR(electronicCache) get _lower;
 if (!isNil "_cached") exitWith {_cached};
 
 private _known = [
-    "itemctab", "itemandroid", "itemmicrodagr", "itemctabhcam", "itemctabmisc", "itemandroidmisc",
+    "itemctab", "itemandroid", "itemmicrodagr", "itemctabhcam", "itemctabmisc", "itemandroidmisc", "itemgalaxy",
     "ace_microdagr", "ace_dagr", "ace_huntir_monitor", "ace_kestrel4500", "ace_atragmx",
     "ace_vector", "ace_vectorday", "ace_mx2a", "ace_yardage450", "ace_spottingscope",
     "acre_gen_satcom", "acre_gen_satcomitem"

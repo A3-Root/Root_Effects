@@ -4,11 +4,11 @@
  * Author: Root
  * Client detonation of an EMP field: flash, lightning arcs and sparks at the
  * object, thunder and blast sound, a glowing shock ring and heat haze running
- * out at the shockwave speed with lightning bolts and crackle riding the wave
- * front, and a camera shake when the wave reaches the player.
+ * out at the shockwave speed with lightning bolts, sparks, light flicker and
+ * crackle riding the wave front, and a camera shake when the wave reaches the player.
  *
  * Arguments:
- * 0: Field entry [anchor, settings, version, detonation time, object] <ARRAY>
+ * 0: Field entry [anchor, settings, version, detonation time, object, interact] <ARRAY>
  *
  * Return Value:
  * None
@@ -31,9 +31,9 @@ private _distance = _viewer distance _pos;
 if (_distance > ((EGVAR(main,maxViewDistance) max (_radius * 2)) max 1500)) exitWith {};
 DBG(FORMAT_2("EMP detonation visuals at %1, viewer %2 m away",mapGridPosition _anchor,round _distance));
 
-playSound3D [format ["a3\sounds_f\ambient\thunder\thunder_0%1.wss", 1 + floor random 6], objNull, false, _pos, 5, 0.7, (_radius * 3) max 2000];
-playSound3D ["a3\sounds_f\weapons\explosion\expl_big_1.wss", objNull, false, _pos, 3, 0.8, 1500];
-playSound3D ["a3\sounds_f\weapons\mines\electron_activate_mine_1.wss", objNull, false, _pos, 4, 0.6, 300];
+playSound3D [format ["a3\sounds_f\ambient\thunder\thunder_0%1.wss", 1 + floor random 6], objNull, false, _pos, 5, 0.7, (_radius * 3) max 2000, 0, true];
+playSound3D ["a3\sounds_f\weapons\explosion\expl_big_1.wss", objNull, false, _pos, 3, 0.8, 1500, 0, true];
+playSound3D [format [QPATHTOEF(ambientsfx,sounds\spark_%1.ogg), 1 + floor random 7], objNull, false, _pos, 5, 0.7, 400, 0, true];
 
 // Camera shake as the wave rolls over the player.
 if (_cfg get "shake") then {
@@ -106,16 +106,18 @@ for "_i" from 0 to (_count - 1) do {
         [[1, 1, 1, 0.6], [1, 1, 1, 0]], [1], 0, 0, "", "", objNull];
 };
 
-// Lightning bolts along the wave front, denser towards the viewer, and crackle
-// from the front point closest to the viewer as it passes.
+// Lightning riding the wave front: bolts crawling along the front, dense on the
+// stretch facing the viewer, blue sparks carried outward, a light flicker and
+// crackle at the front point closest to the viewer.
 [{
     params ["_args", "_handle"];
-    _args params ["_entry", "_nextSound"];
+    _args params ["_entry", "_nextSound", "_flash"];
     _entry params ["_anchor", "_cfg", "", "_detTime"];
 
     private _speed = _cfg get "shockSpeed";
     private _front = (CBA_missionTime - _detTime) * _speed;
     if (isNull _anchor || _speed <= 0 || {_front > _cfg get "radius"}) exitWith {
+        deleteVehicle _flash;
         _handle call CBA_fnc_removePerFrameHandler;
     };
 
@@ -123,24 +125,54 @@ for "_i" from 0 to (_count - 1) do {
     private _viewer = AGLToASL (positionCameraToWorld [0, 0, 0]);
     private _toViewer = _center getDir _viewer;
     private _budget = (EGVAR(main,particleBudget)) max 0.1;
+    private _near = _center vectorAdd [_front * sin _toViewer, _front * cos _toViewer, 0];
+    _near set [2, (getTerrainHeightASL _near) + 1];
+    private _nearDistance = _near distance _viewer;
 
-    for "_i" from 1 to ceil (6 * _budget) do {
-        private _dir = [random 360, _toViewer + random 60 - 30] select (random 1 < 0.5);
+    for "_i" from 1 to ceil (8 * _budget) do {
+        private _dir = [random 360, _toViewer + random 70 - 35] select (random 1 < 0.6);
         private _point = _center vectorAdd [_front * sin _dir, _front * cos _dir, 0];
-        _point set [2, (getTerrainHeightASL _point) + random 4];
+        _point set [2, (getTerrainHeightASL _point) + random 6];
         private _distance = _point distance _viewer;
         if (_distance < 1500) then {
-            drop [["\A3\data_f\blesk1", 1, 0, 1], "", "SpaceObject", 1, 0.1 + random 0.2, ASLToAGL _point, [0, 0, 0], 0, 1.275, 1, 0, [(1.5 + random 3) * (1 + _distance / 400)],
-                [[0.7, 0.85, 1, 1], [0.5, 0.7, 1, 0.5], [0.4, 0.6, 1, 0]], [1], 0, 0, "", "", objNull, random 360];
+            private _size = (5 + random 10) * (1 + _distance / 600);
+            drop [["\A3\data_f\blesk1", 1, 0, 1], "", "SpaceObject", 1, 0.08 + random 0.15, ASLToAGL _point, [0, 0, 0], random 360, 1.275, 1, 0, [_size],
+                [[0.75, 0.9, 1, 1], [0.55, 0.75, 1, 0.7], [0.4, 0.6, 1, 0]], [1], 0, 0, "", "", objNull, random 360];
         };
+    };
+
+    if (_nearDistance < 600) then {
+        // Sparks thrown outward with the wave.
+        private _velocity = [_speed * 0.3 * sin _toViewer, _speed * 0.3 * cos _toViewer, 2];
+        for "_i" from 1 to ceil (6 * _budget) do {
+            private _dir = _toViewer + random 60 - 30;
+            private _point = _center vectorAdd [_front * sin _dir, _front * cos _dir, 0];
+            _point set [2, (getTerrainHeightASL _point) + random 3];
+            drop [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.3 + random 0.4, ASLToAGL _point, _velocity vectorAdd [random 6 - 3, random 6 - 3, random 4], 0, 3, 1, 0.1, [0.25, 0.05],
+                [[0.6, 0.85, 1, 1], [0.4, 0.6, 1, 0]], [1], 0, 0, "", "", objNull];
+        };
+
+        // Light flicker where the front passes closest.
+        if (isNull _flash) then {
+            _flash = "#lightpoint" createVehicleLocal (ASLToAGL _near);
+            _flash setLightColor [0.5, 0.75, 1];
+            _flash setLightAmbient [0.3, 0.5, 1];
+            _flash setLightDayLight true;
+            _flash setLightUseFlare true;
+            _flash setLightFlareMaxDistance 1500;
+            _args set [2, _flash];
+        };
+        _flash setPosASL (_near vectorAdd [0, 0, 2]);
+        _flash setLightBrightness ([0, 2 + random 6] select (random 1 < 0.5));
+        _flash setLightFlareSize (2 + random 4);
+    } else {
+        deleteVehicle _flash;
     };
 
     if (CBA_missionTime >= _nextSound) then {
-        _args set [1, CBA_missionTime + 0.25 + random 0.3];
-        private _point = _center vectorAdd [_front * sin _toViewer, _front * cos _toViewer, 0];
-        _point set [2, (getTerrainHeightASL _point) + 1];
-        if ((_point distance _viewer) < 400) then {
-            playSound3D [selectRandom ["a3\sounds_f\weapons\mines\electron_trigger_1.wss", "a3\sounds_f\weapons\mines\electron_activate_mine_1.wss"], objNull, false, _point, 2.5, 0.8 + random 0.5, 350];
+        _args set [1, CBA_missionTime + 0.3 + random 0.4];
+        if (_nearDistance < 350) then {
+            playSound3D [format [QPATHTOEF(ambientsfx,sounds\spark_%1.ogg), 1 + floor random 7], objNull, false, _near, 3, 0.8 + random 0.4, 350, 0, true];
         };
     };
-}, 0.1, [_entry, 0]] call CBA_fnc_addPerFrameHandler;
+}, 0.05, [_entry, 0, objNull]] call CBA_fnc_addPerFrameHandler;

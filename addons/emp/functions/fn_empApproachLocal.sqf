@@ -79,7 +79,7 @@ GVAR(approachHandle) = [{
     };
 
     if (_grain < 0) then {
-        _grain = ppEffectCreate ["FilmGrain", 2012];
+        _grain = ["FilmGrain", 2012] call EFUNC(main,ppCreate);
         _grain ppEffectEnable true;
         _args set [1, _grain];
     };
@@ -88,6 +88,6 @@ GVAR(approachHandle) = [{
 
     if (CBA_missionTime >= _nextCrackle) then {
         _args set [2, CBA_missionTime + 4 - 3 * _strength + random 1];
-        playSound3D ["a3\sounds_f\weapons\mines\electron_activate_mine_1.wss", objNull, false, getPosASL player, 0.5 + _strength, 1.5, 20];
+        playSound3D [format [QPATHTOEF(ambientsfx,sounds\spark_%1.ogg), 1 + floor random 7], objNull, false, getPosASL player, 0.3 + _strength, 1.3, 20, 0, true];
     };
 }, 0.2, [[], -1, 0]] call CBA_fnc_addPerFrameHandler;

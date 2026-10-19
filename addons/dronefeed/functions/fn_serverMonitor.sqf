@@ -20,7 +20,7 @@
 if (!isServer) exitWith {};
 
 {
-    _y params ["_anchor", "_screen", "_drone", "_mode"];
+    (GVAR(feeds) get _x) params ["_anchor", "_screen", "_drone", "_mode"];
     private _dead = isNull _anchor
         || {isNull _screen}
         || {_mode isEqualTo FEED_MODE_DRONE && {isNull _drone || {!alive _drone}}};
@@ -28,4 +28,4 @@ if (!isServer) exitWith {};
     if (_dead) then {
         [[_x, true]] call FUNC(serverDeleteFeed);
     };
-} forEach GVAR(feeds);
+} forEach keys GVAR(feeds);

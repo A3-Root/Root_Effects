@@ -57,5 +57,5 @@ for "_i" from 0 to (1 + floor random 3) do {
 [{
     params ["_pos", "_distance"];
     private _sound = ["A3\Sounds_F\ambient\thunder\thunder_02.wss", "A3\Sounds_F\ambient\thunder\thunder_06.wss"] select (_distance > 600);
-    playSound3D [_sound, objNull, false, ATLToASL _pos, 5, 0.9 + random 0.2, 4000];
+    playSound3D [_sound, objNull, false, ATLToASL _pos, 5, 0.9 + random 0.2, 4000, 0, true];
 }, [_pos, _distance], _distance / 340] call CBA_fnc_waitAndExecute;

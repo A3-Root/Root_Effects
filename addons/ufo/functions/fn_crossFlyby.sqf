@@ -27,7 +27,7 @@ private _ufo = createVehicle ["Land_Battery_F", [0, 0, 0], [], 0, "CAN_COLLIDE"]
 _ufo setPosATL [_appearPos select 0, _appearPos select 1, 3000];
 _ufo setVelocity [0, 0, -300];
 
-[QGVAR(crossLocal), [_ufo]] call CBA_fnc_globalEvent;
+[QGVAR(crossLocal), [netId _ufo]] call CBA_fnc_globalEvent;
 
 // Dive for eight seconds, then zigzag a few times and leave straight up.
 [{

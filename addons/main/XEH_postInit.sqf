@@ -10,6 +10,12 @@
     _this call FUNC(doHitPointDamageLocal);
 }] call CBA_fnc_addEventHandler;
 
+// Velocity change routed to the machine that owns the object.
+[QGVAR(setVelocityLocal), {
+    params ["_object", "_velocity"];
+    if (local _object) then {_object setVelocity _velocity};
+}] call CBA_fnc_addEventHandler;
+
 // Fired for every machine when an instance is terminated so each deletes the
 // persistent local props (craters, decals) it created for that anchor.
 [QGVAR(cleanupLocalObjects), {

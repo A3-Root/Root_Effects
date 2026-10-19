@@ -55,7 +55,7 @@ private _state = [_anchor, _radius, _tintColor, _strength, -1, 0];
     _args set [5, _blend];
 
     if (_ppHandle == -1) then {
-        _ppHandle = ppEffectCreate ["ColorCorrections", 1551];
+        _ppHandle = ["ColorCorrections", 1551] call EFUNC(main,ppCreate);
         _ppHandle ppEffectEnable true;
         _args set [4, _ppHandle];
     };

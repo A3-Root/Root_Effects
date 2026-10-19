@@ -47,7 +47,7 @@ private _state = [_anchor, _radius, _craterLava, _lavaFlow, _lightning, [], -1, 
 
     // A volcano is a landmark, so render it further out than small effects.
     private _viewDistance = (EGVAR(main,maxViewDistance)) max 2000;
-    private _inRange = (player distance2D _anchor) < _viewDistance;
+    private _inRange = (VIEWER_POS distance2D _anchor) < _viewDistance;
 
     if (_inRange && {_visuals isEqualTo []}) then {
         private _budget = (EGVAR(main,particleBudget)) max 0.1;

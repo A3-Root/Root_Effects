@@ -115,7 +115,7 @@ private _ctrlState = [_anchor, false, false, _activationDistance];
                 [QGVAR(requestControl), [_anchor, player]] call CBA_fnc_serverEvent;
             },
             [_anchor], 1.5, true, true, "",
-            "isNull (_target getVariable ['" + QGVAR(controller) + "', objNull])",
+            format ["isNull ((objectFromNetId '%1') getVariable ['%2', objNull])", netId _anchor, QGVAR(controller)],
             4
         ];
         _board addAction [
@@ -125,7 +125,7 @@ private _ctrlState = [_anchor, false, false, _activationDistance];
                 [QGVAR(releaseControl), [_anchor, player]] call CBA_fnc_serverEvent;
             },
             [_anchor], 1.5, true, true, "",
-            "player isEqualTo (_target getVariable ['" + QGVAR(controller) + "', objNull])",
+            format ["player isEqualTo ((objectFromNetId '%1') getVariable ['%2', objNull])", netId _anchor, QGVAR(controller)],
             4
         ];
         _args set [1, true];

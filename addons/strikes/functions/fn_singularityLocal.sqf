@@ -51,7 +51,7 @@ for "_i" from 0 to (_alarms - 1) do {
     [{
         params ["_anchor", "_pos"];
         if (isNull _anchor) exitWith {};
-        playSound3D ["A3\Sounds_F\sfx\alarm_independent.wss", objNull, false, ATLToASL _pos, 3, 1, 2000];
+        playSound3D ["A3\Sounds_F\sfx\alarm_independent.wss", objNull, false, ATLToASL _pos, 3, 1, 2000, 0, true];
     }, [_anchor, _pos], _alarmStart + _i * SINGULARITY_ALARM_LEN] call CBA_fnc_waitAndExecute;
 };
 DBG(FORMAT_3("singularity local: %1 alarms, charge %2, %3 m away",_alarms,_chargeTime,round (player distance2D _anchor)));
@@ -145,10 +145,10 @@ DBG(FORMAT_3("singularity local: %1 alarms, charge %2, %3 m away",_alarms,_charg
     };
 
     // Impact, then the echo rolling back off the terrain.
-    playSound3D ["A3\Sounds_F\arsenal\explosives\shells\Artillery_shell_explosion_04.wss", objNull, false, ATLToASL _pos, 5, 0.5, 4000];
+    playSound3D ["A3\Sounds_F\arsenal\explosives\shells\Artillery_shell_explosion_04.wss", objNull, false, ATLToASL _pos, 5, 0.5, 4000, 0, true];
     [{
         params ["_pos"];
-        playSound3D ["A3\Sounds_F\arsenal\explosives\shells\tank_shell_explosion_02.wss", objNull, false, ATLToASL _pos, 4, 0.35, 4500];
+        playSound3D ["A3\Sounds_F\arsenal\explosives\shells\tank_shell_explosion_02.wss", objNull, false, ATLToASL _pos, 4, 0.35, 4500, 0, true];
     }, [_pos], 0.8] call CBA_fnc_waitAndExecute;
 
     [{

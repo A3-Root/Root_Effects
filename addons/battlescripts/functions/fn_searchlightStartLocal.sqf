@@ -48,7 +48,7 @@ private _state = [_anchor, _alarm, objNull, 30, 10 + random 350, true, 0, _attac
     private _mounted = !isNull _attachTo;
     if (_mounted && {!alive _attachTo}) exitWith {
         deleteVehicle _beam;
-        _args set [2, objNull];
+        _handle call CBA_fnc_removePerFrameHandler;
     };
 
     private _origin = [_anchor, _attachTo] select _mounted;

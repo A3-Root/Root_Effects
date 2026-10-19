@@ -73,11 +73,23 @@
         <Key ID="STR_root_effects_emp_AttrDomeColorTooltip3DEN">
             <Original>Dome colour as r,g,b from 0 to 1.</Original>
         </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeLightning">
+            <Original>Dome Lightning</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeLightningTooltip">
+            <Original>Lightning arcs flash at random on the dome, seen from inside and outside.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeMirage">
+            <Original>Dome Heat Haze</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeMirageTooltip">
+            <Original>Heat haze distortion on the dome surface only.</Original>
+        </Key>
         <Key ID="STR_root_effects_emp_AttrDomeShimmer">
             <Original>Dome Shimmer</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrDomeShimmerTooltip">
-            <Original>The dome pulses and throws lightning arcs (high dome quality).</Original>
+            <Original>The dome pulses (high dome quality).</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrDomeTooltip">
             <Original>Visible see-through dome over the field. Units, vehicles and bullets pass through.</Original>
@@ -100,6 +112,39 @@
         <Key ID="STR_root_effects_emp_AttrEndDestroyedTooltip">
             <Original>The field shuts down when its object is destroyed.</Original>
         </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerGear">
+            <Original>Flicker Weapon Lights</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerGearTooltip">
+            <Original>Weapon flashlights switched on inside flicker at random instead of staying off.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerLamps">
+            <Original>Flicker Lamps</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerLampsTooltip">
+            <Original>Street lamps, floodlights and power line lights inside flicker at random instead of staying dark.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerVehicles">
+            <Original>Flicker Vehicle Lights</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerVehiclesTooltip">
+            <Original>Vehicle headlights switched on inside flicker at random instead of staying off.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFog">
+            <Original>Fog Inside</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFogAlpha">
+            <Original>Fog Opacity</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFogAlphaTooltip">
+            <Original>Opacity of the fog inside the dome.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFogAlphaTooltip3DEN">
+            <Original>Opacity of the fog inside the dome, 0.05 to 1.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFogTooltip">
+            <Original>Fills the dome with fog. Outside the dome the weather is unchanged.</Original>
+        </Key>
         <Key ID="STR_root_effects_emp_AttrFuelDrain">
             <Original>Fuel Drain</Original>
         </Key>
@@ -110,7 +155,7 @@
             <Original>Personal Electronics</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrGearTooltip">
-            <Original>Suppress: items kept but dead inside the field (NVG, weapon lights and lasers, GPS, cTab, ACE devices, UAV terminal, electronic binoculars). Fry: items removed.</Original>
+            <Original>Suppress: NVG, weapon lights, lasers and electronic binoculars dead inside the field; GPS, cTab, ACE devices, UAV terminal and extra items taken and given back on leaving. Fry: items removed.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrGearTooltip3DEN">
             <Original>0: off. 1: suppress, items kept but dead inside the field. 2: fry, items removed.</Original>
@@ -137,7 +182,7 @@
             <Original>Shutdown Interaction</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrInteractionTooltip">
-            <Original>How players shut the field down on its object. ACE falls back to the action without ACE.</Original>
+            <Original>How players shut the field down on its object, or on an invisible wall at the center of a field on the ground. ACE falls back to the action without ACE.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrInteractionTooltip3DEN">
             <Original>0: none. 1: action. 2: ACE interaction (action without ACE). 3: both.</Original>
@@ -403,6 +448,12 @@
         <Key ID="STR_root_effects_emp_SettingAllowDestroyTooltip">
             <Original>Allow fields to wreck vehicles and remove gear. Off: those modes act as Disable / Suppress.</Original>
         </Key>
+        <Key ID="STR_root_effects_emp_SettingAllowFlicker">
+            <Original>Allow Light Flicker</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingAllowFlickerTooltip">
+            <Original>EMP fields may make lights flicker. Off: lights stay off.</Original>
+        </Key>
         <Key ID="STR_root_effects_emp_SettingCategoryName">
             <Original>EMP</Original>
         </Key>
@@ -423,6 +474,12 @@
         </Key>
         <Key ID="STR_root_effects_emp_SettingEnabledTooltip">
             <Original>Allow EMP fields from Zeus, 3DEN or script.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingFogQuality">
+            <Original>Dome Fog Quality</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingFogQualityTooltip">
+            <Original>Amount of fog particles inside EMP domes on this machine.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingVehicleKill">
             <Original>Allow Vehicle Knockout</Original>

@@ -90,7 +90,7 @@ if (_sounds && {(player distance2D _burstPos) < 2500}) then {
             "A3\Sounds_F\arsenal\explosives\shells\30mm40mm_shell_explosion_01.wss",
             "A3\Sounds_F\arsenal\explosives\shells\tank_shell_explosion_02.wss",
             "A3\Sounds_F\arsenal\explosives\shells\Artillery_shell_explosion_04.wss"
-        ], objNull, false, ATLToASL _burstPos, 3, 1, 2500];
+        ], objNull, false, ATLToASL _burstPos, 3, 1, 2500, 0, true];
     }, [_burstPos], ((player distance2D _burstPos) / 343) min 2] call CBA_fnc_waitAndExecute;
 };
 

@@ -3,12 +3,16 @@
 /*
  * Author: Root
  * Player gear suppression while hit by an EMP field, every 0.1 s, items kept:
- * - goggles forced off, weapon lights and lasers off, electronic binoculars put away,
+ * - electronic goggles forced off, electronic weapon lights and lasers off (lights
+ *   flicker instead with flickerGear), electronic binoculars put away,
+ * - electronic devices (GPS, terminals, cTab, ACE devices, extra items; not goggles,
+ *   binoculars, weapon attachments or radios) taken from the inventory and given
+ *   back on release, onto the body when dead, on the ground when it is full,
  * - GPS / sensor info panels off, vehicle sensors off in a knocked out vehicle,
  * - UAV terminal disconnected and closed,
  * - cTab, ACE microDAGR, DAGR, Kestrel and HuntIR displays closed,
  * - optional voice channels off, optional screen interference (heavier in thermal).
- * Runs until GVAR(playerCfg) is cleared, then puts panels, sensors and channels back.
+ * Runs until GVAR(playerCfg) is cleared, then puts devices, panels, sensors and channels back.
  *
  * Arguments:
  * None
@@ -25,12 +29,13 @@ if (GVAR(suppressHandle) >= 0) exitWith {};
 
 #define PANEL_TYPES ["MinimapDisplayComponent", "SensorsDisplayComponent", "UAVFeedDisplayComponent", "CrewDisplayComponent", "TransportFeedDisplayComponent", "SlingLoadDisplayComponent", "MineDetectorDisplayComponent", "CustomDisplayComponent"]
 
-// [panels off [target, panel, type], sensors off [vehicle, name], channels [id, state], pp handles, vehicle]
-private _state = [[], [], [], [], objNull];
+// [panels off [target, panel, type], sensors off [vehicle, name], channels [id, state], pp handles, vehicle,
+//  unit holding the stash, next stash check]
+private _state = [[], [], [], [], objNull, player, 0];
 
 GVAR(suppressHandle) = [{
     params ["_args", "_handle"];
-    _args params ["_panels", "_sensors", "_channels", "_pp", "_lastVehicle"];
+    _args params ["_panels", "_sensors", "_channels", "_pp", "_lastVehicle", "_unit", "_nextStash"];
 
     private _fnc_restoreVehicle = {
         {
@@ -48,6 +53,7 @@ GVAR(suppressHandle) = [{
 
     if (isNil QGVAR(playerCfg) || {!alive player}) exitWith {
         call _fnc_restoreVehicle;
+        [_unit] call FUNC(empStash);
         {
             _x params ["_id", "_enabled"];
             _id enableChannel _enabled;
@@ -64,12 +70,27 @@ GVAR(suppressHandle) = [{
 
     if (_gear > 0) then {
         // Goggles; vehicle optics are handled by the vehicle knockout.
-        if (currentVisionMode player == 1 && {_vehicle isEqualTo player || {cameraView isNotEqualTo "GUNNER"}}) then {
+        if (currentVisionMode player == 1 && {_vehicle isEqualTo player || {cameraView isNotEqualTo "GUNNER"}} && {[hmd player, _cfg] call FUNC(empIsElectronic)}) then {
             player action ["nvGogglesOff", player];
         };
         private _weapon = currentWeapon player;
-        if (player isFlashlightOn _weapon) then {player action ["GunLightOff", player]};
-        if (player isIRLaserOn _weapon) then {player action ["IRLaserOff", player]};
+        private _pointer = (player weaponAccessories _weapon) param [1, ""];
+        if (_pointer isNotEqualTo "" && {[_pointer, _cfg] call FUNC(empIsElectronic)}) then {
+            if (player isFlashlightOn _weapon && {GVAR(flicker) findIf {(_x select 0) isEqualTo player} == -1}) then {
+                if (_cfg get "flickerGear") then {
+                    [player, "gunPlayer", (player getVariable [QGVAR(state), []]) param [0, objNull]] call FUNC(empFlickerLocal);
+                } else {
+                    player action ["GunLightOff", player];
+                };
+            };
+            if (player isIRLaserOn _weapon) then {player action ["IRLaserOff", player]};
+        };
+
+        // Devices taken away, checked every second for newly picked up ones.
+        if (CBA_missionTime >= _nextStash) then {
+            _args set [6, CBA_missionTime + 1];
+            [player, _cfg] call FUNC(empStash);
+        };
         if (_weapon isNotEqualTo "" && {_weapon isEqualTo binocular player} && {[_weapon, _cfg] call FUNC(empIsElectronic)}) then {
             if (primaryWeapon player isNotEqualTo "") then {
                 player selectWeapon primaryWeapon player;
@@ -84,7 +105,7 @@ GVAR(suppressHandle) = [{
             if (!isNull _display) then {_display closeDisplay 2};
         } forEach [160, 18880, 18881, 18882, 266860];
 
-        if (!isNil "cTab_fnc_close" && {!isNil {uiNamespace getVariable "cTabIfOpen"}}) then {
+        if (!isNil "cTab_fnc_close" && {!isNil "cTabIfOpen" || {!isNil {uiNamespace getVariable "cTabIfOpen"}}}) then {
             call cTab_fnc_close;
         };
         if ((missionNamespace getVariable ["ace_microdagr_currentShowMode", 0]) != 0) then {
@@ -133,9 +154,9 @@ GVAR(suppressHandle) = [{
 
     if (_cfg get "hud") then {
         if (_pp isEqualTo []) then {
-            private _aberration = ppEffectCreate ["ChromAberration", 210];
+            private _aberration = ["ChromAberration", 210] call EFUNC(main,ppCreate);
             _aberration ppEffectEnable true;
-            private _grain = ppEffectCreate ["FilmGrain", 2010];
+            private _grain = ["FilmGrain", 2010] call EFUNC(main,ppCreate);
             _grain ppEffectEnable true;
             _pp append [_aberration, _grain];
         };

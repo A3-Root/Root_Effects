@@ -52,7 +52,14 @@ if (isNull _anchor) exitWith {};
 if (_feedId in GVAR(activeFeeds)) exitWith {};
 
 private _screen = objectFromNetId _screenNetId;
-if (isNull _screen) exitWith {};
+// Screen created in the same frame may not have arrived yet: retry once it exists.
+if (isNull _screen) exitWith {
+    [{
+        !isNull objectFromNetId (_this select 2) || {isNull (_this select 0)}
+    }, {
+        if (!isNull objectFromNetId (_this select 2)) then {_this call FUNC(setupFeedLocal)};
+    }, _this, 10] call CBA_fnc_waitUntilAndExecute;
+};
 
 private _state = createHashMapFromArray [
     ["anchor", _anchor],

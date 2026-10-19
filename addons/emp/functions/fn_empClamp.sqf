@@ -34,6 +34,7 @@ private _fnc_num = {
 ["holdTime", 0, 300] call _fnc_num;
 ["fuelDrain", 0, 1] call _fnc_num;
 ["domeAlpha", 0.01, 1] call _fnc_num;
+["fogAlpha", 0.05, 1] call _fnc_num;
 {
     [_x, 0, 2] call _fnc_num;
     _cfg set [_x, round (_cfg get _x)];
@@ -65,6 +66,9 @@ if (!GVAR(allowDestroy) || {!EGVAR(main,damageAllowed)}) then {
 };
 if (!GVAR(allowDestroy)) then {
     _cfg set ["gear", (_cfg get "gear") min 1];
+};
+if (!GVAR(allowFlicker)) then {
+    {_cfg set [_x, false]} forEach ["flickerGear", "flickerVehicles", "flickerLamps"];
 };
 
 _cfg

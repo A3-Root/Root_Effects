@@ -57,6 +57,13 @@ if (_countdown) then {
 ["domeColor", ["COLOR", [LLSTRING(AttrDomeColor), LLSTRING(AttrDomeColorTooltip)], _d get "domeColor"]] call _fnc_add;
 ["domeAlpha", ["SLIDER:PERCENT", [LLSTRING(AttrDomeAlpha), LLSTRING(AttrDomeAlphaTooltip)], [0.01, 1, _d get "domeAlpha", 0]]] call _fnc_add;
 ["domeShimmer", ["TOOLBOX:YESNO", [LLSTRING(AttrDomeShimmer), LLSTRING(AttrDomeShimmerTooltip)], _d get "domeShimmer"]] call _fnc_add;
+["domeLightning", ["TOOLBOX:YESNO", [LLSTRING(AttrDomeLightning), LLSTRING(AttrDomeLightningTooltip)], _d get "domeLightning"]] call _fnc_add;
+["domeMirage", ["TOOLBOX:YESNO", [LLSTRING(AttrDomeMirage), LLSTRING(AttrDomeMirageTooltip)], _d get "domeMirage"]] call _fnc_add;
+["fog", ["TOOLBOX:YESNO", [LLSTRING(AttrFog), LLSTRING(AttrFogTooltip)], _d get "fog"]] call _fnc_add;
+["fogAlpha", ["SLIDER:PERCENT", [LLSTRING(AttrFogAlpha), LLSTRING(AttrFogAlphaTooltip)], [0.05, 1, _d get "fogAlpha", 0]]] call _fnc_add;
+["flickerGear", ["TOOLBOX:YESNO", [LLSTRING(AttrFlickerGear), LLSTRING(AttrFlickerGearTooltip)], _d get "flickerGear"]] call _fnc_add;
+["flickerVehicles", ["TOOLBOX:YESNO", [LLSTRING(AttrFlickerVehicles), LLSTRING(AttrFlickerVehiclesTooltip)], _d get "flickerVehicles"]] call _fnc_add;
+["flickerLamps", ["TOOLBOX:YESNO", [LLSTRING(AttrFlickerLamps), LLSTRING(AttrFlickerLampsTooltip)], _d get "flickerLamps"]] call _fnc_add;
 ["marker", ["TOOLBOX", [LLSTRING(AttrMarker), LLSTRING(AttrMarkerTooltip)], [_d get "marker", 1, 3, [LLSTRING(ModeOff), LLSTRING(MarkerArea), LLSTRING(MarkerLabel)]]]] call _fnc_add;
 ["markerSync", ["TOOLBOX:YESNO", [LLSTRING(AttrMarkerSync), LLSTRING(AttrMarkerSyncTooltip)], _d get "markerSync"]] call _fnc_add;
 ["beep", ["TOOLBOX:YESNO", [LLSTRING(AttrBeep), LLSTRING(AttrBeepTooltip)], _d get "beep"]] call _fnc_add;

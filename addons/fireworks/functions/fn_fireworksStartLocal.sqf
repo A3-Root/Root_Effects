@@ -61,7 +61,7 @@ private _state = [_anchor, _radius, _height, _sounds, 60 / (_rate max 1), 0];
             "A3\Sounds_F\arsenal\weapons\Launchers\Titan\Titan.wss",
             "A3\Sounds_F\arsenal\weapons\Launchers\NLAW\nlaw.wss",
             "A3\Sounds_F\arsenal\weapons\Launchers\RPG32\rpg32.wss"
-        ], objNull, false, ATLToASL _launchPos, 2, 1, 1200];
+        ], objNull, false, ATLToASL _launchPos, 2, 1, 1200, 0, true];
     };
 
     // Rising trail: a light climbing from the pad to the burst point, with a

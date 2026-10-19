@@ -8,7 +8,7 @@
  *
  * Arguments:
  * 0: Position ASL <ARRAY>
- * 1: Field entry [anchor, settings, version, detonation time, object] <ARRAY>
+ * 1: Field entry [anchor, settings, version, detonation time, object, interact] <ARRAY>
  * 2: Require the shockwave to have passed <BOOL> (optional, default true)
  *
  * Return Value:

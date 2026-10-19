@@ -8,8 +8,10 @@
  * emitters are local and clean themselves up.
  *
  * Arguments:
- * 0: Instance anchor <OBJECT>
+ * 0: Instance anchor or object to spark from <OBJECT>
  * 1: Number of bursts in this window <NUMBER>
+ * 2: Model space offset of the spark source <ARRAY> (optional, default [0, 0, 0])
+ * 3: Longest random pause before each burst in seconds <NUMBER> (optional, default 2)
  *
  * Return Value:
  * None
@@ -18,7 +20,7 @@
  * [_anchor, 3] call root_effects_ambientsfx_fnc_sparkBurstLocal
  */
 
-params [["_anchor", objNull, [objNull]], ["_burstCount", 3, [0]]];
+params [["_anchor", objNull, [objNull]], ["_burstCount", 3, [0]], ["_offset", [0, 0, 0], [[]], 3], ["_spread", 2, [0]]];
 
 if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
@@ -27,10 +29,10 @@ if ((VIEWER_POS distance _anchor) > 200) exitWith {};
 
 private _delay = 0;
 for "_i" from 1 to _burstCount do {
-    _delay = _delay + 0.1 + random 2;
+    _delay = _delay + 0.1 + random _spread;
 
     [{
-        params ["_anchor"];
+        params ["_anchor", "_offset"];
         if (isNull _anchor) exitWith {};
         if ((VIEWER_POS distance _anchor) > 200) exitWith {};
 
@@ -38,20 +40,20 @@ for "_i" from 1 to _burstCount do {
         private _orange = selectRandom [true, false];
         private _lifetime = [0.1 + random 0.4, 0.5 + random 1.5] select _orange;
 
-        private _sparkEmitter = "#particlesource" createVehicleLocal getPosATL _anchor;
+        private _sparkEmitter = "#particlesource" createVehicleLocal (_anchor modelToWorld _offset);
         if (_orange) then {
             _sparkEmitter setParticleCircle [0, [0, 0, 0]];
             _sparkEmitter setParticleRandom [1, [0.1, 0.1, 0.1], [0, 0, 0], 0, 0.25, [0, 0, 0, 0], 0, 0];
             // Hot orange sparks cooling to a dull ember as they fall. A crisp
             // point texture keeps each spark sharp instead of a soft blur.
-            _sparkEmitter setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 1 + random 2, [0, 0, 0], [0, 0, 0], 0, 15, 7.9, 0, [0.5, 0.35, 0.04], [[3, 2.4, 1.4, 1], [2.2, 1.1, 0.25, 1], [1.2, 0.35, 0.06, 0]], [0.08], 1, 0, "", "", _anchor, 0, true, 0.3, [[300, 180, 60, 1], [160, 60, 8, 1], [20, 4, 0, 0]]];
+            _sparkEmitter setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 1 + random 2, _offset, [0, 0, 0], 0, 15, 7.9, 0, [0.5, 0.35, 0.04], [[3, 2.4, 1.4, 1], [2.2, 1.1, 0.25, 1], [1.2, 0.35, 0.06, 0]], [0.08], 1, 0, "", "", _anchor, 0, true, 0.3, [[300, 180, 60, 1], [160, 60, 8, 1], [20, 4, 0, 0]]];
             _sparkEmitter setDropInterval (0.001 + random 0.05);
         } else {
             _sparkEmitter setParticleCircle [0, [0, 0, 0]];
             _sparkEmitter setParticleRandom [1, [0.05, 0.05, 0.1], [5, 5, 3], 0, 0.0025, [0, 0, 0, 0], 0, 0];
             // Electrical arc sparks: white hot with a cold blue tail. A crisp
             // point texture keeps each spark sharp instead of a soft blur.
-            _sparkEmitter setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 1 + random 2, [0, 0, 0], [0, 0, 0], 0, 20, 7.9, 0, [0.5, 0.35, 0.04], [[3, 3, 3, 1], [2, 2.1, 2.6, 1], [1.1, 1.2, 1.4, 0]], [0.08], 1, 0, "", "", _anchor, 0, true, 0.3, [[400, 400, 450, 1], [150, 180, 300, 1], [10, 15, 40, 0]]];
+            _sparkEmitter setParticleParams [["\A3\data_f\cl_basic", 1, 0, 1], "", "Billboard", 1, 1 + random 2, _offset, [0, 0, 0], 0, 20, 7.9, 0, [0.5, 0.35, 0.04], [[3, 3, 3, 1], [2, 2.1, 2.6, 1], [1.1, 1.2, 1.4, 0]], [0.08], 1, 0, "", "", _anchor, 0, true, 0.3, [[400, 400, 450, 1], [150, 180, 300, 1], [10, 15, 40, 0]]];
             _sparkEmitter setDropInterval 0.001;
         };
 
@@ -59,7 +61,7 @@ for "_i" from 1 to _burstCount do {
 
         // Emissive colour lets the sparks glow on their own, but a brief flash
         // is what makes the surroundings react to them in the dark.
-        private _flash = "#lightpoint" createVehicleLocal ((getPosATL _anchor) vectorAdd [0, 0, 0.3]);
+        private _flash = "#lightpoint" createVehicleLocal (_anchor modelToWorld (_offset vectorAdd [0, 0, 0.3]));
         _flash setLightDayLight false;
         _flash setLightAmbient ([[0.4, 0.45, 0.6], [0.6, 0.35, 0.1]] select _orange);
         _flash setLightColor ([[0.8, 0.85, 1], [1, 0.6, 0.2]] select _orange);
@@ -81,5 +83,5 @@ for "_i" from 1 to _burstCount do {
             deleteVehicle _sparkEmitter;
             deleteVehicle _flash;
         }, [_sparkEmitter, _flash], _lifetime] call CBA_fnc_waitAndExecute;
-    }, [_anchor], _delay] call CBA_fnc_waitAndExecute;
+    }, [_anchor, _offset], _delay] call CBA_fnc_waitAndExecute;
 };

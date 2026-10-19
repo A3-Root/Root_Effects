@@ -74,6 +74,13 @@ class CfgVehicles {
             ROOT_ATTR_STRING(ROOT_EMP_DOMECOLOR,CSTRING(AttrDomeColor),CSTRING(AttrDomeColorTooltip3DEN),"'0.5,0.5,0.5'");
             ROOT_ATTR_NUMBER(ROOT_EMP_DOMEALPHA,CSTRING(AttrDomeAlpha),CSTRING(AttrDomeAlphaTooltip),0.03);
             ROOT_ATTR_BOOL(ROOT_EMP_DOMESHIMMER,CSTRING(AttrDomeShimmer),CSTRING(AttrDomeShimmerTooltip),true);
+            ROOT_ATTR_BOOL(ROOT_EMP_DOMELIGHTNING,CSTRING(AttrDomeLightning),CSTRING(AttrDomeLightningTooltip),true);
+            ROOT_ATTR_BOOL(ROOT_EMP_DOMEMIRAGE,CSTRING(AttrDomeMirage),CSTRING(AttrDomeMirageTooltip),true);
+            ROOT_ATTR_BOOL(ROOT_EMP_FOG,CSTRING(AttrFog),CSTRING(AttrFogTooltip),false);
+            ROOT_ATTR_NUMBER(ROOT_EMP_FOGALPHA,CSTRING(AttrFogAlpha),CSTRING(AttrFogAlphaTooltip3DEN),0.5);
+            ROOT_ATTR_BOOL(ROOT_EMP_FLICKERGEAR,CSTRING(AttrFlickerGear),CSTRING(AttrFlickerGearTooltip),false);
+            ROOT_ATTR_BOOL(ROOT_EMP_FLICKERVEHICLES,CSTRING(AttrFlickerVehicles),CSTRING(AttrFlickerVehiclesTooltip),false);
+            ROOT_ATTR_BOOL(ROOT_EMP_FLICKERLAMPS,CSTRING(AttrFlickerLamps),CSTRING(AttrFlickerLampsTooltip),false);
             ROOT_ATTR_NUMBER(ROOT_EMP_MARKER,CSTRING(AttrMarker),CSTRING(AttrMarkerTooltip3DEN),1);
             ROOT_ATTR_BOOL(ROOT_EMP_MARKERSYNC,CSTRING(AttrMarkerSync),CSTRING(AttrMarkerSyncTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_BEEP,CSTRING(AttrBeep),CSTRING(AttrBeepTooltip),true);

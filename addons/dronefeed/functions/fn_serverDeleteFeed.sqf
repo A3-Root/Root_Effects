@@ -37,7 +37,7 @@ if (!isNull _screen) then {
 
 // Keep spawned objects by detaching them before the anchor is deleted.
 if (!_deleteSpawned && {!isNull _anchor}) then {
-    _anchor setVariable [QEGVAR(main,attachedObjects), [], true];
+    _anchor setVariable [QEGVAR(main,attachedObjects), []];
 };
 
 if (!isNull _anchor) then {

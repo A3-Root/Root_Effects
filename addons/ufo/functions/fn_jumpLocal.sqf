@@ -85,7 +85,7 @@ for "_angle" from 0 to 315 step 45 do {
         params ["_chargeLight", "_chargePos"];
         deleteVehicle _chargeLight;
 
-        playSound3D [QPATHTOF(sounds\ufo_boom.ogg), objNull, false, [_chargePos select 0, _chargePos select 1, 1000], 10, 1, 5000];
+        playSound3D [QPATHTOF(sounds\ufo_boom.ogg), objNull, false, [_chargePos select 0, _chargePos select 1, 1000], 10, 1, 5000, 0, true];
 
         // Swirl dust and leaves around the player after the shockwave hits.
         [{

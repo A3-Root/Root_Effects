@@ -60,7 +60,7 @@ _anchor say3D [_sound, 5000];
 // Distant rumble echo once the initial blast has played out.
 [{
     params ["_anchor", "_echoSound"];
-    if (!isNull _anchor && {(player distance _anchor) < 3000}) then {
+    if (!isNull _anchor && {(VIEWER_POS distance _anchor) < 3000}) then {
         playSound _echoSound;
     };
 }, [_anchor, _echoSound], 2.5] call CBA_fnc_waitAndExecute;

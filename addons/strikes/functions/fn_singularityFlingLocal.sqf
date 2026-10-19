@@ -39,7 +39,7 @@ private _velocity = [
 if (_target isKindOf "CAManBase" && {isNull objectParent _target}) exitWith {
     [_target, _velocity] spawn {
         params ["_target", "_velocity"];
-        private _hook = "Land_PenBlack_F" createVehicle [0, 0, 0];
+        private _hook = "Land_PenBlack_F" createVehicleLocal [0, 0, 0];
         _hook attachTo [_target, [0, 0, 0], "Spine3"];
         _target setVelocity _velocity;
         uiSleep 0.1;

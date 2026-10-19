@@ -22,11 +22,11 @@ if (CBA_missionTime < (missionNamespace getVariable [QGVAR(warnUntil), -1])) exi
 GVAR(warnUntil) = CBA_missionTime + (_grace max 1) + 1;
 
 hintSilent format [LLSTRING(Warning), ceil _grace];
-playSound3D ["a3\missions_f_epa\data\sounds\electricity_loop.wss", objNull, false, getPosASL player, 2, 1.4, 30];
+playSound3D ["a3\missions_f_epa\data\sounds\electricity_loop.wss", objNull, false, getPosASL player, 2, 1.4, 30, 0, true];
 
 if (_grace <= 0) exitWith {};
 
-private _grain = ppEffectCreate ["FilmGrain", 2011];
+private _grain = ["FilmGrain", 2011] call EFUNC(main,ppCreate);
 _grain ppEffectEnable true;
 
 [{

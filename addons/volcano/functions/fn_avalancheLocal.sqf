@@ -96,7 +96,7 @@ playSound (selectRandom [QGVAR(earthquake_1), QGVAR(earthquake_2)]);
 // its carrier every frame from the carrier's rendered position and orientation.
 [{
     params ["_args", "_handle"];
-    _args params ["_anchor", "_drawn"];
+    _args params ["_anchor", "_drawn", "_nextSweep"];
 
     if (isNull _anchor) exitWith {
         {deleteVehicle _y} forEach _drawn;
@@ -124,14 +124,16 @@ playSound (selectRandom [QGVAR(earthquake_1), QGVAR(earthquake_2)]);
         };
     } forEach (_anchor getVariable [QGVAR(avalancheCarriers), []]);
 
-    // Carriers cleared by the server take their rock with them.
+    // Carriers cleared by the server take their rock with them, checked once a second.
+    if (diag_tickTime < _nextSweep) exitWith {};
+    _args set [2, diag_tickTime + 1];
     {
         if (isNull (objectFromNetId _x)) then {
-            deleteVehicle _y;
+            deleteVehicle (_drawn get _x);
             _drawn deleteAt _x;
         };
-    } forEach +_drawn;
-}, 0, [_anchor, createHashMap]] call CBA_fnc_addPerFrameHandler;
+    } forEach keys _drawn;
+}, 0, [_anchor, createHashMap, 0]] call CBA_fnc_addPerFrameHandler;
 
 // The rock settles before the dust does.
 [{

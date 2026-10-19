@@ -48,8 +48,23 @@ _cfg = [_cfg] call FUNC(empClamp);
 private _detTime = CBA_missionTime + (_cfg get "countdown");
 private _pairs = keys _cfg apply {[_x, _cfg get _x]};
 
-private _anchor = ["emp", QGVAR(fieldLocal), [_pairs, _object, _detTime], _pos] call EFUNC(main,startEffect);
-if (isNull _anchor) exitWith {objNull};
+// A field on the ground gets an invisible wall to carry the shutdown interaction.
+private _interact = objNull;
+if (isNull _object && {(_cfg get "interaction") > 0}) then {
+    _interact = createVehicle ["Land_InvisibleBarrier_F", _pos, [], 0, "CAN_COLLIDE"];
+    _interact setPosATL _pos;
+};
+
+private _anchor = ["emp", QGVAR(fieldLocal), [_pairs, _object, _detTime, _interact], _pos] call EFUNC(main,startEffect);
+if (isNull _anchor) exitWith {
+    deleteVehicle _interact;
+    objNull
+};
+if (!isNull _interact) then {
+    _interact setVariable [QGVAR(anchor), _anchor, true];
+    _anchor setVariable [QGVAR(interact), _interact, true];
+    _anchor setVariable [QEGVAR(main,attachedObjects), [_interact]];
+};
 
 if (!isNull _object) then {
     _anchor attachTo [_object, [0, 0, 0]];

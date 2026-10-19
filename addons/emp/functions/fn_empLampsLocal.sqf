@@ -6,10 +6,11 @@
  * inside the radius go out one by one as the shockwave reaches them (plus the
  * effect delay), with sparks close to the viewer. Late joiners see them out at
  * once. Lamps mode 1 lights them again when the field ends. Mode 2 flickers them,
- * bursts them (some blow out) and keeps them out.
+ * bursts them (some blow out) and keeps them out. With flickerLamps, dark lamps
+ * within 400 m of the viewer that did not blow out flicker at random.
  *
  * Arguments:
- * 0: Field entry [anchor, settings, version, detonation time, object] <ARRAY>
+ * 0: Field entry [anchor, settings, version, detonation time, object, interact] <ARRAY>
  *
  * Return Value:
  * None
@@ -24,11 +25,12 @@ _entry params ["_anchor", "_cfg"];
 if (!hasInterface || {(_cfg get "lamps") == 0}) exitWith {};
 
 #define LAMP_CLASSES ["Lamps_base_F", "PowerLines_base_F", "PowerLines_Small_base_F", "Land_PowerPoleWooden_L_F", "Land_LampStreet_small_F", "Land_LampHalogen_F", "Land_PortableLight_single_F", "Land_PortableLight_double_F", "Land_FloodLight_F"]
+#define FLICKER_RANGE 400
 
-// [entry, pending [time, lamp], dark lamps, mode]
+// [entry, pending [time, lamp], dark lamps, mode, blown lamps, next flicker check]
 [{
     params ["_args", "_handle"];
-    _args params ["_entry", "_pending", "_dark", "_mode"];
+    _args params ["_entry", "_pending", "_dark", "_mode", "_blown", "_nextFlicker"];
     _entry params ["_anchor", "_cfg", "", "_detTime"];
 
     if (isNull _anchor || {_anchor getVariable [QGVAR(ending), false]}) exitWith {
@@ -65,17 +67,30 @@ if (!hasInterface || {(_cfg get "lamps") == 0}) exitWith {};
             if (!_fresh) exitWith {_lamp switchLight "OFF"};
             if (_mode == 2) then {
                 // Broken: flickers, then bursts; some blow out.
+                private _blowout = random 1 < 0.5;
+                if (_blowout) then {_blown pushBack _lamp};
                 _lamp switchLight "OFF";
                 [{(_this select 0) switchLight "ON"}, [_lamp], 0.08] call CBA_fnc_waitAndExecute;
                 [{
-                    params ["_lamp"];
+                    params ["_lamp", "_blowout"];
                     _lamp switchLight "OFF";
-                    [_lamp, random 1 < 0.5] call FUNC(empSparksLocal);
-                }, [_lamp], 0.2 + random 0.2] call CBA_fnc_waitAndExecute;
+                    [_lamp, _blowout] call FUNC(empSparksLocal);
+                }, [_lamp, _blowout], 0.2 + random 0.2] call CBA_fnc_waitAndExecute;
             } else {
                 _lamp switchLight "OFF";
                 [_lamp, false] call FUNC(empSparksLocal);
             };
         };
     };
-}, 0.2, [_entry, [], [], _cfg get "lamps"]] call CBA_fnc_addPerFrameHandler;
+
+    // Flicker for dark lamps near the viewer, picked up every 2 s.
+    if (_now >= _nextFlicker && {_cfg getOrDefault ["flickerLamps", false]}) then {
+        _args set [5, _now + 2];
+        private _viewer = positionCameraToWorld [0, 0, 0];
+        {
+            if (!isNull _x && {!(_x in _blown)} && {(_x distance _viewer) < FLICKER_RANGE}) then {
+                [_x, "lamp", _anchor] call FUNC(empFlickerLocal);
+            };
+        } forEach _dark;
+    };
+}, 0.2, [_entry, [], [], _cfg get "lamps", [], 0]] call CBA_fnc_addPerFrameHandler;

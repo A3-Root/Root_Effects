@@ -40,7 +40,7 @@ private _state = [_anchor, _activationDistance, _color, 0, 0];
     if (CBA_missionTime < _nextVolley) exitWith {};
     _args set [3, CBA_missionTime + 1 + random 3];
 
-    private _distance = player distance _anchor;
+    private _distance = VIEWER_POS distance _anchor;
     if (_distance <= _activationDistance || _distance > EGVAR(main,maxViewDistance)) exitWith {};
 
     if (CBA_missionTime >= _nextSound) then {

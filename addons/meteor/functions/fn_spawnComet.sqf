@@ -40,9 +40,9 @@ _comet setPosATL _startPos;
 private _destX = (_startPos select 0) + (random 40000 * selectRandom [1, -1]);
 private _destY = (_startPos select 1) + (random 40000 * selectRandom [1, -1]);
 
-[QGVAR(cometLocal), [_comet]] call CBA_fnc_globalEvent;
+[QGVAR(cometLocal), [netId _comet]] call CBA_fnc_globalEvent;
 
-_comet setVelocity [_destX / 100, _destY / 100, -1];
+_comet setVelocity [(_destX - (_startPos select 0)) / 100, (_destY - (_startPos select 1)) / 100, -1];
 
 [{
     params ["_comet"];

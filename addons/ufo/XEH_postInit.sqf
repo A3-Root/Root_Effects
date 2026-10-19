@@ -16,7 +16,11 @@ if (isServer) then {
 
 if (hasInterface) then {
     [QGVAR(crossLocal), {
-        _this call FUNC(crossLocal);
+        // Object created in the same frame may arrive after the event.
+        params ["_netId"];
+        [{!isNull objectFromNetId _this}, {
+            [objectFromNetId _this] call FUNC(crossLocal);
+        }, _netId, 5] call CBA_fnc_waitUntilAndExecute;
     }] call CBA_fnc_addEventHandler;
 
     [QGVAR(jumpLocal), {

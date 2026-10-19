@@ -12,7 +12,11 @@ if (isServer) then {
 
 if (hasInterface) then {
     [QGVAR(meteorLocal), {
-        _this call FUNC(meteorLocal);
+        // Object created in the same frame may arrive after the event.
+        params ["_netId"];
+        [{!isNull objectFromNetId _this}, {
+            [objectFromNetId _this] call FUNC(meteorLocal);
+        }, _netId, 5] call CBA_fnc_waitUntilAndExecute;
     }] call CBA_fnc_addEventHandler;
 
     [QGVAR(meteorImpact), {
@@ -20,6 +24,10 @@ if (hasInterface) then {
     }] call CBA_fnc_addEventHandler;
 
     [QGVAR(cometLocal), {
-        _this call FUNC(cometLocal);
+        // Object created in the same frame may arrive after the event.
+        params ["_netId"];
+        [{!isNull objectFromNetId _this}, {
+            [objectFromNetId _this] call FUNC(cometLocal);
+        }, _netId, 5] call CBA_fnc_waitUntilAndExecute;
     }] call CBA_fnc_addEventHandler;
 };

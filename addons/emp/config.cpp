@@ -12,6 +12,7 @@ class CfgPatches {
         weapons[] = {};
         requiredAddons[] = {
             "root_effects_main",
+            "root_effects_ambientsfx",
             "A3_Modules_F_Curator",
             "3DEN",
             "cba_main",

@@ -46,7 +46,7 @@ if (_damage) then {
         };
 
         private _exposed = ((getPosATL _anchor) nearEntities [["Man", "LandVehicle"], _length]) select {
-            _x inArea [getPosATL _anchor, _length / 2 + 10, 18, _heading, true]
+            _x inArea [getPosATL _anchor, 18, _length / 2 + 10, _heading, true]
         };
         {
             if (!(_x isKindOf "VirtualMan_F") && {(getPosATL _x select 2) < 10}) then {

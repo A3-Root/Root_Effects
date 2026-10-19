@@ -28,7 +28,7 @@ DBG(FORMAT_1("cropCircleLocal running here with %1",_this));
 if ((VIEWER_POS distance2D _anchor) > EGVAR(main,maxViewDistance)) exitWith {};
 
 enableCamShake true;
-playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [getPos _anchor select 0, getPos _anchor select 1, 200], 10, 1, 0];
+playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [getPos _anchor select 0, getPos _anchor select 1, 200], 10, 1, 0, 0, true];
 
 [{
     addCamShake [2, 10, 30];
@@ -141,7 +141,7 @@ playSound3D [QPATHTOF(sounds\ufo_landing.ogg), objNull, false, [getPos _anchor s
         if (_finished) then {
             _handle call CBA_fnc_removePerFrameHandler;
 
-            playSound3D [QPATHTOF(sounds\ufo_launch.ogg), objNull, false, [getPos _orbitLight select 0, getPos _orbitLight select 1, 100], 10, 1, 3000];
+            playSound3D [QPATHTOF(sounds\ufo_launch.ogg), objNull, false, [getPos _orbitLight select 0, getPos _orbitLight select 1, 100], 10, 1, 3000, 0, true];
             drop [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 2.5, [0, 0, 0], [0, 0, 200], 0, 9, 7, 0, [10, 1], [[1, 1, 1, 1], [0.9, 0.9, 1, 1]], [1], 0, 0, "", "", _orbitLight];
 
             [{

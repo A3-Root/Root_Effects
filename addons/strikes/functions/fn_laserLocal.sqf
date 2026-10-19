@@ -37,7 +37,7 @@ _chargeLight setLightUseFlare true;
 _chargeLight setLightFlareSize 2;
 _chargeLight setLightFlareMaxDistance 4000;
 
-playSound3D ["A3\Sounds_F\sfx\alarm_independent.wss", objNull, false, ATLToASL _pos, 2, 1.5, 1500];
+playSound3D ["A3\Sounds_F\sfx\alarm_independent.wss", objNull, false, ATLToASL _pos, 2, 1.5, 1500, 0, true];
 
 private _chargeStep = 4 / (_chargeTime * 10);
 [{
@@ -111,10 +111,10 @@ private _chargeStep = 4 / (_chargeTime * 10);
 
     // Sound in layers: the crack of the beam striking, then a rolling echo off
     // the terrain a beat later.
-    playSound3D ["A3\sounds_f\weapons\explosion\expl_big_1.wss", objNull, false, ATLToASL (_pos vectorAdd [0, 0, 50]), 3, 0.7, 3000];
+    playSound3D ["A3\sounds_f\weapons\explosion\expl_big_1.wss", objNull, false, ATLToASL (_pos vectorAdd [0, 0, 50]), 3, 0.7, 3000, 0, true];
     [{
         params ["_pos"];
-        playSound3D ["A3\Sounds_F\arsenal\explosives\shells\Artillery_shell_explosion_04.wss", objNull, false, ATLToASL _pos, 4, 0.45, 4000];
+        playSound3D ["A3\Sounds_F\arsenal\explosives\shells\Artillery_shell_explosion_04.wss", objNull, false, ATLToASL _pos, 4, 0.45, 4000, 0, true];
     }, [_pos], 0.5] call CBA_fnc_waitAndExecute;
 
     private _distance = VIEWER_POS distance2D _pos;
@@ -136,12 +136,12 @@ private _chargeStep = 4 / (_chargeTime * 10);
         if (_facing > 0.4) then {
             private _strength = linearConversion [0, 800, _distance, 1, 0.15, true] * _facing;
 
-            private _flashLayer = ppEffectCreate ["ColorCorrections", 2400];
+            private _flashLayer = ["ColorCorrections", 2400] call EFUNC(main,ppCreate);
             _flashLayer ppEffectEnable true;
             _flashLayer ppEffectAdjust [1, 1, 0, [1, 1, 1, _strength], [1, 1, 1, 0], [1, 1, 1, 0]];
             _flashLayer ppEffectCommit 0.1;
 
-            private _blurLayer = ppEffectCreate ["DynamicBlur", 2401];
+            private _blurLayer = ["DynamicBlur", 2401] call EFUNC(main,ppCreate);
             _blurLayer ppEffectEnable true;
             _blurLayer ppEffectAdjust [4 * _strength];
             _blurLayer ppEffectCommit 0.1;
@@ -165,6 +165,7 @@ private _chargeStep = 4 / (_chargeTime * 10);
     // Aftermath left behind where the beam bit into the ground.
     private _scorch = "Crater" createVehicleLocal _pos;
     _scorch setPosATL _pos;
+    [{deleteVehicle _this}, _scorch, 600] call CBA_fnc_waitAndExecute;
 
     private _impactDust = "#particlesource" createVehicleLocal _pos;
     _impactDust setParticleCircle [2, [4, 4, 0]];
