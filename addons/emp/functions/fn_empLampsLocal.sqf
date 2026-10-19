@@ -2,43 +2,80 @@
 
 /*
  * Author: Root
- * Kills street and building lamps inside the pulse radius on this machine.
- * Lamps are terrain objects that exist on every machine and switchLight only
- * affects the local copy, so this runs everywhere rather than being routed to
- * an owner. Unless the blackout is permanent the lamps come back on once the
- * interference passes.
+ * Client lamps of an EMP field: street lamps, floodlights and power line lights
+ * inside the radius go out one by one as the shockwave reaches them (plus the
+ * effect delay), with sparks close to the viewer. Late joiners see them out at
+ * once. Lamps mode 1 lights them again when the field ends. Mode 2 flickers them,
+ * bursts them (some blow out) and keeps them out.
  *
  * Arguments:
- * 0: Pulse center position ATL <ARRAY>
- * 1: Pulse radius in meters <NUMBER>
- * 2: Interference duration in seconds <NUMBER>
- * 3: Lamps stay dead <BOOL>
+ * 0: Field entry [anchor, settings, version, detonation time, object] <ARRAY>
  *
  * Return Value:
  * None
  *
  * Example:
- * [[1000, 2000, 0], 300, 20, false] call root_effects_emp_fnc_empLampsLocal
+ * [_entry] call root_effects_emp_fnc_empLampsLocal
  */
 
-params [["_pos", [0, 0, 0], [[]], 3], ["_radius", 300, [0]], ["_duration", 20, [0]], ["_permanent", false, [false]]];
+params [["_entry", [], [[]]]];
+_entry params ["_anchor", "_cfg"];
 
-DBG(FORMAT_1("empLampsLocal called with %1",_this));
+if (!hasInterface || {(_cfg get "lamps") == 0}) exitWith {};
 
-private _lamps = nearestObjects [_pos, ["Lamps_base_F", "PowerLines_base_F"], _radius];
-if (_lamps isEqualTo []) exitWith {};
+#define LAMP_CLASSES ["Lamps_base_F", "PowerLines_base_F", "PowerLines_Small_base_F", "Land_PowerPoleWooden_L_F", "Land_LampStreet_small_F", "Land_LampHalogen_F", "Land_PortableLight_single_F", "Land_PortableLight_double_F", "Land_FloodLight_F"]
 
-{
-    _x switchLight "OFF";
-} forEach _lamps;
-
-if (_permanent) exitWith {};
-
+// [entry, pending [time, lamp], dark lamps, mode]
 [{
-    params ["_lamps"];
-    {
-        if (!isNull _x) then {
-            _x switchLight "ON";
+    params ["_args", "_handle"];
+    _args params ["_entry", "_pending", "_dark", "_mode"];
+    _entry params ["_anchor", "_cfg", "", "_detTime"];
+
+    if (isNull _anchor || {_anchor getVariable [QGVAR(ending), false]}) exitWith {
+        if (_mode == 1) then {
+            {_x switchLight "ON"} forEach (_dark select {!isNull _x});
         };
-    } forEach _lamps;
-}, [_lamps], _duration] call CBA_fnc_waitAndExecute;
+        _handle call CBA_fnc_removePerFrameHandler;
+    };
+
+    private _now = CBA_missionTime;
+    if (_now < _detTime) exitWith {};
+    _args set [3, _cfg get "lamps"];
+
+    // Lamps are listed once at detonation, sorted by the time the wave reaches them.
+    if (_dark isEqualTo []) then {
+        private _center = getPosASL _anchor;
+        private _speed = _cfg get "shockSpeed";
+        private _delay = _cfg get "effectDelay";
+        private _lamps = nearestObjects [ASLToAGL _center, LAMP_CLASSES, _cfg get "radius", false, true];
+        {
+            private _time = _detTime + _delay + (if (_speed > 0) then {(_x distance (ASLToAGL _center)) / _speed} else {0});
+            _pending pushBack [_time, _x];
+        } forEach _lamps;
+        _pending sort true;
+        _dark pushBack objNull;
+        DBG(FORMAT_2("EMP field at %1 darkens %2 lamps",mapGridPosition _anchor,count _lamps));
+    };
+
+    private _fresh = _now - _detTime < 60;
+    while {_pending isNotEqualTo [] && {(_pending select 0 select 0) <= _now}} do {
+        private _lamp = (_pending deleteAt 0) select 1;
+        if (!isNull _lamp) then {
+            _dark pushBack _lamp;
+            if (!_fresh) exitWith {_lamp switchLight "OFF"};
+            if (_mode == 2) then {
+                // Broken: flickers, then bursts; some blow out.
+                _lamp switchLight "OFF";
+                [{(_this select 0) switchLight "ON"}, [_lamp], 0.08] call CBA_fnc_waitAndExecute;
+                [{
+                    params ["_lamp"];
+                    _lamp switchLight "OFF";
+                    [_lamp, random 1 < 0.5] call FUNC(empSparksLocal);
+                }, [_lamp], 0.2 + random 0.2] call CBA_fnc_waitAndExecute;
+            } else {
+                _lamp switchLight "OFF";
+                [_lamp, false] call FUNC(empSparksLocal);
+            };
+        };
+    };
+}, 0.2, [_entry, [], [], _cfg get "lamps"]] call CBA_fnc_addPerFrameHandler;

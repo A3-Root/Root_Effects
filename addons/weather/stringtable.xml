@@ -4,6 +4,12 @@
         <Key ID="STR_root_effects_weather_AcidRainStarted">
             <Original>Acid rain falling!</Original>
         </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidBuildUp">
+            <Original>Build-up Time (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrAcidBuildUpTooltip">
+            <Original>Seconds for the rain and tint to reach full strength. -1: default (rain 20 s). 0: instant.</Original>
+        </Key>
         <Key ID="STR_root_effects_weather_AttrAcidBuildingCap">
             <Original>Building Damage Cap</Original>
         </Key>
@@ -93,6 +99,12 @@
         </Key>
         <Key ID="STR_root_effects_weather_AttrLightningAmbienceTooltip">
             <Original>Pulls an overcast storm sky over the mission while the storm runs and eases the weather back afterwards.</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningBuildUp">
+            <Original>Build-up Time (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_weather_AttrLightningBuildUpTooltip">
+            <Original>Seconds for the storm rain and fog to reach full strength. -1: default (30 s). 0: instant.</Original>
         </Key>
         <Key ID="STR_root_effects_weather_AttrLightningDamage">
             <Original>Strikes Damage Units</Original>

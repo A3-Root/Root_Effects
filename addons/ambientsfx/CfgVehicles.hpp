@@ -82,6 +82,7 @@ class CfgVehicles {
         class Attributes: AttributesBase {
             ROOT_ATTR_NUMBER(ROOT_AURORA_ALTITUDE,CSTRING(AttrAuroraAltitude),CSTRING(AttrAuroraAltitudeTooltip),500);
             ROOT_ATTR_NUMBER(ROOT_AURORA_SHAPE,CSTRING(AttrSkyShape),CSTRING(AttrSkyShapeTooltip),0);
+            ROOT_ATTR_NUMBER_RAW(ROOT_AURORA_BUILDUP,CSTRING(AttrSkyBuildUp),CSTRING(AttrSkyBuildUpTooltip),-1);
             ROOT_ATTR_NUMBER(ROOT_AURORA_FADEIN,CSTRING(AttrSkyFadeIn),CSTRING(AttrSkyFadeInTooltip),20);
             ROOT_ATTR_NUMBER(ROOT_AURORA_FADEOUT,CSTRING(AttrSkyFadeOut),CSTRING(AttrSkyFadeOutTooltip),20);
             ROOT_ATTR_NUMBER(ROOT_AURORA_LIFETIME,CSTRING(AttrSkyLifetime),CSTRING(AttrSkyLifetimeTooltip),180);
@@ -105,6 +106,7 @@ class CfgVehicles {
         class Attributes: AttributesBase {
             ROOT_ATTR_NUMBER(ROOT_RUPTURE_ALTITUDE,CSTRING(AttrRuptureAltitude),CSTRING(AttrRuptureAltitudeTooltip),500);
             ROOT_ATTR_NUMBER(ROOT_RUPTURE_SHAPE,CSTRING(AttrSkyShape),CSTRING(AttrSkyShapeTooltip),0);
+            ROOT_ATTR_NUMBER_RAW(ROOT_RUPTURE_BUILDUP,CSTRING(AttrSkyBuildUp),CSTRING(AttrSkyBuildUpTooltip),-1);
             ROOT_ATTR_NUMBER(ROOT_RUPTURE_FADEIN,CSTRING(AttrSkyFadeIn),CSTRING(AttrSkyFadeInTooltip),20);
             ROOT_ATTR_NUMBER(ROOT_RUPTURE_FADEOUT,CSTRING(AttrSkyFadeOut),CSTRING(AttrSkyFadeOutTooltip),20);
             ROOT_ATTR_NUMBER(ROOT_RUPTURE_LIFETIME,CSTRING(AttrSkyLifetime),CSTRING(AttrSkyLifetimeTooltip),180);
@@ -146,6 +148,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_SKYMOD_SWITCH,CSTRING(AttrSkySwitch),CSTRING(AttrSkySwitchTooltip),0);
             ROOT_ATTR_NUMBER(ROOT_SKYMOD_MOVESPEED,CSTRING(AttrSkyMoveSpeed),CSTRING(AttrSkyMoveSpeedTooltip),0);
             ROOT_ATTR_NUMBER(ROOT_SKYMOD_MOVEMODE,CSTRING(AttrSkyMoveMode),CSTRING(AttrSkyMoveModeTooltip3DEN),0);
+            ROOT_ATTR_BOOL(ROOT_SKYMOD_SNAP,CSTRING(AttrSkyModSnap),CSTRING(AttrSkyModSnapTooltip),false);
             class ModuleDescription: ModuleDescription {};
         };
         class ModuleDescription: ModuleDescription {

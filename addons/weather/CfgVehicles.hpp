@@ -56,6 +56,7 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_LIGHTNING_DAMAGE,CSTRING(AttrLightningDamage),CSTRING(AttrLightningDamageTooltip),false);
             ROOT_ATTR_BOOL(ROOT_LIGHTNING_AMBIENCE,CSTRING(AttrLightningAmbience),CSTRING(AttrLightningAmbienceTooltip),true);
             ROOT_ATTR_NUMBER(ROOT_LIGHTNING_STRENGTH,CSTRING(AttrLightningStrength),CSTRING(AttrLightningStrengthTooltip),0.7);
+            ROOT_ATTR_NUMBER_RAW(ROOT_LIGHTNING_BUILDUP,CSTRING(AttrLightningBuildUp),CSTRING(AttrLightningBuildUpTooltip),-1);
             ROOT_ATTR_BOOL(ROOT_LIGHTNING_TORNADO,CSTRING(AttrTornado),CSTRING(AttrTornadoTooltip),false);
             ROOT_ATTR_NUMBER(ROOT_LIGHTNING_TORNADOSIZE,CSTRING(AttrTornadoSize),CSTRING(AttrTornadoSizeTooltip),120);
             ROOT_ATTR_NUMBER(ROOT_LIGHTNING_TORNADOSPEED,CSTRING(AttrTornadoSpeed),CSTRING(AttrTornadoSpeedTooltip),15);
@@ -80,6 +81,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_TICK,CSTRING(AttrAcidTick),CSTRING(AttrAcidTickTooltip),5);
             ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_INTENSITY,CSTRING(AttrAcidIntensity),CSTRING(AttrAcidIntensityTooltip),0.7);
             ROOT_ATTR_BOOL(ROOT_ACIDRAIN_WEATHER,CSTRING(AttrAcidWeather),CSTRING(AttrAcidWeatherTooltip),true);
+            ROOT_ATTR_NUMBER_RAW(ROOT_ACIDRAIN_BUILDUP,CSTRING(AttrAcidBuildUp),CSTRING(AttrAcidBuildUpTooltip),-1);
             ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_VEHRATE,CSTRING(AttrAcidVehicleRate),CSTRING(AttrAcidVehicleRateTooltip),0.02);
             ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_BLDGRATE,CSTRING(AttrAcidBuildingRate),CSTRING(AttrAcidBuildingRateTooltip),0.01);
             ROOT_ATTR_NUMBER(ROOT_ACIDRAIN_BLDGCAP,CSTRING(AttrAcidBuildingCap),CSTRING(AttrAcidBuildingCapTooltip),0.9);

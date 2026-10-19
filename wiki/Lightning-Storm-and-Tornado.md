@@ -3,6 +3,7 @@
 ## Storm
 - Real lightning strikes at random points of the area. Each strike shows a bolt, a flickering flash that lights up the surroundings, and thunder delayed by distance.
 - **Strength** scales cloud cover, rain, fog, ambient lightning, strike rate and flash brightness. The previous weather is eased back when the storm ends.
+- **Build-up Time**: seconds for rain and fog to reach full strength. -1: 30 s. 0: instant.
 - **Damage**: strikes hurt units, vehicles, boats and statics within 15 m.
 
 ## Tornado

@@ -12,6 +12,8 @@
  * 2: Fade out time in seconds <NUMBER>
  * 3: Particle lifetime in seconds <NUMBER>
  * 4: Density 0.1 - 1 <NUMBER>
+ * 5: Build-up seconds, -1 natural, 0 instant <NUMBER>
+ * 6: Effect start time <NUMBER>
  *
  * Return Value:
  * None
@@ -20,8 +22,8 @@
  * [_anchor, 20, 20, 120, 0.5] call root_effects_ambientsfx_fnc_auroraStartLocal
  */
 
-params [["_anchor", objNull, [objNull]], ["_fadeIn", 20, [0]], ["_fadeOut", 20, [0]], ["_lifetime", 180, [0]], ["_density", 0.5, [0]]];
+params [["_anchor", objNull, [objNull]], ["_fadeIn", 20, [0]], ["_fadeOut", 20, [0]], ["_lifetime", 180, [0]], ["_density", 0.5, [0]], ["_buildUp", -1, [0]], ["_startTime", -1, [0]]];
 
 DBG(FORMAT_1("auroraStartLocal called with %1",_this));
 
-[_anchor, "aurora", _fadeIn, _fadeOut, _lifetime, _density] call FUNC(skyBandLocal);
+[_anchor, "aurora", _fadeIn, _fadeOut, _lifetime, _density, _buildUp, _startTime] call FUNC(skyBandLocal);

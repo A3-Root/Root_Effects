@@ -41,7 +41,8 @@ private _settings = [
     _logic getVariable ["ROOT_SKYMOD_SHAPE", 6],
     _logic getVariable ["ROOT_SKYMOD_SWITCH", 0],
     _logic getVariable ["ROOT_SKYMOD_MOVESPEED", 0],
-    _logic getVariable ["ROOT_SKYMOD_MOVEMODE", 0]
+    _logic getVariable ["ROOT_SKYMOD_MOVEMODE", 0],
+    _logic getVariable ["ROOT_SKYMOD_SNAP", false]
 ];
 deleteVehicle _logic;
 

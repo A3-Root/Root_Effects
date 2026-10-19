@@ -2,27 +2,30 @@
 
 /*
  * Author: Root
- * Detonates an EMP pulse on the server: broadcasts the sensory pulse to all
- * clients and forwards the electrical failure to the machine of every
- * vehicle inside the radius, where engines cut out and optionally fuel
- * drains. One shot per call.
+ * Server handler for the start event. Takes the create form [target, settings]
+ * or the positional form [pos, radius, duration, killEngines, fuelDrain, hud,
+ * electronics, permanent], which becomes an instant field with no dome, marker
+ * or shutdown interaction.
  *
  * Arguments:
- * 0: Pulse center position ATL <ARRAY>
- * 1: Pulse radius in meters <NUMBER>
- * 2: Interference duration in seconds <NUMBER>
- * 3: Cut vehicle engines <BOOL>
- * 4: Fraction of fuel drained from vehicles, 0..1 <NUMBER>
- * 5: Distort the HUD of players inside the radius <BOOL>
- * 6: Knock out lamps and carried electronics <BOOL>
- * 7: Electronics stay dead instead of recovering after the duration <BOOL>
+ * 0: Object or position ATL <OBJECT, ARRAY>
+ * 1: Settings <ARRAY of [key, value]>, or radius in meters <NUMBER>
+ * 2-7: Positional form only, see above
  *
  * Return Value:
- * None
+ * Field anchor <OBJECT>
  *
  * Example:
  * [[1000, 2000, 0], 300, 20, true, 0, true, true, false] call root_effects_emp_fnc_empStart
  */
+
+DBG(FORMAT_1("empStart called with %1",_this));
+
+if (!isServer) exitWith {objNull};
+
+if ((_this param [1, []]) isEqualType []) exitWith {
+    _this call FUNC(create)
+};
 
 params [
     ["_pos", [0, 0, 0], [[]], 3],
@@ -35,37 +38,22 @@ params [
     ["_permanent", false, [false]]
 ];
 
-DBG(FORMAT_1("empStart called with %1",_this));
-
-if (!isServer) exitWith {};
-if (!(["emp"] call EFUNC(main,isEffectEnabled))) exitWith {};
-
-_duration = _duration max 5;
-_killEngines = _killEngines && GVAR(allowVehicleKill);
-
-[QGVAR(pulseLocal), [_pos, _radius, _duration, _hud]] call CBA_fnc_globalEvent;
-
-if (_killEngines || _fuelDrain > 0) then {
-    {
-        private _vehicle = _x;
-        if (!(_vehicle isKindOf "Man") && {alive _vehicle}) then {
-            [QGVAR(vehicleLocal), [_vehicle, _duration, _killEngines, _fuelDrain], [_vehicle]] call CBA_fnc_targetEvent;
-        };
-    } forEach (_pos nearEntities [["LandVehicle", "Air", "Ship"], _radius]);
-};
-
-if (_electronics) then {
-    // Terrain lamps exist on every machine and switchLight is a local effect,
-    // so each machine darkens its own copies.
-    [QGVAR(lampsLocal), [_pos, _radius, _duration, _permanent]] call CBA_fnc_globalEvent;
-
-    // Worn and carried gear can only be touched where the unit is local.
-    {
-        private _unit = _x;
-        if (alive _unit && {!(_unit isKindOf "VirtualMan_F")}) then {
-            [QGVAR(unitLocal), [_unit, _duration, _permanent], [_unit]] call CBA_fnc_targetEvent;
-        };
-    } forEach (_pos nearEntities [["CAManBase"], _radius]);
-};
-
-DBG(FORMAT_2("emp pulse fired, radius %1, duration %2",_radius,_duration));
+[_pos, [
+    ["radius", _radius],
+    ["linger", [_duration max 5, -1] select _permanent],
+    ["shockSpeed", 0],
+    ["effectDelay", 0],
+    ["vehicles", parseNumber _killEngines],
+    ["aircraft", parseNumber _killEngines],
+    ["uavs", parseNumber _killEngines],
+    ["fuelDrain", _fuelDrain],
+    ["hud", _hud],
+    ["gear", [0, [1, 2] select _permanent] select _electronics],
+    ["lamps", [0, [1, 2] select _permanent] select _electronics],
+    ["ai", _electronics],
+    ["radios", _electronics],
+    ["dome", false],
+    ["marker", 0],
+    ["interaction", 0],
+    ["grace", 0]
+]] call FUNC(create)

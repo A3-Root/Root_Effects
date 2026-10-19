@@ -40,7 +40,8 @@ private _fixed = _logic getVariable ["ROOT_AURORA_FIXED", false];
 private _sizeScale = _logic getVariable ["ROOT_AURORA_SIZE", 1];
 private _lengthScale = _logic getVariable ["ROOT_AURORA_LENGTH", 1];
 private _switchInterval = _logic getVariable ["ROOT_AURORA_SWITCH", 0];
+private _buildUp = _logic getVariable ["ROOT_AURORA_BUILDUP", -1];
 
 deleteVehicle _logic;
 
-[_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, _fixed, _sizeScale, _lengthScale, _switchInterval] call FUNC(auroraStart);
+[_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, _fixed, _sizeScale, _lengthScale, _switchInterval, 0, 0, _buildUp] call FUNC(auroraStart);

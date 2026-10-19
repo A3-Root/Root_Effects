@@ -45,7 +45,8 @@ private _frozen = !_spawn && !_despawn;
     ["COMBO", [LLSTRING(AttrSkyShape), LLSTRING(AttrSkyShapeTooltip)], [[0, 1, 2, 3, 4, 5], [LLSTRING(ShapeBand), LLSTRING(ShapeArc), LLSTRING(ShapeWave), LLSTRING(ShapeRing), LLSTRING(ShapeSpiral), LLSTRING(ShapeRandom)], _shape]],
     ["SLIDER", [LLSTRING(AttrSkySwitch), LLSTRING(AttrSkySwitchTooltip)], [0, 900, _switch, 0]],
     ["SLIDER", [LLSTRING(AttrSkyMoveSpeed), LLSTRING(AttrSkyMoveSpeedTooltip)], [0, 50, _speed, 1]],
-    ["COMBO", [LLSTRING(AttrSkyMoveMode), LLSTRING(AttrSkyMoveModeTooltip)], [[0, 1], [LLSTRING(MoveDrift), LLSTRING(MoveWander)], _mode]]
+    ["COMBO", [LLSTRING(AttrSkyMoveMode), LLSTRING(AttrSkyMoveModeTooltip)], [[0, 1], [LLSTRING(MoveDrift), LLSTRING(MoveWander)], _mode]],
+    ["CHECKBOX", [LLSTRING(AttrSkyModSnap), LLSTRING(AttrSkyModSnapTooltip)], false]
 ], {
     params ["_results", "_anchor"];
     if (isNull _anchor) exitWith {

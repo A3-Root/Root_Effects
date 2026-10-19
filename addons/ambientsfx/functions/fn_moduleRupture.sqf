@@ -32,6 +32,7 @@ if (!(["rupture"] call EFUNC(main,isEffectEnabled))) exitWith {
 [LLSTRING(ModuleRupture), [
     ["SLIDER", [LLSTRING(AttrRuptureAltitude), LLSTRING(AttrRuptureAltitudeTooltip)], [1, 4000, 500, 0]],
     ["COMBO", [LLSTRING(AttrSkyShape), LLSTRING(AttrSkyShapeTooltip)], [[0, 1, 2, 3, 4, 5], [LLSTRING(ShapeBand), LLSTRING(ShapeArc), LLSTRING(ShapeWave), LLSTRING(ShapeRing), LLSTRING(ShapeSpiral), LLSTRING(ShapeRandom)], 0]],
+    ["SLIDER", [LLSTRING(AttrSkyBuildUp), LLSTRING(AttrSkyBuildUpTooltip)], [-1, 600, -1, 0]],
     ["SLIDER", [LLSTRING(AttrSkyFadeIn), LLSTRING(AttrSkyFadeInTooltip)], [0.5, 120, 20, 1]],
     ["SLIDER", [LLSTRING(AttrSkyFadeOut), LLSTRING(AttrSkyFadeOutTooltip)], [0.5, 120, 20, 1]],
     ["SLIDER", [LLSTRING(AttrSkyLifetime), LLSTRING(AttrSkyLifetimeTooltip)], [5, 600, 180, 0]],
@@ -43,9 +44,9 @@ if (!(["rupture"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["COMBO", [LLSTRING(AttrSkyMoveMode), LLSTRING(AttrSkyMoveModeTooltip)], [[0, 1], [LLSTRING(MoveDrift), LLSTRING(MoveWander)], 0]]
 ], {
     params ["_results", "_pos"];
-    _results params ["_altitude", "_shape", "_fadeIn", "_fadeOut", "_lifetime", "_density", "_sizeScale", "_lengthScale", "_switchInterval", "_moveSpeed", "_moveMode"];
+    _results params ["_altitude", "_shape", "_buildUp", "_fadeIn", "_fadeOut", "_lifetime", "_density", "_sizeScale", "_lengthScale", "_switchInterval", "_moveSpeed", "_moveMode"];
 
-    [QGVAR(startRupture), [_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, false, _sizeScale, _lengthScale, _switchInterval, _moveSpeed, _moveMode]] call EFUNC(main,serverEventLogged);
+    [QGVAR(startRupture), [_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, false, _sizeScale, _lengthScale, _switchInterval, _moveSpeed, _moveMode, _buildUp]] call EFUNC(main,serverEventLogged);
     DBG(FORMAT_3("rupture requested by %1 at %2, shape %3",profileName,mapGridPosition _pos,_shape));
     [LLSTRING(RuptureStarted)] call zen_common_fnc_showMessage;
 }, {

@@ -8,7 +8,7 @@ class CfgPatches {
         url = "https://github.com/A3-Root/Root_Effects";
         addonRootClass = "root_effects_main";
         requiredVersion = REQUIRED_VERSION;
-        units[] = {"ROOT_EMP_ModuleZeus", "ROOT_EMP_Module3DEN"};
+        units[] = {"ROOT_EMP_ModuleZeus", "ROOT_EMP_Module3DEN", "ROOT_ModifyEmp_ModuleZeus", "ROOT_ModifyEmp_Module3DEN"};
         weapons[] = {};
         requiredAddons[] = {
             "root_effects_main",

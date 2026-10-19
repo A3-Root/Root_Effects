@@ -13,6 +13,9 @@
  * With fading off, every particle that is visible right then (and any new one)
  * is re-dropped at the same spot before it would fade, so the band holds exactly
  * as it is. The anchor itself can move; new drops follow it.
+ * Build-up: -1 lets the band fill naturally over its lifetime, 0 shows it at full
+ * strength at once, X fills it over X seconds. Late joiners and viewers arriving
+ * after the build-up see the full band at once.
  *
  * Arguments:
  * 0: Instance anchor <OBJECT>
@@ -21,6 +24,8 @@
  * 3: Fade out time in seconds <NUMBER>
  * 4: Particle lifetime in seconds <NUMBER>
  * 5: Density 0.1 - 1 <NUMBER>
+ * 6: Build-up seconds, -1 natural, 0 instant <NUMBER>
+ * 7: Effect start time (CBA_missionTime), -1 now <NUMBER>
  *
  * Return Value:
  * None
@@ -35,7 +40,9 @@ params [
     ["_fadeIn", 20, [0]],
     ["_fadeOut", 20, [0]],
     ["_lifetime", 120, [0]],
-    ["_density", 0.5, [0]]
+    ["_density", 0.5, [0]],
+    ["_buildUp", -1, [0]],
+    ["_startTime", -1, [0]]
 ];
 
 DBG(FORMAT_1("skyBandLocal called with %1",_this));
@@ -48,6 +55,7 @@ _density = (_density max 0.1) min 1;
 _lifetime = (_lifetime max 5) min 600;
 _fadeIn = (_fadeIn max 0.5) min _lifetime;
 _fadeOut = (_fadeOut max 0.5) min _lifetime;
+if (_startTime < 0) then {_startTime = CBA_missionTime};
 
 DBG(FORMAT_4("%1 renderer start, lifetime %2, density %3, at %4",_style,_lifetime,_density,mapGridPosition _anchor));
 
@@ -141,13 +149,17 @@ private _fnc_drop = {
 // Particles per second while new particles are allowed.
 private _rate = 20 * _density * ((EGVAR(main,particleBudget)) max 0.1);
 
-// [anchor, carry, recent, kept, lastDespawn, shapeKey, info, settings...]
+// Particles alive once the band is full.
+private _full = round (_rate * _lifetime * 0.8) min 2500;
+
+// [anchor, carry, recent, kept, lastDespawn, shapeKey, info, settings..., build-up state]
 // recent: [desc, born, life] of the latest drops, so they can be kept on demand.
 // kept: [desc, nextDrop] of particles held in place.
 private _state = [
     _anchor, 0, [], [], true, [], [],
     _rate, _lifetime, _fadeIn, _fadeOut, _isAurora,
-    _fnc_shapeInfo, _fnc_shapePoint, _fnc_colors, _fnc_newDesc, _fnc_drop
+    _fnc_shapeInfo, _fnc_shapePoint, _fnc_colors, _fnc_newDesc, _fnc_drop,
+    _buildUp, _startTime, _full, true, false, _anchor getVariable [QGVAR(skySnap), -1]
 ];
 
 [{
@@ -155,8 +167,10 @@ private _state = [
     _args params [
         "_anchor", "_carry", "_recent", "_kept", "_lastDespawn", "_shapeKey", "_info",
         "_rate", "_lifetime", "_fadeIn", "_fadeOut", "_isAurora",
-        "_fnc_shapeInfo", "_fnc_shapePoint", "_fnc_colors", "_fnc_newDesc", "_fnc_drop"
+        "_fnc_shapeInfo", "_fnc_shapePoint", "_fnc_colors", "_fnc_newDesc", "_fnc_drop",
+        "_buildUp", "_startTime", "_full", "_first", "_filled", "_lastSnap"
     ];
+    _args set [20, false];
 
     if (isNull _anchor) exitWith {
         DBG("sky renderer teardown");
@@ -195,15 +209,55 @@ private _state = [
     if (_anchor getVariable [QEGVAR(main,paused), false]) exitWith {};
     if (sunOrMoon != 0) exitWith {};
 
+    private _elapsed = _now - _startTime;
+    private _snap = _anchor getVariable [QGVAR(skySnap), -1];
+    private _ramp = _buildUp > 0 && _elapsed < _buildUp;
+    private _fill = (_snap > _lastSnap) || {!_filled && {
+        [_first && _elapsed > _lifetime, _elapsed >= _buildUp] select (_buildUp >= 0)
+    }};
+    _args set [22, _snap];
+
+    // Full band at once (or topped up to full on a snap): particles with spread remaining lives, so they turn over steadily.
+    if (_spawn && _fill) then {
+        _args set [21, true];
+        private _in = [2, _buildUp max 0.5] select (_buildUp >= 0);
+        if (_despawn) then {
+            private _alive = {(_x select 1) + (_x select 2) > _now} count _recent;
+            for "_i" from 1 to ((_full - _alive) max 0) do {
+                private _desc = [random 1] call _fnc_newDesc;
+                private _life = (_lifetime * (0.6 + random 0.4) * (0.05 + random 0.95)) max 2;
+                [_desc, _life, _in min _fadeIn, _fadeOut min (_life / 2), _info, _sizeScale, _lengthScale] call _fnc_drop;
+                _recent pushBack [_desc, _now, _life];
+            };
+        } else {
+            for "_i" from 1 to ((_full min (KEEP_CAP - count _kept)) max 0) do {
+                private _desc = [random 1] call _fnc_newDesc;
+                [_desc, KEEP_LIFE, _in min KEEP_LIFE, KEEP_FADE, _info, _sizeScale, _lengthScale] call _fnc_drop;
+                _kept pushBack [_desc, _now + KEEP_LIFE - KEEP_FADE];
+            };
+        };
+        DBG(FORMAT_2("sky band filled at once with %1 particles, build-up %2",_full,_buildUp));
+    };
+
     if (_spawn && {_despawn || {count _kept < KEEP_CAP}}) then {
-        private _perTick = (_rate * 0.25) + _carry;
+        // During a timed build-up the band fills linearly over the build-up time.
+        private _perSecond = if (_ramp) then {_full / _buildUp} else {_rate};
+        private _perTick = _perSecond * 0.25 + _carry;
         private _n = floor _perTick;
         _args set [1, _perTick - _n];
+        if (_n > 0) then {_args set [21, true]};
         for "_i" from 1 to _n do {
             private _desc = [random 1] call _fnc_newDesc;
             if (_despawn) then {
                 private _life = _lifetime * (0.6 + random 0.4);
-                [_desc, _life, _fadeIn, _fadeOut, _info, _sizeScale, _lengthScale] call _fnc_drop;
+                private _in = _fadeIn;
+                private _out = _fadeOut;
+                if (_ramp) then {
+                    _life = (_life * (0.05 + random 0.95)) max 2;
+                    _in = _fadeIn min _buildUp;
+                    _out = _fadeOut min (_life / 2);
+                };
+                [_desc, _life, _in, _out, _info, _sizeScale, _lengthScale] call _fnc_drop;
                 _recent pushBack [_desc, _now, _life];
             } else {
                 [_desc, KEEP_LIFE, _fadeIn min KEEP_LIFE, KEEP_FADE, _info, _sizeScale, _lengthScale] call _fnc_drop;

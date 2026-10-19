@@ -2,9 +2,9 @@
 
 /*
  * Author: Root
- * 3DEN module entry point for the EMP pulse. Reads the module attributes
- * placed in the editor and detonates the pulse at the module position when
- * the mission begins.
+ * 3DEN module entry point for the EMP field. Runs when its trigger fires (or at
+ * mission start without one). The field sits on the first synced object, or at
+ * the module position.
  *
  * Arguments:
  * 0: Module logic <OBJECT>
@@ -27,17 +27,70 @@ if (!isServer) exitWith {};
 if (is3DEN) exitWith {};
 if (isNull _logic) exitWith {};
 
-DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","Emp",mapGridPosition _logic,allVariables _logic));
+DBG(FORMAT_3("3DEN module fired: %1 at %2, attributes %3","EMP",mapGridPosition _logic,allVariables _logic));
 
-private _pos = getPosATL _logic;
-private _radius = _logic getVariable ["ROOT_EMP_RADIUS", 300];
-private _duration = _logic getVariable ["ROOT_EMP_DURATION", 20];
-private _killEngines = _logic getVariable ["ROOT_EMP_KILLENGINES", true];
-private _fuelDrain = _logic getVariable ["ROOT_EMP_FUELDRAIN", 0];
-private _hud = _logic getVariable ["ROOT_EMP_HUD", true];
-private _electronics = _logic getVariable ["ROOT_EMP_ELECTRONICS", true];
-private _permanent = _logic getVariable ["ROOT_EMP_PERMANENT", false];
+private _synced = (synchronizedObjects _logic) select {!(_x isKindOf "EmptyDetector") && {!(_x isKindOf "Logic")}};
+private _target = if (_synced isEqualTo []) then {getPosATL _logic} else {_synced select 0};
+
+private _d = call FUNC(empDefaults);
+private _get = {
+    params ["_attribute", "_key"];
+    _logic getVariable [_attribute, _d get _key]
+};
+
+private _settings = [
+    ["radius", ["ROOT_EMP_RADIUS", "radius"] call _get],
+    ["altitude", ["ROOT_EMP_ALTITUDE", "altitude"] call _get],
+    ["countdown", ["ROOT_EMP_COUNTDOWN", "countdown"] call _get],
+    ["linger", ["ROOT_EMP_DURATION", "linger"] call _get],
+    ["shockSpeed", ["ROOT_EMP_SHOCKSPEED", "shockSpeed"] call _get],
+    ["effectDelay", ["ROOT_EMP_EFFECTDELAY", "effectDelay"] call _get],
+    ["vehicles", ["ROOT_EMP_VEHICLES", "vehicles"] call _get],
+    ["aircraft", ["ROOT_EMP_AIRCRAFT", "aircraft"] call _get],
+    ["uavs", ["ROOT_EMP_UAVS", "uavs"] call _get],
+    ["lamps", ["ROOT_EMP_LAMPS", "lamps"] call _get],
+    ["gear", ["ROOT_EMP_GEAR", "gear"] call _get],
+    ["ai", ["ROOT_EMP_AI", "ai"] call _get],
+    ["radios", ["ROOT_EMP_RADIOS", "radios"] call _get],
+    ["channels", ["ROOT_EMP_CHANNELS", "channels"] call _get],
+    ["fuelDrain", ["ROOT_EMP_FUELDRAIN", "fuelDrain"] call _get],
+    ["restore", ["ROOT_EMP_RESTORE", "restore"] call _get],
+    ["grace", ["ROOT_EMP_GRACE", "grace"] call _get],
+    ["warnGround", ["ROOT_EMP_WARNGROUND", "warnGround"] call _get],
+    ["warnHeli", ["ROOT_EMP_WARNHELI", "warnHeli"] call _get],
+    ["warnPlane", ["ROOT_EMP_WARNPLANE", "warnPlane"] call _get],
+    ["visuals", ["ROOT_EMP_VISUALS", "visuals"] call _get],
+    ["chargeGlow", ["ROOT_EMP_CHARGEGLOW", "chargeGlow"] call _get],
+    ["shake", ["ROOT_EMP_SHAKE", "shake"] call _get],
+    ["hud", ["ROOT_EMP_HUD", "hud"] call _get],
+    ["dome", ["ROOT_EMP_DOME", "dome"] call _get],
+    ["domeColor", _logic getVariable ["ROOT_EMP_DOMECOLOR", "0.5,0.5,0.5"]],
+    ["domeAlpha", ["ROOT_EMP_DOMEALPHA", "domeAlpha"] call _get],
+    ["domeShimmer", ["ROOT_EMP_DOMESHIMMER", "domeShimmer"] call _get],
+    ["marker", ["ROOT_EMP_MARKER", "marker"] call _get],
+    ["markerSync", ["ROOT_EMP_MARKERSYNC", "markerSync"] call _get],
+    ["beep", ["ROOT_EMP_BEEP", "beep"] call _get],
+    ["timer3D", ["ROOT_EMP_TIMER3D", "timer3D"] call _get],
+    ["timerHint", ["ROOT_EMP_TIMERHINT", "timerHint"] call _get],
+    ["interaction", ["ROOT_EMP_INTERACTION", "interaction"] call _get],
+    ["holdTime", ["ROOT_EMP_HOLDTIME", "holdTime"] call _get],
+    ["requiredItem", ["ROOT_EMP_REQITEM", "requiredItem"] call _get],
+    ["abortCountdown", ["ROOT_EMP_ABORT", "abortCountdown"] call _get],
+    ["endOnDestroyed", ["ROOT_EMP_ENDDESTROYED", "endOnDestroyed"] call _get],
+    ["itemsExtra", ["ROOT_EMP_ITEMSEXTRA", "itemsExtra"] call _get],
+    ["itemsImmune", ["ROOT_EMP_ITEMSIMMUNE", "itemsImmune"] call _get],
+    ["vehiclesImmune", ["ROOT_EMP_VEHIMMUNE", "vehiclesImmune"] call _get]
+];
+
+// Older attributes: permanent, engines and electronics switches.
+if (_logic getVariable ["ROOT_EMP_PERMANENT", false]) then {_settings pushBack ["linger", -1]};
+if !(_logic getVariable ["ROOT_EMP_KILLENGINES", true]) then {
+    _settings append [["vehicles", 0], ["aircraft", 0], ["uavs", 0]];
+};
+if !(_logic getVariable ["ROOT_EMP_ELECTRONICS", true]) then {
+    _settings append [["gear", 0], ["lamps", 0], ["ai", false], ["radios", false]];
+};
 
 deleteVehicle _logic;
 
-[_pos, _radius, _duration, _killEngines, _fuelDrain, _hud, _electronics, _permanent] call FUNC(empStart);
+[_target, _settings] call FUNC(create);

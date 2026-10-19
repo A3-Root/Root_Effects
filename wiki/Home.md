@@ -19,5 +19,6 @@ ACE is optional. With ACE medical loaded, infantry damage goes through ACE; othe
 - [Lightning Storm and Tornado](Lightning-Storm-and-Tornado.md)
 - [Artillery Barrage](Artillery-Barrage.md)
 - [Aurora, Spacetime Rupture and Modify Sky Effect](Aurora-and-Rupture.md)
+- [EMP Field](EMP-Field.md)
 
 Stop any running effect with the **Terminate Effects** module.

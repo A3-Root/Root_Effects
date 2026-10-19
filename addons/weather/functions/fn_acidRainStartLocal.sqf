@@ -13,6 +13,8 @@
  * 1: Area radius in meters <NUMBER>
  * 2: Tint strength 0..1 <NUMBER>
  * 3: Rain intensity 0.1 - 1 <NUMBER>
+ * 4: Drive the real weather rain <BOOL>
+ * 5: Tint build-up seconds, -1 default, 0 instant <NUMBER>
  *
  * Return Value:
  * None
@@ -21,7 +23,7 @@
  * [_anchor, 500, 0.5, 0.7] call root_effects_weather_fnc_acidRainStartLocal
  */
 
-params [["_anchor", objNull, [objNull]], ["_radius", 500, [0]], ["_tint", 0.5, [0]], ["_intensity", 0.7, [0]], ["_weatherRain", false, [false]]];
+params [["_anchor", objNull, [objNull]], ["_radius", 500, [0]], ["_tint", 0.5, [0]], ["_intensity", 0.7, [0]], ["_weatherRain", false, [false]], ["_buildUp", -1, [0]]];
 
 DBG(FORMAT_1("acidRainStartLocal called with %1",_this));
 
@@ -61,12 +63,19 @@ private _fnc_mistParams = {
     _emitter setDropInterval ((0.15 / _intensity) / ((EGVAR(main,particleBudget)) max 0.1));
 };
 
-// [anchor, radius, tint, ppHandle, currentBlend, rainEmitter, mistEmitter, covered, intensity, rainFn, mistFn, grainHandle, weatherRain, rainParams, tinted]
-private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _intensity, _fnc_rainParams, _fnc_mistParams, -1, _weatherRain, _acidRainParams, false];
+// Tint change per 0.25 s tick.
+private _step = switch (true) do {
+    case (_buildUp < 0): {0.05};
+    case (_buildUp == 0): {1};
+    default {((_tint max 0.01) * 0.25 / _buildUp) min 1};
+};
+
+// [anchor, radius, tint, ppHandle, currentBlend, rainEmitter, mistEmitter, covered, intensity, rainFn, mistFn, grainHandle, weatherRain, rainParams, tinted, step]
+private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _intensity, _fnc_rainParams, _fnc_mistParams, -1, _weatherRain, _acidRainParams, false, _step];
 
 [{
     params ["_args", "_handle"];
-    _args params ["_anchor", "_radius", "_tint", "_ppHandle", "_blend", "_rain", "_mist", "_covered", "_intensity", "_fnc_rainParams", "_fnc_mistParams", "_grain", "_weatherRain", "_acidRainParams", "_tinted"];
+    _args params ["_anchor", "_radius", "_tint", "_ppHandle", "_blend", "_rain", "_mist", "_covered", "_intensity", "_fnc_rainParams", "_fnc_mistParams", "_grain", "_weatherRain", "_acidRainParams", "_tinted", "_step"];
 
     if (isNull _anchor) exitWith {
         if (_tinted) then {
@@ -134,7 +143,7 @@ private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _inte
     private _target = [0, _tint] select _inside;
     if (abs (_blend - _target) < 0.01) exitWith {};
 
-    _blend = _blend + ((_target - _blend) max -0.05 min 0.05);
+    _blend = _blend + ((_target - _blend) max -_step min _step);
     _args set [4, _blend];
 
     if (_ppHandle == -1) then {
@@ -151,7 +160,7 @@ private _state = [_anchor, _radius, _tint, -1, 0, objNull, objNull, false, _inte
     // the storm intensity.
     private _dark = 1 - 0.25 * _intensity * _blend;
     _ppHandle ppEffectAdjust [_dark, 1 + 0.1 * _blend, 0, [0.2, 0.35, 0, 0.12 * _blend], [1 - 0.25 * _blend, 1, 1 - 0.5 * _blend, 1 - 0.3 * _blend], [0.5, 0.6, 0.2, 0.15 * _blend]];
-    _ppHandle ppEffectCommit 0.5;
+    _ppHandle ppEffectCommit ([0.5, 0] select (_step >= 1));
     _grain ppEffectAdjust [0.12 * _blend * _intensity, 1, 1.2, 0.4, 0.2, false];
-    _grain ppEffectCommit 0.5;
+    _grain ppEffectCommit ([0.5, 0] select (_step >= 1));
 }, 0.25, _state] call CBA_fnc_addPerFrameHandler;

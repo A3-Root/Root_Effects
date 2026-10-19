@@ -43,6 +43,12 @@
         <Key ID="STR_root_effects_ambientsfx_AttrRuptureAltitudeTooltip">
             <Original>Altitude in meters of the rupture above terrain.</Original>
         </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyBuildUp">
+            <Original>Build-up Time (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyBuildUpTooltip">
+            <Original>Seconds until the band reaches full strength. -1: natural, fills over the light lifetime. 0: instant.</Original>
+        </Key>
         <Key ID="STR_root_effects_ambientsfx_AttrSkyDensity">
             <Original>Density</Original>
         </Key>
@@ -102,6 +108,12 @@
         </Key>
         <Key ID="STR_root_effects_ambientsfx_AttrSkyModShapeTooltip">
             <Original>0 band, 1 arc, 2 wave, 3 ring, 4 spiral, 5 random, 6 keeps the current shape.</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModSnap">
+            <Original>Snap To Full</Original>
+        </Key>
+        <Key ID="STR_root_effects_ambientsfx_AttrSkyModSnapTooltip">
+            <Original>Fill the band to full strength at once.</Original>
         </Key>
         <Key ID="STR_root_effects_ambientsfx_AttrSkyModSpawn">
             <Original>Allow New Particles</Original>

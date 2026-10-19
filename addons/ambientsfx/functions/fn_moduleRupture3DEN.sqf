@@ -42,7 +42,8 @@ private _lengthScale = _logic getVariable ["ROOT_RUPTURE_LENGTH", 1];
 private _switchInterval = _logic getVariable ["ROOT_RUPTURE_SWITCH", 0];
 private _moveSpeed = _logic getVariable ["ROOT_RUPTURE_MOVESPEED", 0];
 private _moveMode = _logic getVariable ["ROOT_RUPTURE_MOVEMODE", 0];
+private _buildUp = _logic getVariable ["ROOT_RUPTURE_BUILDUP", -1];
 
 deleteVehicle _logic;
 
-[_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, _fixed, _sizeScale, _lengthScale, _switchInterval, _moveSpeed, _moveMode] call FUNC(ruptureStart);
+[_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, _fixed, _sizeScale, _lengthScale, _switchInterval, _moveSpeed, _moveMode, _buildUp] call FUNC(ruptureStart);

@@ -32,6 +32,7 @@ if (!(["aurora"] call EFUNC(main,isEffectEnabled))) exitWith {
 [LLSTRING(ModuleAurora), [
     ["SLIDER", [LLSTRING(AttrAuroraAltitude), LLSTRING(AttrAuroraAltitudeTooltip)], [1, 4000, 500, 0]],
     ["COMBO", [LLSTRING(AttrSkyShape), LLSTRING(AttrSkyShapeTooltip)], [[0, 1, 2, 3, 4, 5], [LLSTRING(ShapeBand), LLSTRING(ShapeArc), LLSTRING(ShapeWave), LLSTRING(ShapeRing), LLSTRING(ShapeSpiral), LLSTRING(ShapeRandom)], 0]],
+    ["SLIDER", [LLSTRING(AttrSkyBuildUp), LLSTRING(AttrSkyBuildUpTooltip)], [-1, 600, -1, 0]],
     ["SLIDER", [LLSTRING(AttrSkyFadeIn), LLSTRING(AttrSkyFadeInTooltip)], [0.5, 120, 20, 1]],
     ["SLIDER", [LLSTRING(AttrSkyFadeOut), LLSTRING(AttrSkyFadeOutTooltip)], [0.5, 120, 20, 1]],
     ["SLIDER", [LLSTRING(AttrSkyLifetime), LLSTRING(AttrSkyLifetimeTooltip)], [5, 600, 180, 0]],
@@ -41,9 +42,9 @@ if (!(["aurora"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER", [LLSTRING(AttrSkySwitch), LLSTRING(AttrSkySwitchTooltip)], [0, 900, 0, 0]]
 ], {
     params ["_results", "_pos"];
-    _results params ["_altitude", "_shape", "_fadeIn", "_fadeOut", "_lifetime", "_density", "_sizeScale", "_lengthScale", "_switchInterval"];
+    _results params ["_altitude", "_shape", "_buildUp", "_fadeIn", "_fadeOut", "_lifetime", "_density", "_sizeScale", "_lengthScale", "_switchInterval"];
 
-    [QGVAR(startAurora), [_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, false, _sizeScale, _lengthScale, _switchInterval]] call EFUNC(main,serverEventLogged);
+    [QGVAR(startAurora), [_pos, _altitude, _shape, _fadeIn, _fadeOut, _lifetime, _density, false, _sizeScale, _lengthScale, _switchInterval, 0, 0, _buildUp]] call EFUNC(main,serverEventLogged);
     DBG(FORMAT_3("aurora requested by %1 at %2, shape %3",profileName,mapGridPosition _pos,_shape));
     [LLSTRING(AuroraStarted)] call zen_common_fnc_showMessage;
 }, {

@@ -1,5 +1,24 @@
 # Changelog for Root's Effects
 
+## Version: 4.0.0.1
+### Added
+- Build-up time for Aurora, Spacetime Rupture, Lightning Storm and Acid Rain: instant, X seconds or default.
+- Snap To Full option in Modify Sky Effect.
+- EMP Field: countdown, shockwave, dome, Zeus-editable marker, delayed knockout, grace time, recovery on leaving, shutdown on the object (hold action / ACE).
+- EMP Field: vehicle, aircraft, UAV, lamp and gear modes; cTab, ACE device, UAV terminal and ACRE radio suppression.
+- EMP public API: create, disable, modify, isInside.
+- Modify EMP Field module (Zeus and 3DEN): change settings live or shut down.
+- EMP approach warning: HUD blinks out near the field, ranges for ground, helicopter and plane.
+- EMP Charge Glow option.
+- EMP shockwave carries lightning bolts and crackle; Broken lamps, destroyed vehicles and fried gear burst into sparks.
+- EMP CBA settings: Allow Destroy And Fry, Jam ACRE Radios, Dome Quality, Show Countdown Timer.
+
+### Changed
+- EMP Pulse is now EMP Field; the 3DEN module is trigger activated and syncs to an object.
+- Late joiners see aurora and rupture bands at full strength.
+- EMP knocked out vehicles get engine hitpoints wrecked until recovery; engines cannot be restarted inside.
+- EMP dome: tinted glass with surface haze, visible from inside; default grey 0.5 at 3 %.
+
 ## Version: 4.0.0 - Major Release
 - Complete refactor of every component onto a shared CBA framework: per-frame handlers instead of spawn/sleep loops, CBA events instead of publicVariable broadcasts, JIP-safe effect starts, and one invisible anchor object per running effect instance.
 - Every effect is now available in BOTH Zeus (ZEN dialog) and the 3DEN editor (module with attributes).

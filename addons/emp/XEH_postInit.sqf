@@ -4,25 +4,27 @@ if (isServer) then {
     [QGVAR(start), {
         _this call FUNC(empStart);
     }] call CBA_fnc_addEventHandler;
-};
 
-if (hasInterface) then {
-    [QGVAR(pulseLocal), {
-        _this call FUNC(empLocal);
+    [QGVAR(create), {
+        _this call FUNC(create);
+    }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(disable), {
+        _this call FUNC(disable);
+    }] call CBA_fnc_addEventHandler;
+
+    [QGVAR(modify), {
+        _this call FUNC(modify);
     }] call CBA_fnc_addEventHandler;
 };
 
-// Vehicle state changes have to run where the vehicle is local.
-[QGVAR(vehicleLocal), {
-    _this call FUNC(empVehicleLocal);
-}] call CBA_fnc_addEventHandler;
+if (hasInterface) then {
+    [QGVAR(sparks), {
+        _this call FUNC(empSparksLocal);
+    }] call CBA_fnc_addEventHandler;
+};
 
-// Lamps are local to every machine, so each one darkens its own copies.
-[QGVAR(lampsLocal), {
-    _this call FUNC(empLampsLocal);
-}] call CBA_fnc_addEventHandler;
-
-// Inventory changes have to run where the unit is local.
-[QGVAR(unitLocal), {
-    _this call FUNC(empUnitLocal);
+// Every machine tracks the fields for the units and vehicles local to it.
+[QGVAR(fieldLocal), {
+    _this call FUNC(empFieldLocal);
 }] call CBA_fnc_addEventHandler;

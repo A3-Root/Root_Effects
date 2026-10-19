@@ -26,6 +26,9 @@
         defaultValue = QUOTE(DEFVAL); \
     }
 
+// Numeric attribute with an unquoted default, for negative defaults.
+#define ROOT_ATTR_NUMBER_RAW(PROP,NAME,TIP,DEFVAL)     class PROP: Edit {         property = QUOTE(PROP);         displayName = NAME;         tooltip = TIP;         typeName = "NUMBER";         defaultValue = DEFVAL;     }
+
 // Free text attribute rendered as an edit box. DEFVAL must be a quoted SQF
 // string expression, e.g. "'B_Plane_CAS_01_dynamicLoadout_F'".
 #define ROOT_ATTR_STRING(PROP,NAME,TIP,DEFVAL) \

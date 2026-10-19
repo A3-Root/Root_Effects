@@ -20,6 +20,7 @@
  * 9: Tornado width in meters <NUMBER>
  * 10: Tornado travel speed in m/s <NUMBER>
  * 11: Tornado throws and damages what it passes <BOOL>
+ * 12: Weather build-up seconds, -1 default (30), 0 instant <NUMBER>
  *
  * Return Value:
  * None
@@ -40,7 +41,8 @@ params [
     ["_tornado", false, [false]],
     ["_tornadoSize", 120, [0]],
     ["_tornadoSpeed", 8, [0]],
-    ["_tornadoFling", false, [false]]
+    ["_tornadoFling", false, [false]],
+    ["_buildUp", -1, [0]]
 ];
 
 DBG(FORMAT_1("lightningStart called with %1",_this));
@@ -69,11 +71,12 @@ if (_ambience) then {
     0 setLightnings (0.3 + 0.7 * _strength);
     forceWeatherChange;
     // Rain only falls under heavy cloud, so it is set once the overcast took.
+    if (_buildUp < 0) then {_buildUp = 30};
     [{
-        params ["_strength"];
-        30 setRain (0.3 + 0.7 * _strength);
-        30 setFog [0.08 + 0.3 * _strength, 0.015, 0];
-    }, [_strength], 1] call CBA_fnc_waitAndExecute;
+        params ["_strength", "_buildUp"];
+        _buildUp setRain (0.3 + 0.7 * _strength);
+        _buildUp setFog [0.08 + 0.3 * _strength, 0.015, 0];
+    }, [_strength, _buildUp], [1, 0.1] select (_buildUp == 0)] call CBA_fnc_waitAndExecute;
 };
 
 // Optional tornado wandering through the storm. Its path is seeded and computed

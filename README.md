@@ -1,4 +1,4 @@
-# Root's Effects — Reworked Effects for Zeus and 3DEN
+# Root's Effects - Reworked Effects for Zeus and 3DEN
 
 ![version](https://img.shields.io/badge/version-4.0.0.0-blue)
 [![build](https://github.com/A3-Root/Root_Effects/actions/workflows/auto-release.yml/badge.svg?branch=master)](https://github.com/A3-Root/Root_Effects/actions/workflows/auto-release.yml)
@@ -12,7 +12,7 @@ Effects suite based on Aliascartoons' Effects showcase, rebuilt on CBA. Every ef
 - [Zeus Enhanced (ZEN)](https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631)
 
 ## Optional Addons (Supplemental):
-- [ACE3](https://steamcommunity.com/sharedfiles/filedetails/?id=463939057) — effect damage automatically routes through ACE medical when loaded.
+- [ACE3](https://steamcommunity.com/sharedfiles/filedetails/?id=463939057) - effect damage automatically routes through ACE medical when loaded.
 - [Root's Anomalies - Zeus Module](https://steamcommunity.com/sharedfiles/filedetails/?id=2882374586)
 
 ---
@@ -53,6 +53,7 @@ All effects appear in the "Root's Effects" category of the Zeus Modules tab and 
 ### **Aurora Borealis, Spacetime Rupture, Modify Sky Effect** (ambientsfx)
 - Glowing bands in the night sky: band, arc, wave, ring, spiral or random shape.
 - Fade in / fade out speed, lifetime, density, size scale and length scale.
+- Build-up time: instant, X seconds or natural fill.
 - Optional shape switch timer: the band takes on a new form every X seconds.
 - The rupture can move: drift on one heading or wander around where it started.
 - Modify Sky Effect (Zeus and 3DEN, trigger activated) changes a running aurora or rupture live: Keep As Is (holds every light exactly where it is), allow or stop new lights, allow or stop lights fading out, size, length, shape, shape switching and movement.
@@ -105,8 +106,12 @@ All effects appear in the "Root's Effects" category of the Zeus Modules tab and 
 - Heat Mirage: a shimmering heat haze zone.
 - Water Contamination: a contaminated-water zone that tints the view, far stronger while diving.
 
-### **EMP Pulse** (emp)
-- Cuts vehicle engines, optionally drains fuel and distorts the vision of players inside the radius.
+### **EMP Field** (emp)
+- Field on an object or position: countdown, detonation, shockwave, force field dome and a Zeus-editable map marker growing with the wave.
+- Vehicles, aircraft, UAVs, lamps, personal electronics (NVG, GPS, cTab, ACE devices, UAV terminals, weapon lights and lasers) and ACRE radios fail as the wave reaches them.
+- Disable / suppress or destroy / fry modes, grace time for units entering, recovery on leaving, shutdown by hold action or ACE interaction on the object.
+- HUD blinks out when nearing the field; Modify EMP Field module changes or shuts down a running field.
+- Public API: create, disable, modify, isInside.
 
 ### **Live Briefing Map, Briefing Table** (briefing)
 - A map board with a live topographic feed, optionally following a marker.

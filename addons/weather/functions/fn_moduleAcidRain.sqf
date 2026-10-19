@@ -37,6 +37,7 @@ if (!(["acidrain"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["SLIDER", [LLSTRING(AttrAcidTick), LLSTRING(AttrAcidTickTooltip)], [1, 60, 5, 0]],
     ["SLIDER:PERCENT", [LLSTRING(AttrAcidIntensity), LLSTRING(AttrAcidIntensityTooltip)], [0.1, 1, 0.7, 0]],
     ["CHECKBOX", [LLSTRING(AttrAcidWeather), LLSTRING(AttrAcidWeatherTooltip)], true],
+    ["SLIDER", [LLSTRING(AttrAcidBuildUp), LLSTRING(AttrAcidBuildUpTooltip)], [-1, 120, -1, 0]],
     ["SLIDER:PERCENT", [LLSTRING(AttrAcidVehicleRate), LLSTRING(AttrAcidVehicleRateTooltip)], [0, 0.2, 0.02, 1]],
     ["SLIDER:PERCENT", [LLSTRING(AttrAcidBuildingRate), LLSTRING(AttrAcidBuildingRateTooltip)], [0, 0.1, 0.01, 1]],
     ["SLIDER:PERCENT", [LLSTRING(AttrAcidBuildingCap), LLSTRING(AttrAcidBuildingCapTooltip)], [0, 1, 0.9, 0]],
@@ -46,9 +47,9 @@ if (!(["acidrain"] call EFUNC(main,isEffectEnabled))) exitWith {
     ["EDIT", [LLSTRING(AttrAcidSafeAreas), LLSTRING(AttrAcidSafeAreasTooltip)], ""]
 ], {
     params ["_results", "_pos"];
-    _results params ["_radius", "_tint", "_damage", "_damagePerTick", "_tick", "_intensity", "_weatherRain", "_vehicleRate", "_buildingRate", "_buildingCap", "_safeGear", "_safeVehicles", "_safeBuildings", "_safeAreas"];
+    _results params ["_radius", "_tint", "_damage", "_damagePerTick", "_tick", "_intensity", "_weatherRain", "_buildUp", "_vehicleRate", "_buildingRate", "_buildingCap", "_safeGear", "_safeVehicles", "_safeBuildings", "_safeAreas"];
 
-    [QGVAR(startAcidRain), [_pos, _radius, _tint, _damage, _damagePerTick, _tick, _intensity, _weatherRain, _vehicleRate, _buildingRate, _buildingCap, _safeGear, _safeVehicles, _safeBuildings, _safeAreas]] call EFUNC(main,serverEventLogged);
+    [QGVAR(startAcidRain), [_pos, _radius, _tint, _damage, _damagePerTick, _tick, _intensity, _weatherRain, _vehicleRate, _buildingRate, _buildingCap, _safeGear, _safeVehicles, _safeBuildings, _safeAreas, _buildUp]] call EFUNC(main,serverEventLogged);
     DBG(FORMAT_4("acid rain requested by %1 at %2 (radius %3, damage %4)",profileName,mapGridPosition _pos,_radius,_damage));
     [LLSTRING(AcidRainStarted)] call zen_common_fnc_showMessage;
 }, {

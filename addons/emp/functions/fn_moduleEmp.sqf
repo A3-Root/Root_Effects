@@ -2,9 +2,9 @@
 
 /*
  * Author: Root
- * Zeus module entry point for the EMP pulse. Opens the configuration dialog
- * on the curator's machine and asks the server to detonate the pulse at the
- * module position once confirmed.
+ * Zeus module entry point for the EMP field. Placed on an object, the field sits
+ * on it; placed on the ground, at that spot. Opens the dialog on the curator's
+ * machine and asks the server to create the field once confirmed.
  *
  * Arguments:
  * 0: Module logic <OBJECT>
@@ -20,6 +20,7 @@ params [["_logic", objNull, [objNull]]];
 
 DBG(FORMAT_3("moduleEmp called with %1 by %2 at %3",_this,profileName,mapGridPosition (positionCameraToWorld [ARR_3(0,0,0)])));
 
+private _object = attachedTo _logic;
 private _pos = getPosATL _logic;
 deleteVehicle _logic;
 
@@ -29,20 +30,21 @@ if (!(["emp"] call EFUNC(main,isEffectEnabled))) exitWith {
     [localize ELSTRING(main,EffectDisabled)] call zen_common_fnc_showMessage;
 };
 
-[LLSTRING(ModuleEmp), [
-    ["SLIDER:RADIUS", [LLSTRING(AttrRadius), LLSTRING(AttrRadiusTooltip)], [50, 2000, 300, 0, _pos, [7, 120, 32, 1]]],
-    ["SLIDER", [LLSTRING(AttrDuration), LLSTRING(AttrDurationTooltip)], [5, 120, 20, 0]],
-    ["TOOLBOX:YESNO", [LLSTRING(AttrKillEngines), LLSTRING(AttrKillEnginesTooltip)], true],
-    ["SLIDER:PERCENT", [LLSTRING(AttrFuelDrain), LLSTRING(AttrFuelDrainTooltip)], [0, 1, 0, 2]],
-    ["TOOLBOX:YESNO", [LLSTRING(AttrHud), LLSTRING(AttrHudTooltip)], true],
-    ["TOOLBOX:YESNO", [LLSTRING(AttrElectronics), LLSTRING(AttrElectronicsTooltip)], true],
-    ["TOOLBOX:YESNO", [LLSTRING(AttrPermanent), LLSTRING(AttrPermanentTooltip)], false]
-], {
-    params ["_results", "_pos"];
-    _results params ["_radius", "_duration", "_killEngines", "_fuelDrain", "_hud", "_electronics", "_permanent"];
+([call FUNC(empDefaults), _pos, true] call FUNC(empDialogRows)) params ["_rows", "_keys"];
 
-    [QGVAR(start), [_pos, _radius, _duration, _killEngines, _fuelDrain, _hud, _electronics, _permanent]] call EFUNC(main,serverEventLogged);
+[LLSTRING(ModuleEmp), _rows, {
+    params ["_results", "_args"];
+    _args params ["_object", "_pos", "_keys"];
+
+    private _settings = [];
+    {
+        _settings pushBack [_x, _results select _forEachIndex];
+    } forEach _keys;
+
+    private _target = [_pos, _object] select (!isNull _object);
+    [QGVAR(create), [_target, _settings]] call EFUNC(main,serverEventLogged);
+    DBG(FORMAT_3("EMP field requested by %1 at %2 on %3",profileName,mapGridPosition _pos,typeOf _object));
     [LLSTRING(Started)] call zen_common_fnc_showMessage;
 }, {
     [localize ELSTRING(main,Aborted)] call zen_common_fnc_showMessage;
-}, _pos, QGVAR(dialog)] call zen_dialog_fnc_create;
+}, [_object, _pos, _keys], QGVAR(dialog)] call zen_dialog_fnc_create;

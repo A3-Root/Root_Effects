@@ -15,6 +15,12 @@
  * 5: Particle lifetime seconds <NUMBER>
  * 6: Density 0.1 - 1 <NUMBER>
  * 7: Fixed in place, no despawn or new spawn <BOOL>
+ * 8: Size scale <NUMBER>
+ * 9: Length scale <NUMBER>
+ * 10: Shape switch interval in seconds, 0 never <NUMBER>
+ * 11: Movement speed m/s <NUMBER>
+ * 12: Movement mode 0 drift, 1 wander <NUMBER>
+ * 13: Build-up seconds, -1 natural, 0 instant <NUMBER>
  *
  * Return Value:
  * None
@@ -36,7 +42,8 @@ params [
     ["_lengthScale", 1, [0]],
     ["_switchInterval", 0, [0]],
     ["_moveSpeed", 0, [0]],
-    ["_moveMode", 0, [0]]
+    ["_moveMode", 0, [0]],
+    ["_buildUp", -1, [0]]
 ];
 
 DBG(FORMAT_1("ruptureStart called with %1",_this));
@@ -47,7 +54,7 @@ if (!(["rupture"] call EFUNC(main,isEffectEnabled))) exitWith {};
 private _anchorPos = +_pos;
 _anchorPos set [2, _altitude];
 
-private _anchor = ["rupture", QGVAR(ruptureLocal), [_fadeIn, _fadeOut, _lifetime, _density], _anchorPos] call EFUNC(main,startEffect);
+private _anchor = ["rupture", QGVAR(ruptureLocal), [_fadeIn, _fadeOut, _lifetime, _density, _buildUp, CBA_missionTime], _anchorPos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
 // Live settings the renderers follow, and the switch/move control. Fixed in place

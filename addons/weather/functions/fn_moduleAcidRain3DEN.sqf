@@ -44,8 +44,9 @@ private _safeGear = _logic getVariable ["ROOT_ACIDRAIN_SAFEGEAR", ""];
 private _safeVehicles = _logic getVariable ["ROOT_ACIDRAIN_SAFEVEH", ""];
 private _safeBuildings = _logic getVariable ["ROOT_ACIDRAIN_SAFEBLDG", ""];
 private _safeAreas = _logic getVariable ["ROOT_ACIDRAIN_SAFEAREAS", ""];
+private _buildUp = _logic getVariable ["ROOT_ACIDRAIN_BUILDUP", -1];
 
 deleteVehicle _logic;
 
 DBG(FORMAT_3("acid rain 3DEN module at %1 (radius %2, safe zones %3)",mapGridPosition _pos,_radius,_safeAreas));
-[_pos, _radius, _tint, _damage, _damagePerTick, _tick, _intensity, _weatherRain, _vehicleRate, _buildingRate, _buildingCap, _safeGear, _safeVehicles, _safeBuildings, _safeAreas] call FUNC(acidRainStart);
+[_pos, _radius, _tint, _damage, _damagePerTick, _tick, _intensity, _weatherRain, _vehicleRate, _buildingRate, _buildingCap, _safeGear, _safeVehicles, _safeBuildings, _safeAreas, _buildUp] call FUNC(acidRainStart);

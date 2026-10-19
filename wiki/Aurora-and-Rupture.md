@@ -5,6 +5,7 @@
 |---|---|
 | Altitude | Height of the band. |
 | Shape | Band, arc, wave, ring, spiral or random. All clients draw the same shape. |
+| Build-up Time | Seconds to full strength. -1: natural, fills over the light lifetime. 0: instant. Late joiners see the full band. |
 | Spawn / Despawn Speed | Fade in and fade out time of each light. |
 | Lifetime | How long each light lives. |
 | Density | Lights per second. |
@@ -27,5 +28,6 @@ Zeus: place near a running aurora or rupture. 3DEN: activates with its trigger (
 | Size / Length Scale | Live resize. |
 | Shape, Shape Switch Interval | Live reshape. |
 | Movement Speed / Movement | Start, stop or change movement. |
+| Snap To Full | Fills the band to full strength at once. |
 
 Changes apply immediately to every client; nothing restarts.

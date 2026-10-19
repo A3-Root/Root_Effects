@@ -27,6 +27,7 @@
  * 12: Protected vehicle classes, comma separated <STRING>
  * 13: Protected building classes, comma separated <STRING>
  * 14: Safe zones: marker or trigger names, comma separated <STRING>
+ * 15: Build-up seconds, -1 default (20), 0 instant <NUMBER>
  *
  * Return Value:
  * None
@@ -50,7 +51,8 @@ params [
     ["_safeGear", "", [""]],
     ["_safeVehicles", "", [""]],
     ["_safeBuildings", "", [""]],
-    ["_safeAreas", "", [""]]
+    ["_safeAreas", "", [""]],
+    ["_buildUp", -1, [0]]
 ];
 
 DBG(FORMAT_1("acidRainStart called with %1",_this));
@@ -75,7 +77,7 @@ private _safety = [
     [_safeAreas] call _fnc_csv
 ];
 
-private _anchor = ["acidrain", QGVAR(acidRainLocal), [_radius, _tint, _intensity, _weatherRain], _pos] call EFUNC(main,startEffect);
+private _anchor = ["acidrain", QGVAR(acidRainLocal), [_radius, _tint, _intensity, _weatherRain, _buildUp], _pos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
 // Real rain (and the cloud it needs) for the whole storm, restored afterwards.
@@ -84,10 +86,11 @@ if (_weatherRain) then {
     _anchor setVariable [QGVAR(prevWeather), _prevWeather];
     0 setOvercast (overcast max (0.75 + 0.2 * _intensity));
     forceWeatherChange;
+    private _rainTime = [_buildUp, 20] select (_buildUp < 0);
     [{
-        params ["_intensity"];
-        20 setRain (0.4 + 0.6 * _intensity);
-    }, [_intensity], 1] call CBA_fnc_waitAndExecute;
+        params ["_intensity", "_rainTime"];
+        _rainTime setRain (0.4 + 0.6 * _intensity);
+    }, [_intensity, _rainTime], [1, 0.1] select (_rainTime == 0)] call CBA_fnc_waitAndExecute;
 
     [{
         params ["_args", "_handle"];

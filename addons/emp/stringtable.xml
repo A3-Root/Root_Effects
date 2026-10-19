@@ -1,71 +1,440 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project name="Root_Effects">
     <Package name="Emp">
-        <Key ID="STR_root_effects_emp_AttrDuration">
-            <Original>Interference Duration</Original>
+        <Key ID="STR_root_effects_emp_ActionDisable">
+            <Original>Shut Down EMP</Original>
         </Key>
-        <Key ID="STR_root_effects_emp_AttrDurationTooltip">
-            <Original>Seconds the electrical interference lasts.</Original>
+        <Key ID="STR_root_effects_emp_AttrAbort">
+            <Original>Can Abort Countdown</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrAbortTooltip">
+            <Original>The shutdown interaction also works before detonation.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrAi">
+            <Original>Affect AI Gear</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrAiTooltip">
+            <Original>AI inside lose night vision, weapon lights and IR lasers.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrAircraft">
+            <Original>Aircraft</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrAircraftTooltip">
+            <Original>Disable: engines cut, lights and thermal / night optics off. Destroy: engines, avionics and electrics wrecked.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrAircraftTooltip3DEN">
+            <Original>0: off. 1: engines cut, lights and thermal / night optics off. 2: engines, avionics and electrics wrecked.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrAltitude">
+            <Original>Dome Height (m)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrAltitudeTooltip">
+            <Original>Height of the field above the object. -1: no height limit, dome drawn as a hemisphere.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrBeep">
+            <Original>Countdown Beep</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrBeepTooltip">
+            <Original>The object beeps during the countdown, faster towards zero.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrChannels">
+            <Original>Block Voice Channels</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrChannelsTooltip">
+            <Original>Players hit lose side, command, group and vehicle voice channels.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrChargeGlow">
+            <Original>Charge Glow</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrChargeGlowTooltip">
+            <Original>Blue glow on the object charging up over the last 3 seconds of the countdown.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrCountdown">
+            <Original>Countdown (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrCountdownTooltip">
+            <Original>Seconds until detonation. 0: immediate.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDome">
+            <Original>Force Field Dome</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeAlpha">
+            <Original>Dome Opacity</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeAlphaTooltip">
+            <Original>Opacity of the dome.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeColor">
+            <Original>Dome Colour</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeColorTooltip">
+            <Original>Colour of the dome.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeColorTooltip3DEN">
+            <Original>Dome colour as r,g,b from 0 to 1.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeShimmer">
+            <Original>Dome Shimmer</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeShimmerTooltip">
+            <Original>The dome pulses and throws lightning arcs (high dome quality).</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeTooltip">
+            <Original>Visible see-through dome over the field. Units, vehicles and bullets pass through.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrEffectDelay">
+            <Original>Effect Delay (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrEffectDelayTooltip">
+            <Original>Seconds between the shockwave passing and electronics failing.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrElectronics">
-            <Original>Destroy Electronics</Original>
+            <Original>Affect Electronics</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrElectronicsTooltip">
-            <Original>Knocks out street lamps, night vision goggles, weapon lights and IR pointers inside the radius.</Original>
+            <Original>Off: gear, lamps, AI and radios are not affected.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrEndDestroyed">
+            <Original>Ends With Object</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrEndDestroyedTooltip">
+            <Original>The field shuts down when its object is destroyed.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrFuelDrain">
             <Original>Fuel Drain</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrFuelDrainTooltip">
-            <Original>Fraction of fuel drained from vehicles inside the radius.</Original>
+            <Original>Fraction of fuel drained from vehicles knocked out.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrGear">
+            <Original>Personal Electronics</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrGearTooltip">
+            <Original>Suppress: items kept but dead inside the field (NVG, weapon lights and lasers, GPS, cTab, ACE devices, UAV terminal, electronic binoculars). Fry: items removed.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrGearTooltip3DEN">
+            <Original>0: off. 1: suppress, items kept but dead inside the field. 2: fry, items removed.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrGrace">
+            <Original>Grace Time (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrGraceTooltip">
+            <Original>Seconds units and vehicles inside the live field get before they are hit, e.g. to turn away. After that engines, lights and gear die.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrHoldTime">
+            <Original>Shutdown Time (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrHoldTimeTooltip">
+            <Original>Seconds the shutdown interaction takes.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrHud">
-            <Original>Distort Player Vision</Original>
+            <Original>Screen Interference</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrHudTooltip">
-            <Original>Players inside the radius suffer flickering visual interference.</Original>
+            <Original>Players hit see flickering interference, heavy in thermal sights.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrInteraction">
+            <Original>Shutdown Interaction</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrInteractionTooltip">
+            <Original>How players shut the field down on its object. ACE falls back to the action without ACE.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrInteractionTooltip3DEN">
+            <Original>0: none. 1: action. 2: ACE interaction (action without ACE). 3: both.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrItemsExtra">
+            <Original>Extra Electronics</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrItemsExtraTooltip">
+            <Original>Additional item classnames treated as electronic, comma separated.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrItemsImmune">
+            <Original>Shielded Items</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrItemsImmuneTooltip">
+            <Original>Item classnames never affected, comma separated.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrKillEngines">
-            <Original>Cut Vehicle Engines</Original>
+            <Original>Affect Vehicles</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrKillEnginesTooltip">
-            <Original>Vehicle engines inside the radius cut out and stay dead for the interference duration. Respects the server's vehicle kill setting.</Original>
+            <Original>Off: vehicles, aircraft and UAVs are not affected.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrLamps">
+            <Original>Lights</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrLampsTooltip">
+            <Original>Street lamps, floodlights and power line lights go out as the shockwave reaches them. Broken: they stay out after the field ends.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrLampsTooltip3DEN">
+            <Original>0: off. 1: out for the field. 2: broken, stay out.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrLinger">
+            <Original>Linger (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrLingerTooltip">
+            <Original>Seconds the field stays after the shockwave. -1: until shut down.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrMarker">
+            <Original>Map Marker</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrMarkerSync">
+            <Original>Marker Sets Radius</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrMarkerSyncTooltip">
+            <Original>Resizing the marker in Zeus changes the field radius.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrMarkerTooltip">
+            <Original>Area marker growing with the shockwave, editable by Zeus.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrMarkerTooltip3DEN">
+            <Original>0: none. 1: area. 2: area and label.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrModDomeTooltip">
+            <Original>-1: unchanged. 0: dome off. 1: dome on.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrModLingerTooltip">
+            <Original>New linger in seconds, -1 until shut down. -2: unchanged.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrModRadiusTooltip">
+            <Original>New radius in meters. -1: unchanged.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrModRange">
+            <Original>Search Range (m)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrModRangeTooltip">
+            <Original>Without a synced object, the closest field within this range is changed.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrModSettings">
+            <Original>Other Settings</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrModSettingsTooltip">
+            <Original>More settings as an array of [key, value] pairs, e.g. [[&quot;vehicles&quot;,2],[&quot;grace&quot;,10]]. Keys as in the API.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrPermanent">
-            <Original>Permanent Damage</Original>
+            <Original>Until Shut Down</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrPermanentTooltip">
-            <Original>Electronics stay dead instead of recovering once the interference passes.</Original>
+            <Original>The field stays until shut down, ignoring Linger.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRadios">
+            <Original>Jam Radios</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRadiosTooltip">
+            <Original>ACRE radios inside the field neither send nor receive.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrRadius">
-            <Original>Pulse Radius</Original>
+            <Original>Radius</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrRadiusTooltip">
-            <Original>Radius in meters of the pulse.</Original>
+            <Original>Radius of the field in meters.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRequiredItem">
+            <Original>Required Item</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRequiredItemTooltip">
+            <Original>Classname a player needs to shut the field down, e.g. ToolKit. Empty: none.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRestore">
+            <Original>Recover On Leaving</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRestoreTooltip">
+            <Original>Suppressed gear and disabled vehicles work again outside the field. Off: they stay dead until the field ends.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrShake">
+            <Original>Camera Shake</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrShakeTooltip">
+            <Original>The camera shakes when the shockwave reaches the player.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrShockSpeed">
+            <Original>Shockwave Speed (m/s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrShockSpeedTooltip">
+            <Original>Speed of the shockwave. 0: instant.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrShutDown">
+            <Original>Shut Down</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrShutDownTooltip">
+            <Original>Shut the field down: the dome fades, the marker goes and everything recovers.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrTimer3D">
+            <Original>Countdown Timer</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrTimer3DTooltip">
+            <Original>Timer over the object during the countdown.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrTimerHint">
+            <Original>Countdown Hint</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrTimerHintTooltip">
+            <Original>Hint with the time left for players inside the radius.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrUavs">
+            <Original>UAVs</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrUavsTooltip">
+            <Original>Disconnect: UAVs inside cannot be controlled. Crash: their engines also cut.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrUavsTooltip3DEN">
+            <Original>0: off. 1: disconnect. 2: crash.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrVehicles">
+            <Original>Vehicles</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrVehiclesImmune">
+            <Original>Shielded Vehicles</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrVehiclesImmuneTooltip">
+            <Original>Vehicle classnames (and children) never affected, comma separated.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrVehiclesTooltip">
+            <Original>Disable: engines cut, lights and thermal / night optics off. Destroy: engines, electrics and lights wrecked.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrVehiclesTooltip3DEN">
+            <Original>0: off. 1: engines cut, lights and thermal / night optics off. 2: engines, electrics and lights wrecked.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrVisuals">
+            <Original>Detonation Effects</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrVisualsTooltip">
+            <Original>Flash, lightning arcs, sparks, charge glow and shock ring.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrWarnGround">
+            <Original>Warning Range Ground (m)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrWarnHeli">
+            <Original>Warning Range Helicopter (m)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrWarnPlane">
+            <Original>Warning Range Plane (m)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrWarnTooltip">
+            <Original>Meters outside the field where the HUD of approaching players starts blinking out. 0: off.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_CountdownHint">
+            <Original>EMP detonation in %1 s</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_FieldModified">
+            <Original>EMP field changed</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_FieldShutDown">
+            <Original>EMP field shutting down</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_InteractionAce">
+            <Original>ACE</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_InteractionAction">
+            <Original>Action</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_InteractionBoth">
+            <Original>Both</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_MarkerArea">
+            <Original>Area</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_MarkerLabel">
+            <Original>Area + Label</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModeBroken">
+            <Original>Broken</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModeCrash">
+            <Original>Crash</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModeDestroy">
+            <Original>Destroy</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModeDisable">
+            <Original>Disable</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModeDisconnect">
+            <Original>Disconnect</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModeFry">
+            <Original>Fry</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModeLampsOff">
+            <Original>Out</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModeOff">
+            <Original>Off</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModeSuppress">
+            <Original>Suppress</Original>
         </Key>
         <Key ID="STR_root_effects_emp_ModuleEmp">
-            <Original>EMP Pulse</Original>
+            <Original>EMP Field</Original>
         </Key>
         <Key ID="STR_root_effects_emp_ModuleEmpDesc">
-            <Original>An electromagnetic pulse that cuts vehicle engines and distorts the vision of players inside the radius.</Original>
+            <Original>Electromagnetic pulse field on an object or position: countdown, shockwave, dome, delayed knockout of vehicles, lights, gear and radios, recovery on leaving and shutdown on the object. Sync to an object to place it there.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModuleModifyEmp">
+            <Original>Modify EMP Field</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModuleModifyEmpDesc">
+            <Original>Changes or shuts down a running EMP field: the one on the synced object, otherwise the closest within the search range.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_ModuleModifyEmpTitle">
+            <Original>Modify EMP Field at %1</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_NoField">
+            <Original>No running EMP field found</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_QualityHigh">
+            <Original>High</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_QualityLow">
+            <Original>Low</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_QualityOff">
+            <Original>Off</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingAcreJam">
+            <Original>Jam ACRE Radios</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingAcreJamTooltip">
+            <Original>Allow EMP fields to jam ACRE radios.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingAllowDestroy">
+            <Original>Allow Destroy And Fry</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingAllowDestroyTooltip">
+            <Original>Allow fields to wreck vehicles and remove gear. Off: those modes act as Disable / Suppress.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingCategoryName">
             <Original>EMP</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingCountdown3D">
+            <Original>Show Countdown Timer</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingCountdown3DTooltip">
+            <Original>Show the countdown timer over EMP objects.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingDomeQuality">
+            <Original>Dome Quality</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingDomeQualityTooltip">
+            <Original>Off hides the dome. Low skips shimmer and arcs.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingEnabled">
             <Original>Enable EMP Module</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingEnabledTooltip">
-            <Original>Allow EMP pulses to be fired from Zeus or 3DEN.</Original>
+            <Original>Allow EMP fields from Zeus, 3DEN or script.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingVehicleKill">
-            <Original>Allow Engine Cutout</Original>
+            <Original>Allow Vehicle Knockout</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingVehicleKillTooltip">
-            <Original>Permit EMP pulses to cut vehicle engines. When disabled, the engine option of fired pulses is ignored.</Original>
+            <Original>Allow EMP fields to affect vehicles and aircraft.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_Started">
-            <Original>EMP pulse detonated!</Original>
+            <Original>EMP field placed</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_Warning">
+            <Original>Electronics failing: %1 s</Original>
         </Key>
     </Package>
 </Project>

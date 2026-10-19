@@ -41,7 +41,8 @@ private _tornado = _logic getVariable ["ROOT_LIGHTNING_TORNADO", false];
 private _tornadoSize = _logic getVariable ["ROOT_LIGHTNING_TORNADOSIZE", 120];
 private _tornadoSpeed = _logic getVariable ["ROOT_LIGHTNING_TORNADOSPEED", 15];
 private _tornadoFling = _logic getVariable ["ROOT_LIGHTNING_TORNADOFLING", false];
+private _buildUp = _logic getVariable ["ROOT_LIGHTNING_BUILDUP", -1];
 
 deleteVehicle _logic;
 
-[_pos, _radius, _duration, _minInterval, _maxInterval, _damage, _ambience, _strength, _tornado, _tornadoSize, _tornadoSpeed, _tornadoFling] call FUNC(lightningStart);
+[_pos, _radius, _duration, _minInterval, _maxInterval, _damage, _ambience, _strength, _tornado, _tornadoSize, _tornadoSpeed, _tornadoFling, _buildUp] call FUNC(lightningStart);

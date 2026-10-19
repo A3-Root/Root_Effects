@@ -6,7 +6,7 @@
  * the server. Keep As Is holds every particle exactly where it is: nothing new is
  * added and nothing fades. Otherwise new particles and fading out can each be
  * switched on or off. Size, length, shape, shape switching and movement change
- * live; nothing restarts.
+ * live; nothing restarts. Snap tops the band up to full strength at once.
  *
  * Arguments:
  * 0: Sky effect anchor <OBJECT>
@@ -19,6 +19,7 @@
  * 7: Shape switch interval in seconds, 0 never <NUMBER>
  * 8: Movement speed m/s <NUMBER>
  * 9: Movement mode 0 drift, 1 wander <NUMBER>
+ * 10: Snap the band to full strength now <BOOL>
  *
  * Return Value:
  * None
@@ -37,7 +38,8 @@ params [
     ["_shape", -1, [0]],
     ["_switchInterval", 0, [0]],
     ["_moveSpeed", 0, [0]],
-    ["_moveMode", 0, [0]]
+    ["_moveMode", 0, [0]],
+    ["_snap", false, [false]]
 ];
 
 DBG(FORMAT_1("skyModify called with %1",_this));
@@ -67,6 +69,7 @@ _ctl set [3, _moveMode];
 
 _anchor setVariable [QGVAR(skyCfg), _cfg, true];
 _anchor setVariable [QGVAR(skyCtl), _ctl, true];
+if (_snap) then {_anchor setVariable [QGVAR(skySnap), CBA_missionTime, true]};
 
 private _key = _anchor getVariable [QEGVAR(main,effectKey), "sky"];
 DBG(FORMAT_4("%1 at %2 modified: settings %3, control %4",_key,mapGridPosition _anchor,_cfg,_ctl));

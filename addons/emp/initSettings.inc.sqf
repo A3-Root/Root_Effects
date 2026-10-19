@@ -13,3 +13,31 @@
     [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],
     true, 1
 ] call CBA_fnc_addSetting;
+
+[
+    QGVAR(allowDestroy), "CHECKBOX",
+    [LLSTRING(SettingAllowDestroy), LLSTRING(SettingAllowDestroyTooltip)],
+    [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],
+    true, 1
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(acreJam), "CHECKBOX",
+    [LLSTRING(SettingAcreJam), LLSTRING(SettingAcreJamTooltip)],
+    [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],
+    true, 1
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(domeQuality), "LIST",
+    [LLSTRING(SettingDomeQuality), LLSTRING(SettingDomeQualityTooltip)],
+    [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],
+    [[0, 1, 2], [LLSTRING(QualityOff), LLSTRING(QualityLow), LLSTRING(QualityHigh)], 2]
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(showCountdown3D), "CHECKBOX",
+    [LLSTRING(SettingCountdown3D), LLSTRING(SettingCountdown3DTooltip)],
+    [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],
+    true
+] call CBA_fnc_addSetting;
