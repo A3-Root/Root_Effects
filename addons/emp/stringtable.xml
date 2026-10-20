@@ -73,11 +73,20 @@
         <Key ID="STR_root_effects_emp_AttrDomeColorTooltip3DEN">
             <Original>Dome colour as r,g,b from 0 to 1.</Original>
         </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeDepth">
+            <Original>Dome Depth</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeDepthTooltip">
+            <Original>How far the dome reaches below the object. Shallow: about a quarter of the radius. Deep: half the radius. Full Sphere: the whole radius (object on a hill or mountain top).</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeDepthTooltip3DEN">
+            <Original>How far the dome reaches below the object. -1: CBA Dome Depth. 0: about a quarter of the radius. 1: half the radius. 2: full sphere (object on a hill or mountain top).</Original>
+        </Key>
         <Key ID="STR_root_effects_emp_AttrDomeLightning">
             <Original>Dome Lightning</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrDomeLightningTooltip">
-            <Original>Lightning arcs flash at random on the dome, and arcs and sparks around players inside.</Original>
+            <Original>Lightning arcs flash at random on the dome, and sparks around players inside.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrDomeMirage">
             <Original>Dome Heat Haze</Original>
@@ -394,6 +403,15 @@
         <Key ID="STR_root_effects_emp_CountdownHint">
             <Original>EMP detonation in %1 s</Original>
         </Key>
+        <Key ID="STR_root_effects_emp_DepthDeep">
+            <Original>Deep</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_DepthFull">
+            <Original>Full Sphere</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_DepthShallow">
+            <Original>Shallow</Original>
+        </Key>
         <Key ID="STR_root_effects_emp_EndFade">
             <Original>Fade</Original>
         </Key>
@@ -507,6 +525,12 @@
         </Key>
         <Key ID="STR_root_effects_emp_SettingCountdown3DTooltip">
             <Original>Show the countdown timer over EMP objects.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingDomeDepth">
+            <Original>Dome Depth</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingDomeDepthTooltip">
+            <Original>Default for new fields: how far the dome reaches below the object. Shallow: about a quarter of the radius. Deep: half the radius. Full Sphere: the whole radius.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingDomeQuality">
             <Original>Dome Quality</Original>

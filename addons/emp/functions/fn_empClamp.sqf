@@ -43,6 +43,10 @@ private _fnc_num = {
     [_x, 0, 2] call _fnc_num;
     _cfg set [_x, round (_cfg get _x)];
 } forEach ["vehicles", "aircraft", "uavs", "lamps", "gear", "marker", "implodeBlast"];
+// -1: CBA Dome Depth.
+if ((_cfg getOrDefault ["domeDepth", -1]) < 0) then {_cfg set ["domeDepth", GVAR(domeDepth)]};
+["domeDepth", 0, 2] call _fnc_num;
+_cfg set ["domeDepth", round (_cfg get "domeDepth")];
 ["endMode", 0, 1] call _fnc_num;
 _cfg set ["endMode", round (_cfg get "endMode")];
 ["interaction", 0, 3] call _fnc_num;

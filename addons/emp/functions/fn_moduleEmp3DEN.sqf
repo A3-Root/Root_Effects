@@ -69,6 +69,7 @@ private _settings = [
     ["domeShimmer", ["ROOT_EMP_DOMESHIMMER", "domeShimmer"] call _get],
     ["domeLightning", ["ROOT_EMP_DOMELIGHTNING", "domeLightning"] call _get],
     ["domeMirage", ["ROOT_EMP_DOMEMIRAGE", "domeMirage"] call _get],
+    ["domeDepth", _logic getVariable ["ROOT_EMP_DOMEDEPTH", -1]],
     ["endMode", ["ROOT_EMP_ENDMODE", "endMode"] call _get],
     ["implodeBlast", ["ROOT_EMP_IMPLODEBLAST", "implodeBlast"] call _get],
     ["flickerGear", ["ROOT_EMP_FLICKERGEAR", "flickerGear"] call _get],

@@ -4,7 +4,7 @@
  * Author: Root
  * Client implosion of an EMP field: thunder, a glow and heat haze ring and the
  * lightning wave front running in from the edge to the center with the wall, then
- * flash, lightning burst, sparks and blast sound at the center and camera shake
+ * flash, sparks and blast sound at the center and camera shake
  * nearby (shake) when the wall arrives.
  *
  * Arguments:
@@ -53,7 +53,7 @@ for "_i" from 0 to (_count - 1) do {
 
 [_entry, _start, _speed, true] call FUNC(empFrontLocal);
 
-// Collapse: flash, lightning and blast at the center.
+// Collapse: flash, sparks and blast at the center.
 [{
     params ["_agl", "_pos", "_radius", "_shake", "_budget"];
     playSound3D ["a3\sounds_f\weapons\explosion\expl_big_1.wss", objNull, false, _pos, 3, 0.9, 1500, 0, true];
@@ -67,7 +67,6 @@ for "_i" from 0 to (_count - 1) do {
     _flash setLightFlareSize 20;
     _flash setLightFlareMaxDistance 3000;
     [{deleteVehicle _this}, _flash, 0.4] call CBA_fnc_waitAndExecute;
-    [_agl vectorAdd [0, 0, 1], 1.25] call FUNC(empBoltLocal);
     for "_i" from 1 to ceil (40 * _budget) do {
         drop [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.6 + random 0.8, _agl vectorAdd [0, 0, 1], [random 16 - 8, random 16 - 8, random 10], 0, 3, 1, 0.1, [0.15, 0.05],
             [[0.7, 0.9, 1, 1], [0.4, 0.6, 1, 0]], [1], 0, 0, "", "", objNull];

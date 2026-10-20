@@ -5,9 +5,9 @@
  * Public API. Shuts an EMP field down. Fade (endMode 0): the dome fades, the marker
  * goes and every suppressed or disabled item recovers. Implode (endMode 1): the
  * wall runs back in at shockSpeed (shockSpeed 0: in IMPLODE_TIME s), the marker
- * shrinks with it and items recover as it passes. implodeBlast sets off a grenade
- * (1) or mortar shell (2) at the center when the dome has collapsed. Destroyed or
- * fried items stay broken.
+ * shrinks with it and items recover as it passes. implodeBlast sets off a 40 mm
+ * grenade (1) or 82 mm mortar round (2) at the center when the dome has collapsed.
+ * Destroyed or fried items stay broken.
  * Called on a client, the request is sent to the server.
  *
  * Arguments:
@@ -52,9 +52,8 @@ if (_implode && _blast > 0) then {
     [{
         params ["_anchor", "_blast"];
         if (isNull _anchor) exitWith {};
-        private _ammo = createVehicle [["G_40mm_HE", "Sh_82mm_AMOS"] select (_blast - 1), (getPosATL _anchor) vectorAdd [0, 0, 0.5], [], 0, "CAN_COLLIDE"];
-        // Fuse distance 0, so the fresh shell does not dud.
-        triggerAmmo [_ammo, -1, 0];
+        private _ammo = createVehicle [["G_40mm_HE", "M_Mo_82mm_AT_LG"] select (_blast - 1), getPosATL _anchor, [], 0, "CAN_COLLIDE"];
+        _ammo setDamage 1;
         DBG(FORMAT_2("EMP implosion blast %1 at %2",_blast,mapGridPosition _anchor));
     }, [_anchor, _blast], _collapse] call CBA_fnc_waitAndExecute;
 };

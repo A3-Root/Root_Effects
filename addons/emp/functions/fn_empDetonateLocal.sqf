@@ -2,10 +2,10 @@
 
 /*
  * Author: Root
- * Client detonation of an EMP field: flash, lightning burst, sparks and heat haze
+ * Client detonation of an EMP field: flash, sparks and heat haze
  * at the object, thunder and blast sound, a glowing shock ring and heat haze running
- * out at the shockwave speed with lightning bolts, sparks, light flicker and
- * crackle riding the wave front, and a camera shake when the wave reaches the player.
+ * out at the shockwave speed with lightning bolts, sparks and crackle riding the
+ * wave front, and a camera shake when the wave reaches the player.
  *
  * Arguments:
  * 0: Field entry [anchor, settings, version, detonation time, object, interact] <ARRAY>
@@ -71,9 +71,6 @@ _flash setLightFlareMaxDistance 5000;
     };
     _flash setLightBrightness (40 * (1 - _t / 0.8) + random 4);
 }, 0, [_flash, CBA_missionTime]] call CBA_fnc_addPerFrameHandler;
-
-// Lightning burst at the object.
-[_agl vectorAdd [0, 0, 1], 1.25] call FUNC(empBoltLocal);
 
 // Sparks thrown off the object.
 private _sparks = "#particlesource" createVehicleLocal _agl;

@@ -1,5 +1,26 @@
 # Changelog for Root's Effects
 
+## Version: 4.0.0.9
+### Added
+- EMP Dome Depth (CBA default, Zeus, 3DEN, `domeDepth` key): dome reaches a quarter, half or the whole radius below the object.
+
+### Changed
+- EMP dome reaches into the ground (no gap where the terrain is lower than the object).
+- EMP Implosion Blast explodes (round set off where it is created).
+
+## Version: 4.0.0.8
+### Removed
+- EMP light flicker on the wave front.
+
+## Version: 4.0.0.7
+### Removed
+- EMP lightning bolts at the detonation, implosion, breaking lamps and around players; bolts stay on the dome wall and its moving edge.
+- EMP light flashes on the dome wall.
+
+### Changed
+- EMP dome: frosted glass material, not lit by nearby lights.
+- EMP Implosion Blast: 40 mm grenade or 82 mm mortar round dropped at the object.
+
 ## Version: 4.0.0.6
 ### Changed
 - EMP dome reaches the ground again (bottom ring of patches was not created).

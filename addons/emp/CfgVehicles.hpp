@@ -23,14 +23,14 @@ class CfgVehicles {
 
     class Static;
     // Dome patches: 15 x 15 degree pieces of a unit sphere, one per 15 degree band
-    // up from the equator, centered on their bounding box, glass on both sides.
+    // up from the equator, centered on their bounding box, frosted glass on both sides.
     class ROOT_EMP_DomePatchBase: Static {
         scope = 1;
         author = "Root";
         model = QPATHTOF(data\dome_b0.p3d);
         hiddenSelections[] = {"camo"};
         hiddenSelectionsTextures[] = {"#(argb,8,8,3)color(0.5,0.5,0.5,0.3,ca)"};
-        hiddenSelectionsMaterials[] = {"\A3\Structures_F\Data\Windows\window_set.rvmat"};
+        hiddenSelectionsMaterials[] = {QPATHTOF(data\dome_glass.rvmat)};
     };
     class ROOT_EMP_DomePatch0: ROOT_EMP_DomePatchBase {
         model = QPATHTOF(data\dome_b0.p3d);
@@ -108,6 +108,7 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_EMP_DOMESHIMMER,CSTRING(AttrDomeShimmer),CSTRING(AttrDomeShimmerTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_DOMELIGHTNING,CSTRING(AttrDomeLightning),CSTRING(AttrDomeLightningTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_DOMEMIRAGE,CSTRING(AttrDomeMirage),CSTRING(AttrDomeMirageTooltip),true);
+            ROOT_ATTR_NUMBER_RAW(ROOT_EMP_DOMEDEPTH,CSTRING(AttrDomeDepth),CSTRING(AttrDomeDepthTooltip3DEN),-1);
             ROOT_ATTR_NUMBER(ROOT_EMP_ENDMODE,CSTRING(AttrEndMode),CSTRING(AttrEndModeTooltip3DEN),1);
             ROOT_ATTR_NUMBER(ROOT_EMP_IMPLODEBLAST,CSTRING(AttrImplodeBlast),CSTRING(AttrImplodeBlastTooltip3DEN),1);
             ROOT_ATTR_BOOL(ROOT_EMP_FLICKERGEAR,CSTRING(AttrFlickerGear),CSTRING(AttrFlickerGearTooltip),true);

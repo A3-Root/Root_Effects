@@ -59,6 +59,7 @@ if (_countdown) then {
 ["domeShimmer", ["TOOLBOX:YESNO", [LLSTRING(AttrDomeShimmer), LLSTRING(AttrDomeShimmerTooltip)], _d get "domeShimmer"]] call _fnc_add;
 ["domeLightning", ["TOOLBOX:YESNO", [LLSTRING(AttrDomeLightning), LLSTRING(AttrDomeLightningTooltip)], _d get "domeLightning"]] call _fnc_add;
 ["domeMirage", ["TOOLBOX:YESNO", [LLSTRING(AttrDomeMirage), LLSTRING(AttrDomeMirageTooltip)], _d get "domeMirage"]] call _fnc_add;
+["domeDepth", ["TOOLBOX", [LLSTRING(AttrDomeDepth), LLSTRING(AttrDomeDepthTooltip)], [_d get "domeDepth", 1, 3, [LLSTRING(DepthShallow), LLSTRING(DepthDeep), LLSTRING(DepthFull)]]]] call _fnc_add;
 ["endMode", ["TOOLBOX", [LLSTRING(AttrEndMode), LLSTRING(AttrEndModeTooltip)], [_d get "endMode", 1, 2, [LLSTRING(EndFade), LLSTRING(EndImplode)]]]] call _fnc_add;
 ["implodeBlast", ["TOOLBOX", [LLSTRING(AttrImplodeBlast), LLSTRING(AttrImplodeBlastTooltip)], [_d get "implodeBlast", 1, 3, [LLSTRING(ModeOff), LLSTRING(BlastSmall), LLSTRING(BlastLarge)]]]] call _fnc_add;
 ["flickerGear", ["TOOLBOX:YESNO", [LLSTRING(AttrFlickerGear), LLSTRING(AttrFlickerGearTooltip)], _d get "flickerGear"]] call _fnc_add;

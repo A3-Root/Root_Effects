@@ -3,8 +3,7 @@
 /*
  * Author: Root
  * Client spark burst on an object burning out, using the ambient sparks shower and
- * crackle, with a small lightning burst. Blowout adds more bursts, a bright flash
- * and a smoke puff.
+ * crackle. Blowout adds more bursts, a bright flash and a smoke puff.
  *
  * Arguments:
  * 0: Object <OBJECT>
@@ -25,7 +24,6 @@ if ((_object distance (positionCameraToWorld [0, 0, 0])) > 400) exitWith {};
 
 private _offset = [0, 0, ((boundingBoxReal _object) select 1 select 2) * _height];
 [_object, [1, 2 + floor random 2] select _blowout, _offset, [0.4, 0.8] select _blowout] call EFUNC(ambientsfx,sparkBurstLocal);
-[_object modelToWorld _offset, 0.15, 0.025, 0.03, 0.04, 0.3] call FUNC(empBoltLocal);
 
 if (!_blowout) exitWith {};
 

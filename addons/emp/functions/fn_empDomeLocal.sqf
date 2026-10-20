@@ -10,9 +10,9 @@
  * - veil: faint tinted glow drifting on the surface near the viewer,
  * - domeMirage: heat haze on the surface, densest where it meets the ground, and
  *   near the ground around a viewer inside,
- * - domeLightning: lightning arcs on the surface in view, and arcs, sparks and
- *   crackle around a viewer inside,
- * - high quality: denser veil and haze, shimmer, more arcs, arc flashes.
+ * - domeLightning: lightning arcs on the surface in view, and sparks and crackle
+ *   around a viewer inside,
+ * - high quality: denser veil and haze, shimmer, more arcs, spark flashes.
  *
  * Arguments:
  * 0: Field entry [anchor, settings, version, detonation time, object, interact] <ARRAY>
@@ -36,7 +36,7 @@ _anchor setVariable [QGVAR(domeLocal), true];
 
 #define PATCH_CLASS "ROOT_EMP_DomePatch"
 #define PATCH_STEP 15
-#define PATCH_MATERIAL "\A3\Structures_F\Data\Windows\window_set.rvmat"
+#define PATCH_MATERIAL QPATHTOF(data\dome_glass.rvmat)
 // Per band: bounding box center of the patch on the unit sphere [out, up].
 #define PATCH_CENTERS [[0.978831, 0.12941], [0.912271, 0.37941], [0.783541, 0.603553], [0.601415, 0.786566], [0.378302, 0.915976], [0.12941, 0.982963]]
 #define FADE_TIME 2
@@ -97,10 +97,11 @@ _anchor setVariable [QGVAR(domeLocal), true];
     private _toViewer = (_viewer distance _center) - _sphere;
     if (_toViewer > EGVAR(main,maxViewDistance) || _fade <= 0) exitWith {call _fnc_clear};
 
-    // Shell: a ring of patches per band from the ground line up, bands below the
-    // equator mirrored; moved and scaled when the cap or its object moves.
+    // Shell: a ring of patches per band from 1, 2 or 6 bands (domeDepth) below the
+    // ground line up, bands below the equator mirrored; moved and scaled when the
+    // cap or its object moves.
     private _groundPitch = asin ((((-_offset) / _sphere) max -1) min 1);
-    private _lowest = floor (_groundPitch / PATCH_STEP);
+    private _lowest = ((floor (_groundPitch / PATCH_STEP)) - ([1, 2, 6] select (_cfg get "domeDepth"))) max (-90 / PATCH_STEP);
     if (_patches isEqualTo [] || {(_shellKey param [2, 99]) != _lowest}) then {
         call _fnc_clear;
         for "_band" from _lowest to (90 / PATCH_STEP - 1) do {
@@ -206,18 +207,10 @@ _anchor setVariable [QGVAR(domeLocal), true];
         if ((_point select 2) > getTerrainHeightASL _point && _distance < EGVAR(main,maxViewDistance)) then {
             private _agl = ASLToAGL _point;
             [_agl, 0.1 + random 0.1, 0.15 * (1 + _distance / 500), 0.3, 0.04, 0.3] call FUNC(empBoltLocal);
-            if (_high && _distance < 500) then {
-                private _flash = "#lightpoint" createVehicleLocal _agl;
-                _flash setLightColor [0.5, 0.75, 1];
-                _flash setLightAmbient [0.3, 0.5, 1];
-                _flash setLightBrightness 3;
-                _flash setLightDayLight true;
-                [{deleteVehicle _this}, _flash, 0.12] call CBA_fnc_waitAndExecute;
-            };
         };
     };
 
-    // Inside: arcs, sparks and crackle on the ground around the viewer.
+    // Inside: sparks and crackle on the ground around the viewer.
     if (_inside && _now >= _nextArea) then {
         _args set [7, _now + ([6 + random 6, 3 + random 4] select _high)];
         private _dir = _facing + random 160 - 80;
@@ -226,7 +219,6 @@ _anchor setVariable [QGVAR(domeLocal), true];
         _point set [2, getTerrainHeightASL _point];
         if !([_point, _entry, false] call FUNC(empInZone)) exitWith {};
         private _agl = ASLToAGL _point;
-        [_agl vectorAdd [0, 0, 1], 0.1 + random 0.1, 0.06, 0.1, 0.04, 0.25] call FUNC(empBoltLocal);
         for "_i" from 1 to ceil (([10, 20] select _high) * _budget) do {
             drop [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.4 + random 0.6, _agl vectorAdd [0, 0, 0.3], [random 8 - 4, random 8 - 4, 2 + random 5], 0, 3, 1, 0.1, [0.15, 0.05],
                 [[0.7, 0.9, 1, 1], [0.4, 0.6, 1, 0]], [1], 0, 0, "", "", objNull];

@@ -3,8 +3,8 @@
 /*
  * Author: Root
  * Client lightning riding an EMP wave front: bolts crawling along the front, dense
- * on the stretch facing the viewer, heat haze and blue sparks carried with the wave, a light
- * flicker and crackle at the front point closest to the viewer. Outward the front
+ * on the stretch facing the viewer, heat haze and blue sparks carried with the wave, and
+ * crackle at the front point closest to the viewer. Outward the front
  * runs from the center to the radius, inward from the radius to the center.
  *
  * Arguments:
@@ -24,17 +24,16 @@ params [["_entry", [], [[]]], ["_start", 0, [0]], ["_speed", 0, [0]], ["_inward"
 
 if (!hasInterface || _speed <= 0) exitWith {};
 
-// [entry, start, speed, inward, next sound, flash]
+// [entry, start, speed, inward, next sound]
 [{
     params ["_args", "_handle"];
-    _args params ["_entry", "_start", "_speed", "_inward", "_nextSound", "_flash"];
+    _args params ["_entry", "_start", "_speed", "_inward", "_nextSound"];
     _entry params ["_anchor", "_cfg"];
 
     private _radius = _cfg get "radius";
     private _travel = (CBA_missionTime - _start) * _speed;
     private _front = [_travel, _radius - _travel] select _inward;
     if (isNull _anchor || _front < 0 || _front > _radius) exitWith {
-        deleteVehicle _flash;
         _handle call CBA_fnc_removePerFrameHandler;
     };
 
@@ -77,22 +76,6 @@ if (!hasInterface || _speed <= 0) exitWith {};
             drop [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.3 + random 0.4, ASLToAGL _point, _velocity vectorAdd [random 6 - 3, random 6 - 3, random 4], 0, 3, 1, 0.1, [0.25, 0.05],
                 [[0.6, 0.85, 1, 1], [0.4, 0.6, 1, 0]], [1], 0, 0, "", "", objNull];
         };
-
-        // Light flicker where the front passes closest.
-        if (isNull _flash) then {
-            _flash = "#lightpoint" createVehicleLocal (ASLToAGL _near);
-            _flash setLightColor [0.5, 0.75, 1];
-            _flash setLightAmbient [0.3, 0.5, 1];
-            _flash setLightDayLight true;
-            _flash setLightUseFlare true;
-            _flash setLightFlareMaxDistance 1500;
-            _args set [5, _flash];
-        };
-        _flash setPosASL (_near vectorAdd [0, 0, 2]);
-        _flash setLightBrightness ([0, 2 + random 6] select (random 1 < 0.5));
-        _flash setLightFlareSize (2 + random 4);
-    } else {
-        deleteVehicle _flash;
     };
 
     if (CBA_missionTime >= _nextSound) then {
@@ -101,4 +84,4 @@ if (!hasInterface || _speed <= 0) exitWith {};
             playSound3D [format [QPATHTOEF(ambientsfx,sounds\spark_%1.ogg), 1 + floor random 7], objNull, false, _near, 3, 0.8 + random 0.4, 350, 0, true];
         };
     };
-}, 0.05, [_entry, _start, _speed, _inward, 0, objNull]] call CBA_fnc_addPerFrameHandler;
+}, 0.05, [_entry, _start, _speed, _inward, 0]] call CBA_fnc_addPerFrameHandler;
