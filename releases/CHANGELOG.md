@@ -1,5 +1,19 @@
 # Changelog for Root's Effects
 
+## Version: 4.0.0.3
+### Added
+- EMP: Flicker Lit Min/Max and Flicker Dark Min/Max options.
+- EMP: Shutdown Distance option.
+- EMP: Shutdown Effect option (Fade, Implode) and Implosion Blast (Off, Small, Large).
+- EMP: Dome Opacity Inside option.
+- EMP CBA setting: Allow Implosion Blast.
+
+### Changed
+- EMP fog visible, denser at full opacity.
+- EMP light flicker: lit 5 - 20 s, stutter, dark 2 - 10 s by default.
+- EMP ACE shutdown action at the object root, reach from the object bounds.
+- EMP dome from inside: no overlapping panel squares, higher opacity, ground line glow in the dark.
+
 ## Version: 4.0.0.2
 ### Added
 - EMP: Flicker Weapon Lights, Flicker Vehicle Lights and Flicker Lamps options.

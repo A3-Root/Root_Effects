@@ -59,11 +59,18 @@ if (_countdown) then {
 ["domeShimmer", ["TOOLBOX:YESNO", [LLSTRING(AttrDomeShimmer), LLSTRING(AttrDomeShimmerTooltip)], _d get "domeShimmer"]] call _fnc_add;
 ["domeLightning", ["TOOLBOX:YESNO", [LLSTRING(AttrDomeLightning), LLSTRING(AttrDomeLightningTooltip)], _d get "domeLightning"]] call _fnc_add;
 ["domeMirage", ["TOOLBOX:YESNO", [LLSTRING(AttrDomeMirage), LLSTRING(AttrDomeMirageTooltip)], _d get "domeMirage"]] call _fnc_add;
+["domeInsideAlpha", ["SLIDER:PERCENT", [LLSTRING(AttrDomeInsideAlpha), LLSTRING(AttrDomeInsideAlphaTooltip)], [0, 1, _d get "domeInsideAlpha", 0]]] call _fnc_add;
+["endMode", ["TOOLBOX", [LLSTRING(AttrEndMode), LLSTRING(AttrEndModeTooltip)], [_d get "endMode", 1, 2, [LLSTRING(EndFade), LLSTRING(EndImplode)]]]] call _fnc_add;
+["implodeBlast", ["TOOLBOX", [LLSTRING(AttrImplodeBlast), LLSTRING(AttrImplodeBlastTooltip)], [_d get "implodeBlast", 1, 3, [LLSTRING(ModeOff), LLSTRING(BlastSmall), LLSTRING(BlastLarge)]]]] call _fnc_add;
 ["fog", ["TOOLBOX:YESNO", [LLSTRING(AttrFog), LLSTRING(AttrFogTooltip)], _d get "fog"]] call _fnc_add;
 ["fogAlpha", ["SLIDER:PERCENT", [LLSTRING(AttrFogAlpha), LLSTRING(AttrFogAlphaTooltip)], [0.05, 1, _d get "fogAlpha", 0]]] call _fnc_add;
 ["flickerGear", ["TOOLBOX:YESNO", [LLSTRING(AttrFlickerGear), LLSTRING(AttrFlickerGearTooltip)], _d get "flickerGear"]] call _fnc_add;
 ["flickerVehicles", ["TOOLBOX:YESNO", [LLSTRING(AttrFlickerVehicles), LLSTRING(AttrFlickerVehiclesTooltip)], _d get "flickerVehicles"]] call _fnc_add;
 ["flickerLamps", ["TOOLBOX:YESNO", [LLSTRING(AttrFlickerLamps), LLSTRING(AttrFlickerLampsTooltip)], _d get "flickerLamps"]] call _fnc_add;
+["flickerOnMin", ["SLIDER", [LLSTRING(AttrFlickerOnMin), LLSTRING(AttrFlickerOnTooltip)], [0.1, 60, _d get "flickerOnMin", 1]]] call _fnc_add;
+["flickerOnMax", ["SLIDER", [LLSTRING(AttrFlickerOnMax), LLSTRING(AttrFlickerOnTooltip)], [0.1, 60, _d get "flickerOnMax", 1]]] call _fnc_add;
+["flickerOffMin", ["SLIDER", [LLSTRING(AttrFlickerOffMin), LLSTRING(AttrFlickerOffTooltip)], [0.1, 60, _d get "flickerOffMin", 1]]] call _fnc_add;
+["flickerOffMax", ["SLIDER", [LLSTRING(AttrFlickerOffMax), LLSTRING(AttrFlickerOffTooltip)], [0.1, 60, _d get "flickerOffMax", 1]]] call _fnc_add;
 ["marker", ["TOOLBOX", [LLSTRING(AttrMarker), LLSTRING(AttrMarkerTooltip)], [_d get "marker", 1, 3, [LLSTRING(ModeOff), LLSTRING(MarkerArea), LLSTRING(MarkerLabel)]]]] call _fnc_add;
 ["markerSync", ["TOOLBOX:YESNO", [LLSTRING(AttrMarkerSync), LLSTRING(AttrMarkerSyncTooltip)], _d get "markerSync"]] call _fnc_add;
 ["beep", ["TOOLBOX:YESNO", [LLSTRING(AttrBeep), LLSTRING(AttrBeepTooltip)], _d get "beep"]] call _fnc_add;
@@ -71,6 +78,7 @@ if (_countdown) then {
 ["timerHint", ["TOOLBOX:YESNO", [LLSTRING(AttrTimerHint), LLSTRING(AttrTimerHintTooltip)], _d get "timerHint"]] call _fnc_add;
 ["interaction", ["TOOLBOX", [LLSTRING(AttrInteraction), LLSTRING(AttrInteractionTooltip)], [_d get "interaction", 1, 4, [LLSTRING(ModeOff), LLSTRING(InteractionAction), LLSTRING(InteractionAce), LLSTRING(InteractionBoth)]]]] call _fnc_add;
 ["holdTime", ["SLIDER", [LLSTRING(AttrHoldTime), LLSTRING(AttrHoldTimeTooltip)], [0, 120, _d get "holdTime", 0]]] call _fnc_add;
+["interactDistance", ["SLIDER", [LLSTRING(AttrInteractDistance), LLSTRING(AttrInteractDistanceTooltip)], [1, 12, _d get "interactDistance", 1]]] call _fnc_add;
 ["requiredItem", ["EDIT", [LLSTRING(AttrRequiredItem), LLSTRING(AttrRequiredItemTooltip)], _d get "requiredItem"]] call _fnc_add;
 ["abortCountdown", ["TOOLBOX:YESNO", [LLSTRING(AttrAbort), LLSTRING(AttrAbortTooltip)], _d get "abortCountdown"]] call _fnc_add;
 ["endOnDestroyed", ["TOOLBOX:YESNO", [LLSTRING(AttrEndDestroyed), LLSTRING(AttrEndDestroyedTooltip)], _d get "endOnDestroyed"]] call _fnc_add;

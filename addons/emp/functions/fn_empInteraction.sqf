@@ -4,9 +4,9 @@
  * Author: Root
  * Adds the shutdown interaction to the object the field sits on, or to the
  * invisible wall of a field on the ground: a vanilla hold action, an ACE
- * interaction with progress bar, or both. ACE mode falls back to the hold action
- * without ACE. Objects without ACE main actions get their own ACE action.
- * Removed when the field ends.
+ * interaction with progress bar, or both, within interactDistance m of the object
+ * bounds. ACE mode falls back to the hold action without ACE. The ACE action sits
+ * at the object root. Removed when the field ends.
  *
  * Arguments:
  * 0: Field entry [anchor, settings, version, detonation time, object, interact] <ARRAY>
@@ -67,10 +67,7 @@ if (_mode in [1, 3] || {_mode == 2 && !_hasAce}) then {
 };
 
 if (_mode in [2, 3] && _hasAce) then {
-    // Objects without ACE main actions take the action at their root.
-    private _hasMain = isClass (configOf _target >> "ACE_Actions" >> "ACE_MainActions");
-    _acePath = [[], ["ACE_MainActions"]] select _hasMain;
-    private _distance = (((boundingBoxReal _target) select 2) max 2) min 10;
+    private _distance = ((boundingBoxReal _target) select 2) / 2 + (_cfg get "interactDistance");
     private _action = [_aceName, _title, _icon, {
         params ["_target", "_player"];
         private _cfg = createHashMapFromArray ((_target getVariable [QGVAR(anchor), objNull]) getVariable [QGVAR(cfg), []]);

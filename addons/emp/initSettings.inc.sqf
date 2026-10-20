@@ -36,6 +36,13 @@
 ] call CBA_fnc_addSetting;
 
 [
+    QGVAR(allowImplodeBlast), "CHECKBOX",
+    [LLSTRING(SettingAllowImplodeBlast), LLSTRING(SettingAllowImplodeBlastTooltip)],
+    [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],
+    true, 1
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(fogQuality), "LIST",
     [LLSTRING(SettingFogQuality), LLSTRING(SettingFogQualityTooltip)],
     [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],

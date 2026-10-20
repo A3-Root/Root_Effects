@@ -73,6 +73,15 @@
         <Key ID="STR_root_effects_emp_AttrDomeColorTooltip3DEN">
             <Original>Dome colour as r,g,b from 0 to 1.</Original>
         </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeInsideAlpha">
+            <Original>Dome Opacity Inside</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeInsideAlphaTooltip">
+            <Original>Dome opacity seen from inside. 0%: three times Dome Opacity, at least 8%.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrDomeInsideAlphaTooltip3DEN">
+            <Original>Dome opacity seen from inside, 0..1. 0: three times Dome Opacity, at least 0.08.</Original>
+        </Key>
         <Key ID="STR_root_effects_emp_AttrDomeLightning">
             <Original>Dome Lightning</Original>
         </Key>
@@ -112,6 +121,15 @@
         <Key ID="STR_root_effects_emp_AttrEndDestroyedTooltip">
             <Original>The field shuts down when its object is destroyed.</Original>
         </Key>
+        <Key ID="STR_root_effects_emp_AttrEndMode">
+            <Original>Shutdown Effect</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrEndModeTooltip">
+            <Original>Fade: the dome fades out. Implode: the dome collapses into its center.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrEndModeTooltip3DEN">
+            <Original>0: dome fades out. 1: dome collapses into its center.</Original>
+        </Key>
         <Key ID="STR_root_effects_emp_AttrFlickerGear">
             <Original>Flicker Weapon Lights</Original>
         </Key>
@@ -123,6 +141,24 @@
         </Key>
         <Key ID="STR_root_effects_emp_AttrFlickerLampsTooltip">
             <Original>Street lamps, floodlights and power line lights inside flicker at random instead of staying dark.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerOffMax">
+            <Original>Flicker Dark Max (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerOffMin">
+            <Original>Flicker Dark Min (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerOffTooltip">
+            <Original>Flickering lights stutter, then stay dark a random time between min and max seconds.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerOnMax">
+            <Original>Flicker Lit Max (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerOnMin">
+            <Original>Flicker Lit Min (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrFlickerOnTooltip">
+            <Original>Flickering lights stay lit a random time between min and max seconds.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrFlickerVehicles">
             <Original>Flicker Vehicle Lights</Original>
@@ -177,6 +213,21 @@
         </Key>
         <Key ID="STR_root_effects_emp_AttrHudTooltip">
             <Original>Players hit see flickering interference, heavy in thermal sights.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrImplodeBlast">
+            <Original>Implosion Blast</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrImplodeBlastTooltip">
+            <Original>Explosion at the center when the dome collapses. Small: grenade. Large: mortar shell.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrImplodeBlastTooltip3DEN">
+            <Original>Explosion at the center when the dome collapses. 0: none. 1: grenade. 2: mortar shell.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrInteractDistance">
+            <Original>Shutdown Distance (m)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrInteractDistanceTooltip">
+            <Original>Distance from the object bounds where the shutdown interaction shows.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrInteraction">
             <Original>Shutdown Interaction</Original>
@@ -358,8 +409,20 @@
         <Key ID="STR_root_effects_emp_AttrWarnTooltip">
             <Original>Meters outside the field where the HUD of approaching players starts blinking out. 0: off.</Original>
         </Key>
+        <Key ID="STR_root_effects_emp_BlastLarge">
+            <Original>Large</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_BlastSmall">
+            <Original>Small</Original>
+        </Key>
         <Key ID="STR_root_effects_emp_CountdownHint">
             <Original>EMP detonation in %1 s</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_EndFade">
+            <Original>Fade</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_EndImplode">
+            <Original>Implode</Original>
         </Key>
         <Key ID="STR_root_effects_emp_FieldModified">
             <Original>EMP field changed</Original>
@@ -453,6 +516,12 @@
         </Key>
         <Key ID="STR_root_effects_emp_SettingAllowFlickerTooltip">
             <Original>EMP fields may make lights flicker. Off: lights stay off.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingAllowImplodeBlast">
+            <Original>Allow Implosion Blast</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingAllowImplodeBlastTooltip">
+            <Original>EMP fields may explode when the dome collapses.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingCategoryName">
             <Original>EMP</Original>

@@ -76,11 +76,18 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_EMP_DOMESHIMMER,CSTRING(AttrDomeShimmer),CSTRING(AttrDomeShimmerTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_DOMELIGHTNING,CSTRING(AttrDomeLightning),CSTRING(AttrDomeLightningTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_DOMEMIRAGE,CSTRING(AttrDomeMirage),CSTRING(AttrDomeMirageTooltip),true);
+            ROOT_ATTR_NUMBER(ROOT_EMP_DOMEINSIDEALPHA,CSTRING(AttrDomeInsideAlpha),CSTRING(AttrDomeInsideAlphaTooltip3DEN),0);
+            ROOT_ATTR_NUMBER(ROOT_EMP_ENDMODE,CSTRING(AttrEndMode),CSTRING(AttrEndModeTooltip3DEN),0);
+            ROOT_ATTR_NUMBER(ROOT_EMP_IMPLODEBLAST,CSTRING(AttrImplodeBlast),CSTRING(AttrImplodeBlastTooltip3DEN),0);
             ROOT_ATTR_BOOL(ROOT_EMP_FOG,CSTRING(AttrFog),CSTRING(AttrFogTooltip),false);
             ROOT_ATTR_NUMBER(ROOT_EMP_FOGALPHA,CSTRING(AttrFogAlpha),CSTRING(AttrFogAlphaTooltip3DEN),0.5);
             ROOT_ATTR_BOOL(ROOT_EMP_FLICKERGEAR,CSTRING(AttrFlickerGear),CSTRING(AttrFlickerGearTooltip),false);
             ROOT_ATTR_BOOL(ROOT_EMP_FLICKERVEHICLES,CSTRING(AttrFlickerVehicles),CSTRING(AttrFlickerVehiclesTooltip),false);
             ROOT_ATTR_BOOL(ROOT_EMP_FLICKERLAMPS,CSTRING(AttrFlickerLamps),CSTRING(AttrFlickerLampsTooltip),false);
+            ROOT_ATTR_NUMBER(ROOT_EMP_FLICKERONMIN,CSTRING(AttrFlickerOnMin),CSTRING(AttrFlickerOnTooltip),5);
+            ROOT_ATTR_NUMBER(ROOT_EMP_FLICKERONMAX,CSTRING(AttrFlickerOnMax),CSTRING(AttrFlickerOnTooltip),20);
+            ROOT_ATTR_NUMBER(ROOT_EMP_FLICKEROFFMIN,CSTRING(AttrFlickerOffMin),CSTRING(AttrFlickerOffTooltip),2);
+            ROOT_ATTR_NUMBER(ROOT_EMP_FLICKEROFFMAX,CSTRING(AttrFlickerOffMax),CSTRING(AttrFlickerOffTooltip),10);
             ROOT_ATTR_NUMBER(ROOT_EMP_MARKER,CSTRING(AttrMarker),CSTRING(AttrMarkerTooltip3DEN),1);
             ROOT_ATTR_BOOL(ROOT_EMP_MARKERSYNC,CSTRING(AttrMarkerSync),CSTRING(AttrMarkerSyncTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_BEEP,CSTRING(AttrBeep),CSTRING(AttrBeepTooltip),true);
@@ -88,6 +95,7 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_EMP_TIMERHINT,CSTRING(AttrTimerHint),CSTRING(AttrTimerHintTooltip),false);
             ROOT_ATTR_NUMBER(ROOT_EMP_INTERACTION,CSTRING(AttrInteraction),CSTRING(AttrInteractionTooltip3DEN),3);
             ROOT_ATTR_NUMBER(ROOT_EMP_HOLDTIME,CSTRING(AttrHoldTime),CSTRING(AttrHoldTimeTooltip),10);
+            ROOT_ATTR_NUMBER(ROOT_EMP_INTERACTDIST,CSTRING(AttrInteractDistance),CSTRING(AttrInteractDistanceTooltip),5);
             ROOT_ATTR_STRING(ROOT_EMP_REQITEM,CSTRING(AttrRequiredItem),CSTRING(AttrRequiredItemTooltip),"''");
             ROOT_ATTR_BOOL(ROOT_EMP_ABORT,CSTRING(AttrAbort),CSTRING(AttrAbortTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_ENDDESTROYED,CSTRING(AttrEndDestroyed),CSTRING(AttrEndDestroyedTooltip),true);

@@ -35,10 +35,18 @@ private _fnc_num = {
 ["fuelDrain", 0, 1] call _fnc_num;
 ["domeAlpha", 0.01, 1] call _fnc_num;
 ["fogAlpha", 0.05, 1] call _fnc_num;
+["domeInsideAlpha", 0, 1] call _fnc_num;
+["interactDistance", 1, 12] call _fnc_num;
+["flickerOnMin", 0.05, 120] call _fnc_num;
+["flickerOnMax", _cfg get "flickerOnMin", 120] call _fnc_num;
+["flickerOffMin", 0.05, 120] call _fnc_num;
+["flickerOffMax", _cfg get "flickerOffMin", 120] call _fnc_num;
 {
     [_x, 0, 2] call _fnc_num;
     _cfg set [_x, round (_cfg get _x)];
-} forEach ["vehicles", "aircraft", "uavs", "lamps", "gear", "marker"];
+} forEach ["vehicles", "aircraft", "uavs", "lamps", "gear", "marker", "implodeBlast"];
+["endMode", 0, 1] call _fnc_num;
+_cfg set ["endMode", round (_cfg get "endMode")];
 ["interaction", 0, 3] call _fnc_num;
 _cfg set ["interaction", round (_cfg get "interaction")];
 
@@ -66,6 +74,9 @@ if (!GVAR(allowDestroy) || {!EGVAR(main,damageAllowed)}) then {
 };
 if (!GVAR(allowDestroy)) then {
     _cfg set ["gear", (_cfg get "gear") min 1];
+};
+if (!GVAR(allowImplodeBlast) || {!EGVAR(main,damageAllowed)}) then {
+    _cfg set ["implodeBlast", 0];
 };
 if (!GVAR(allowFlicker)) then {
     {_cfg set [_x, false]} forEach ["flickerGear", "flickerVehicles", "flickerLamps"];

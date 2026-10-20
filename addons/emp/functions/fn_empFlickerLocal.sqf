@@ -2,9 +2,9 @@
 
 /*
  * Author: Root
- * Makes a light flicker at random while inside an EMP field: short bursts of light
- * (0.05 - 0.5 s) between pauses, never steady. One loop per machine, every 0.05 s,
- * for the lights local here. Kinds:
+ * Makes a light flicker while inside an EMP field: lit for flickerOnMin - flickerOnMax s,
+ * a quick stutter, dark for flickerOffMin - flickerOffMax s. One loop per machine,
+ * every 0.05 s, for the lights local here. Kinds:
  * - "gunPlayer": player weapon light; turning it off ends the flicker.
  * - "gunAI": local AI weapon light.
  * - "vehicle": headlights of a local vehicle; switching them off ends the flicker.
@@ -30,8 +30,8 @@ params [["_object", objNull, [objNull]], ["_kind", "", [""]], ["_anchor", objNul
 if (isNull _object || {isNull _anchor}) exitWith {};
 if (GVAR(flicker) findIf {(_x select 0) isEqualTo _object} != -1) exitWith {};
 
-// [object, kind, anchor, light on, next switch, weapon]
-GVAR(flicker) pushBack [_object, _kind, _anchor, false, CBA_missionTime + 0.1 + random 0.5, currentWeapon _object];
+// [object, kind, anchor, light on, next switch, weapon, stutter toggles left (-1 none)]
+GVAR(flicker) pushBack [_object, _kind, _anchor, false, CBA_missionTime + 0.1 + random 0.5, currentWeapon _object, -1];
 DBG(FORMAT_2("EMP flicker on %1 (%2)",typeOf _object,_kind));
 
 if (GVAR(flickerHandle) >= 0) exitWith {};
@@ -109,11 +109,22 @@ GVAR(flickerHandle) = [{
         };
 
         if (_now >= _next) then {
+            // Lit time over: 2 - 6 quick toggles before going dark.
+            private _stutter = _x select 6;
+            if (_on && _stutter < 0) then {_stutter = 2 * (1 + floor random 3)};
             _on = !_on;
             _x set [3, _on];
             [_object, _kind, _on] call _fnc_switch;
-            // Bursts 0.05 - 0.5 s; pauses 0.2 - 1.5 s, sometimes a quick stutter.
-            private _wait = if (_on) then {0.05 + random 0.45} else {[0.2 + random 1.3, 0.04 + random 0.08] select (random 1 < 0.3)};
+            private _wait = if (_stutter > 0) then {
+                _stutter = _stutter - 1;
+                0.04 + random 0.08
+            } else {
+                _stutter = -1;
+                private _range = [[_cfg get "flickerOffMin", _cfg get "flickerOffMax"], [_cfg get "flickerOnMin", _cfg get "flickerOnMax"]] select _on;
+                _range params ["_min", "_max"];
+                _min + random ((_max - _min) max 0)
+            };
+            _x set [6, _stutter];
             _x set [4, _now + _wait];
         };
     } forEach GVAR(flicker);
