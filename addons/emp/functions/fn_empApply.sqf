@@ -3,7 +3,8 @@
 /*
  * Author: Root
  * Applies, keeps up or recovers the EMP effect on one local unit or vehicle.
- * - Player: gear suppression loop (and fry), voice channels, HUD interference.
+ * - Player: gear suppression loop (and fry), voice channels, HUD interference,
+ *   radioJam flag (ACRE radios carried stay jammed until recovery).
  * - AI: electronic goggles off, electronic weapon lights and lasers off
  *   (lights flicker instead with flickerGear).
  * - Vehicle: engine and lights off (headlights flicker instead with flickerVehicles),
@@ -39,6 +40,7 @@ if (_entity isEqualTo player) exitWith {
         case "apply": {
             DBG(FORMAT_1("EMP hit player %1",name player));
             if ((_cfg get "gear") == 2) then {[player, _cfg] call FUNC(empFry)};
+            if (_cfg get "radios") then {player setVariable [QGVAR(radioJam), true, true]};
             GVAR(playerCfg) = _cfg;
             call FUNC(empSuppressLocal);
         };
@@ -47,6 +49,7 @@ if (_entity isEqualTo player) exitWith {
         };
         default {
             DBG(FORMAT_1("EMP released player %1",name player));
+            if (player getVariable [QGVAR(radioJam), false]) then {player setVariable [QGVAR(radioJam), nil, true]};
             GVAR(playerCfg) = nil;
         };
     };

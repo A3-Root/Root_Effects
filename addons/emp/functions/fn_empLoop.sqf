@@ -5,7 +5,8 @@
  * Field loop on every machine, every 0.5 s. Works on the units and vehicles
  * local here: knocks them out when the shockwave reaches them (plus the effect
  * delay) or, when they enter later, after the grace time; keeps them knocked out
- * while affected; recovers them on leaving (restore on) or when the field ends.
+ * while affected; recovers them restoreDelay s after leaving (restore on), as the
+ * implode wall passes or when the field ends.
  * Also keeps the ACRE signal hook and UAV disconnects up to date.
  *
  * Arguments:
@@ -44,6 +45,7 @@ _entities = _entities arrayIntersect _entities;
     private _index = if (alive _entity) then {GVAR(fields) findIf {[_pos, _x] call FUNC(empInZone)}} else {-1};
 
     if (_index != -1) then {
+        _entity setVariable [QGVAR(left), nil];
         private _entry = GVAR(fields) select _index;
         _entry params ["_anchor", "_cfg", "", "_detTime"];
         if (_state isNotEqualTo [] && {!isNull (_state select 0)}) exitWith {
@@ -86,7 +88,18 @@ _entities = _entities arrayIntersect _entities;
         private _anchor = _state select 0;
         private _found = GVAR(fields) findIf {(_x select 0) isEqualTo _anchor};
         private _cfg = if (_found == -1) then {createHashMap} else {(GVAR(fields) select _found) select 1};
-        if (_found == -1 || {_cfg get "restore"} || {!alive _entity}) then {
+        if (_found == -1 || {!alive _entity}) exitWith {
+            _entity setVariable [QGVAR(left), nil];
+            [_entity, _cfg, "restore"] call FUNC(empApply);
+        };
+        if !(_cfg get "restore") exitWith {
+            [_entity, _cfg, "enforce"] call FUNC(empApply);
+        };
+        // Recovery once restoreDelay s outside; the implode wall passing recovers at once.
+        private _left = _entity getVariable [QGVAR(left), _now];
+        _entity setVariable [QGVAR(left), _left];
+        if (_now - _left >= (_cfg get "restoreDelay") || {_anchor getVariable [QGVAR(ending), false]}) then {
+            _entity setVariable [QGVAR(left), nil];
             [_entity, _cfg, "restore"] call FUNC(empApply);
         } else {
             [_entity, _cfg, "enforce"] call FUNC(empApply);

@@ -1,14 +1,14 @@
 # EMP Field
 
-An electromagnetic pulse field on an object (e.g. `RuggedTerminal_01_communications_hub_F`) or a position. Defaults: 500 m radius and height, 10 s countdown, until shut down, 50 m/s shockwave, implode shutdown with a small blast.
+An electromagnetic pulse field on an object (e.g. `RuggedTerminal_01_communications_hub_F`) or a position. Defaults: 500 m radius and height, 10 s countdown, until shut down, 25 m/s shockwave, 10 s recovery delay, white 65 % dome without shimmer, ACE shutdown interaction, implode shutdown at 50 m/s with a small blast.
 
 Sequence:
 1. Countdown: beeps from the object (faster towards zero), timer over the object, optional hint, optional blue charge glow over the last 3 s. Shutting the object down aborts it (if allowed).
 2. Detonation: flash, sparks, heat haze, thunder and blast.
 3. Shockwave: glowing ring running out at the shockwave speed, lightning bolts, heat haze, sparks and crackle riding its front. The map marker and the dome grow with it.
 4. Knockout: each unit, vehicle and lamp fails when the wave reaches it, plus the effect delay.
-5. Field: lasts the linger time (-1: until shut down). Players nearing the field see their HUD blink out (warning range by ground, helicopter or plane). Units and vehicles entering later get the grace time (crackle and screen grain) to turn away; still inside after it, engines, lights and gear die. Knocked out vehicles get their engine wrecked (kept wrecked inside), so they cannot be restarted; Disable mode repairs it on recovery. With Recover On Leaving, gear and vehicles work again outside the field.
-6. End: linger runs out, a player shuts it down on the object (a field on the ground: on an invisible wall at its center), Zeus terminates it, or the object is destroyed. Fade: the dome fades, the marker goes, everything suppressed or disabled recovers. Implode: the wall runs back in to the center at the shockwave speed with lightning on its front, the marker shrinks with it, units and vehicles recover as it passes; flash, sparks and blast sound at the center. Destroyed and fried items stay broken.
+5. Field: lasts the linger time (-1: until shut down). Players nearing the field see their HUD blink out (warning range by ground, helicopter or plane). Units and vehicles entering later get the grace time (crackle and screen grain) to turn away; still inside after it, engines, lights and gear die. Knocked out vehicles get their engine wrecked (kept wrecked inside), so they cannot be restarted; Disable mode repairs it on recovery. With Recover On Leaving, gear, radios and vehicles work again after Recovery Delay s outside the field; re-entering resets it.
+6. End: linger runs out, a player shuts it down on the object (a field on the ground: on an invisible wall at its center), Zeus terminates it, or the object is destroyed. Fade: the dome fades, the marker goes, everything suppressed or disabled recovers. Implode: the wall runs back in to the center at the shutdown shockwave speed with lightning on its front, the marker shrinks with it, units and vehicles recover as it passes; flash, sparks and blast sound at the center. Destroyed and fried items stay broken.
 
 ## Zeus
 Place **EMP Field** on an object to put the field there, or on the ground. Fields appear in **Terminate Effects**.
@@ -38,11 +38,13 @@ Place **EMP Field** on an object to put the field there, or on the ground. Field
 | Block Voice Channels | Players hit lose side, command, group and vehicle voice. |
 | Fuel Drain | Fraction of fuel drained from vehicles knocked out. |
 | Recover On Leaving | Off: affected units and vehicles stay dead until the field ends. |
+| Recovery Delay | Seconds outside the live field before recovery (default 10). Re-entering resets it. The implode wall passing recovers at once. 3DEN: -1 CBA default. |
 | Grace Time | Seconds before units entering the live field are hit. |
 | Warning Range Ground / Helicopter / Plane | Meters outside the field where the HUD of approaching players blinks out (default 50 / 500 / 1000, 0 off). |
 | Detonation Effects, Charge Glow, Camera Shake, Screen Interference | Visual and HUD effects. Thermal sights drown in noise. |
-| Force Field Dome, Colour, Opacity, Shimmer | Tinted frosted glass dome (default grey 0.5, 25 %) of curved patches, the same from inside and outside, not lit by nearby lights. Shimmer: the dome pulses (high quality). No collision: units, vehicles and bullets pass through. |
-| Shutdown Effect | Fade: the dome fades out. Implode: the wall runs back in at the shockwave speed (0: in 2.5 s), see End. |
+| Force Field Dome, Colour, Opacity, Shimmer | Tinted frosted glass dome (default white 1, 65 %, shimmer off) of curved patches, the same from inside and outside, not lit by nearby lights. Shimmer: the dome pulses (high quality). No collision: units, vehicles and bullets pass through. |
+| Shutdown Effect | Fade: the dome fades out. Implode: the wall runs back in, see End. |
+| Shutdown Shockwave Speed | Implode only. m/s of the wall running back in (default 50, 0: in 2.5 s). 3DEN: -1 CBA default. |
 | Implosion Blast | Implode only. Off, Small (40 mm grenade), Large (82 mm mortar round) at the center when the wall arrives. |
 | Dome Lightning | Lightning arcs flash at random on the dome; inside, sparks and crackle on the ground around players. |
 | Dome Depth | How far the dome reaches below the object: Shallow (about a quarter of the radius, default), Deep (half), Full Sphere (whole radius, for hills and mountain tops). 3DEN: -1 CBA default, 0, 1, 2. |
@@ -51,7 +53,7 @@ Place **EMP Field** on an object to put the field there, or on the ground. Field
 | Map Marker | Off, Area, Area + Label. Zeus can edit it (ZEN area markers). |
 | Marker Sets Radius | Zeus resizing the marker changes the radius. |
 | Countdown Beep, Timer, Hint | Countdown display. |
-| Shutdown Interaction | Off, Action (hold action), ACE (ACE interaction, falls back to the hold action without ACE), Both. Usable within Shutdown Distance (1 - 12 m, default 12) of the object bounds. A field on the ground gets an invisible wall (`Land_InvisibleBarrier_F`) at its center to carry it, removed with the field. |
+| Shutdown Interaction | Off, Action (hold action), ACE (ACE interaction, falls back to the hold action without ACE; default), Both. Usable within Shutdown Distance (1 - 12 m, default 12) of the object bounds. A field on the ground gets an invisible wall (`Land_InvisibleBarrier_F`) at its center to carry it, removed with the field. |
 | Shutdown Time | Seconds the shutdown takes. |
 | Required Item | Classname needed to shut down (e.g. `ToolKit`). Empty: none. |
 | Can Abort Countdown | Shutdown works before detonation. |
@@ -72,6 +74,8 @@ Electronic items: night vision, radio and GPS / terminal slot items, weapon ligh
 | Allow Light Flicker | server; off: flicker options act as off |
 | Allow Implosion Blast | server; off (or damage disabled): Implosion Blast acts as off |
 | Dome Depth | server: default Dome Depth for new fields |
+| Shutdown Shockwave Speed | server: default Shutdown Shockwave Speed for new fields |
+| Recovery Delay | server: default Recovery Delay for new fields |
 | Dome Quality | client: off, low (fewer particles and arcs, no shimmer or arc flashes), high |
 | Show Countdown Timer | client |
 
@@ -86,7 +90,7 @@ Electronic items: night vision, radio and GPS / terminal slot items, weapon ligh
 // Inside an active field the wave has reached (any machine).
 [player] call root_effects_emp_fnc_isInside;
 ```
-Settings keys: `radius`, `altitude`, `countdown`, `linger`, `shockSpeed`, `effectDelay`, `vehicles`, `aircraft`, `uavs`, `lamps`, `gear`, `ai`, `radios`, `channels`, `fuelDrain`, `restore`, `grace`, `warnGround`, `warnHeli`, `warnPlane`, `visuals`, `chargeGlow`, `shake`, `hud`, `dome`, `domeColor`, `domeAlpha`, `domeShimmer`, `domeLightning`, `domeMirage`, `domeDepth`, `endMode`, `implodeBlast`, `flickerGear`, `flickerVehicles`, `flickerLamps`, `flickerOnMin`, `flickerOnMax`, `flickerOffMin`, `flickerOffMax`, `marker`, `markerSync`, `beep`, `timer3D`, `timerHint`, `interaction`, `holdTime`, `interactDistance`, `requiredItem`, `abortCountdown`, `endOnDestroyed`, `itemsExtra`, `itemsImmune`, `vehiclesImmune`.
+Settings keys: `radius`, `altitude`, `countdown`, `linger`, `shockSpeed`, `effectDelay`, `vehicles`, `aircraft`, `uavs`, `lamps`, `gear`, `ai`, `radios`, `channels`, `fuelDrain`, `restore`, `restoreDelay`, `grace`, `warnGround`, `warnHeli`, `warnPlane`, `visuals`, `chargeGlow`, `shake`, `hud`, `dome`, `domeColor`, `domeAlpha`, `domeShimmer`, `domeLightning`, `domeMirage`, `domeDepth`, `endMode`, `implodeSpeed`, `implodeBlast`, `flickerGear`, `flickerVehicles`, `flickerLamps`, `flickerOnMin`, `flickerOnMax`, `flickerOffMin`, `flickerOffMax`, `marker`, `markerSync`, `beep`, `timer3D`, `timerHint`, `interaction`, `holdTime`, `interactDistance`, `requiredItem`, `abortCountdown`, `endOnDestroyed`, `itemsExtra`, `itemsImmune`, `vehiclesImmune`.
 
 ## Locality
 - SP: everything runs locally.

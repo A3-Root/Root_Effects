@@ -50,6 +50,20 @@
 ] call CBA_fnc_addSetting;
 
 [
+    QGVAR(implodeSpeed), "SLIDER",
+    [LLSTRING(SettingImplodeSpeed), LLSTRING(SettingImplodeSpeedTooltip)],
+    [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],
+    [0, 1000, 50, 0], 1
+] call CBA_fnc_addSetting;
+
+[
+    QGVAR(restoreDelay), "SLIDER",
+    [LLSTRING(SettingRestoreDelay), LLSTRING(SettingRestoreDelayTooltip)],
+    [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],
+    [0, 600, 10, 0], 1
+] call CBA_fnc_addSetting;
+
+[
     QGVAR(domeQuality), "LIST",
     [LLSTRING(SettingDomeQuality), LLSTRING(SettingDomeQualityTooltip)],
     [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],

@@ -45,6 +45,7 @@ if (_countdown) then {
 ["channels", ["TOOLBOX:YESNO", [LLSTRING(AttrChannels), LLSTRING(AttrChannelsTooltip)], _d get "channels"]] call _fnc_add;
 ["fuelDrain", ["SLIDER:PERCENT", [LLSTRING(AttrFuelDrain), LLSTRING(AttrFuelDrainTooltip)], [0, 1, _d get "fuelDrain", 0]]] call _fnc_add;
 ["restore", ["TOOLBOX:YESNO", [LLSTRING(AttrRestore), LLSTRING(AttrRestoreTooltip)], _d get "restore"]] call _fnc_add;
+["restoreDelay", ["SLIDER", [LLSTRING(AttrRestoreDelay), LLSTRING(AttrRestoreDelayTooltip)], [0, 600, _d get "restoreDelay", 0]]] call _fnc_add;
 ["grace", ["SLIDER", [LLSTRING(AttrGrace), LLSTRING(AttrGraceTooltip)], [0, 60, _d get "grace", 0]]] call _fnc_add;
 ["warnGround", ["SLIDER", [LLSTRING(AttrWarnGround), LLSTRING(AttrWarnTooltip)], [0, 500, _d get "warnGround", 0]]] call _fnc_add;
 ["warnHeli", ["SLIDER", [LLSTRING(AttrWarnHeli), LLSTRING(AttrWarnTooltip)], [0, 2000, _d get "warnHeli", 0]]] call _fnc_add;
@@ -61,6 +62,7 @@ if (_countdown) then {
 ["domeMirage", ["TOOLBOX:YESNO", [LLSTRING(AttrDomeMirage), LLSTRING(AttrDomeMirageTooltip)], _d get "domeMirage"]] call _fnc_add;
 ["domeDepth", ["TOOLBOX", [LLSTRING(AttrDomeDepth), LLSTRING(AttrDomeDepthTooltip)], [_d get "domeDepth", 1, 3, [LLSTRING(DepthShallow), LLSTRING(DepthDeep), LLSTRING(DepthFull)]]]] call _fnc_add;
 ["endMode", ["TOOLBOX", [LLSTRING(AttrEndMode), LLSTRING(AttrEndModeTooltip)], [_d get "endMode", 1, 2, [LLSTRING(EndFade), LLSTRING(EndImplode)]]]] call _fnc_add;
+["implodeSpeed", ["SLIDER", [LLSTRING(AttrImplodeSpeed), LLSTRING(AttrImplodeSpeedTooltip)], [0, 1000, _d get "implodeSpeed", 0]]] call _fnc_add;
 ["implodeBlast", ["TOOLBOX", [LLSTRING(AttrImplodeBlast), LLSTRING(AttrImplodeBlastTooltip)], [_d get "implodeBlast", 1, 3, [LLSTRING(ModeOff), LLSTRING(BlastSmall), LLSTRING(BlastLarge)]]]] call _fnc_add;
 ["flickerGear", ["TOOLBOX:YESNO", [LLSTRING(AttrFlickerGear), LLSTRING(AttrFlickerGearTooltip)], _d get "flickerGear"]] call _fnc_add;
 ["flickerVehicles", ["TOOLBOX:YESNO", [LLSTRING(AttrFlickerVehicles), LLSTRING(AttrFlickerVehiclesTooltip)], _d get "flickerVehicles"]] call _fnc_add;

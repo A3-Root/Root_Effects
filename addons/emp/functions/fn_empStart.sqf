@@ -42,6 +42,8 @@ params [
     ["radius", _radius],
     ["linger", [_duration max 5, -1] select _permanent],
     ["shockSpeed", 0],
+    ["implodeSpeed", 0],
+    ["restoreDelay", 0],
     ["effectDelay", 0],
     ["vehicles", parseNumber _killEngines],
     ["aircraft", parseNumber _killEngines],

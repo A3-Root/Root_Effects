@@ -80,7 +80,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_EMP_COUNTDOWN,CSTRING(AttrCountdown),CSTRING(AttrCountdownTooltip),10);
             ROOT_ATTR_NUMBER_RAW(ROOT_EMP_DURATION,CSTRING(AttrLinger),CSTRING(AttrLingerTooltip),-1);
             ROOT_ATTR_BOOL(ROOT_EMP_PERMANENT,CSTRING(AttrPermanent),CSTRING(AttrPermanentTooltip),false);
-            ROOT_ATTR_NUMBER(ROOT_EMP_SHOCKSPEED,CSTRING(AttrShockSpeed),CSTRING(AttrShockSpeedTooltip),50);
+            ROOT_ATTR_NUMBER(ROOT_EMP_SHOCKSPEED,CSTRING(AttrShockSpeed),CSTRING(AttrShockSpeedTooltip),25);
             ROOT_ATTR_NUMBER(ROOT_EMP_EFFECTDELAY,CSTRING(AttrEffectDelay),CSTRING(AttrEffectDelayTooltip),1);
             ROOT_ATTR_BOOL(ROOT_EMP_KILLENGINES,CSTRING(AttrKillEngines),CSTRING(AttrKillEnginesTooltip),true);
             ROOT_ATTR_NUMBER(ROOT_EMP_VEHICLES,CSTRING(AttrVehicles),CSTRING(AttrVehiclesTooltip3DEN),1);
@@ -94,6 +94,7 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_EMP_CHANNELS,CSTRING(AttrChannels),CSTRING(AttrChannelsTooltip),false);
             ROOT_ATTR_NUMBER(ROOT_EMP_FUELDRAIN,CSTRING(AttrFuelDrain),CSTRING(AttrFuelDrainTooltip),0);
             ROOT_ATTR_BOOL(ROOT_EMP_RESTORE,CSTRING(AttrRestore),CSTRING(AttrRestoreTooltip),true);
+            ROOT_ATTR_NUMBER_RAW(ROOT_EMP_RESTOREDELAY,CSTRING(AttrRestoreDelay),CSTRING(AttrRestoreDelayTooltip3DEN),-1);
             ROOT_ATTR_NUMBER(ROOT_EMP_GRACE,CSTRING(AttrGrace),CSTRING(AttrGraceTooltip),5);
             ROOT_ATTR_NUMBER(ROOT_EMP_WARNGROUND,CSTRING(AttrWarnGround),CSTRING(AttrWarnTooltip),50);
             ROOT_ATTR_NUMBER(ROOT_EMP_WARNHELI,CSTRING(AttrWarnHeli),CSTRING(AttrWarnTooltip),500);
@@ -103,13 +104,14 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_EMP_SHAKE,CSTRING(AttrShake),CSTRING(AttrShakeTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_HUD,CSTRING(AttrHud),CSTRING(AttrHudTooltip),false);
             ROOT_ATTR_BOOL(ROOT_EMP_DOME,CSTRING(AttrDome),CSTRING(AttrDomeTooltip),true);
-            ROOT_ATTR_STRING(ROOT_EMP_DOMECOLOR,CSTRING(AttrDomeColor),CSTRING(AttrDomeColorTooltip3DEN),"'0.5,0.5,0.5'");
-            ROOT_ATTR_NUMBER(ROOT_EMP_DOMEALPHA,CSTRING(AttrDomeAlpha),CSTRING(AttrDomeAlphaTooltip),0.25);
-            ROOT_ATTR_BOOL(ROOT_EMP_DOMESHIMMER,CSTRING(AttrDomeShimmer),CSTRING(AttrDomeShimmerTooltip),true);
+            ROOT_ATTR_STRING(ROOT_EMP_DOMECOLOR,CSTRING(AttrDomeColor),CSTRING(AttrDomeColorTooltip3DEN),"'1,1,1'");
+            ROOT_ATTR_NUMBER(ROOT_EMP_DOMEALPHA,CSTRING(AttrDomeAlpha),CSTRING(AttrDomeAlphaTooltip),0.65);
+            ROOT_ATTR_BOOL(ROOT_EMP_DOMESHIMMER,CSTRING(AttrDomeShimmer),CSTRING(AttrDomeShimmerTooltip),false);
             ROOT_ATTR_BOOL(ROOT_EMP_DOMELIGHTNING,CSTRING(AttrDomeLightning),CSTRING(AttrDomeLightningTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_DOMEMIRAGE,CSTRING(AttrDomeMirage),CSTRING(AttrDomeMirageTooltip),true);
             ROOT_ATTR_NUMBER_RAW(ROOT_EMP_DOMEDEPTH,CSTRING(AttrDomeDepth),CSTRING(AttrDomeDepthTooltip3DEN),-1);
             ROOT_ATTR_NUMBER(ROOT_EMP_ENDMODE,CSTRING(AttrEndMode),CSTRING(AttrEndModeTooltip3DEN),1);
+            ROOT_ATTR_NUMBER_RAW(ROOT_EMP_IMPLODESPEED,CSTRING(AttrImplodeSpeed),CSTRING(AttrImplodeSpeedTooltip3DEN),-1);
             ROOT_ATTR_NUMBER(ROOT_EMP_IMPLODEBLAST,CSTRING(AttrImplodeBlast),CSTRING(AttrImplodeBlastTooltip3DEN),1);
             ROOT_ATTR_BOOL(ROOT_EMP_FLICKERGEAR,CSTRING(AttrFlickerGear),CSTRING(AttrFlickerGearTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_FLICKERVEHICLES,CSTRING(AttrFlickerVehicles),CSTRING(AttrFlickerVehiclesTooltip),true);
@@ -123,7 +125,7 @@ class CfgVehicles {
             ROOT_ATTR_BOOL(ROOT_EMP_BEEP,CSTRING(AttrBeep),CSTRING(AttrBeepTooltip),true);
             ROOT_ATTR_BOOL(ROOT_EMP_TIMER3D,CSTRING(AttrTimer3D),CSTRING(AttrTimer3DTooltip),false);
             ROOT_ATTR_BOOL(ROOT_EMP_TIMERHINT,CSTRING(AttrTimerHint),CSTRING(AttrTimerHintTooltip),false);
-            ROOT_ATTR_NUMBER(ROOT_EMP_INTERACTION,CSTRING(AttrInteraction),CSTRING(AttrInteractionTooltip3DEN),3);
+            ROOT_ATTR_NUMBER(ROOT_EMP_INTERACTION,CSTRING(AttrInteraction),CSTRING(AttrInteractionTooltip3DEN),2);
             ROOT_ATTR_NUMBER(ROOT_EMP_HOLDTIME,CSTRING(AttrHoldTime),CSTRING(AttrHoldTimeTooltip),10);
             ROOT_ATTR_NUMBER(ROOT_EMP_INTERACTDIST,CSTRING(AttrInteractDistance),CSTRING(AttrInteractDistanceTooltip),12);
             ROOT_ATTR_STRING(ROOT_EMP_REQITEM,CSTRING(AttrRequiredItem),CSTRING(AttrRequiredItemTooltip),"''");

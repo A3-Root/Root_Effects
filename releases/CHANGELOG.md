@@ -1,120 +1,40 @@
 # Changelog for Root's Effects
 
-## Version: 4.0.0.9
-### Added
-- EMP Dome Depth (CBA default, Zeus, 3DEN, `domeDepth` key): dome reaches a quarter, half or the whole radius below the object.
-
-### Changed
-- EMP dome reaches into the ground (no gap where the terrain is lower than the object).
-- EMP Implosion Blast explodes (round set off where it is created).
-
-## Version: 4.0.0.8
-### Removed
-- EMP light flicker on the wave front.
-
-## Version: 4.0.0.7
-### Removed
-- EMP lightning bolts at the detonation, implosion, breaking lamps and around players; bolts stay on the dome wall and its moving edge.
-- EMP light flashes on the dome wall.
-
-### Changed
-- EMP dome: frosted glass material, not lit by nearby lights.
-- EMP Implosion Blast: 40 mm grenade or 82 mm mortar round dropped at the object.
-
-## Version: 4.0.0.6
-### Changed
-- EMP dome reaches the ground again (bottom ring of patches was not created).
-- EMP Modify EMP Field changes dome colour and opacity again.
-- EMP lightning: shorter bolts, fewer arcs around players, wave front bolts in step with the wave.
-- EMP breaking lamps: sparks plus a small lightning burst; detonation sparks back alongside the burst.
-- EMP Implosion Blast explodes (shell no longer duds).
-
-## Version: 4.0.0.5
-### Changed
-- EMP dome: glass material, built from curved 15 degree patches so it shows from inside.
-- EMP lightning: EMP Systems style bolt bursts at detonation, on the wave front, on the dome, inside the dome and at the implosion.
-- EMP heat haze: stronger on the dome and inside, on the wave front and at detonation.
-- EMP light flicker no longer restarts every tick while the field shuts down.
-
-## Version: 4.0.0.4
-### Removed
-- EMP: Fog Inside and Fog Opacity options, CBA setting Dome Fog Quality.
-- EMP: Dome Opacity Inside option.
-- EMP: hint on entering a live field.
-
-### Changed
-- EMP defaults: 500 m radius and dome height, 10 s countdown, linger until shut down, 50 m/s shockwave, broken lights, warning 500 m helicopter / 1000 m plane, no charge glow, no screen interference, 25 % dome, implode with small blast, all flicker on, area + label marker, no countdown timer, 12 m shutdown distance.
-- EMP Zeus modules attach to the object they are placed on.
-- EMP dome: own model, same look from inside and outside, self-lit at night, no panels.
-- EMP lightning bolts sized to the scene, self-lit, seen from all sides.
-- EMP dome area: arcs, sparks, crackle and heat haze around players inside.
-- EMP implode: wall runs back in at the shockwave speed, marker shrinks, units recover as it passes, blast when it arrives.
-
-## Version: 4.0.0.3
-### Added
-- EMP: Flicker Lit Min/Max and Flicker Dark Min/Max options.
-- EMP: Shutdown Distance option.
-- EMP: Shutdown Effect option (Fade, Implode) and Implosion Blast (Off, Small, Large).
-- EMP: Dome Opacity Inside option.
-- EMP CBA setting: Allow Implosion Blast.
-
-### Changed
-- EMP fog visible, denser at full opacity.
-- EMP light flicker: lit 5 - 20 s, stutter, dark 2 - 10 s by default.
-- EMP ACE shutdown action at the object root, reach from the object bounds.
-- EMP dome from inside: no overlapping panel squares, higher opacity, ground line glow in the dark.
-
-## Version: 4.0.0.2
-### Added
-- EMP: Flicker Weapon Lights, Flicker Vehicle Lights and Flicker Lamps options.
-- EMP: Dome Lightning and Dome Heat Haze options.
-- EMP: Fog Inside and Fog Opacity options.
-- EMP: shutdown interaction on an invisible wall for fields on the ground.
-- EMP CBA settings: Allow Light Flicker, Dome Fog Quality.
-
-### Changed
-- EMP dome visible from inside.
-- EMP shockwave front: larger lightning bolts, sparks and light flicker.
-- EMP sparks use the Ambient Sparks look and sound.
-- EMP suppress mode takes electronic devices and gives them back on leaving.
-- Shared post process helper picks a free priority.
-
-### Fixed
-- EMP shielded items (e.g. weapon lights) were still turned off.
-- EMP extra electronics kept working in suppress mode.
-- EMP ACE interaction missing on objects without ACE main actions; shutdown range scales with object size.
-- Drone feed RPT error spam in the turret aim lookup.
-- Sounds from client side effects played once per player (EMP, fireworks, cryo blast, meteor, laser, singularity, UFO, lightning).
-- Briefing map take / release control actions.
-- Comet flight direction.
-- Napalm damage area rotated.
-- Meteor knock back on remote units.
-- Singularity fling hook created globally.
-- Meteor, comet, UFO flyby and drone feed setup when the object arrives after the event.
-- Floating object locked when the effect fails to start.
-- Laser and UFO seeker craters never removed.
-- Drone feed monitor removing feeds while iterating.
-- Searchlight loop kept running after its mount died.
-- Missile, tracer and volcano range checks used the player instead of the camera.
-
 ## Version: 4.0.0.1
 ### Added
 - Build-up time for Aurora, Spacetime Rupture, Lightning Storm and Acid Rain: instant, X seconds or default.
 - Snap To Full option in Modify Sky Effect.
-- EMP Field: countdown, shockwave, dome, Zeus-editable marker, delayed knockout, grace time, recovery on leaving, shutdown on the object (hold action / ACE).
-- EMP Field: vehicle, aircraft, UAV, lamp and gear modes; cTab, ACE device, UAV terminal and ACRE radio suppression.
-- EMP public API: create, disable, modify, isInside.
+- EMP Field (replaces EMP Pulse): field on an object or position with countdown, shockwave, force field dome and Zeus-editable map marker.
+- EMP Field knockout: vehicle, aircraft and UAV modes (disable / destroy, crash), lamps (off / broken), gear (suppress / fry); engine wrecked until recovery so it cannot be restarted inside.
+- EMP Field gear suppression: night vision, weapon lights and lasers, binoculars, info panels, UAV terminal, cTab, ACE devices and ACRE radios; electronic devices taken and given back on recovery.
+- EMP Field timing: effect delay after the wave, grace time for units entering later, recovery on leaving with Recovery Delay (s outside before recovery).
+- EMP Field approach warning: HUD blinks out near the field, ranges for ground, helicopter and plane.
+- EMP Field dome: frosted glass, same from inside and outside, reaches into the ground; colour, opacity, shimmer, lightning, heat haze and depth options.
+- EMP Field light flicker: weapon lights, vehicle lights and lamps inside flicker, lit / dark time ranges.
+- EMP Field shutdown: hold action or ACE interaction on the object (invisible wall for fields on the ground), required item, shutdown time and distance; Zeus terminate; ends when the object is destroyed.
+- EMP Field shutdown effect: Fade, or Implode (wall runs back in at Shutdown Shockwave Speed, marker shrinks, units recover as it passes) with optional blast (40 mm grenade, 82 mm mortar round).
+- EMP Field effects: charge glow, lightning bolts on the dome wall and shockwave front, sparks and crackle; breaking lamps, destroyed vehicles and fried gear burst into sparks; arcs, sparks, crackle and heat haze around players inside.
+- EMP Field Zeus module attaches to the object it is placed on; 3DEN module is trigger activated and syncs to an object.
 - Modify EMP Field module (Zeus and 3DEN): change settings live or shut down.
-- EMP approach warning: HUD blinks out near the field, ranges for ground, helicopter and plane.
-- EMP Charge Glow option.
-- EMP shockwave carries lightning bolts and crackle; Broken lamps, destroyed vehicles and fried gear burst into sparks.
-- EMP CBA settings: Allow Destroy And Fry, Jam ACRE Radios, Dome Quality, Show Countdown Timer.
+- EMP public API: create, disable, modify, isInside; every setting as a key (e.g. `implodeSpeed`, `restoreDelay`).
+- EMP CBA settings: Allow Destroy And Fry, Jam ACRE Radios, Allow Light Flicker, Allow Implosion Blast, Dome Depth, Dome Quality, Show Countdown Timer, Shutdown Shockwave Speed, Recovery Delay.
 
 ### Changed
-- EMP Pulse is now EMP Field; the 3DEN module is trigger activated and syncs to an object.
+- EMP Pulse module replaced by EMP Field.
 - Late joiners see aurora and rupture bands at full strength.
-- EMP knocked out vehicles get engine hitpoints wrecked until recovery; engines cannot be restarted inside.
-- EMP dome: tinted glass with surface haze, visible from inside; default grey 0.5 at 3 %.
+- Shared post process helper picks a free priority.
+- Drone feed: no RPT error spam in the turret aim lookup; monitor no longer removes feeds while iterating.
+- Sounds from client side effects play once (EMP, fireworks, cryo blast, meteor, laser, singularity, UFO, lightning).
+- Briefing map take / release control actions work.
+- Comet flight direction corrected.
+- Napalm damage area no longer rotated.
+- Meteor knock back works on remote units.
+- Singularity fling hook no longer created globally.
+- Meteor, comet, UFO flyby and drone feed start when the object arrives after the event.
+- Floating object no longer locked when the effect fails to start.
+- Laser and UFO seeker craters removed.
+- Searchlight loop stops when its mount dies.
+- Missile, tracer and volcano range checks use the camera.
 
 ## Version: 4.0.0 - Major Release
 - Complete refactor of every component onto a shared CBA framework: per-frame handlers instead of spawn/sleep loops, CBA events instead of publicVariable broadcasts, JIP-safe effect starts, and one invisible anchor object per running effect instance.

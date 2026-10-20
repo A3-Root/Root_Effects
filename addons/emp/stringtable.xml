@@ -125,10 +125,10 @@
             <Original>Shutdown Effect</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrEndModeTooltip">
-            <Original>Fade: the dome fades out. Implode: the wall runs back in to the center at the shockwave speed, the marker shrinks with it.</Original>
+            <Original>Fade: the dome fades out. Implode: the wall runs back in to the center at the shutdown shockwave speed, the marker shrinks with it.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrEndModeTooltip3DEN">
-            <Original>0: dome fades out. 1: wall runs back in to the center at the shockwave speed.</Original>
+            <Original>0: dome fades out. 1: wall runs back in to the center at the shutdown shockwave speed.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrFlickerGear">
             <Original>Flicker Weapon Lights</Original>
@@ -207,6 +207,15 @@
         </Key>
         <Key ID="STR_root_effects_emp_AttrImplodeBlastTooltip3DEN">
             <Original>Explosion at the center when the dome collapses. 0: none. 1: grenade. 2: mortar shell.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrImplodeSpeed">
+            <Original>Shutdown Shockwave Speed (m/s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrImplodeSpeedTooltip">
+            <Original>Implode only. Speed of the wall running back in. 0: in 2.5 s.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrImplodeSpeedTooltip3DEN">
+            <Original>Implode only. Speed of the wall running back in. 0: in 2.5 s. -1: CBA Shutdown Shockwave Speed.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrInteractDistance">
             <Original>Shutdown Distance (m)</Original>
@@ -318,6 +327,15 @@
         </Key>
         <Key ID="STR_root_effects_emp_AttrRestore">
             <Original>Recover On Leaving</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRestoreDelay">
+            <Original>Recovery Delay (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRestoreDelayTooltip">
+            <Original>Recover On Leaving only. Seconds a unit or vehicle has to stay outside the live field before engines, lights, gear and radios work again. Re-entering resets it.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRestoreDelayTooltip3DEN">
+            <Original>Recover On Leaving only. Seconds a unit or vehicle has to stay outside the live field before engines, lights, gear and radios work again. Re-entering resets it. -1: CBA Recovery Delay.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrRestoreTooltip">
             <Original>Suppressed gear and disabled vehicles work again outside the field. Off: they stay dead until the field ends.</Original>
@@ -543,6 +561,18 @@
         </Key>
         <Key ID="STR_root_effects_emp_SettingEnabledTooltip">
             <Original>Allow EMP fields from Zeus, 3DEN or script.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingImplodeSpeed">
+            <Original>Shutdown Shockwave Speed (m/s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingImplodeSpeedTooltip">
+            <Original>Default for new fields: speed of the wall running back in on an implode shutdown. 0: in 2.5 s.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingRestoreDelay">
+            <Original>Recovery Delay (s)</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_SettingRestoreDelayTooltip">
+            <Original>Default for new fields: seconds outside the live field before affected units and vehicles recover.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingVehicleKill">
             <Original>Allow Vehicle Knockout</Original>

@@ -3,5 +3,5 @@
 #include "\z\root_effects\addons\main\script_mod.hpp"
 #include "\z\root_effects\addons\main\script_macros.hpp"
 
-// Seconds the dome takes to collapse in implode mode with shockSpeed 0.
+// Seconds the dome takes to collapse in implode mode with implodeSpeed 0.
 #define IMPLODE_TIME 2.5

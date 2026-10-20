@@ -4,7 +4,7 @@
  * Author: Root
  * Keeps the ACRE signal hook in place while a field jams radios: zero signal
  * when the receiving or the transmitting radio is inside a field the shockwave
- * reached. Wraps whatever custom signal function was set before (and one set
+ * reached, or carried by a player not yet recovered (radioJam). Wraps whatever custom signal function was set before (and one set
  * later), and puts it back once no field jams.
  *
  * Arguments:
@@ -33,8 +33,11 @@ if (isNil QGVAR(acreFunc)) then {
         private _fnc_jammed = {
             params ["_radio"];
             private _pos = [_radio] call acre_sys_radio_fnc_getRadioPos;
-            !isNil "_pos" && {_pos isEqualType []} && {
-                GVAR(fields) findIf {((_x select 1) get "radios") && {[_pos, _x] call FUNC(empInZone)}} != -1
+            private _holder = [_radio] call acre_sys_radio_fnc_getRadioObject;
+            (!isNil "_holder" && {_holder isEqualType objNull} && {_holder getVariable [QGVAR(radioJam), false]}) || {
+                !isNil "_pos" && {_pos isEqualType []} && {
+                    GVAR(fields) findIf {((_x select 1) get "radios") && {[_pos, _x] call FUNC(empInZone)}} != -1
+                }
             }
         };
         if ([_rxRadio] call _fnc_jammed || {[_txRadio] call _fnc_jammed}) then {

@@ -4,7 +4,7 @@
  * Author: Root
  * Public API. Shuts an EMP field down. Fade (endMode 0): the dome fades, the marker
  * goes and every suppressed or disabled item recovers. Implode (endMode 1): the
- * wall runs back in at shockSpeed (shockSpeed 0: in IMPLODE_TIME s), the marker
+ * wall runs back in at implodeSpeed (implodeSpeed 0: in IMPLODE_TIME s), the marker
  * shrinks with it and items recover as it passes. implodeBlast sets off a 40 mm
  * grenade (1) or 82 mm mortar round (2) at the center when the dome has collapsed.
  * Destroyed or fried items stay broken.
@@ -39,7 +39,7 @@ private _cfg = _anchor getVariable [QGVAR(cfgMap), createHashMap];
 private _implode = (_cfg getOrDefault ["endMode", 0]) == 1;
 private _blast = _cfg getOrDefault ["implodeBlast", 0];
 private _radius = _cfg getOrDefault ["radius", 300];
-private _speed = _cfg getOrDefault ["shockSpeed", 0];
+private _speed = _cfg getOrDefault ["implodeSpeed", 0];
 if (_speed <= 0) then {_speed = _radius / IMPLODE_TIME};
 private _collapse = [2, _radius / _speed] select _implode;
 
