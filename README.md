@@ -5,8 +5,6 @@
 
 Effects suite based on Aliascartoons' Effects showcase, rebuilt on CBA. Every effect is available both as a Zeus module (with a full ZEN dialog) and as a 3DEN editor module (with attributes), found under the "Root's Effects" category in the Modules list.
 
-**Current Version**: 3.0.0
-
 ## Required Additional Addons (Dependencies):
 - [CBA_A3](https://steamcommunity.com/sharedfiles/filedetails/?id=450814997)
 - [Zeus Enhanced (ZEN)](https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631)

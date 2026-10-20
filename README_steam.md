@@ -3,7 +3,7 @@ Alias's Effects rebuilt on CBA. Every effect is available as a Zeus module and a
 
 Find them under Modules > Root's Effects. [b]See below for details.[/b]
 
-[b]Version: 4.0.0[/b]
+[b]Version: 4.0.0.1[/b]
 
 [b]REQUIRED DEPENDENCIES:[/b] [list] [][url=https://steamcommunity.com/sharedfiles/filedetails/?id=450814997]CBAA3[/url] [*][url=https://steamcommunity.com/sharedfiles/filedetails/?id=1779063631]Zeus Enhanced (ZEN)[/url] [/list]
 
