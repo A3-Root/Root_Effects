@@ -2,7 +2,7 @@
 
 /*
  * Author: Root
- * Warns the player entering a live EMP field: hint, crackle and screen flicker
+ * Warns the player entering a live EMP field: crackle and screen flicker
  * for the grace time. Once per entry.
  *
  * Arguments:
@@ -21,7 +21,6 @@ if (!hasInterface) exitWith {};
 if (CBA_missionTime < (missionNamespace getVariable [QGVAR(warnUntil), -1])) exitWith {};
 GVAR(warnUntil) = CBA_missionTime + (_grace max 1) + 1;
 
-hintSilent format [LLSTRING(Warning), ceil _grace];
 playSound3D ["a3\missions_f_epa\data\sounds\electricity_loop.wss", objNull, false, getPosASL player, 2, 1.4, 30, 0, true];
 
 if (_grace <= 0) exitWith {};

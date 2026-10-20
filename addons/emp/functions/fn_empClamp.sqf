@@ -34,8 +34,6 @@ private _fnc_num = {
 ["holdTime", 0, 300] call _fnc_num;
 ["fuelDrain", 0, 1] call _fnc_num;
 ["domeAlpha", 0.01, 1] call _fnc_num;
-["fogAlpha", 0.05, 1] call _fnc_num;
-["domeInsideAlpha", 0, 1] call _fnc_num;
 ["interactDistance", 1, 12] call _fnc_num;
 ["flickerOnMin", 0.05, 120] call _fnc_num;
 ["flickerOnMax", _cfg get "flickerOnMin", 120] call _fnc_num;

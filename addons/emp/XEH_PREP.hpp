@@ -34,6 +34,7 @@ PREP(empBoundaryDist);
 PREP(empDialogRows);
 PREP(empSparksLocal);
 PREP(empFlickerLocal);
-PREP(empFogLocal);
+PREP(empBoltLocal);
+PREP(empFrontLocal);
 PREP(empImplodeLocal);
 PREP(empStash);

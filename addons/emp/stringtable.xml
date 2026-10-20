@@ -73,26 +73,17 @@
         <Key ID="STR_root_effects_emp_AttrDomeColorTooltip3DEN">
             <Original>Dome colour as r,g,b from 0 to 1.</Original>
         </Key>
-        <Key ID="STR_root_effects_emp_AttrDomeInsideAlpha">
-            <Original>Dome Opacity Inside</Original>
-        </Key>
-        <Key ID="STR_root_effects_emp_AttrDomeInsideAlphaTooltip">
-            <Original>Dome opacity seen from inside. 0%: three times Dome Opacity, at least 8%.</Original>
-        </Key>
-        <Key ID="STR_root_effects_emp_AttrDomeInsideAlphaTooltip3DEN">
-            <Original>Dome opacity seen from inside, 0..1. 0: three times Dome Opacity, at least 0.08.</Original>
-        </Key>
         <Key ID="STR_root_effects_emp_AttrDomeLightning">
             <Original>Dome Lightning</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrDomeLightningTooltip">
-            <Original>Lightning arcs flash at random on the dome, seen from inside and outside.</Original>
+            <Original>Lightning arcs flash at random on the dome, and arcs and sparks around players inside.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrDomeMirage">
             <Original>Dome Heat Haze</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrDomeMirageTooltip">
-            <Original>Heat haze distortion on the dome surface only.</Original>
+            <Original>Heat haze on the dome surface and near the ground inside.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrDomeShimmer">
             <Original>Dome Shimmer</Original>
@@ -125,10 +116,10 @@
             <Original>Shutdown Effect</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrEndModeTooltip">
-            <Original>Fade: the dome fades out. Implode: the dome collapses into its center.</Original>
+            <Original>Fade: the dome fades out. Implode: the wall runs back in to the center at the shockwave speed, the marker shrinks with it.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrEndModeTooltip3DEN">
-            <Original>0: dome fades out. 1: dome collapses into its center.</Original>
+            <Original>0: dome fades out. 1: wall runs back in to the center at the shockwave speed.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrFlickerGear">
             <Original>Flicker Weapon Lights</Original>
@@ -165,21 +156,6 @@
         </Key>
         <Key ID="STR_root_effects_emp_AttrFlickerVehiclesTooltip">
             <Original>Vehicle headlights switched on inside flicker at random instead of staying off.</Original>
-        </Key>
-        <Key ID="STR_root_effects_emp_AttrFog">
-            <Original>Fog Inside</Original>
-        </Key>
-        <Key ID="STR_root_effects_emp_AttrFogAlpha">
-            <Original>Fog Opacity</Original>
-        </Key>
-        <Key ID="STR_root_effects_emp_AttrFogAlphaTooltip">
-            <Original>Opacity of the fog inside the dome.</Original>
-        </Key>
-        <Key ID="STR_root_effects_emp_AttrFogAlphaTooltip3DEN">
-            <Original>Opacity of the fog inside the dome, 0.05 to 1.</Original>
-        </Key>
-        <Key ID="STR_root_effects_emp_AttrFogTooltip">
-            <Original>Fills the dome with fog. Outside the dome the weather is unchanged.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrFuelDrain">
             <Original>Fuel Drain</Original>
@@ -536,19 +512,13 @@
             <Original>Dome Quality</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingDomeQualityTooltip">
-            <Original>Off hides the dome. Low skips shimmer and arcs.</Original>
+            <Original>Off hides the dome. Low: fewer particles and arcs, no shimmer or arc flashes.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingEnabled">
             <Original>Enable EMP Module</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingEnabledTooltip">
             <Original>Allow EMP fields from Zeus, 3DEN or script.</Original>
-        </Key>
-        <Key ID="STR_root_effects_emp_SettingFogQuality">
-            <Original>Dome Fog Quality</Original>
-        </Key>
-        <Key ID="STR_root_effects_emp_SettingFogQualityTooltip">
-            <Original>Amount of fog particles inside EMP domes on this machine.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingVehicleKill">
             <Original>Allow Vehicle Knockout</Original>
@@ -558,9 +528,6 @@
         </Key>
         <Key ID="STR_root_effects_emp_Started">
             <Original>EMP field placed</Original>
-        </Key>
-        <Key ID="STR_root_effects_emp_Warning">
-            <Original>Electronics failing: %1 s</Original>
         </Key>
     </Package>
 </Project>

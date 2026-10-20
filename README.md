@@ -109,7 +109,7 @@ All effects appear in the "Root's Effects" category of the Zeus Modules tab and 
 ### **EMP Field** (emp)
 - Field on an object or position: countdown, detonation, shockwave, force field dome and a Zeus-editable map marker growing with the wave.
 - Vehicles, aircraft, UAVs, lamps, personal electronics (NVG, GPS, cTab, ACE devices, UAV terminals, weapon lights and lasers) and ACRE radios fail as the wave reaches them.
-- Disable / suppress or destroy / fry modes, grace time for units entering, recovery on leaving, shutdown by hold action or ACE interaction on the object.
+- Disable / suppress or destroy / fry modes, grace time for units entering, recovery on leaving, shutdown by hold action or ACE interaction on the object, dome fading or running back in at the shockwave speed.
 - HUD blinks out when nearing the field; Modify EMP Field module changes or shuts down a running field.
 - Public API: create, disable, modify, isInside.
 

@@ -4,7 +4,8 @@
  * Author: Root
  * Checks a position against one EMP field. The field is a spherical cap: radius
  * on the ground, dome height on top (no height limit with altitude -1). With
- * wave check on, the position only counts once the shockwave reached it.
+ * wave check on, the position only counts once the shockwave reached it. While an
+ * implode shutdown runs, only the part inside the wall running back in counts.
  *
  * Arguments:
  * 0: Position ASL <ARRAY>
@@ -22,11 +23,19 @@ params [["_pos", [0, 0, 0], [[]], 3], ["_entry", [], [[]]], ["_wave", true, [tru
 _entry params [["_anchor", objNull], ["_cfg", createHashMap], "", ["_detTime", 0]];
 
 if (isNull _anchor) exitWith {false};
-if (_anchor getVariable [QGVAR(ending), false]) exitWith {false};
 if (CBA_missionTime < _detTime) exitWith {false};
 
 private _center = getPosASL _anchor;
 private _radius = _cfg get "radius";
+// Fade shutdown: gone at once. Implode: only inside the wall running back in.
+private _wall = 1e9;
+if (_anchor getVariable [QGVAR(ending), false]) then {
+    _wall = -1;
+    if ((_cfg getOrDefault ["endMode", 0]) == 1) then {
+        _wall = _radius - (CBA_missionTime - (_anchor getVariable [QGVAR(endTime), 0])) * (_anchor getVariable [QGVAR(endSpeed), 1e9]);
+    };
+};
+if ((_pos distance _center) > _wall) exitWith {false};
 private _altitude = _cfg get "altitude";
 
 if ((_pos distance2D _center) > _radius && {_altitude < 0 || _altitude <= _radius}) exitWith {false};

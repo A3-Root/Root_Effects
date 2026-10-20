@@ -4,7 +4,7 @@
  * Author: Root
  * Registers an EMP field on this machine (JIP safe) and starts what runs here:
  * the field loop for local units and vehicles everywhere, and countdown,
- * detonation, dome, lamps, fog and shutdown interaction on machines with a player.
+ * detonation, dome, lamps and shutdown interaction on machines with a player.
  *
  * Arguments:
  * 0: Field anchor <OBJECT>
@@ -43,7 +43,6 @@ call FUNC(empApproachLocal);
 [_entry] call FUNC(empCountdownLocal);
 [_entry] call FUNC(empDomeLocal);
 [_entry] call FUNC(empLampsLocal);
-[_entry] call FUNC(empFogLocal);
 [_entry] call FUNC(empInteraction);
 
 // Detonation effects only for those who see it happen.

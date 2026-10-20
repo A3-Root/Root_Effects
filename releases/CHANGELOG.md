@@ -1,5 +1,34 @@
 # Changelog for Root's Effects
 
+## Version: 4.0.0.6
+### Changed
+- EMP dome reaches the ground again (bottom ring of patches was not created).
+- EMP Modify EMP Field changes dome colour and opacity again.
+- EMP lightning: shorter bolts, fewer arcs around players, wave front bolts in step with the wave.
+- EMP breaking lamps: sparks plus a small lightning burst; detonation sparks back alongside the burst.
+- EMP Implosion Blast explodes (shell no longer duds).
+
+## Version: 4.0.0.5
+### Changed
+- EMP dome: glass material, built from curved 15 degree patches so it shows from inside.
+- EMP lightning: EMP Systems style bolt bursts at detonation, on the wave front, on the dome, inside the dome and at the implosion.
+- EMP heat haze: stronger on the dome and inside, on the wave front and at detonation.
+- EMP light flicker no longer restarts every tick while the field shuts down.
+
+## Version: 4.0.0.4
+### Removed
+- EMP: Fog Inside and Fog Opacity options, CBA setting Dome Fog Quality.
+- EMP: Dome Opacity Inside option.
+- EMP: hint on entering a live field.
+
+### Changed
+- EMP defaults: 500 m radius and dome height, 10 s countdown, linger until shut down, 50 m/s shockwave, broken lights, warning 500 m helicopter / 1000 m plane, no charge glow, no screen interference, 25 % dome, implode with small blast, all flicker on, area + label marker, no countdown timer, 12 m shutdown distance.
+- EMP Zeus modules attach to the object they are placed on.
+- EMP dome: own model, same look from inside and outside, self-lit at night, no panels.
+- EMP lightning bolts sized to the scene, self-lit, seen from all sides.
+- EMP dome area: arcs, sparks, crackle and heat haze around players inside.
+- EMP implode: wall runs back in at the shockwave speed, marker shrinks, units recover as it passes, blast when it arrives.
+
 ## Version: 4.0.0.3
 ### Added
 - EMP: Flicker Lit Min/Max and Flicker Dark Min/Max options.

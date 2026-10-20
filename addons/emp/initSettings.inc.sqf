@@ -43,13 +43,6 @@
 ] call CBA_fnc_addSetting;
 
 [
-    QGVAR(fogQuality), "LIST",
-    [LLSTRING(SettingFogQuality), LLSTRING(SettingFogQualityTooltip)],
-    [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],
-    [[0, 1, 2], [LLSTRING(QualityOff), LLSTRING(QualityLow), LLSTRING(QualityHigh)], 2]
-] call CBA_fnc_addSetting;
-
-[
     QGVAR(domeQuality), "LIST",
     [LLSTRING(SettingDomeQuality), LLSTRING(SettingDomeQualityTooltip)],
     [ELSTRING(main,SettingCategory), LLSTRING(SettingCategoryName)],

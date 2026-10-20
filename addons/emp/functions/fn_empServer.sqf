@@ -2,9 +2,10 @@
 
 /*
  * Author: Root
- * Server control of one EMP field: map marker growing with the shockwave and
- * following the object, Zeus marker resize applied to the radius, shutdown when
- * the linger time runs out or the object is destroyed.
+ * Server control of one EMP field: map marker growing with the shockwave,
+ * shrinking with the wall in an implode shutdown and following the object, Zeus
+ * marker resize applied to the radius, shutdown when the linger time runs out or
+ * the object is destroyed.
  *
  * Arguments:
  * 0: Field anchor <OBJECT>
@@ -34,12 +35,20 @@ private _marker = format ["zen_area_markers_root_emp_%1", GVAR(markerId)];
         deleteMarker _label;
         _handle call CBA_fnc_removePerFrameHandler;
     };
+    private _cfg = _anchor getVariable [QGVAR(cfgMap), createHashMap];
     if (_anchor getVariable [QGVAR(ending), false]) exitWith {
-        deleteMarker _marker;
-        deleteMarker _label;
+        private _wall = -1;
+        if ((_cfg getOrDefault ["endMode", 0]) == 1) then {
+            _wall = (_cfg get "radius") - (CBA_missionTime - (_anchor getVariable [QGVAR(endTime), 0])) * (_anchor getVariable [QGVAR(endSpeed), 1e9]);
+        };
+        if (_wall <= 0 || {markerShape _marker isEqualTo ""}) exitWith {
+            deleteMarker _marker;
+            deleteMarker _label;
+        };
+        _marker setMarkerPosLocal (getPosATL _anchor);
+        _marker setMarkerSize [_wall, _wall];
     };
 
-    private _cfg = _anchor getVariable [QGVAR(cfgMap), createHashMap];
     private _detTime = _anchor getVariable [QGVAR(detTime), 0];
     private _object = _anchor getVariable [QGVAR(object), objNull];
     private _now = CBA_missionTime;

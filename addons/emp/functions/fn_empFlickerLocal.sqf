@@ -27,7 +27,7 @@
 
 params [["_object", objNull, [objNull]], ["_kind", "", [""]], ["_anchor", objNull, [objNull]]];
 
-if (isNull _object || {isNull _anchor}) exitWith {};
+if (isNull _object || {isNull _anchor} || {_anchor getVariable [QGVAR(ending), false]}) exitWith {};
 if (GVAR(flicker) findIf {(_x select 0) isEqualTo _object} != -1) exitWith {};
 
 // [object, kind, anchor, light on, next switch, weapon, stutter toggles left (-1 none)]
