@@ -52,8 +52,11 @@ if (_implode && _blast > 0) then {
     [{
         params ["_anchor", "_blast"];
         if (isNull _anchor) exitWith {};
-        private _ammo = createVehicle [["G_40mm_HE", "M_Mo_82mm_AT_LG"] select (_blast - 1), getPosATL _anchor, [], 0, "CAN_COLLIDE"];
-        _ammo setDamage 1;
+        private _anchorpos = [(getPosATL _anchor select 0), (getPosATL _anchor select 1), ((getPosATL _anchor select 2) + 20)];
+        DBG(FORMAT_1("EMP anchor pos at %1",_anchorpos));
+        private _ammo = createVehicle [["G_40mm_HE", "M_Mo_82mm_AT_LG"] select (_blast - 1), _anchorpos, [], 0, "CAN_COLLIDE"];
+        _ammo setVectorDirAndUp [[0, 0, -1], [0, 1, 0]];
+        _ammo setVelocity [0, 0, -100];
         DBG(FORMAT_2("EMP implosion blast %1 at %2",_blast,mapGridPosition _anchor));
     }, [_anchor, _blast], _collapse] call CBA_fnc_waitAndExecute;
 };
