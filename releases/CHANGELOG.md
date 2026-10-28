@@ -1,5 +1,9 @@
 # Changelog for Root's Effects
 
+## Version: 4.0.0.2
+### Changed
+- Drone feed no longer binds or terminates the render camera while Zeus is open; feed start and stop wait until Zeus closes.
+
 ## Version: 4.0.0.1
 ### Added
 - Build-up time for Aurora, Spacetime Rupture, Lightning Storm and Acid Rain: instant, X seconds or default.

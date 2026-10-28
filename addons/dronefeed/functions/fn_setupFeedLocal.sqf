@@ -108,6 +108,9 @@ private _pfh = [{
     private _radius = _screen getVariable [QGVAR(radius), _state get "radius"];
     _state set ["radius", _radius];
 
+    // Hold state changes while Zeus is open.
+    if (!isNull (findDisplay 312) || {!isNull curatorCamera}) exitWith {};
+
     private _near = (player distance _screen) <= _radius;
     private _active = _state get "active";
 

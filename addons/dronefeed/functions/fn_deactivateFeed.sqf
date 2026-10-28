@@ -27,7 +27,10 @@ if (!(_state get "active")) exitWith {};
 
 private _cam = _state getOrDefault ["camera", objNull];
 if (!isNull _cam) then {
-    _cam cameraEffect ["TERMINATE", "BACK"];
+    // Zeus open: terminating the render binding would drop the curator camera.
+    if (isNull (findDisplay 312) && {isNull curatorCamera}) then {
+        _cam cameraEffect ["TERMINATE", "BACK"];
+    };
     camDestroy _cam;
 };
 _state set ["camera", objNull];

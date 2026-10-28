@@ -50,7 +50,11 @@ if (GVAR(proximityCount) == 1) then {
 
 private _cam = "camera" camCreate (getPosATL player);
 _cam setPosATL (getPosATL player);
-_cam cameraEffect ["INTERNAL", "BACK", _rtt];
+// Zeus open: skip the render binding, the tracking loop applies it on Zeus close.
+private _inZeus = !isNull (findDisplay 312) || {!isNull curatorCamera};
+if (!_inZeus) then {
+    _cam cameraEffect ["INTERNAL", "BACK", _rtt];
+};
 _cam camSetFov (_screen getVariable [QGVAR(zoom), DEFAULT_FOV]);
 _cam camCommit 0;
 _rtt setPiPEffect [_screen getVariable [QGVAR(vision), 0]];
