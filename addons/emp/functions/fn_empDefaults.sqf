@@ -7,7 +7,8 @@
  * wave, -1 until disabled), shockSpeed (m/s, 0 instant), effectDelay (s after the wave),
  * vehicles / aircraft (0 off, 1 disable, 2 destroy), uavs (0 off, 1 disconnect, 2 crash),
  * lamps (0 off, 1 off for the field, 2 broken), gear (0 off, 1 suppress, 2 fry),
- * ai, radios (ACRE jam), channels (vanilla voice channels off), fuelDrain (0..1),
+ * ai, radios (ACRE jam: 0 off, 1 links between inside and outside, 2 every link with a radio inside;
+ * true / false read as 2 / 0), channels (vanilla voice channels off), fuelDrain (0..1),
  * hud, shake, visuals, chargeGlow, dome, domeColor [r,g,b], domeAlpha, domeShimmer,
  * domeLightning (arcs on the dome), domeMirage (heat haze on the dome),
  * domeDepth (dome below the object: 0 shallow, 1 deep, 2 full sphere; default: CBA Dome Depth),
@@ -48,7 +49,7 @@ createHashMapFromArray [
     ["lamps", 2],
     ["gear", 1],
     ["ai", true],
-    ["radios", true],
+    ["radios", 2],
     ["channels", false],
     ["fuelDrain", 0],
     ["hud", false],

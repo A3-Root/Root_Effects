@@ -1,5 +1,12 @@
 # Changelog for Root's Effects
 
+## Version: 4.0.0.3
+### Added
+- EMP Field Jam Radios modes (Zeus, 3DEN `ROOT_EMP_RADIOMODE`, API `radios`): Off, Outside (no link across the field edge), All (no link with any radio inside).
+
+### Changed
+- EMP Field ACRE jamming: jammed signal drops below squelch on every radio; jammed players cannot transmit.
+
 ## Version: 4.0.0.2
 ### Changed
 - Drone feed no longer binds or terminates the render camera while Zeus is open; feed start and stop wait until Zeus closes.

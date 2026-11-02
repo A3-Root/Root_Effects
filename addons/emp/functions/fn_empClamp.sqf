@@ -44,10 +44,13 @@ if ((_cfg getOrDefault ["restoreDelay", -1]) < 0) then {_cfg set ["restoreDelay"
 ["flickerOnMax", _cfg get "flickerOnMin", 120] call _fnc_num;
 ["flickerOffMin", 0.05, 120] call _fnc_num;
 ["flickerOffMax", _cfg get "flickerOffMin", 120] call _fnc_num;
+// radios: true / false read as 2 / 0.
+private _radios = _cfg getOrDefault ["radios", 2];
+if (_radios isEqualType true) then {_cfg set ["radios", [0, 2] select _radios]};
 {
     [_x, 0, 2] call _fnc_num;
     _cfg set [_x, round (_cfg get _x)];
-} forEach ["vehicles", "aircraft", "uavs", "lamps", "gear", "marker", "implodeBlast"];
+} forEach ["vehicles", "aircraft", "uavs", "lamps", "gear", "marker", "implodeBlast", "radios"];
 // -1: CBA Dome Depth.
 if ((_cfg getOrDefault ["domeDepth", -1]) < 0) then {_cfg set ["domeDepth", GVAR(domeDepth)]};
 ["domeDepth", 0, 2] call _fnc_num;

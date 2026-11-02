@@ -40,7 +40,7 @@ if (_entity isEqualTo player) exitWith {
         case "apply": {
             DBG(FORMAT_1("EMP hit player %1",name player));
             if ((_cfg get "gear") == 2) then {[player, _cfg] call FUNC(empFry)};
-            if (_cfg get "radios") then {player setVariable [QGVAR(radioJam), true, true]};
+            if ((_cfg get "radios") == 2) then {player setVariable [QGVAR(radioJam), true, true]};
             GVAR(playerCfg) = _cfg;
             call FUNC(empSuppressLocal);
         };

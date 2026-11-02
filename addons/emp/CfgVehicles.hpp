@@ -1,3 +1,4 @@
+// Modified by Root
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
 #define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_STRIKES"
@@ -90,7 +91,7 @@ class CfgVehicles {
             ROOT_ATTR_NUMBER(ROOT_EMP_LAMPS,CSTRING(AttrLamps),CSTRING(AttrLampsTooltip3DEN),2);
             ROOT_ATTR_NUMBER(ROOT_EMP_GEAR,CSTRING(AttrGear),CSTRING(AttrGearTooltip3DEN),1);
             ROOT_ATTR_BOOL(ROOT_EMP_AI,CSTRING(AttrAi),CSTRING(AttrAiTooltip),true);
-            ROOT_ATTR_BOOL(ROOT_EMP_RADIOS,CSTRING(AttrRadios),CSTRING(AttrRadiosTooltip),true);
+            ROOT_ATTR_NUMBER(ROOT_EMP_RADIOMODE,CSTRING(AttrRadios),CSTRING(AttrRadiosTooltip3DEN),2);
             ROOT_ATTR_BOOL(ROOT_EMP_CHANNELS,CSTRING(AttrChannels),CSTRING(AttrChannelsTooltip),false);
             ROOT_ATTR_NUMBER(ROOT_EMP_FUELDRAIN,CSTRING(AttrFuelDrain),CSTRING(AttrFuelDrainTooltip),0);
             ROOT_ATTR_BOOL(ROOT_EMP_RESTORE,CSTRING(AttrRestore),CSTRING(AttrRestoreTooltip),true);

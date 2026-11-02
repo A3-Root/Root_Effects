@@ -51,7 +51,7 @@ private _settings = [
     ["lamps", ["ROOT_EMP_LAMPS", "lamps"] call _get],
     ["gear", ["ROOT_EMP_GEAR", "gear"] call _get],
     ["ai", ["ROOT_EMP_AI", "ai"] call _get],
-    ["radios", ["ROOT_EMP_RADIOS", "radios"] call _get],
+    ["radios", ["ROOT_EMP_RADIOMODE", "radios"] call _get],
     ["channels", ["ROOT_EMP_CHANNELS", "channels"] call _get],
     ["fuelDrain", ["ROOT_EMP_FUELDRAIN", "fuelDrain"] call _get],
     ["restore", ["ROOT_EMP_RESTORE", "restore"] call _get],
@@ -103,7 +103,7 @@ if !(_logic getVariable ["ROOT_EMP_KILLENGINES", true]) then {
     _settings append [["vehicles", 0], ["aircraft", 0], ["uavs", 0]];
 };
 if !(_logic getVariable ["ROOT_EMP_ELECTRONICS", true]) then {
-    _settings append [["gear", 0], ["lamps", 0], ["ai", false], ["radios", false]];
+    _settings append [["gear", 0], ["lamps", 0], ["ai", false], ["radios", 0]];
 };
 
 deleteVehicle _logic;

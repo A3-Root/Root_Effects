@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
+<!-- Modified by Root -->
 <Project name="Root_Effects">
     <Package name="Emp">
         <Key ID="STR_root_effects_emp_ActionDisable">
@@ -311,7 +312,10 @@
             <Original>Jam Radios</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrRadiosTooltip">
-            <Original>ACRE radios inside the field neither send nor receive.</Original>
+            <Original>ACRE radios. Outside: no link between radios inside and outside the field. All: no link with any radio inside, inside to inside included; players inside cannot transmit.</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_AttrRadiosTooltip3DEN">
+            <Original>ACRE radios. 0: off. 1: outside, no link between radios inside and outside the field. 2: all, no link with any radio inside, inside to inside included; players inside cannot transmit.</Original>
         </Key>
         <Key ID="STR_root_effects_emp_AttrRadius">
             <Original>Radius</Original>
@@ -510,6 +514,12 @@
         </Key>
         <Key ID="STR_root_effects_emp_QualityOff">
             <Original>Off</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_RadiosAll">
+            <Original>All</Original>
+        </Key>
+        <Key ID="STR_root_effects_emp_RadiosOutside">
+            <Original>Outside</Original>
         </Key>
         <Key ID="STR_root_effects_emp_SettingAcreJam">
             <Original>Jam ACRE Radios</Original>

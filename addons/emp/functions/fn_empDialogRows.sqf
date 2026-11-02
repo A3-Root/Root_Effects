@@ -41,7 +41,7 @@ if (_countdown) then {
 ["lamps", ["TOOLBOX", [LLSTRING(AttrLamps), LLSTRING(AttrLampsTooltip)], [_d get "lamps", 1, 3, [LLSTRING(ModeOff), LLSTRING(ModeLampsOff), LLSTRING(ModeBroken)]]]] call _fnc_add;
 ["gear", ["TOOLBOX", [LLSTRING(AttrGear), LLSTRING(AttrGearTooltip)], [_d get "gear", 1, 3, [LLSTRING(ModeOff), LLSTRING(ModeSuppress), LLSTRING(ModeFry)]]]] call _fnc_add;
 ["ai", ["TOOLBOX:YESNO", [LLSTRING(AttrAi), LLSTRING(AttrAiTooltip)], _d get "ai"]] call _fnc_add;
-["radios", ["TOOLBOX:YESNO", [LLSTRING(AttrRadios), LLSTRING(AttrRadiosTooltip)], _d get "radios"]] call _fnc_add;
+["radios", ["TOOLBOX", [LLSTRING(AttrRadios), LLSTRING(AttrRadiosTooltip)], [_d get "radios", 1, 3, [LLSTRING(ModeOff), LLSTRING(RadiosOutside), LLSTRING(RadiosAll)]]]] call _fnc_add;
 ["channels", ["TOOLBOX:YESNO", [LLSTRING(AttrChannels), LLSTRING(AttrChannelsTooltip)], _d get "channels"]] call _fnc_add;
 ["fuelDrain", ["SLIDER:PERCENT", [LLSTRING(AttrFuelDrain), LLSTRING(AttrFuelDrainTooltip)], [0, 1, _d get "fuelDrain", 0]]] call _fnc_add;
 ["restore", ["TOOLBOX:YESNO", [LLSTRING(AttrRestore), LLSTRING(AttrRestoreTooltip)], _d get "restore"]] call _fnc_add;

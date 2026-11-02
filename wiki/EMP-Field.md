@@ -1,3 +1,4 @@
+<!-- Modified by Root -->
 # EMP Field
 
 An electromagnetic pulse field on an object (e.g. `RuggedTerminal_01_communications_hub_F`) or a position. Defaults: 500 m radius and height, 10 s countdown, until shut down, 25 m/s shockwave, 10 s recovery delay, white 65 % dome without shimmer, ACE shutdown interaction, implode shutdown at 50 m/s with a small blast.
@@ -34,7 +35,7 @@ Place **EMP Field** on an object to put the field there, or on the ground. Field
 | Lights | Off, Out (relit when the field ends), Broken (flicker, burst into sparks, some blow out, stay out). Sparks look and sound like Ambient Sparks. |
 | Personal Electronics | Off, Suppress (items kept, dead inside; devices taken and given back), Fry (items removed). |
 | Affect AI Gear | AI lose electronic goggles, weapon lights and IR lasers. |
-| Jam Radios | ACRE radios inside neither send nor receive. |
+| Jam Radios | ACRE radios. Off; Outside: no link between radios inside and outside; All: no link with any radio inside, inside to inside included, players inside cannot transmit. |
 | Block Voice Channels | Players hit lose side, command, group and vehicle voice. |
 | Fuel Drain | Fraction of fuel drained from vehicles knocked out. |
 | Recover On Leaving | Off: affected units and vehicles stay dead until the field ends. |
