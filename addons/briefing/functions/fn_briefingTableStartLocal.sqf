@@ -56,8 +56,7 @@ private _markerPos = getMarkerPos _marker;
 private _markerDir = markerDir _marker;
 private _markerSize = getMarkerSize _marker;
 private _maxSize = ((_markerSize select 0) max (_markerSize select 1)) max 1;
-// An icon marker (or a tiny area) would model a patch of a few meters, which
-// fills the table with a single texture; such markers show 250 m around them.
+// An icon marker (or a tiny area) would model a patch of a few meters, which fills the table with a single texture; such markers show 250 m around them.
 if (!((markerShape _marker) in ["RECTANGLE", "ELLIPSE"]) || _maxSize < 20) then {
     DBG(FORMAT_3("briefing table marker %1 is %2 of size %3, using a 250 m area around it instead",_marker,markerShape _marker,_maxSize));
     _maxSize = 250;
@@ -121,8 +120,7 @@ if (_useTerrain) then {
 
 DBG(FORMAT_4("briefing table: %1 objects, %2 terrain cells, lift %3 (height offset %4)",count _sized,count _terrainCells,_liftVector,_heightOffset));
 
-// Build the miniature in small batches per tick to avoid frame spikes.
-// [anchor, table, frame, modelScale, liftVector, objectQueue, terrainQueue, clones, envMuted, tableSize, useTerrain, tableDir, markerDir]
+// Build the miniature in small batches per tick to avoid frame spikes. [anchor, table, frame, modelScale, liftVector, objectQueue, terrainQueue, clones, envMuted, tableSize, useTerrain, tableDir, markerDir]
 private _state = [_anchor, _table, _frame, _modelScale, _liftVector, _sized, _terrainCells, [], false, _tableSize, _useTerrain, _tableDir, _markerDir];
 
 [{
@@ -178,9 +176,7 @@ private _state = [_anchor, _table, _frame, _modelScale, _liftVector, _sized, _te
             private _worldPos = _frame modelToWorld (_cellPos vectorMultiply (1 / _modelScale));
             private _road = roadAt (_worldPos select [0, 2]);
             private _texture = [(getRoadInfo _road) param [3, ""], surfaceTexture _worldPos] select (isNull _road);
-            // Some terrain and road textures do not exist as files or do not load on
-            // a cube (procedural or missing paths); those tiles get a solid colour
-            // from the ground type instead of rendering blank or broken.
+            // Some terrain and road textures do not exist as files or do not load on a cube (procedural or missing paths); those tiles get a solid colour from the ground type instead of rendering blank or broken.
             private _file = _texture;
             if ((_file select [0, 1]) == "\") then {_file = _file select [1]};
             if (_texture isEqualTo "" || {(_texture select [0, 1]) == "#"} || {!fileExists _file}) then {
@@ -203,9 +199,7 @@ private _state = [_anchor, _table, _frame, _modelScale, _liftVector, _sized, _te
             private _cubeSize = _step * _tableSize;
 
             if (_useTerrain) then {
-                // Average the terrain normal around the cell and tilt the cube to it;
-                // a tilted cube is enlarged by the tilt so it still meets its
-                // neighbours and no gaps open up between tiles.
+                // Average the terrain normal around the cell and tilt the cube to it; a tilted cube is enlarged by the tilt so it still meets its neighbours and no gaps open up between tiles.
                 private _averageStep = _step / 2;
                 for "_normalX" from -2 * _averageStep to 2 * _averageStep step _averageStep do {
                     for "_normalY" from -2 * _averageStep to 2 * _averageStep step _averageStep do {

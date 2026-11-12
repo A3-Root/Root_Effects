@@ -3,8 +3,8 @@
 /*
  * Author: Root
  * 3DEN module entry point for the UFO encounter effect. Reads the module
- * attributes placed in the editor and starts random UFO sightings when the
- * mission begins.
+ * attributes placed in the editor and starts random UFO sightings when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

@@ -64,8 +64,7 @@ DBG(FORMAT_4("%1 renderer start, lifetime %2, density %3, at %4",_style,_lifetim
 #define KEEP_FADE 2
 #define KEEP_CAP 500
 
-// Shape description from the shape id and seed, shared by all clients.
-// Returns [shape, base length, rotation, curl].
+// Shape description from the shape id and seed, shared by all clients. Returns [shape, base length, rotation, curl].
 private _fnc_shapeInfo = {
     params ["_shape", "_seed"];
     private _rnd = {params ["_k"]; (_seed + _k) random 1};
@@ -109,8 +108,7 @@ private _fnc_shapePoint = {
     [_px * cos _rotation - _py * sin _rotation, _px * sin _rotation + _py * cos _rotation, _pz]
 };
 
-// Colour keyframes spread evenly over the lifetime, alpha ramped so fade in and
-// fade out last the given number of seconds.
+// Colour keyframes spread evenly over the lifetime, alpha ramped so fade in and fade out last the given number of seconds.
 private _fnc_colors = {
     params ["_rgb", "_peak", "_life", "_in", "_out"];
     private _keys = [];
@@ -152,9 +150,7 @@ private _rate = 20 * _density * ((EGVAR(main,particleBudget)) max 0.1);
 // Particles alive once the band is full.
 private _full = round (_rate * _lifetime * 0.8) min 2500;
 
-// [anchor, carry, recent, kept, lastDespawn, shapeKey, info, settings..., build-up state]
-// recent: [desc, born, life] of the latest drops, so they can be kept on demand.
-// kept: [desc, nextDrop] of particles held in place.
+// [anchor, carry, recent, kept, lastDespawn, shapeKey, info, settings..., build-up state] recent: [desc, born, life] of the latest drops, so they can be kept on demand. kept: [desc, nextDrop] of particles held in place.
 private _state = [
     _anchor, 0, [], [], true, [], [],
     _rate, _lifetime, _fadeIn, _fadeOut, _isAurora,
@@ -270,8 +266,7 @@ private _state = [
         if (count _recent > 800) then {_recent deleteRange [0, count _recent - 800]};
     };
 
-    // Re-drop held particles just before they would start to fade, so the
-    // incoming copy overlaps the outgoing one and nothing blinks.
+    // Re-drop held particles just before they would start to fade, so the incoming copy overlaps the outgoing one and nothing blinks.
     if (!_despawn) then {
         private _budget = 40;
         {

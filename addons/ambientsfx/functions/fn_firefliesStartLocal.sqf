@@ -25,9 +25,7 @@ if (!hasInterface) exitWith {};
 if (isNull _anchor) exitWith {};
 DBG(FORMAT_1("firefliesStartLocal running here with %1",_this));
 
-// Builds a random blink pattern for the next batch of fireflies: a few pulses
-// of differing length with dark gaps between, ending dark. Colour and emissive
-// keyframes share the timing so the sprite glows in the dark and dims together.
+// Builds a random blink pattern for the next batch of fireflies: a few pulses of differing length with dark gaps between, ending dark. Colour and emissive keyframes share the timing so the sprite glows in the dark and dims together.
 private _fnc_blinkParams = {
     params ["_emitter"];
 
@@ -86,8 +84,7 @@ private _state = [_anchor, _activationDistance, _frogs, objNull, 0];
     };
 
     if (_active && _frogs && CBA_missionTime >= _nextCroak) then {
-        // Not every window produces a croak, which keeps the pond from
-        // sounding metronomic. The timer advances either way.
+        // Not every window produces a croak, which keeps the pond from sounding metronomic. The timer advances either way.
         if (random 1 < 0.6) then {
             _anchor say3D [QGVAR(frog_croak), 80];
         };

@@ -49,8 +49,7 @@ if (!GVAR(allowDamage)) then {_damage = 0};
 [{
     params ["_pos", "_damage", "_damageRadius"];
 
-    // A damaging strike detonates a real GBU-12 and adds scaled damage on
-    // top; a harmless one only shows the engine explosion.
+    // A damaging strike detonates a real GBU-12 and adds scaled damage on top; a harmless one only shows the engine explosion.
     if (_damage > 0) then {
         [_pos, _damageRadius, _damage] call FUNC(strikeDamage);
     } else {

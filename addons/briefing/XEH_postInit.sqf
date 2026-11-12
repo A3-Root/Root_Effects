@@ -9,8 +9,7 @@ if (isServer) then {
         _this call FUNC(briefingTableStart);
     }] call CBA_fnc_addEventHandler;
 
-    // Exclusive briefing map ownership is resolved on the server so two players
-    // cannot grab the same board at once.
+    // Exclusive briefing map ownership is resolved on the server so two players cannot grab the same board at once.
     [QGVAR(requestControl), {
         params ["_anchor", "_player"];
         if (isNull _anchor || {!alive _player}) exitWith {};
@@ -38,13 +37,7 @@ if (hasInterface) then {
         _this call FUNC(briefingTableStartLocal);
     }] call CBA_fnc_addEventHandler;
 
-    // While this player owns a briefing map, clicking their own map sets the
-    // area that board shows for everyone. The owned board is tracked in
-    // uiNamespace so a single handler serves whichever map is under control.
-    // The main map's own mouse-up handler reacts on the first click, without the
-    // engine's single-click delay (it waits to rule out a double click, which then
-    // opens the marker dialog). While a board is controlled, double clicks on the
-    // map are swallowed so no marker dialog pops up by accident.
+    // While this player owns a briefing map, clicking their own map sets the area that board shows for everyone. The owned board is tracked in uiNamespace so a single handler serves whichever map is under control. The main map's own mouse-up handler reacts on the first click, without the engine's single-click delay (it waits to rule out a double click, which then opens the marker dialog). While a board is controlled, double clicks on the map are swallowed so no marker dialog pops up by accident.
     [{!isNull ((findDisplay 12) displayCtrl 51)}, {
         private _mapCtrl = (findDisplay 12) displayCtrl 51;
         _mapCtrl ctrlAddEventHandler ["MouseButtonUp", {

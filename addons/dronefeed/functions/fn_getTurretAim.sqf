@@ -64,9 +64,7 @@ if (_view isEqualTo VIEW_DRIVER) exitWith {
 private _camModel = [_posSel] call _fnc_point;
 private _camPos = _drone modelToWorldVisualWorld _camModel;
 
-// Candidate view directions. Which one is right depends on the drone model and on
-// who is driving the turret (AI gunner, a player through the UAV terminal, nobody),
-// so all are gathered and the first that actually looks at the ground is used.
+// Candidate view directions. Which one is right depends on the drone model and on who is driving the turret (AI gunner, a player through the UAV terminal, nobody), so all are gathered and the first that actually looks at the ground is used.
 private _candidates = [];
 
 // 1: where the turret's gunner (AI or remote operator) is looking.
@@ -96,10 +94,7 @@ if (_weapons isNotEqualTo []) then {
 
 _candidates = _candidates select {(_x select 1) isNotEqualTo [0, 0, 0]};
 
-// The camera and gun memory points ride on the turret bones and are what the
-// gunner's optic actually sees; the AI gunner's own view and the weapon direction
-// stay level with the hull (seen in testing on the Greyhawk), so they only count
-// when the model has no usable turret points.
+// The camera and gun memory points ride on the turret bones and are what the gunner's optic actually sees; the AI gunner's own view and the weapon direction stay level with the hull (seen in testing on the Greyhawk), so they only count when the model has no usable turret points.
 private _order = ["cameraPoints", "gunPoints", "weapon", "gunnerView"];
 private _pick = -1;
 {

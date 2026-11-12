@@ -34,8 +34,7 @@ private _rtt = _state get "rttName";
 private _res = _state get "rttRes";
 private _texId = _state get "textureId";
 
-// Save the video settings on the first feed entered and raise them so a high
-// altitude drone or satellite still renders terrain in the picture.
+// Save the video settings on the first feed entered and raise them so a high altitude drone or satellite still renders terrain in the picture.
 GVAR(proximityCount) = GVAR(proximityCount) + 1;
 if (GVAR(proximityCount) == 1) then {
     GVAR(savedViewDistance) = [getPiPViewDistance, viewDistance, getObjectViewDistance, getShadowDistance];
@@ -87,11 +86,7 @@ private _trackPFH = [{
     private _vision = _screen getVariable [QGVAR(vision), 0];
     private _zoom = _screen getVariable [QGVAR(zoom), DEFAULT_FOV];
 
-    // Re-assert the render binding on any interface change, and unconditionally
-    // once a second, so opening Zeus, the arsenal, the map or optics cannot
-    // leave the screen frozen for more than a moment.
-    // While Zeus is open the render binding is left alone: re-applying a camera
-    // effect there throws the curator out of its interface into first person.
+    // Re-assert the render binding on any interface change, and unconditionally once a second, so opening Zeus, the arsenal, the map or optics cannot leave the screen frozen for more than a moment. While Zeus is open the render binding is left alone: re-applying a camera effect there throws the curator out of its interface into first person.
     private _inZeus = !isNull (findDisplay 312) || {!isNull curatorCamera};
     private _sig = [cameraView, visibleMap, _inZeus, !isNull (findDisplay 49), isGamePaused];
     private _timer = (_state getOrDefault ["clobberTimer", 0]) + diag_deltaTime;
@@ -113,8 +108,7 @@ private _trackPFH = [{
         _state set ["appliedVision", _vision];
     };
 
-    // Satellite: straight down from orbit. A camera aimed at a point directly below it
-    // has no usable up vector and renders sky, so the orientation is set explicitly.
+    // Satellite: straight down from orbit. A camera aimed at a point directly below it has no usable up vector and renders sky, so the orientation is set explicitly.
     if ((_screen getVariable [QGVAR(mode), _state get "mode"]) isEqualTo FEED_MODE_SATELLITE) exitWith {
         private _satPos = _screen getVariable [QGVAR(satPos), [worldSize / 2, worldSize / 2]];
         private _alt = _screen getVariable [QGVAR(satAlt), _state get "satAlt"];
@@ -133,8 +127,7 @@ private _trackPFH = [{
 
     private _renderMode = _screen getVariable [QGVAR(renderMode), RENDER_MODE_ACCURATE];
     if (_renderMode isEqualTo RENDER_MODE_PROXY && _actualView isEqualTo VIEW_GUNNER) then {
-        // Top down proxy: look straight down at the ground point the turret is
-        // aimed at, from the configured proxy altitude.
+        // Top down proxy: look straight down at the ground point the turret is aimed at, from the configured proxy altitude.
         private _hits = lineIntersectsSurfaces [_camPos, _camPos vectorAdd (_dir vectorMultiply 12000), _drone, objNull, true, 1, "GEOM", "NONE"];
         private _ground = if (_hits isEqualTo []) then {
             _camPos vectorAdd (_dir vectorMultiply 3000)
@@ -145,15 +138,12 @@ private _trackPFH = [{
         _cam setPosASL [_ground select 0, _ground select 1, (_ground select 2) + _proxyAlt];
         _cam setVectorDirAndUp [[0, 0, -1], vectorDir _drone];
     } else {
-        // Smooth the aim so engine vibration of the turret bones and frame to frame
-        // noise do not shake the picture; a time based blend keeps it frame rate
-        // independent while still following the gimbal closely.
+        // Smooth the aim so engine vibration of the turret bones and frame to frame noise do not shake the picture; a time based blend keeps it frame rate independent while still following the gimbal closely.
         private _prevDir = _state getOrDefault ["smoothDir", _dir];
         private _blend = 1 - exp (-diag_deltaTime * 10);
         _dir = vectorNormalized (_prevDir vectorAdd ((_dir vectorDiff _prevDir) vectorMultiply _blend));
         _state set ["smoothDir", _dir];
-        // getTurretAim works in ASL; build an up vector square to the view so the
-        // picture stays level whichever way the gimbal points.
+        // getTurretAim works in ASL; build an up vector square to the view so the picture stays level whichever way the gimbal points.
         private _side = _dir vectorCrossProduct [0, 0, 1];
         if (vectorMagnitude _side < 0.001) then {_side = _dir vectorCrossProduct (vectorDir _drone)};
         private _up = vectorNormalized (_side vectorCrossProduct _dir);
@@ -165,8 +155,7 @@ private _trackPFH = [{
 _state set ["trackPFH", _trackPFH];
 DBG(FORMAT_4("feed %1 activated on screen %2 (mode %3, view %4)",_feedId,typeOf _screen,_screen getVariable [ARR_2(QGVAR(mode),"?")],_screen getVariable [ARR_2(QGVAR(view),"?")]));
 
-// Auto-cycle gunner and driver for the "both" view so every viewer sees the
-// same picture at the same time.
+// Auto-cycle gunner and driver for the "both" view so every viewer sees the same picture at the same time.
 if ((_screen getVariable [QGVAR(view), VIEW_GUNNER]) isEqualTo VIEW_BOTH) then {
     private _cyclePFH = [{
         params ["_args", "_handle"];

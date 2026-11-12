@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the UFO crop circle effect. Reads the module
  * attributes placed in the editor and burns a crop circle at the module
- * position when the mission begins.
+ * position when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

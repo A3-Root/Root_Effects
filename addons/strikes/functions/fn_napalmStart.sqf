@@ -48,16 +48,13 @@ _duration = _duration max 15;
 _damage = _damage && GVAR(allowDamage);
 _dropDelay = _dropDelay max 5;
 
-// Attack run announcing the drop. Pass the true heading as a fractional
-// direction index so the plane flies exactly along the attack line instead of
-// snapping to the nearest 45 degrees.
+// Attack run announcing the drop. Pass the true heading as a fractional direction index so the plane flies exactly along the attack line instead of snapping to the nearest 45 degrees.
 [_planeClass, ATLToASL _pos, true, 300, 4000, _heading / 45, 2, 1] call zen_modules_fnc_moduleAmbientFlyby;
 
 [{
     params ["_pos", "_heading", "_length", "_duration", "_damage"];
 
-    // Real ordnance only when this strike is allowed to hurt anyone; a visual
-    // strike goes straight to the fire so nothing is destroyed by the drop.
+    // Real ordnance only when this strike is allowed to hurt anyone; a visual strike goes straight to the fire so nothing is destroyed by the drop.
     if (!_damage) exitWith {
         [_pos, _heading, _length, _duration, _damage] call FUNC(napalmIgnite);
     };
@@ -66,8 +63,7 @@ _dropDelay = _dropDelay max 5;
 
     private _firstDrop = _pos getPos [_length / 2, _heading + 180];
     private _bombCount = round (_length / 15) max 4;
-    // Space the drops so the first and last land on the two ends of the line,
-    // covering its whole length rather than stopping a step short.
+    // Space the drops so the first and last land on the two ends of the line, covering its whole length rather than stopping a step short.
     private _increment = _length / (_bombCount - 1);
 
     // Walk the stick of bombs along the fire line, one drop per step.
@@ -82,9 +78,7 @@ _dropDelay = _dropDelay max 5;
         _args set [3, _index + 1];
 
         private _linePos = _firstDrop getPos [_increment * _index, _heading];
-        // Drop from directly above each line position and fall straight down so
-        // the craters land on the line instead of drifting off with a fixed
-        // world-space velocity that ignored the attack heading.
+        // Drop from directly above each line position and fall straight down so the craters land on the line instead of drifting off with a fixed world-space velocity that ignored the attack heading.
         private _dropPos = [_linePos select 0, _linePos select 1, 150] vectorAdd [random 10 - 5, random 10 - 5, 0];
 
         private _bomb = createVehicle ["Bo_Mk82", _dropPos, [], 0, "CAN_COLLIDE"];

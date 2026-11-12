@@ -1,7 +1,6 @@
 #include "script_component.hpp"
 
-// Damage helpers are routed here by the server whenever it does not own the
-// target, so every machine has to be able to answer.
+// Damage helpers are routed here by the server whenever it does not own the target, so every machine has to be able to answer.
 [QGVAR(doDamageLocal), {
     _this call FUNC(doDamageLocal);
 }] call CBA_fnc_addEventHandler;
@@ -16,8 +15,7 @@
     if (local _object) then {_object setVelocity _velocity};
 }] call CBA_fnc_addEventHandler;
 
-// Fired for every machine when an instance is terminated so each deletes the
-// persistent local props (craters, decals) it created for that anchor.
+// Fired for every machine when an instance is terminated so each deletes the persistent local props (craters, decals) it created for that anchor.
 [QGVAR(cleanupLocalObjects), {
     params ["_key"];
     private _objects = GVAR(localObjects) getOrDefault [_key, []];
@@ -34,8 +32,7 @@
 }] call CBA_fnc_addEventHandler;
 
 if (isServer) then {
-    // Curator asked for the list of running effect instances; answer with a
-    // snapshot so their machine can open the termination dialog.
+    // Curator asked for the list of running effect instances; answer with a snapshot so their machine can open the termination dialog.
     [QGVAR(requestInstances), {
         params [["_requester", objNull, [objNull]]];
         if (isNull _requester) exitWith {};
@@ -68,15 +65,13 @@ if (isServer) then {
                     [_effectKey, _anchor] call FUNC(stopEffect);
                 };
                 case "pause": {
-                    // Stop new particles but leave the instance and its existing
-                    // particles running; the flag is read by the effect's own loop.
+                    // Stop new particles but leave the instance and its existing particles running; the flag is read by the effect's own loop.
                     if (!isNull _anchor) then {
                         _anchor setVariable [QGVAR(paused), true, true];
                     };
                 };
                 case "fade": {
-                    // Signal the loop to stop emitting, then tear the whole
-                    // instance down a few seconds later so it clears gradually.
+                    // Signal the loop to stop emitting, then tear the whole instance down a few seconds later so it clears gradually.
                     if (!isNull _anchor) then {
                         _anchor setVariable [QGVAR(paused), true, true];
                         [{

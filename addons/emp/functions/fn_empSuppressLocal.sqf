@@ -29,8 +29,7 @@ if (GVAR(suppressHandle) >= 0) exitWith {};
 
 #define PANEL_TYPES ["MinimapDisplayComponent", "SensorsDisplayComponent", "UAVFeedDisplayComponent", "CrewDisplayComponent", "TransportFeedDisplayComponent", "SlingLoadDisplayComponent", "MineDetectorDisplayComponent", "CustomDisplayComponent"]
 
-// [panels off [target, panel, type], sensors off [vehicle, name], channels [id, state], pp handles, vehicle,
-//  unit holding the stash, next stash check]
+// [panels off [target, panel, type], sensors off [vehicle, name], channels [id, state], pp handles, vehicle, unit holding the stash, next stash check]
 private _state = [[], [], [], [], objNull, player, 0];
 
 GVAR(suppressHandle) = [{

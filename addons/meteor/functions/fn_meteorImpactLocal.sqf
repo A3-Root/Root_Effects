@@ -87,8 +87,7 @@ private _shakePower = linearConversion [0, 2000, player distance _impactPos, 8, 
     enableCamShake true;
     addCamShake [_shakePower, 5, 35];
 
-    // Detonation layers pitched down under the impact sample: the crack of the
-    // strike first, then the sub-bass of the ground taking it.
+    // Detonation layers pitched down under the impact sample: the crack of the strike first, then the sub-bass of the ground taking it.
     playSound3D ["z\root_effects\addons\battlescripts\sounds\explosion_2.ogg", objNull, false, ATLToASL _impactPos, 6, 0.8, 3500, 0, true];
 
     [{

@@ -1,4 +1,3 @@
-<!-- Modified by Root -->
 # EMP Field
 
 An electromagnetic pulse field on an object (e.g. `RuggedTerminal_01_communications_hub_F`) or a position. Defaults: 500 m radius and height, 10 s countdown, until shut down, 25 m/s shockwave, 10 s recovery delay, white 65 % dome without shimmer, ACE shutdown interaction, implode shutdown at 50 m/s with a small blast.

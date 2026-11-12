@@ -46,8 +46,7 @@ if (_caught isEqualTo []) exitWith {
 [_caught, true] call FUNC(cryoBlastFreeze);
 
 if (_lethalCore) then {
-    // Only the core is cold enough to hurt; the rest of the blast just locks
-    // people up.
+    // Only the core is cold enough to hurt; the rest of the blast just locks people up.
     private _coreRadius = _radius * 0.25;
     {
         private _scaled = linearConversion [0, _coreRadius, _x distance2D _pos, 0.8, 0.2, true];

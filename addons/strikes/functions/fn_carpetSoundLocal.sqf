@@ -26,8 +26,7 @@ DBG(FORMAT_1("carpetSoundLocal running here with %1",_this));
 if (_cue isEqualTo "jet") then {
     playSound (selectRandom ["BattlefieldJet1_3D", "BattlefieldJet2_3D", "BattlefieldJet3_3D"]);
 } else {
-    // Local whistle source at the projected impact point; the vanilla shell
-    // whistle classes need an emitting object.
+    // Local whistle source at the projected impact point; the vanilla shell whistle classes need an emitting object.
     private _groundPos = +_pos;
     _groundPos set [2, 0];
 

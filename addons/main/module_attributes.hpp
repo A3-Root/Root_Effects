@@ -1,17 +1,12 @@
-// Shared building blocks for 3DEN editor module definitions. Effect addons
-// include this file from their CfgVehicles.hpp and expand the macros inside
-// their module class bodies to keep attribute declarations uniform.
+// Shared building blocks for 3DEN editor module definitions. Effect addons include this file from their CfgVehicles.hpp and expand the macros inside their module class bodies to keep attribute declarations uniform.
 
-// Common properties for every Root's Effects 3DEN module. The module function
-// runs once on the server at mission start and never inside the editor. Each
-// including file defines ROOT_MODULE_CATEGORY to place its modules in the right
-// themed sub-category of the editor menu.
+// Common properties for every Root's Effects 3DEN module. The module function runs once on the server when its synced trigger fires, or at mission start without one. Each including file defines ROOT_MODULE_CATEGORY to place its modules in the right themed sub-category of the editor menu.
 #define ROOT_MODULE_3DEN_COMMON \
     scope = 2; \
     category = ROOT_MODULE_CATEGORY; \
     functionPriority = 1; \
     isGlobal = 0; \
-    isTriggerActivated = 0; \
+    isTriggerActivated = 1; \
     isDisposable = 1; \
     is3DEN = 0; \
     icon = "\a3\Modules_F_Curator\Data\iconLightning_ca.paa"
@@ -29,8 +24,7 @@
 // Numeric attribute with an unquoted default, for negative defaults.
 #define ROOT_ATTR_NUMBER_RAW(PROP,NAME,TIP,DEFVAL)     class PROP: Edit {         property = QUOTE(PROP);         displayName = NAME;         tooltip = TIP;         typeName = "NUMBER";         defaultValue = DEFVAL;     }
 
-// Free text attribute rendered as an edit box. DEFVAL must be a quoted SQF
-// string expression, e.g. "'B_Plane_CAS_01_dynamicLoadout_F'".
+// Free text attribute rendered as an edit box. DEFVAL must be a quoted SQF string expression, e.g. "'B_Plane_CAS_01_dynamicLoadout_F'".
 #define ROOT_ATTR_STRING(PROP,NAME,TIP,DEFVAL) \
     class PROP: Edit { \
         property = QUOTE(PROP); \

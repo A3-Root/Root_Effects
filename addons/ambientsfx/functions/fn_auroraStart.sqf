@@ -57,8 +57,7 @@ _anchorPos set [2, _altitude];
 private _anchor = ["aurora", QGVAR(auroraLocal), [_fadeIn, _fadeOut, _lifetime, _density, _buildUp, CBA_missionTime], _anchorPos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
-// Live settings the renderers follow, and the switch/move control. Fixed in place
-// starts the band held: it fills up once and then never changes.
+// Live settings the renderers follow, and the switch/move control. Fixed in place starts the band held: it fills up once and then never changes.
 [
     _anchor,
     [true, !_fixed, (_sizeScale max 0.2) min 5, (_lengthScale max 0.2) min 5, _shape, floor random 1e6],

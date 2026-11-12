@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the floating objects gag. Reads the module
  * attributes placed in the editor and animates the nearest object to the
- * module (or every synchronized object) when the mission begins.
+ * module (or every synchronized object) when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>
@@ -44,9 +45,8 @@ private _orbitSpeed = _logic getVariable ["ROOT_FLOAT_ORBITSPEED", 0.1];
 private _orbitCw = _logic getVariable ["ROOT_FLOAT_ORBITCW", true];
 private _actDist = _logic getVariable ["ROOT_FLOAT_ACTDIST", 9999];
 
-// Animate every synchronized object, or the nearest object when nothing is
-// synchronized in the editor.
-private _targets = _units select {!isNull _x};
+// Animate every synchronized object, or the nearest object when nothing is synchronized in the editor.
+private _targets = _units select {!isNull _x && {!(_x isKindOf "EmptyDetector")}};
 if (_targets isEqualTo []) then {
     private _nearest = nearestObjects [getPosATL _logic, [], 10] select {!(_x isKindOf "Logic")};
     if (_nearest isNotEqualTo []) then {

@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the AAN news article. Reads the module
  * attributes placed in the editor and broadcasts the article to all players
- * when the mission begins.
+ * when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

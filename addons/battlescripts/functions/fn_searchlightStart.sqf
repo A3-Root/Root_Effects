@@ -32,9 +32,7 @@ DBG(FORMAT_1("searchlightStart called with %1",_this));
 if (!isServer) exitWith {};
 if (!(["searchlight"] call EFUNC(main,isEffectEnabled))) exitWith {};
 
-// The mount is resolved once here and shipped to the clients, so every machine
-// animates the beam against the same object.
-// Effect anchors are invisible helipads and would otherwise win the search.
+// The mount is resolved once here and shipped to the clients, so every machine animates the beam against the same object. Effect anchors are invisible helipads and would otherwise win the search.
 private _attachTo = objNull;
 if (_attach) then {
     _attachTo = ((nearestObjects [_pos, ["AllVehicles", "Static"], 8]) select {(typeOf _x) isNotEqualTo ANCHOR_CLASS}) param [0, objNull];

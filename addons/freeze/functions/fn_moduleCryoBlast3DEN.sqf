@@ -3,8 +3,8 @@
 /*
  * Author: Root
  * 3DEN module entry point for the cryogenic blast. Reads the module attributes
- * placed in the editor and detonates the blast at the module position when the
- * mission begins.
+ * placed in the editor and detonates the blast at the module position when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

@@ -1,4 +1,3 @@
-// Modified by Root
 #include "\z\root_effects\addons\main\module_attributes.hpp"
 
 #define ROOT_MODULE_CATEGORY "ROOT_EFFECTS_STRIKES"
@@ -23,8 +22,7 @@ class CfgVehicles {
     };
 
     class Static;
-    // Dome patches: 15 x 15 degree pieces of a unit sphere, one per 15 degree band
-    // up from the equator, centered on their bounding box, frosted glass on both sides.
+    // Dome patches: 15 x 15 degree pieces of a unit sphere, one per 15 degree band up from the equator, centered on their bounding box, frosted glass on both sides.
     class ROOT_EMP_DomePatchBase: Static {
         scope = 1;
         author = "Root";

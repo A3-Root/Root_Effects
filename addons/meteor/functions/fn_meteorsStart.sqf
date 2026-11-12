@@ -44,8 +44,7 @@ _lethal = _lethal && GVAR(allowLethality);
 private _anchor = ["meteors", "", [], _pos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
-// The spawner reads the targeting choice back off the anchor for every meteor,
-// so a running instance keeps aiming the way it was set up.
+// The spawner reads the targeting choice back off the anchor for every meteor, so a running instance keeps aiming the way it was set up.
 _anchor setVariable [QGVAR(targetMode), _targetMode];
 _anchor setVariable [QGVAR(targetRadius), _targetRadius];
 _anchor setVariable [QGVAR(targetOwners), _owners];

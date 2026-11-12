@@ -3,8 +3,8 @@
 /*
  * Author: Root
  * 3DEN module entry point for a feed. Reads the editor attributes and starts a
- * feed at the module position once the mission begins, spawning its own screen
- * and (for a drone feed) drone.
+ * feed at the module position when its trigger fires (or at mission start without
+ * one), spawning its own screen and (for a drone feed) drone.
  *
  * Arguments:
  * 0: Module logic <OBJECT>

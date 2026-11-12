@@ -1,5 +1,4 @@
-// Frosted glass for the EMP dome: unlit by diffuse and point lights, lit by
-// ambient, sun specular and the environment; tint and opacity come from camo.
+// Frosted glass for the EMP dome: unlit by diffuse and point lights, lit by ambient, sun specular and the environment; tint and opacity come from camo.
 ambient[] = {1, 1, 1, 1};
 diffuse[] = {0, 0, 0, 1};
 forcedDiffuse[] = {0, 0, 0, 0};

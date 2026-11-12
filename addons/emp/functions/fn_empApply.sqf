@@ -126,8 +126,7 @@ switch (_action) do {
         _entity setCollisionLight false;
         _entity disableTIEquipment true;
         _entity disableNVGEquipment true;
-        // Engine hitpoints wrecked while knocked out; first hit saves their damage
-        // and drains fuel, a vehicle hit again (new owner) keeps the saved values.
+        // Engine hitpoints wrecked while knocked out; first hit saves their damage and drains fuel, a vehicle hit again (new owner) keeps the saved values.
         private _engines = ((getAllHitPointsDamage _entity) param [0, []]) select {"engine" in toLowerANSI _x};
         if (isNil {_entity getVariable QGVAR(savedEngine)}) then {
             _entity setVariable [QGVAR(savedEngine), _engines apply {[_x, _entity getHitPointDamage _x]}, true];

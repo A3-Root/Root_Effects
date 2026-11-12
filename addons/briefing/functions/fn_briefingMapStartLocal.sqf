@@ -56,8 +56,7 @@ private _state = [_anchor, _centerMarker, _zoom, _activationDistance, false, "",
     private _display = findDisplay _displayName;
     if (isNull _display) exitWith {};
 
-    // A player-clicked area overrides everything; otherwise a marker; otherwise
-    // the board's own position.
+    // A player-clicked area overrides everything; otherwise a marker; otherwise the board's own position.
     private _center = getPosATL _board;
     private _override = _anchor getVariable [QGVAR(feedCenter), []];
     if (_override isNotEqualTo []) then {
@@ -87,10 +86,7 @@ private _state = [_anchor, _centerMarker, _zoom, _activationDistance, false, "",
     displayUpdate _display;
 }, GVAR(mapUpdateInterval), _state] call CBA_fnc_addPerFrameHandler;
 
-// Control ownership watcher: adds the take/release actions once the board is
-// known and, while this player owns the board, marks it as the anchor the
-// global map-click handler feeds and auto-releases when they can no longer use
-// it. [anchor, actionsAdded, inControl, actDist]
+// Control ownership watcher: adds the take/release actions once the board is known and, while this player owns the board, marks it as the anchor the global map-click handler feeds and auto-releases when they can no longer use it. [anchor, actionsAdded, inControl, actDist]
 private _ctrlState = [_anchor, false, false, _activationDistance];
 
 [{

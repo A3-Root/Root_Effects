@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the singularity strike. Reads the module
  * attributes placed in the editor and starts the anomaly at the module
- * position when the mission begins.
+ * position when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

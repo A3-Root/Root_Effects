@@ -1,4 +1,3 @@
-<!-- Modified by Root -->
 # Root's Effects - Reworked Effects for Zeus and 3DEN
 
 ![version](https://img.shields.io/badge/version-4.0.0.3-blue)
@@ -34,7 +33,7 @@ Useful for **Stalker**, **SCP**, **Halloween**, **F.E.A.R**, **Horror**, **Sci-F
 
 # Effects
 
-All effects appear in the "Root's Effects" category of the Zeus Modules tab and in 3DEN under Systems > Modules. Every parameter has a tooltip. Running effects can be stopped one by one, per type, or all at once through the **Terminate Effects** module, even when the same effect runs at several places simultaneously.
+All effects appear in the "Root's Effects" category of the Zeus Modules tab and in 3DEN under Systems > Modules. Every parameter has a tooltip. 3DEN modules run when a synced trigger fires; without one they run at mission start. Running effects can be stopped one by one, per type, or all at once through the **Terminate Effects** module, even when the same effect runs at several places simultaneously.
 
 ### **Terminate Effects** (main)
 - Lists every running effect instance with its grid and runtime.

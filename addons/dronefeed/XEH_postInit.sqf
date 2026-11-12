@@ -20,8 +20,7 @@ if (isServer) then {
         _this call FUNC(serverKillAll);
     }] call CBA_fnc_addEventHandler;
 
-    // A curator asked for the list of running feeds; answer their machine with a
-    // snapshot so the modify or delete dialog can be built from live data.
+    // A curator asked for the list of running feeds; answer their machine with a snapshot so the modify or delete dialog can be built from live data.
     [QGVAR(requestFeedList), {
         params [["_purpose", "", [""]], ["_requester", objNull, [objNull]]];
         if (isNull _requester) exitWith {};
@@ -63,8 +62,7 @@ if (isServer) then {
 if (hasInterface) then {
     // Client side record of feeds active on this machine: feedId -> state hashmap.
     GVAR(activeFeeds) = createHashMap;
-    // Number of feeds the player is currently close enough to render, so the
-    // view distance is only saved and restored on the first enter and last exit.
+    // Number of feeds the player is currently close enough to render, so the view distance is only saved and restored on the first enter and last exit.
     GVAR(proximityCount) = 0;
 
     [QGVAR(setupLocal), {

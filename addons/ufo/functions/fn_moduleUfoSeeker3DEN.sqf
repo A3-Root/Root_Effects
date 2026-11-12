@@ -3,8 +3,8 @@
 /*
  * Author: Root
  * 3DEN module entry point for the UFO seeker effect. Reads the module
- * attributes placed in the editor and starts the wandering seeker light when
- * the mission begins.
+ * attributes placed in the editor and starts the wandering seeker light when its
+ * trigger fires (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

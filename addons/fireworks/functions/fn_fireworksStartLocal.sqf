@@ -46,8 +46,7 @@ private _state = [_anchor, _radius, _height, _sounds, 60 / (_rate max 1), 0];
     private _launchPos = _anchor getPos [random _radius, random 360];
     private _burstPos = _launchPos vectorAdd [random 20 - 10, random 20 - 10, _height * (0.8 + random 0.4)];
     private _flightTime = 1.8 + random 0.8;
-    // Two-tone shells: the stars burn from the first colour into the second,
-    // which reads far richer than a single flat hue.
+    // Two-tone shells: the stars burn from the first colour into the second, which reads far richer than a single flat hue.
     private _colors = selectRandom [
         [[1, 0.15, 0.1], [1, 0.8, 0.25]],
         [[0.2, 0.45, 1], [0.7, 0.9, 1]],
@@ -64,8 +63,7 @@ private _state = [_anchor, _radius, _height, _sounds, 60 / (_rate max 1), 0];
         ], objNull, false, ATLToASL _launchPos, 2, 1, 1200, 0, true];
     };
 
-    // Rising trail: a light climbing from the pad to the burst point, with a
-    // spark trail attached so the shell leaves a wake on the way up.
+    // Rising trail: a light climbing from the pad to the burst point, with a spark trail attached so the shell leaves a wake on the way up.
     private _rocketLight = "#lightpoint" createVehicleLocal _launchPos;
     _rocketLight setLightBrightness 1.2;
     _rocketLight setLightColor [1, 0.75, 0.4];

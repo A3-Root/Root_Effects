@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the briefing table diorama. Reads the module
  * attributes placed in the editor and builds a miniature of the marker area
- * on the synchronized (or nearest) table when the mission begins.
+ * on the synchronized (or nearest) table when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>
@@ -37,7 +38,7 @@ private _heightOffset = _logic getVariable ["ROOT_BTABLE_HEIGHT", 0.4];
 
 // Use a synchronized table, or the nearest static object to the module.
 private _table = objNull;
-private _synced = _units select {!isNull _x};
+private _synced = _units select {!isNull _x && {!(_x isKindOf "EmptyDetector")}};
 if (_synced isNotEqualTo []) then {
     _table = _synced select 0;
 } else {

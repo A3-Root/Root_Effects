@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the ambient tracer fire. Reads the module
  * attributes placed in the editor and starts a tracer source at the module
- * position when the mission begins.
+ * position when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

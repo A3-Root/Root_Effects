@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the live briefing map. Reads the module
  * attributes placed in the editor and places a map board with a live map
- * feed at the module position when the mission begins.
+ * feed at the module position when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

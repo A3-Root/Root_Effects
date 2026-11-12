@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the aurora borealis. Reads the module
  * attributes placed in the editor and starts an aurora above the module
- * position when the mission begins.
+ * position when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

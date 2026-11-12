@@ -30,9 +30,7 @@ private _target = [
     _anchor getVariable [QGVAR(targetRadius), 300],
     _anchor getVariable [QGVAR(targetOwners), []]
 ] call FUNC(pickTarget);
-// Spawn high above the chosen impact point with a modest lateral offset so the
-// meteor streaks in on a slant, then aim its velocity straight at that point so
-// it actually converges on the target rather than drifting off ballistically.
+// Spawn high above the chosen impact point with a modest lateral offset so the meteor streaks in on a slant, then aim its velocity straight at that point so it actually converges on the target rather than drifting off ballistically.
 private _targetGround = [_target select 0, _target select 1, 0];
 private _startPos = _targetGround vectorAdd [
     (selectRandom [1, -1]) * (150 + random 200),
@@ -78,9 +76,7 @@ _meteor setVelocity _velocity;
         } forEach (_impactPos nearEntities [["Man", "LandVehicle", "Air"], 100]);
     };
 
-    // Optional destruction of the impact site itself: level nearby buildings and
-    // flatten vegetation so the strike leaves a scar on the world, not just on
-    // the units standing in it. Gated by the global damage kill switch.
+    // Optional destruction of the impact site itself: level nearby buildings and flatten vegetation so the strike leaves a scar on the world, not just on the units standing in it. Gated by the global damage kill switch.
     if ((_anchor getVariable [QGVAR(structureDamage), false]) && EGVAR(main,damageAllowed)) then {
         private _structureRadius = 25;
         {

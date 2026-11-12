@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the meteors and comets effect. Reads the
  * module attributes placed in the editor and starts the selected spawners
- * when the mission begins.
+ * when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>
@@ -37,8 +38,7 @@ private _cometFreq = _logic getVariable ["ROOT_METEOR_COMETFREQ", 30];
 private _lethal = _logic getVariable ["ROOT_METEOR_LETHAL", true];
 private _structureDamage = _logic getVariable ["ROOT_METEOR_STRUCTUREDAMAGE", false];
 
-// Only the player and area modes are offered here; picking out specific sides,
-// groups or players needs the curator interface.
+// Only the player and area modes are offered here; picking out specific sides, groups or players needs the curator interface.
 private _targetMode = (_logic getVariable ["ROOT_METEOR_TARGETMODE", 0]) min 1;
 private _targetRadius = _logic getVariable ["ROOT_METEOR_TARGETRADIUS", 300];
 

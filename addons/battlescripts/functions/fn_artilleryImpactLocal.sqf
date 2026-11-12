@@ -28,9 +28,7 @@ private _distance = VIEWER_POS distance2D _impactPos;
 if (_distance > EGVAR(main,maxViewDistance)) exitWith {};
 DBG(FORMAT_1("artilleryImpactLocal running here with %1",_this));
 
-// Every impact gets its own sound source that lives until the reports have rung
-// out. A shared source (or a sound that dies with its emitter) gets cut off by the
-// next shell, which breaks the rolling rhythm of a barrage.
+// Every impact gets its own sound source that lives until the reports have rung out. A shared source (or a sound that dies with its emitter) gets cut off by the next shell, which breaks the rolling rhythm of a barrage.
 private _voice = "Land_HelipadEmpty_F" createVehicleLocal _impactPos;
 _voice setPosATL (_impactPos vectorAdd [0, 0, 1]);
 private _sounds = [QGVAR(explosion_1), QGVAR(explosion_2), QGVAR(explosion_3), QGVAR(explosion_4)];
@@ -60,8 +58,7 @@ if (_soundOnly) exitWith {};
 
 private _budget = (EGVAR(main,particleBudget)) max 0.1;
 
-// Flash: same treatment as the flak bursts, a daylight-visible light with a big
-// lens flare that pops and then fades.
+// Flash: same treatment as the flak bursts, a daylight-visible light with a big lens flare that pops and then fades.
 private _flash = "#lightpoint" createVehicleLocal (_impactPos vectorAdd [0, 0, 3]);
 _flash setLightDayLight true;
 _flash setLightUseFlare true;

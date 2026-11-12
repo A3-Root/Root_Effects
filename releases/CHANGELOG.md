@@ -1,5 +1,9 @@
 # Changelog for Root's Effects
 
+## Version: 4.0.0.4
+### Changed
+- 3DEN modules wait for a synced trigger; without one they run at mission start.
+
 ## Version: 4.0.0.3
 ### Added
 - EMP Field Jam Radios modes (Zeus, 3DEN `ROOT_EMP_RADIOMODE`, API `radios`): Off, Outside (no link across the field edge), All (no link with any radio inside).

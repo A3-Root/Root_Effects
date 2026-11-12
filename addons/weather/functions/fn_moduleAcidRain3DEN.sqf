@@ -3,8 +3,8 @@
 /*
  * Author: Root
  * 3DEN module entry point for the acid rain. Reads the module attributes
- * placed in the editor and starts acid rain around the module position when
- * the mission begins.
+ * placed in the editor and starts acid rain around the module position when its
+ * trigger fires (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

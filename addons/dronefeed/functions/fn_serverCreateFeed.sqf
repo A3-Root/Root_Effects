@@ -97,8 +97,7 @@ private _feedId = format ["df_%1_%2", diag_frameNo, floor random 1000000];
 private _rttRes = GVAR(textureResolution);
 private _cycleInterval = GVAR(autoCycleInterval);
 
-// Start the effect: the anchor JIP-broadcasts the client setup and lets the
-// Terminate module and stopEffect clean the whole feed up later.
+// Start the effect: the anchor JIP-broadcasts the client setup and lets the Terminate module and stopEffect clean the whole feed up later.
 private _setupParams = [_feedId, netId _screen, _droneRef, _mode, _textureId, _rttRes, _radius, _renderMode, _view, _satAlt, _proxyAlt, _cycleInterval];
 private _anchor = ["dronefeed", QGVAR(setupLocal), _setupParams, _center] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {
@@ -108,8 +107,7 @@ if (isNull _anchor) exitWith {
 // Objects we spawned are deleted with the anchor; pre-existing ones are left be.
 _anchor setVariable [QEGVAR(main,attachedObjects), _spawned];
 
-// Mutable feed state lives on the screen so clients can diff it per frame and
-// JIP clients pick up the current values for free.
+// Mutable feed state lives on the screen so clients can diff it per frame and JIP clients pick up the current values for free.
 _screen setVariable [QGVAR(feedId), _feedId, true];
 _screen setVariable [QGVAR(anchor), _anchor, true];
 _screen setVariable [QGVAR(mode), _mode, true];

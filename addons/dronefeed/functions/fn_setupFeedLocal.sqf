@@ -84,8 +84,7 @@ private _state = createHashMapFromArray [
 
 GVAR(activeFeeds) set [_feedId, _state];
 
-// Proximity watcher: brings the feed up in range, takes it down out of range and
-// self-destructs once the anchor (and with it the whole feed) is deleted.
+// Proximity watcher: brings the feed up in range, takes it down out of range and self-destructs once the anchor (and with it the whole feed) is deleted.
 private _pfh = [{
     params ["_args", "_handle"];
     _args params ["_feedId"];

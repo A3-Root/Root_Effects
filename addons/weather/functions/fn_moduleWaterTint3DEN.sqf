@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the water tint. Reads the module attributes
  * placed in the editor and starts the tint zone around the module position
- * when the mission begins.
+ * when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

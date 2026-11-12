@@ -97,9 +97,7 @@ _anchor setVariable [QGVAR(domeLocal), true];
     private _toViewer = (_viewer distance _center) - _sphere;
     if (_toViewer > EGVAR(main,maxViewDistance) || _fade <= 0) exitWith {call _fnc_clear};
 
-    // Shell: a ring of patches per band from 1, 2 or 6 bands (domeDepth) below the
-    // ground line up, bands below the equator mirrored; moved and scaled when the
-    // cap or its object moves.
+    // Shell: a ring of patches per band from 1, 2 or 6 bands (domeDepth) below the ground line up, bands below the equator mirrored; moved and scaled when the cap or its object moves.
     private _groundPitch = asin ((((-_offset) / _sphere) max -1) min 1);
     private _lowest = ((floor (_groundPitch / PATCH_STEP)) - ([1, 2, 6] select (_cfg get "domeDepth"))) max (-90 / PATCH_STEP);
     if (_patches isEqualTo [] || {(_shellKey param [2, 99]) != _lowest}) then {
@@ -157,8 +155,7 @@ _anchor setVariable [QGVAR(domeLocal), true];
     private _lightning = _cfg getOrDefault ["domeLightning", true];
     private _veilRange = (_fullSphere * 2.2) max 600;
 
-    // Veil and haze on the surface within range of the viewer, sized by distance so
-    // they read the same near and far; the haze crowds the ground line.
+    // Veil and haze on the surface within range of the viewer, sized by distance so they read the same near and far; the haze crowds the ground line.
     if (_now >= _nextVeil && abs _toViewer < _veilRange) then {
         _args set [5, _now + 0.1];
         private _veilAlpha = ((_alpha * 0.6) min 0.15) max 0.02;

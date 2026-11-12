@@ -3,8 +3,8 @@
 /*
  * Author: Root
  * 3DEN module entry point for the scree avalanche. Reads the module attributes
- * placed in the editor and starts the slide at the module position when the
- * mission begins.
+ * placed in the editor and starts the slide at the module position when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

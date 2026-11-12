@@ -32,8 +32,7 @@ class Extended_PostInit_EventHandlers {
 
 class CfgFactionClasses {
     class NO_CATEGORY;
-    // Themed sub-categories so the many modules group sensibly in the Zeus and
-    // 3DEN module menus instead of piling into one long list.
+    // Themed sub-categories so the many modules group sensibly in the Zeus and 3DEN module menus instead of piling into one long list.
     class ROOT_EFFECTS_BATTLE: NO_CATEGORY {
         displayName = CSTRING(CategoryBattle);
     };

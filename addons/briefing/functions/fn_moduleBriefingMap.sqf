@@ -50,8 +50,7 @@ private _classNames = ["Map Board", "PC Screen", "Tripod Screen", "Briefing Room
         _class = _customClass;
     };
 
-    // Either click the shown area on the map now, or fall back to the marker /
-    // board position handled client side when no explicit centre is given.
+    // Either click the shown area on the map now, or fall back to the marker / board position handled client side when no explicit centre is given.
     if (_pickCenter) then {
         [objNull, {
             params ["_success", "", "_posASL", "_cbArgs"];

@@ -40,8 +40,7 @@ _flash setLightUseFlare true;
 _flash setLightFlareSize 20 * _scale;
 _flash setLightFlareMaxDistance 4000;
 
-// Main shell: stars thrown evenly in every direction, burning from the shell's
-// primary colour through its secondary before they die.
+// Main shell: stars thrown evenly in every direction, burning from the shell's primary colour through its secondary before they die.
 private _stars = "#particlesource" createVehicleLocal _burstPos;
 _stars setParticleCircle [0, [0, 0, 0]];
 _stars setParticleRandom [0.4, [0.5, 0.5, 0.5], [26 * _scale, 26 * _scale, 26 * _scale], 0, 0.1, [0, 0, 0, 0], 0, 0];
@@ -55,19 +54,14 @@ _glitter setParticleRandom [0.8, [0.3, 0.3, 0.3], [18 * _scale, 18 * _scale, 18 
 _glitter setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 4.5, [0, 0, 0], [0, 0, 0], 0, 1.1, 1, 0.05, [0.12 * _scale], [[1, 1, 0.95, 1], [1, 0.9, 0.5, 0.6], [1, 0.85, 0.4, 1], [1, 1, 1, 0]], [0.05, 0.2, 0.5, 0.8], 0, 0, "", "", _burstPos];
 _glitter setDropInterval (0.004 / _budget);
 
-// Burning flare stars: real objects flung out on their own ballistic arcs,
-// each trailing smoke and self-illuminating, so the shell leaves live streaking
-// trails. The flares carry the burst's light themselves, so no extra dynamic
-// lights are attached, and the count scales with the particle budget to keep
-// the object and light load down when the sky is busy.
+// Burning flare stars: real objects flung out on their own ballistic arcs, each trailing smoke and self-illuminating, so the shell leaves live streaking trails. The flares carry the burst's light themselves, so no extra dynamic lights are attached, and the count scales with the particle budget to keep the object and light load down when the sky is busy.
 private _flareCount = (round (9 * _scale * _budget)) max 4;
 private _flares = [];
 for "_i" from 1 to _flareCount do {
     private _star = "CMflare_Chaff_ammo" createVehicleLocal _burstPos;
     _star setPosATL _burstPos;
 
-    // Spread the stars over a sphere biased slightly upward, then let gravity
-    // pull each arc back down.
+    // Spread the stars over a sphere biased slightly upward, then let gravity pull each arc back down.
     private _dir = vectorNormalized [random 2 - 1, random 2 - 1, (random 2 - 1) * 0.7 + 0.25];
     _star setVelocity (_dir vectorMultiply ((14 + random 12) * _scale));
 
@@ -94,10 +88,7 @@ if (_sounds && {(player distance2D _burstPos) < 2500}) then {
     }, [_burstPos], ((player distance2D _burstPos) / 343) min 2] call CBA_fnc_waitAndExecute;
 };
 
-// Some shells throw small secondary pops around the main burst. These never
-// pop again themselves, so the chain always ends here. The chance and count are
-// held down and scaled by the particle budget so a volley cannot cascade into a
-// framerate sink.
+// Some shells throw small secondary pops around the main burst. These never pop again themselves, so the chain always ends here. The chance and count are held down and scaled by the particle budget so a volley cannot cascade into a framerate sink.
 if (_allowSub && {random 1 < 0.15 * _budget}) then {
     for "_i" from 1 to (1 + floor random 2) do {
         private _subPos = _burstPos vectorAdd [random 30 - 15, random 30 - 15, random 20 - 10];

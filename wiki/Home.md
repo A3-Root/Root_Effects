@@ -2,6 +2,8 @@
 
 Effects suite rebuilt on CBA. Every effect is a Zeus module (ZEN dialog) and a 3DEN module (attributes) under **Root's Effects**.
 
+3DEN modules run when a synced trigger fires; without one they run at mission start.
+
 Works in single player, hosted multiplayer and on dedicated servers, with or without headless clients:
 - the server owns every running effect (one invisible anchor per instance) and applies all damage;
 - each client renders the visuals locally, started through a JIP-safe event, so late joiners see running effects;

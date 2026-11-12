@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the heat mirage. Reads the module attributes
  * placed in the editor and starts a shimmering heat haze zone around the
- * module position when the mission begins.
+ * module position when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

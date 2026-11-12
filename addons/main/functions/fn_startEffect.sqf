@@ -36,8 +36,7 @@ _anchor setPosATL _pos;
 _anchor setVariable [QGVAR(effectKey), _effectKey, true];
 _anchor setVariable [QGVAR(startTime), CBA_missionTime];
 
-// Anchor object doubles as the JIP id: CBA drops the queued event
-// automatically once the anchor is deleted.
+// Anchor object doubles as the JIP id: CBA drops the queued event automatically once the anchor is deleted.
 if (_startEvent isNotEqualTo "") then {
     [_startEvent, [_anchor] + _params, _anchor] call CBA_fnc_globalEventJIP;
 };

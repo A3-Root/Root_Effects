@@ -60,9 +60,7 @@ private _chargeStep = 4 / (_chargeTime * 10);
 [{
     params ["_pos", "_beamTime", "_color", "_thickness"];
 
-    // Closely spaced lights keep the column lit end to end. Flares are left off
-    // so the column glows without leaving bright flare orbs that would linger
-    // over the impact explosion and read as stray light points.
+    // Closely spaced lights keep the column lit end to end. Flares are left off so the column glows without leaving bright flare orbs that would linger over the impact explosion and read as stray light points.
     private _beamLights = [];
     for "_i" from 0 to 17 do {
         private _beamLight = "#lightpoint" createVehicleLocal (_pos vectorAdd [0, 0, 5 + _i * 40]);
@@ -75,12 +73,7 @@ private _chargeStep = 4 / (_chargeTime * 10);
 
     private _budget = (EGVAR(main,particleBudget)) max 0.1;
 
-    // The beam is built from two collimated columns: a coloured sheath and a
-    // white core inside it. Particles are dense, small and barely spread
-    // sideways, which is what makes the column read as solid light.
-    // A longer particle lifetime keeps far more sprites alive along the column
-    // at once, and the thickness multiplier widens both the sprite size and the
-    // sideways spread so the two columns overlap into a solid shaft with no gaps.
+    // The beam is built from two collimated columns: a coloured sheath and a white core inside it. Particles are dense, small and barely spread sideways, which is what makes the column read as solid light. A longer particle lifetime keeps far more sprites alive along the column at once, and the thickness multiplier widens both the sprite size and the sideways spread so the two columns overlap into a solid shaft with no gaps.
     private _beamCore = "#particlesource" createVehicleLocal (_pos vectorAdd [0, 0, 2]);
     _beamCore setParticleCircle [0, [0, 0, 0]];
     _beamCore setParticleRandom [0, [0.3 * _thickness, 0.3 * _thickness, 400], [0, 0, 0], 0, 0.1, [0, 0, 0, 0], 0, 0];
@@ -93,24 +86,21 @@ private _chargeStep = 4 / (_chargeTime * 10);
     _beamInner setParticleParams [["\A3\data_f\kouleSvetlo", 1, 0, 1], "", "Billboard", 1, 0.7, [0, 0, 400], [0, 0, 0], 0, 9.999, 7, 0, [1.2 * _thickness, 1.2 * _thickness], [[1, 1, 1, 1], [1, 1, 1, 0]], [0.08], 0, 0, "", "", _pos];
     _beamInner setDropInterval (0.0008 / _budget);
 
-    // Haze runs the full height of the column, not just the base, so the air
-    // around the whole beam boils rather than only the impact point.
+    // Haze runs the full height of the column, not just the base, so the air around the whole beam boils rather than only the impact point.
     private _heatShimmer = "#particlesource" createVehicleLocal _pos;
     _heatShimmer setParticleCircle [3, [0, 0, 0]];
     _heatShimmer setParticleRandom [1, [2, 2, 400], [0, 0, 2], 0, 0.3, [0, 0, 0, 0], 0, 0];
     _heatShimmer setParticleParams [["\A3\data_f\ParticleEffects\Universal\Refract.p3d", 1, 0, 1], "", "Billboard", 1, 1, [0, 0, 2], [0, 0, 5], 0, 9, 7, 0, [4, 8], [[1, 1, 1, 0], [1, 1, 1, 1], [1, 1, 1, 0]], [1], 0, 0, "", "", _pos];
     _heatShimmer setDropInterval 0.02;
 
-    // The volumetric shaft only reads against a dark sky; in daylight it just
-    // washes out, so it is skipped.
+    // The volumetric shaft only reads against a dark sky; in daylight it just washes out, so it is skipped.
     private _shaft = objNull;
     if (sunOrMoon < 0.4) then {
         _shaft = createSimpleObject ["A3\data_f\VolumeLight_searchLight.p3d", ATLToASL _pos, true];
         _shaft setVectorDirAndUp [[0, 0, 1], [0, 1, 0]];
     };
 
-    // Sound in layers: the crack of the beam striking, then a rolling echo off
-    // the terrain a beat later.
+    // Sound in layers: the crack of the beam striking, then a rolling echo off the terrain a beat later.
     playSound3D ["A3\sounds_f\weapons\explosion\expl_big_1.wss", objNull, false, ATLToASL (_pos vectorAdd [0, 0, 50]), 3, 0.7, 3000, 0, true];
     [{
         params ["_pos"];

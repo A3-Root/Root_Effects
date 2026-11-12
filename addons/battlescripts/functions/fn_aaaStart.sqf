@@ -62,16 +62,14 @@ if (isNull _anchor) exitWith {};
         _handle call CBA_fnc_removePerFrameHandler;
     };
 
-    // Bursts of a cycle are spaced across the cycle so a high fire rate reads
-    // as a rolling barrage rather than one simultaneous clap.
+    // Bursts of a cycle are spaced across the cycle so a high fire rate reads as a rolling barrage rather than one simultaneous clap.
     private _burstSpacing = _burstDelay / _fireRate;
     for "_i" from 0 to (_fireRate - 1) do {
         [{
             params ["_anchor", "_radius", "_altitude", "_smokeOnly", "_spread"];
             if (isNull _anchor) exitWith {};
 
-            // Random detonation point inside the barrage cylinder; a tighter
-            // spread concentrates the flak around the module position.
+            // Random detonation point inside the barrage cylinder; a tighter spread concentrates the flak around the module position.
             private _burstPos = _anchor getPos [random (_radius * _spread), random 360];
             _burstPos set [2, _altitude + (selectRandom [1, -1]) * random 50];
 
@@ -92,9 +90,7 @@ if (isNull _anchor) exitWith {};
                     [_target, _damageInf, _bodyPart, _damageType, _anchor] call EFUNC(main,doDamage);
                 } else {
                     if (_target isKindOf "Air") then {
-                        // Flak shrapnel peppers the aircraft hitpoints unevenly; two
-                        // passes of independently randomised damage per burst make the
-                        // wear accumulate in frequent, scattered increments.
+                        // Flak shrapnel peppers the aircraft hitpoints unevenly; two passes of independently randomised damage per burst make the wear accumulate in frequent, scattered increments.
                         [_target, _damageAir, true] call EFUNC(main,doHitPointDamage);
                         [_target, _damageAir, true] call EFUNC(main,doHitPointDamage);
                     };

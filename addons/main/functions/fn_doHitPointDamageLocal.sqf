@@ -28,11 +28,9 @@ if (_hitPoints isEqualTo []) exitWith {};
 _hitPoints params ["_hitPointNames", "", "_hitPointDamage"];
 
 {
-    // Some hitpoints share a selection and report an empty name; those cannot
-    // be addressed individually and are skipped.
+    // Some hitpoints share a selection and report an empty name; those cannot be addressed individually and are skipped.
     if (_x isNotEqualTo "") then {
-        // Each hitpoint can take an independent random amount so the wear reads
-        // as an uneven spread of hits rather than a uniform knock across the frame.
+        // Each hitpoint can take an independent random amount so the wear reads as an uneven spread of hits rather than a uniform knock across the frame.
         private _add = if (_randomize) then {random _damage} else {_damage};
         _vehicle setHitPointDamage [_x, (((_hitPointDamage select _forEachIndex) + _add) min 1), false];
     };

@@ -47,8 +47,7 @@ private _state = [_anchor, _count, _radius, []];
         for "_i" from 1 to _count do {
             private _bird = createVehicleLocal ["Eagle_F", _center, [], 0, "CAN_COLLIDE"];
 
-            // Each bird keeps its own orbit so the flock never flies in lockstep:
-            // [bird, angle, orbitRadius, height, angular speed, bank direction]
+            // Each bird keeps its own orbit so the flock never flies in lockstep: [bird, angle, orbitRadius, height, angular speed, bank direction]
             private _orbitRadius = _radius * (0.25 + random 0.75);
             private _birdState = [
                 _bird,
@@ -71,8 +70,7 @@ private _state = [_anchor, _count, _radius, []];
     };
 }, 2, _state] call CBA_fnc_addPerFrameHandler;
 
-// Fast loop flying the birds around their orbits. Velocity is what drives the
-// engine's glide animation, so it is set alongside the position each step.
+// Fast loop flying the birds around their orbits. Velocity is what drives the engine's glide animation, so it is set alongside the position each step.
 [{
     params ["_args", "_handle"];
     _args params ["_anchor", "_count", "_radius", "_birds"];
@@ -97,8 +95,7 @@ private _state = [_anchor, _count, _radius, []];
             _height
         ];
 
-        // Tangent of the orbit, which is both the heading and the direction of
-        // travel; scaled to a plausible glide speed.
+        // Tangent of the orbit, which is both the heading and the direction of travel; scaled to a plausible glide speed.
         private _speed = (abs _angularSpeed) * _orbitRadius * (pi / 180);
         private _dirX = cos _newAngle * (_angularSpeed / abs _angularSpeed);
         private _dirY = -sin _newAngle * (_angularSpeed / abs _angularSpeed);

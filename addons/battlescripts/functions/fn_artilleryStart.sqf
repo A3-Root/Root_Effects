@@ -58,8 +58,7 @@ if (isNull _anchor) exitWith {};
     private _impactPos = _anchor getPos [random _radius, random 360];
 
     if (_mode == 0) then {
-        // Real shell falling onto the impact point; the engine replicates
-        // explosion, sound and damage to every machine on its own.
+        // Real shell falling onto the impact point; the engine replicates explosion, sound and damage to every machine on its own.
         private _shell = createVehicle [_shellClass, _impactPos vectorAdd [0, 0, 100], [], 0, "CAN_COLLIDE"];
         _shell setVectorDirAndUp [[0, 0, -1], [0, 1, 0]];
         _shell setVelocity [0, 0, -100];

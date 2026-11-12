@@ -44,8 +44,7 @@ if (!isClass (configFile >> "CfgVehicles" >> _class)) then {
 private _anchor = ["briefingmap", QGVAR(mapLocal), [_centerMarker, _zoom, _activationDistance], _pos] call EFUNC(main,startEffect);
 if (isNull _anchor) exitWith {};
 
-// A clicked centre is stored on the anchor as the live feed override so every
-// machine, including JIP clients, resolves the same shown area.
+// A clicked centre is stored on the anchor as the live feed override so every machine, including JIP clients, resolves the same shown area.
 if (_center isNotEqualTo []) then {
     _anchor setVariable [QGVAR(feedCenter), _center, true];
 };
@@ -55,8 +54,7 @@ _board setDir _dir;
 _board setPosATL _pos;
 _board enableSimulationGlobal false;
 
-// The board travels with the instance: broadcast to clients through the
-// anchor and released together with it by the termination module.
+// The board travels with the instance: broadcast to clients through the anchor and released together with it by the termination module.
 _anchor setVariable [QGVAR(board), _board, true];
 _anchor setVariable [QEGVAR(main,attachedObjects), [_board]];
 

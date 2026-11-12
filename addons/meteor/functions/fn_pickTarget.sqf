@@ -39,8 +39,7 @@ switch (round _mode) do {
             (side (group _x)) in _sides || {(group _x) in _groups} || {_x in _players}
         };
 
-        // Nobody from the selection is around; fall back to any player, then
-        // to the module position, rather than dropping the strike.
+        // Nobody from the selection is around; fall back to any player, then to the module position, rather than dropping the strike.
         if (_candidates isEqualTo []) then {
             _candidates = [] call _fnc_livingPlayers;
         };

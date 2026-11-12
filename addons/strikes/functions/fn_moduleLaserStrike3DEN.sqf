@@ -4,7 +4,8 @@
  * Author: Root
  * 3DEN module entry point for the orbital laser strike. Reads the module
  * attributes placed in the editor and fires the laser at the module position
- * when the mission begins.
+ * when its trigger fires
+ * (or at mission start without one).
  *
  * Arguments:
  * 0: Module logic <OBJECT>

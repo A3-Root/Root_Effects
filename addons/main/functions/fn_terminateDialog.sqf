@@ -30,8 +30,7 @@ if (_data isEqualTo []) exitWith {
 private _rows = [];
 private _actions = [];
 
-// Number of running instances per effect type, to decide whether a
-// stop-all row is worth offering.
+// Number of running instances per effect type, to decide whether a stop-all row is worth offering.
 private _instanceCounts = createHashMap;
 {
     private _countKey = _x select 0;
@@ -55,8 +54,7 @@ private _seenKeys = [];
 
     private _label = format [LLSTRING(StopInstance), _displayName, _grid, floor (_elapsed / 60), _elapsed mod 60];
 
-    // Pausable effects offer a choice: halt only the ongoing particle spawning,
-    // or clear the whole instance gradually. Everything else is a single stop.
+    // Pausable effects offer a choice: halt only the ongoing particle spawning, or clear the whole instance gradually. Everything else is a single stop.
     if (_pausable) then {
         _rows pushBack ["TOOLBOX:YESNO", format [LLSTRING(StopParticleCreation), _label], false];
         _actions pushBack ["pause", _effectKey, _anchor];
